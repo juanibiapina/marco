@@ -1,6 +1,6 @@
 include Java
 
-$CLASSPATH << "target/classes"
+$CLASSPATH << "build/classes/main"
 
 java_import "marco.Interpreter"
 
