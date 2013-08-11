@@ -1,1 +1,24 @@
 apply plugin: 'java'
+
+configurations { rspec }
+
+repositories {
+  maven {
+    url 'http://deux.gemjars.org'
+  }
+
+  mavenCentral()
+}
+
+dependencies {
+  rspec 'org.jruby:jruby-complete:1.7.4'
+  rspec 'org.rubygems:rspec:2.14.1'
+}
+
+task(rspec, dependsOn: ["classes"], type: JavaExec) {
+  main = 'org.jruby.Main'
+  args 'classpath:bin/rspec'
+  classpath configurations.rspec + runtimeClasspath
+}
+
+tasks.build.dependsOn << 'rspec'
