@@ -1,1 +1,4 @@
 ✓ Add generated directory to sources
+- Make unit test cycle faster
+  - Add JUnit4 to IntelliJ
+  - Add ruby support to IntelliJ
