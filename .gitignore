@@ -4,3 +4,6 @@ out
 .gradle
 target
 build
+marco.iml
+marco.ipr
+marco.iws
