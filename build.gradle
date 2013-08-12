@@ -14,6 +14,12 @@ configurations {
   antlr
 }
 
+idea {
+  module {
+    sourceDirs += file('src/generated/java')
+  }
+}
+
 ext.antlr = [
   grammarpackage: "marco.parser.antlr",
   antlrSource: 'src/main/antlr',
