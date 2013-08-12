@@ -1,6 +1,5 @@
 apply plugin: 'java'
-
-configurations { rspec }
+apply plugin: 'idea'
 
 repositories {
   maven {
@@ -10,9 +9,22 @@ repositories {
   mavenCentral()
 }
 
+configurations {
+  rspec
+  antlr
+}
+
+ext.antlr = [
+  grammarpackage: "marco.parser.antlr",
+  antlrSource: 'src/main/antlr',
+  destinationDir: "src/generated/java"
+]
+
 dependencies {
   rspec 'org.jruby:jruby-complete:1.7.4'
   rspec 'org.rubygems:rspec:2.14.1'
+  antlr 'org.antlr:antlr4:4.1'
+  compile 'org.antlr:antlr4-runtime:4.1'
 }
 
 task(rspec, dependsOn: ["classes"], type: JavaExec) {
@@ -21,4 +33,32 @@ task(rspec, dependsOn: ["classes"], type: JavaExec) {
   classpath configurations.rspec + runtimeClasspath
 }
 
+task antlrOutputDir << {
+  mkdir(antlr.destinationDir)
+}
+
+task generateGrammarSource(dependsOn: antlrOutputDir, type: JavaExec) {
+  description = 'Generates Java sources from ANTLR4 grammars.'
+
+  inputs.dir file(antlr.antlrSource)
+  outputs.dir file(antlr.destinationDir)
+
+  def grammars = fileTree(antlr.antlrSource).include('**/*.g4')
+
+  main = 'org.antlr.v4.Tool'
+  classpath = configurations.antlr
+  def pkg = antlr.grammarpackage.replaceAll("\\.", "/")
+
+  args = ["-o", "${antlr.destinationDir}/${pkg}"/*, "-atn"*/, "-visitor", "-package", antlr.grammarpackage, grammars.files].flatten()
+}
+
 tasks.build.dependsOn << 'rspec'
+
+compileJava {
+  dependsOn generateGrammarSource
+  source antlr.destinationDir
+}
+
+clean {
+  delete antlr.destinationDir
+}
