@@ -4,12 +4,13 @@ import marco.MarcoException;
 import marco.lang.types.Message;
 
 public class MarcoObject {
+    public MarcoRuntime runtime;
+    private String name;
     private MarcoValue value;
     private MarcoObject parent;
-    private String name;
 
     public MarcoObject(MarcoRuntime runtime) {
-
+        this.runtime = runtime;
     }
 
     public MarcoObject sendMessage(MarcoObject message) {

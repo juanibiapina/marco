@@ -1,6 +1,7 @@
 package marco.lang;
 
 import marco.lang.types.Global;
+import marco.lang.types.Message;
 import marco.lang.types.ObjectType;
 import marco.lang.values.MessageValue;
 import marco.parser.Parser;
@@ -19,6 +20,7 @@ public class MarcoRuntime {
 
         ObjectType.init(object);
         Global.init(global);
+        Message.init(message);
     }
 
     public MarcoObject parse(String code) {
