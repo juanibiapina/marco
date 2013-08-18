@@ -2,4 +2,4 @@ grammar Marco;
 
 program : ID ;
 
-ID : [a-z]+ ;
+ID : [a-z_]+ ;
