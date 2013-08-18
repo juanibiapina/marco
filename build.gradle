@@ -10,7 +10,6 @@ repositories {
 }
 
 configurations {
-  rspec
   antlr
 }
 
@@ -27,16 +26,9 @@ ext.antlr = [
 ]
 
 dependencies {
-  rspec 'org.jruby:jruby-complete:1.7.4'
-  rspec 'org.rubygems:rspec:2.14.1'
   antlr 'org.antlr:antlr4:4.1'
   compile 'org.antlr:antlr4-runtime:4.1'
-}
-
-task(rspec, dependsOn: ["classes"], type: JavaExec) {
-  main = 'org.jruby.Main'
-  args 'classpath:bin/rspec'
-  classpath configurations.rspec + runtimeClasspath
+  testCompile group: 'junit', name: 'junit', version: '4.+'
 }
 
 task antlrOutputDir << {
@@ -57,8 +49,6 @@ task generateGrammarSource(dependsOn: antlrOutputDir, type: JavaExec) {
 
   args = ["-o", "${antlr.destinationDir}/${pkg}"/*, "-atn"*/, "-visitor", "-package", antlr.grammarpackage, grammars.files].flatten()
 }
-
-tasks.build.dependsOn << 'rspec'
 
 compileJava {
   dependsOn generateGrammarSource
