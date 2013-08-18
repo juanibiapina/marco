@@ -22,8 +22,8 @@ public class Repl {
         while (true) {
             printShell();
             String line = readLine();
-            MarcoObject program = runtime.parse(line);
             try {
+                MarcoObject program = runtime.parse(line);
                 MarcoObject result = runtime.interpreter.eval(runtime.global, program);
                 printResult(result);
             } catch (MarcoException e) {
