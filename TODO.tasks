@@ -1,5 +1,12 @@
-✓ Add generated directory to sources
-- Make unit test cycle faster
-  - Add ruby support to IntelliJ
-    - ruby is not supported on IntelliJ 12 yet
-- Add JUnit4 to IntelliJ
+Tools
+  ✓ Add generated directory to sources
+  ✓ Make unit test cycle faster
+  ✓ Add JUnit4 to IntelliJ
+  ✓ Add groovy and spock
+
+Features
+  - Strings
+  - Block operators
+    - ()
+    - {}
+    - <>
