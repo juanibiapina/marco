@@ -1,4 +1,4 @@
-import IntegrationSpecification
+import helpers.IntegrationSpecification
 import marco.MarcoException
 
 class Message extends IntegrationSpecification {
