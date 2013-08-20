@@ -26,6 +26,12 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
         return result;
     }
 
+    @Override
+    public MarcoObject visitNumber(@NotNull MarcoParser.NumberContext ctx) {
+        result = runtime.createNumberMessage(ctx.getText());
+        return result;
+    }
+
     public MarcoObject getResult() {
         return result;
     }

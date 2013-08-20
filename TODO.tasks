@@ -7,6 +7,10 @@ Tools
 Features
   - Booleans
   - Numbers
+    ✓ Integers
+    - Floats
+    - Scientific notation
+    - Fractions
   - Console IO
   ✓ Strings
   ✓ Messages
