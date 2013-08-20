@@ -5,8 +5,16 @@ Tools
   ✓ Add groovy and spock
 
 Features
-  - Strings
+  - Booleans
+  - Numbers
+  - Console IO
+  ✓ Strings
+  ✓ Messages
+  - Message chains
   - Block operators
     - ()
     - {}
     - <>
+
+Fixes
+  - REPL output
