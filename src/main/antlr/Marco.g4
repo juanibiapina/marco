@@ -1,5 +1,14 @@
 grammar Marco;
 
-program : ID ;
+program
+    : message
+    ;
 
-ID : [a-zA-Z_-]+ ;
+message
+    : SYMBOL   # Symbol
+    | STRING   # String
+    ;
+
+SYMBOL : [a-zA-Z_-]+ ;
+
+STRING : '"' ( ~'"' | '\\' '"' )* '"' ;

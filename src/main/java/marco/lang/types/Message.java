@@ -13,4 +13,18 @@ public class Message {
         MessageValue value = (MessageValue) self.getValue();
         return value.getName();
     }
+
+    public static MarcoObject hasCachedResult(MarcoObject self) {
+        MessageValue message = (MessageValue) self.getValue();
+        if (message.hasCachedResult()) {
+            return self.runtime.trueObject;
+        } else {
+            return self.runtime.falseObject;
+        }
+    }
+
+    public static MarcoObject getCachedResult(MarcoObject self) {
+        MessageValue message = (MessageValue) self.getValue();
+        return message.getCachedResult();
+    }
 }

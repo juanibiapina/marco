@@ -9,7 +9,7 @@ import spock.lang.Specification
 abstract class IntegrationSpecification extends Specification {
     def runtime = new MarcoRuntime();
 
-    def String eval(String code) {
+    def MarcoObject eval(String code) {
         MarcoObject program = runtime.parse(code)
         return runtime.interpreter.eval(runtime.global, program);
     }
