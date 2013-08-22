@@ -35,8 +35,8 @@ public class MarcoRuntime {
         chain = new MarcoObject(this);
         list = new MarcoObject(this);
 
-        ObjectType.init(object);
         NativeMethodType.init(nativeMethod);
+        ObjectType.init(object);
         Global.init(global);
         Message.init(message);
         StringType.init(string);

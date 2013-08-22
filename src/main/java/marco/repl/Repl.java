@@ -33,7 +33,7 @@ public class Repl {
     }
 
     private void printResult(MarcoObject result) {
-        result.sendMessage("println");
+        result.sendMessage("puts");
     }
 
     private void printShell() {
