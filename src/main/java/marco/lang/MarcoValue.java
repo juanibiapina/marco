@@ -1,4 +1,5 @@
 package marco.lang;
 
-public class MarcoValue {
+public interface MarcoValue {
+    public MarcoValue duplicate();
 }

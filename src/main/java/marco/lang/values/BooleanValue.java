@@ -2,7 +2,7 @@ package marco.lang.values;
 
 import marco.lang.MarcoValue;
 
-public class BooleanValue extends MarcoValue {
+public class BooleanValue implements MarcoValue {
     private boolean value;
 
     public BooleanValue(boolean value) {
@@ -11,5 +11,10 @@ public class BooleanValue extends MarcoValue {
 
     public boolean getValue() {
         return value;
+    }
+
+    @Override
+    public MarcoValue duplicate() {
+        return new BooleanValue(value);
     }
 }

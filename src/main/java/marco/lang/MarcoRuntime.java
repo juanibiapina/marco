@@ -17,6 +17,8 @@ public class MarcoRuntime {
     public MarcoObject trueObject;
     public MarcoObject falseObject;
     public MarcoObject number;
+    public MarcoObject chain;
+    public MarcoObject list;
 
     public MarcoRuntime() {
         object = new MarcoObject(this);
@@ -27,6 +29,8 @@ public class MarcoRuntime {
         trueObject = new MarcoObject(this);
         falseObject = new MarcoObject(this);
         number = new MarcoObject(this);
+        chain = new MarcoObject(this);
+        list = new MarcoObject(this);
 
         ObjectType.init(object);
         Global.init(global);
@@ -36,6 +40,8 @@ public class MarcoRuntime {
         TrueType.init(trueObject);
         FalseType.init(falseObject);
         NumberType.init(number);
+        ChainType.init(chain);
+        ListType.init(list);
     }
 
     public MarcoObject parse(String code) {
@@ -79,5 +85,18 @@ public class MarcoRuntime {
         aString.setParent(number);
         aString.setValue(NumberValue.fromString(value));
         return aString;
+    }
+
+    public MarcoObject createChain(MarcoObject messages) {
+        MarcoObject aChain = new MarcoObject(this);
+        aChain.setParent(chain);
+        aChain.setSlot("messages", messages);
+        return aChain;
+    }
+
+    public MarcoObject createList() {
+        MarcoObject aList = new MarcoObject(this);
+        aList.setParent(list);
+        return aList;
     }
 }

@@ -2,6 +2,7 @@ package marco.parser;
 
 import marco.lang.MarcoObject;
 import marco.lang.MarcoRuntime;
+import marco.lang.types.ListType;
 import marco.parser.antlr.MarcoBaseVisitor;
 import marco.parser.antlr.MarcoParser;
 import org.antlr.v4.runtime.misc.NotNull;
@@ -22,7 +23,13 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
 
     @Override
     public MarcoObject visitChain(@NotNull MarcoParser.ChainContext ctx) {
-        return visit(ctx.message());
+        MarcoObject messages = runtime.createList();
+
+        for (MarcoParser.MessageContext messageContext : ctx.message()) {
+            ListType.add(messages, visit(messageContext));
+        }
+
+        return runtime.createChain(messages);
     }
 
     @Override

@@ -2,7 +2,7 @@ package marco.lang.values;
 
 import marco.lang.MarcoValue;
 
-public class NumberValue extends MarcoValue {
+public class NumberValue implements MarcoValue {
     private int value;
 
     public NumberValue(int value) {
@@ -11,5 +11,10 @@ public class NumberValue extends MarcoValue {
 
     public static MarcoValue fromString(String value) {
         return new NumberValue(Integer.parseInt(value));
+    }
+
+    @Override
+    public MarcoValue duplicate() {
+        return new NumberValue(value);
     }
 }

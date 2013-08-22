@@ -3,7 +3,7 @@ package marco.lang.values;
 import marco.lang.MarcoObject;
 import marco.lang.MarcoValue;
 
-public class MessageValue extends MarcoValue {
+public class MessageValue implements MarcoValue {
     private String name;
     private MarcoObject cachedResult;
 
@@ -25,5 +25,10 @@ public class MessageValue extends MarcoValue {
 
     public MarcoObject getCachedResult() {
         return cachedResult;
+    }
+
+    @Override
+    public MarcoValue duplicate() {
+        return new MessageValue(name); // TODO: what about cached results ?
     }
 }

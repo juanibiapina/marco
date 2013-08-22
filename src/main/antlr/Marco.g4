@@ -5,7 +5,7 @@ program
     ;
 
 chain
-    : message
+    : message+
     ;
 
 message
@@ -19,3 +19,5 @@ SYMBOL : [a-zA-Z_-]+ ;
 STRING : '"' ( ~'"' | '\\' '"' )* '"' ;
 
 NUMBER : '-'? [0-9]+ ;
+
+WHITESPACE : [ \t] -> channel(HIDDEN) ;

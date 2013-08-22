@@ -2,12 +2,21 @@ package marco.lang.helpers;
 
 import marco.lang.MarcoObject;
 import marco.lang.values.BooleanValue;
+import marco.lang.values.ListValue;
+
+import java.util.List;
 
 public class Cast {
     public static boolean toBoolean(MarcoObject self) {
         assertValueExists(self, "Boolean");
         BooleanValue bValue = (BooleanValue) self.getValue();
         return bValue.getValue();
+    }
+
+    public static List<MarcoObject> toList(MarcoObject self) {
+        assertValueExists(self, "List");
+        ListValue aValue = (ListValue) self.getValue();
+        return aValue.getValue();
     }
 
     private static void assertValueExists(MarcoObject self, String type) {
