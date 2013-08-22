@@ -16,8 +16,13 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
 
     @Override
     public MarcoObject visitProgram(@NotNull MarcoParser.ProgramContext ctx) {
-        result = visit(ctx.message());
+        result = visit(ctx.chain());
         return result;
+    }
+
+    @Override
+    public MarcoObject visitChain(@NotNull MarcoParser.ChainContext ctx) {
+        return visit(ctx.message());
     }
 
     @Override

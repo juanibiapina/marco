@@ -1,6 +1,10 @@
 grammar Marco;
 
 program
+    : chain
+    ;
+
+chain
     : message
     ;
 
