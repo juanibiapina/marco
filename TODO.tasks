@@ -11,14 +11,25 @@ Features
     - Floats
     - Scientific notation
     - Fractions
-  - Console IO
+  ✓ Console Output
   ✓ Strings
   ✓ Messages
-  - Message chains
+  ✓ Message chains
   - Block operators
     - ()
     - {}
     - <>
+  - Mixins
+
+Organization
+  - Separate Types into Types object
 
 Fixes
-  - REPL output
+  ✓ REPL output
+
+Internal
+  - Slot object
+
+Refactor
+  - Creation of objects
+  - Runtime setup
