@@ -8,6 +8,11 @@ public class MarcoInterpreter {
     public MarcoObject eval(MarcoObject context, MarcoObject program) {
         MarcoObject chain = program;
         List<MarcoObject> messages = Cast.toList(chain.sendMessage("messages"));
-        return context.sendMessage(messages.get(0));
+
+        MarcoObject on = context;
+        for (MarcoObject message : messages) {
+            on = on.sendMessage(message);
+        }
+        return on;
     }
 }

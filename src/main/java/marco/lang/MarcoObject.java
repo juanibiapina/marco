@@ -13,6 +13,7 @@ public class MarcoObject {
     private MarcoValue value;
     private MarcoObject parent;
     private Map<String, MarcoObject> slots = new HashMap<String, MarcoObject>();
+    private boolean activatable = false;
 
     public MarcoObject(MarcoRuntime runtime) {
         this.runtime = runtime;
@@ -25,24 +26,51 @@ public class MarcoObject {
 
         String slotName = Message.name(message);
         if (hasSlot(slotName)) {
-            return getSlot(slotName);
+            return getSlot(slotName).maybeActivate(this);
         } else {
             throw new MarcoException("Exception: " + getName() + " does not respond to " + slotName);
         }
     }
 
+    private MarcoObject maybeActivate(MarcoObject owner) {
+        if (activatable) {
+            return value.activate(owner);
+        } else {
+            return this;
+        }
+    }
+
     private MarcoObject getSlot(String name) {
-        return slots.get(name);
+        if (slots.containsKey(name)) {
+            return slots.get(name);
+        } else {
+            return parent.getSlot(name);
+        }
     }
 
     private boolean hasSlot(String name) {
-        return slots.containsKey(name);
+        if (slots.containsKey(name)) {
+            return true;
+        } else {
+            if (hasParent()) {
+                return parent.hasSlot(name);
+            } else {
+                return false;
+            }
+        }
+    }
+
+    private boolean hasParent() {
+        return parent != null;
     }
 
     public void setParent(MarcoObject parent) {
         this.parent = parent;
         if (parent.value != null) {
             this.value = parent.value.duplicate();
+        }
+        if (parent.activatable) {
+            this.activatable = true;
         }
     }
 
@@ -76,5 +104,9 @@ public class MarcoObject {
 
     public void setSlot(String name, MarcoObject value) {
         slots.put(name, value);
+    }
+
+    public void setActivatable(boolean activatable) {
+        this.activatable = activatable;
     }
 }

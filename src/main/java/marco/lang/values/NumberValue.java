@@ -1,5 +1,6 @@
 package marco.lang.values;
 
+import marco.lang.MarcoObject;
 import marco.lang.MarcoValue;
 
 public class NumberValue implements MarcoValue {
@@ -16,5 +17,10 @@ public class NumberValue implements MarcoValue {
     @Override
     public MarcoValue duplicate() {
         return new NumberValue(value);
+    }
+
+    @Override
+    public MarcoObject activate(MarcoObject owner) {
+        return owner;
     }
 }

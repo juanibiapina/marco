@@ -31,4 +31,9 @@ public class MessageValue implements MarcoValue {
     public MarcoValue duplicate() {
         return new MessageValue(name); // TODO: what about cached results ?
     }
+
+    @Override
+    public MarcoObject activate(MarcoObject owner) {
+        return owner;
+    }
 }

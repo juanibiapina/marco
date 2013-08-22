@@ -1,5 +1,6 @@
 package marco.lang.values;
 
+import marco.lang.MarcoObject;
 import marco.lang.MarcoValue;
 
 public class BooleanValue implements MarcoValue {
@@ -16,5 +17,10 @@ public class BooleanValue implements MarcoValue {
     @Override
     public MarcoValue duplicate() {
         return new BooleanValue(value);
+    }
+
+    @Override
+    public MarcoObject activate(MarcoObject owner) {
+        return owner;
     }
 }

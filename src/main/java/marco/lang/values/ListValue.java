@@ -20,4 +20,9 @@ public class ListValue implements MarcoValue {
     public MarcoValue duplicate() {
         return new ListValue((ArrayList<MarcoObject>) value.clone());
     }
+
+    @Override
+    public MarcoObject activate(MarcoObject owner) {
+        return owner;
+    }
 }

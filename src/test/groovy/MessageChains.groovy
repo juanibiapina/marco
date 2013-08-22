@@ -8,4 +8,12 @@ class MessageChains extends IntegrationSpecification {
         then:
         result.value.value == "ha"
     }
+
+    def "messages can be chained further"() {
+        when:
+        def result = eval(/"haha" "lol" to_string/)
+
+        then:
+        result.value.value == "lol"
+    }
 }

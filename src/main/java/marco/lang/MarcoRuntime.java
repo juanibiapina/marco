@@ -2,6 +2,7 @@ package marco.lang;
 
 import marco.lang.types.*;
 import marco.lang.values.MessageValue;
+import marco.lang.values.NativeMethodValue;
 import marco.lang.values.NumberValue;
 import marco.lang.values.StringValue;
 import marco.parser.Parser;
@@ -19,9 +20,11 @@ public class MarcoRuntime {
     public MarcoObject number;
     public MarcoObject chain;
     public MarcoObject list;
+    public MarcoObject nativeMethod;
 
     public MarcoRuntime() {
         object = new MarcoObject(this);
+        nativeMethod = new MarcoObject(this);
         message = new MarcoObject(this);
         global = new MarcoObject(this);
         string = new MarcoObject(this);
@@ -33,6 +36,7 @@ public class MarcoRuntime {
         list = new MarcoObject(this);
 
         ObjectType.init(object);
+        NativeMethodType.init(nativeMethod);
         Global.init(global);
         Message.init(message);
         StringType.init(string);
@@ -98,5 +102,12 @@ public class MarcoRuntime {
         MarcoObject aList = new MarcoObject(this);
         aList.setParent(list);
         return aList;
+    }
+
+    public MarcoObject createNativeMethod(NativeMethodValue nativeMethodValue) {
+        MarcoObject aMethod = new MarcoObject(this);
+        aMethod.setParent(nativeMethod);
+        aMethod.setValue(nativeMethodValue);
+        return aMethod;
     }
 }

@@ -3,6 +3,7 @@ package marco.lang.helpers;
 import marco.lang.MarcoObject;
 import marco.lang.values.BooleanValue;
 import marco.lang.values.ListValue;
+import marco.lang.values.StringValue;
 
 import java.util.List;
 
@@ -16,6 +17,12 @@ public class Cast {
     public static List<MarcoObject> toList(MarcoObject self) {
         assertValueExists(self, "List");
         ListValue aValue = (ListValue) self.getValue();
+        return aValue.getValue();
+    }
+
+    public static String toString(MarcoObject self) {
+        assertValueExists(self, "String");
+        StringValue aValue = (StringValue) self.getValue();
         return aValue.getValue();
     }
 
