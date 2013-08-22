@@ -16,4 +16,12 @@ class Strings extends IntegrationSpecification{
         eval(/"$%!*() haha _ - + = ^ `\\##|{)"/).value.value == /$%!*() haha _ - + = ^ `\\##|{)/
         eval(/"\\""/).value.value == /\\"/
     }
+
+    def "to_string"() {
+        when:
+        def result = eval(/"value" to_string/)
+
+        then:
+        result.value.value == "value"
+    }
 }
