@@ -23,4 +23,8 @@ public class NumberValue implements MarcoValue {
     public MarcoObject activate(MarcoObject owner) {
         return owner;
     }
+
+    public int getValue() {
+        return value;
+    }
 }

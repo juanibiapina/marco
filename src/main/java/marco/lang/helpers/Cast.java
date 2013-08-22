@@ -3,6 +3,7 @@ package marco.lang.helpers;
 import marco.lang.MarcoObject;
 import marco.lang.values.BooleanValue;
 import marco.lang.values.ListValue;
+import marco.lang.values.NumberValue;
 import marco.lang.values.StringValue;
 
 import java.util.List;
@@ -23,6 +24,12 @@ public class Cast {
     public static String toString(MarcoObject self) {
         assertValueExists(self, "String");
         StringValue aValue = (StringValue) self.getValue();
+        return aValue.getValue();
+    }
+
+    public static Integer toInteger(MarcoObject self) {
+        assertValueExists(self, "Number");
+        NumberValue aValue = (NumberValue) self.getValue();
         return aValue.getValue();
     }
 
