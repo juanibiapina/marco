@@ -15,21 +15,24 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
     }
 
     @Override
-    public MarcoObject visitSymbol(@NotNull MarcoParser.SymbolContext ctx) {
-        result = runtime.createMessage(ctx.getText());
+    public MarcoObject visitProgram(@NotNull MarcoParser.ProgramContext ctx) {
+        result = visit(ctx.message());
         return result;
+    }
+
+    @Override
+    public MarcoObject visitSymbol(@NotNull MarcoParser.SymbolContext ctx) {
+        return runtime.createMessage(ctx.getText());
     }
 
     @Override
     public MarcoObject visitString(@NotNull MarcoParser.StringContext ctx) {
-        result = runtime.createStringMessage(ctx.getText().substring(1, ctx.getText().length() - 1));
-        return result;
+        return runtime.createStringMessage(ctx.getText().substring(1, ctx.getText().length() - 1));
     }
 
     @Override
     public MarcoObject visitNumber(@NotNull MarcoParser.NumberContext ctx) {
-        result = runtime.createNumberMessage(ctx.getText());
-        return result;
+        return runtime.createNumberMessage(ctx.getText());
     }
 
     public MarcoObject getResult() {
