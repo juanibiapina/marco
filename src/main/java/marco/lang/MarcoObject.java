@@ -2,7 +2,7 @@ package marco.lang;
 
 import marco.MarcoException;
 import marco.lang.helpers.Cast;
-import marco.lang.types.Message;
+import marco.lang.types.MessageType;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -20,11 +20,11 @@ public class MarcoObject {
     }
 
     public MarcoObject sendMessage(MarcoObject message) {
-        if (Cast.toBoolean(Message.hasCachedResult(message))) {
-            return Message.getCachedResult(message);
+        if (Cast.toBoolean(MessageType.hasCachedResult(message))) {
+            return MessageType.getCachedResult(message);
         }
 
-        String slotName = Message.name(message);
+        String slotName = MessageType.name(message);
         if (hasSlot(slotName)) {
             return getSlot(slotName).maybeActivate(this);
         } else {

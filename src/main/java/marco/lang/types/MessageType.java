@@ -3,7 +3,7 @@ package marco.lang.types;
 import marco.lang.MarcoObject;
 import marco.lang.values.MessageValue;
 
-public class Message {
+public class MessageType {
     public static void init(MarcoObject self) {
         self.setName("Message");
         self.setParent(self.runtime.object);

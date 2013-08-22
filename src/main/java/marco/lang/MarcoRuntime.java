@@ -38,7 +38,7 @@ public class MarcoRuntime {
         NativeMethodType.init(nativeMethod);
         ObjectType.init(object);
         Global.init(global);
-        Message.init(message);
+        MessageType.init(message);
         StringType.init(string);
         BooleanType.init(booleanObject);
         TrueType.init(trueObject);
