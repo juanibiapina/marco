@@ -12,7 +12,7 @@ public class MarcoObject {
     private String name;
     private MarcoValue value;
     private MarcoObject parent;
-    private Map<String, MarcoObject> slots = new HashMap<String, MarcoObject>();
+    private Map<String, MarcoSlot> slots = new HashMap<String, MarcoSlot>();
     private boolean activatable = false;
 
     public MarcoObject(MarcoRuntime runtime) {
@@ -26,21 +26,13 @@ public class MarcoObject {
 
         String slotName = MessageType.name(message);
         if (hasSlot(slotName)) {
-            return getSlot(slotName).maybeActivate(this);
+            return getSlot(slotName).activate(this);
         } else {
             throw new MarcoException("Exception: " + getName() + " does not respond to " + slotName);
         }
     }
 
-    private MarcoObject maybeActivate(MarcoObject owner) {
-        if (activatable) {
-            return value.activate(owner);
-        } else {
-            return this;
-        }
-    }
-
-    private MarcoObject getSlot(String name) {
+    private MarcoSlot getSlot(String name) {
         if (slots.containsKey(name)) {
             return slots.get(name);
         } else {
@@ -103,10 +95,14 @@ public class MarcoObject {
     }
 
     public void setSlot(String name, MarcoObject value) {
-        slots.put(name, value);
+        slots.put(name, new MarcoSlot(this, value));
     }
 
     public void setActivatable(boolean activatable) {
         this.activatable = activatable;
+    }
+
+    public boolean isActivatable() {
+        return activatable;
     }
 }
