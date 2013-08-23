@@ -1,22 +1,19 @@
 package marco.lang;
 
-import marco.MarcoException;
 import marco.lang.helpers.Cast;
 import marco.lang.types.MessageType;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class MarcoObject {
     public MarcoRuntime runtime;
     private String name;
     private MarcoValue value;
     private MarcoObject parent;
-    private Map<String, MarcoSlot> slots = new HashMap<String, MarcoSlot>();
+    private MarcoSlots slots;
     private boolean activatable = false;
 
     public MarcoObject(MarcoRuntime runtime) {
         this.runtime = runtime;
+        slots = new MarcoSlots(this);
     }
 
     public MarcoObject sendMessage(MarcoObject message) {
@@ -25,34 +22,10 @@ public class MarcoObject {
         }
 
         String slotName = MessageType.name(message);
-        if (hasSlot(slotName)) {
-            return getSlot(slotName).activate(this);
-        } else {
-            throw new MarcoException("Exception: " + getName() + " does not respond to " + slotName);
-        }
+        return slots.activate(slotName);
     }
 
-    private MarcoSlot getSlot(String name) {
-        if (slots.containsKey(name)) {
-            return slots.get(name);
-        } else {
-            return parent.getSlot(name);
-        }
-    }
-
-    private boolean hasSlot(String name) {
-        if (slots.containsKey(name)) {
-            return true;
-        } else {
-            if (hasParent()) {
-                return parent.hasSlot(name);
-            } else {
-                return false;
-            }
-        }
-    }
-
-    private boolean hasParent() {
+    public boolean hasParent() {
         return parent != null;
     }
 
@@ -95,7 +68,7 @@ public class MarcoObject {
     }
 
     public void setSlot(String name, MarcoObject value) {
-        slots.put(name, new MarcoSlot(this, value));
+        slots.add(new MarcoSlot(name, value));
     }
 
     public void setActivatable(boolean activatable) {
@@ -104,5 +77,13 @@ public class MarcoObject {
 
     public boolean isActivatable() {
         return activatable;
+    }
+
+    public MarcoObject getParent() {
+        return parent;
+    }
+
+    public MarcoSlots getSlots() {
+        return slots;
     }
 }

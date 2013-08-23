@@ -1,11 +1,11 @@
 package marco.lang;
 
 public class MarcoSlot {
-    private MarcoObject owner;
     private final MarcoObject content;
+    private String name;
 
-    public MarcoSlot(MarcoObject owner, MarcoObject content) {
-        this.owner = owner;
+    public MarcoSlot(String name, MarcoObject content) {
+        this.name = name;
         this.content = content;
     }
 
@@ -15,5 +15,9 @@ public class MarcoSlot {
         } else {
             return content;
         }
+    }
+
+    public String getName() {
+        return name;
     }
 }
