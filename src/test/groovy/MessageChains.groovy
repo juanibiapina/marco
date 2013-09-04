@@ -1,6 +1,6 @@
-import helpers.IntegrationSpecification
+import helpers.MarcoSpecification
 
-class MessageChains extends IntegrationSpecification {
+class MessageChains extends MarcoSpecification {
     def "messages can be chained"() {
         when:
         def result = eval(/"ha" to_string/)

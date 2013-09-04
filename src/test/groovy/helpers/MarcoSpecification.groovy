@@ -6,7 +6,7 @@ import org.junit.Ignore
 import spock.lang.Specification
 
 @Ignore
-abstract class IntegrationSpecification extends Specification {
+abstract class MarcoSpecification extends Specification {
     def runtime = new MarcoRuntime();
 
     def MarcoObject eval(String code) {

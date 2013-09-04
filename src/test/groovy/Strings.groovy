@@ -1,6 +1,6 @@
-import helpers.IntegrationSpecification
+import helpers.MarcoSpecification
 
-class Strings extends IntegrationSpecification{
+class Strings extends MarcoSpecification{
     def "strings return themselves"() {
         when:
         def result = eval(/"string literal"/)

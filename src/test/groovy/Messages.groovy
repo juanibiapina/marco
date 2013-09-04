@@ -1,8 +1,8 @@
-import helpers.IntegrationSpecification
+import helpers.MarcoSpecification
 import marco.MarcoException
 import marco.lang.MarcoObject
 
-class Messages extends IntegrationSpecification {
+class Messages extends MarcoSpecification {
     def "valid characters for messages"() {
         expect:
         message("abcdef")

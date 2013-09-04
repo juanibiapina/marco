@@ -1,6 +1,6 @@
-import helpers.IntegrationSpecification
+import helpers.MarcoSpecification
 
-class Numbers extends IntegrationSpecification {
+class Numbers extends MarcoSpecification {
     def "integers return themselves"() {
         when:
         def result = eval "1"
