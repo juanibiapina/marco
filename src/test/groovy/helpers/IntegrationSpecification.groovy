@@ -15,6 +15,10 @@ abstract class IntegrationSpecification extends Specification {
     }
 
     def message(String message) {
+        parse(message)
+    }
+
+    def parse(String message) {
         runtime.parse(message)
     }
 }

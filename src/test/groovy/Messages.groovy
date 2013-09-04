@@ -26,28 +26,28 @@ class Messages extends IntegrationSpecification {
     def  "simple symbol lookup"() {
         given:
         def context = new MarcoObject(runtime)
-        def expectedResult = new MarcoObject(runtime)
-        context.setSlot "aSlot", expectedResult
-        def program = message "aSlot"
+        def expected = new MarcoObject(runtime)
+        context.setSlot "a_slot", expected
+        def program = parse "a_slot"
 
         when:
         def result = runtime.interpreter.eval(context, program)
 
         then:
-        result == expectedResult
+        result == expected
     }
 
     def "sequence of symbol lookups"() {
         given:
         def context = new MarcoObject(runtime)
         def firstValue = new MarcoObject(runtime)
-        context.setSlot("firstValue", firstValue)
+        context.setSlot("first_value", firstValue)
         def secondValue = new MarcoObject(runtime)
-        firstValue.setSlot("secondValue", secondValue)
+        firstValue.setSlot("second_value", secondValue)
         def thirdValue = new MarcoObject(runtime)
-        secondValue.setSlot("thirdValue", thirdValue);
+        secondValue.setSlot("third_value", thirdValue);
 
-        def program = message("firstValue secondValue thirdValue")
+        def program = parse("first_value second_value third_value")
 
         when:
         def result = runtime.interpreter.eval(context, program);
