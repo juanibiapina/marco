@@ -20,4 +20,4 @@ STRING : '"' ( ~'"' | '\\' '"' )* '"' ;
 
 NUMBER : '-'? [0-9]+ ;
 
-WHITESPACE : [ \t] -> channel(HIDDEN) ;
+WHITESPACE : [ \t\n] -> channel(HIDDEN) ;
