@@ -1,11 +1,12 @@
 package marco.lang.types;
 
 import marco.lang.MarcoObject;
+import marco.lang.values.MethodValue;
 
-public class NativeMethodType {
+public class MethodType {
     public static void init(MarcoObject self) {
-        self.setName("NativeMethod");
-        self.setActivatable();
+        self.setName("Method");
         self.setParent(self.runtime.object);
+        self.setValue(new MethodValue());
     }
 }

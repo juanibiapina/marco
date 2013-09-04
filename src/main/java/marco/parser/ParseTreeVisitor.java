@@ -17,7 +17,12 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
 
     @Override
     public MarcoObject visitProgram(@NotNull MarcoParser.ProgramContext ctx) {
-        result = visit(ctx.chain());
+        MarcoObject chains = runtime.createList();
+
+        for (MarcoParser.ChainContext chainContext : ctx.chain()) {
+            ListType.add(chains, visit(chainContext));
+        }
+        result = chains;
         return result;
     }
 

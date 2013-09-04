@@ -10,18 +10,18 @@ public class NumberValue implements MarcoValue {
         this.value = value;
     }
 
-    public static MarcoValue fromString(String value) {
-        return new NumberValue(Integer.parseInt(value));
+    public NumberValue(String value) {
+        this.value = Integer.parseInt(value);
+    }
+
+    @Override
+    public MarcoObject activate(MarcoObject self, MarcoObject scope, MarcoObject on, MarcoObject message) {
+        throw new RuntimeException(this.getClass().getSimpleName() + "  can not be activated");
     }
 
     @Override
     public MarcoValue duplicate() {
         return new NumberValue(value);
-    }
-
-    @Override
-    public MarcoObject activate(MarcoObject owner) {
-        return owner;
     }
 
     public int getValue() {

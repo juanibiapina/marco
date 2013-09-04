@@ -4,6 +4,7 @@ import marco.lang.MarcoObject;
 import marco.lang.MarcoValue;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListValue implements MarcoValue {
     private ArrayList<MarcoObject> value;
@@ -12,17 +13,17 @@ public class ListValue implements MarcoValue {
         this.value = value;
     }
 
-    public ArrayList<MarcoObject> getValue() {
+    public List<MarcoObject> getValue() {
         return value;
+    }
+
+    @Override
+    public MarcoObject activate(MarcoObject self, MarcoObject scope, MarcoObject on, MarcoObject message) {
+        throw new RuntimeException(this.getClass().getSimpleName() + "  can not be activated");
     }
 
     @Override
     public MarcoValue duplicate() {
         return new ListValue((ArrayList<MarcoObject>) value.clone());
-    }
-
-    @Override
-    public MarcoObject activate(MarcoObject owner) {
-        return owner;
     }
 }

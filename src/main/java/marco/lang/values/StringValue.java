@@ -15,12 +15,12 @@ public class StringValue implements MarcoValue {
     }
 
     @Override
-    public MarcoValue duplicate() {
-        return new StringValue(value);
+    public MarcoObject activate(MarcoObject self, MarcoObject scope, MarcoObject on, MarcoObject message) {
+        throw new RuntimeException(this.getClass().getSimpleName() + "  can not be activated");
     }
 
     @Override
-    public MarcoObject activate(MarcoObject owner) {
-        return owner;
+    public MarcoValue duplicate() {
+        return new StringValue(value);
     }
 }

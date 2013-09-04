@@ -11,7 +11,7 @@ abstract class IntegrationSpecification extends Specification {
 
     def MarcoObject eval(String code) {
         MarcoObject program = runtime.parse(code)
-        return runtime.interpreter.eval(runtime.global, program);
+        return runtime.interpreter.eval(runtime.object, program);
     }
 
     def message(String message) {

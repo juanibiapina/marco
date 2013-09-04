@@ -3,15 +3,15 @@ package marco.lang.values;
 import marco.lang.MarcoObject;
 import marco.lang.MarcoValue;
 
-public abstract class NativeMethodValue implements MarcoValue {
+public class MethodValue implements MarcoValue {
     @Override
     public MarcoObject activate(MarcoObject self, MarcoObject scope, MarcoObject on, MarcoObject message) {
-        return perform(scope, on, message);
+        MarcoObject body = self.sendMessage(scope, "body");
+        return self.runtime.interpreter.evalLine(scope, body);
     }
 
-    public abstract MarcoObject perform(MarcoObject scope, MarcoObject self, MarcoObject message);
-
+    @Override
     public MarcoValue duplicate() {
-        return this;
+        return new MethodValue();
     }
 }

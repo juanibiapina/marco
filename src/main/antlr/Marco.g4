@@ -1,7 +1,7 @@
 grammar Marco;
 
 program
-    : chain
+    : chain*
     ;
 
 chain

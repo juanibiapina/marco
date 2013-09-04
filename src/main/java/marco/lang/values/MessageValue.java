@@ -6,17 +6,28 @@ import marco.lang.MarcoValue;
 public class MessageValue implements MarcoValue {
     private String name;
     private MarcoObject cachedResult;
+    private MarcoObject argument;
 
     public MessageValue(String name) {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
+    @Override
+    public MarcoObject activate(MarcoObject self, MarcoObject scope, MarcoObject on, MarcoObject message) {
+        throw new RuntimeException(this.getClass().getSimpleName() + "  can not be activated");
     }
 
-    public void setCachedResult(MarcoObject result) {
-        cachedResult = result;
+    @Override
+    public MarcoValue duplicate() {
+        return new MessageValue(name);
+    }
+
+    public void setCachedResult(MarcoObject cachedResult) {
+        this.cachedResult = cachedResult;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public boolean hasCachedResult() {
@@ -27,13 +38,11 @@ public class MessageValue implements MarcoValue {
         return cachedResult;
     }
 
-    @Override
-    public MarcoValue duplicate() {
-        return new MessageValue(name); // TODO: what about cached results ?
+    public MarcoObject getArgument() {
+        return argument;
     }
 
-    @Override
-    public MarcoObject activate(MarcoObject owner) {
-        return owner;
+    public void setArgument(MarcoObject argument) {
+        this.argument = argument;
     }
 }

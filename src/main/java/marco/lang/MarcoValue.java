@@ -1,7 +1,7 @@
 package marco.lang;
 
 public interface MarcoValue {
-    public MarcoValue duplicate();
+    MarcoObject activate(MarcoObject self, MarcoObject scope, MarcoObject on, MarcoObject message);
 
-    MarcoObject activate(MarcoObject owner);
+    MarcoValue duplicate();
 }
