@@ -11,7 +11,7 @@ public class ChainType {
 
         self.setSlot("messages", self.runtime.createList());
 
-        self.setSlot("hasMessages", self.runtime.createNativeMethod(new NativeMethodValue() {
+        self.setSlot("has_messages", self.runtime.createNativeMethod(new NativeMethodValue() {
             @Override
             public MarcoObject perform(MarcoObject scope, MarcoObject self, MarcoObject message) {
                 MarcoObject messages = self.getSlot("messages");
@@ -23,7 +23,7 @@ public class ChainType {
             }
         }));
 
-        self.setSlot("popFirst", self.runtime.createNativeMethod(new NativeMethodValue() {
+        self.setSlot("pop_first", self.runtime.createNativeMethod(new NativeMethodValue() {
             @Override
             public MarcoObject perform(MarcoObject scope, MarcoObject self, MarcoObject message) {
                 MarcoObject messages = self.getSlot("messages");

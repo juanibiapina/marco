@@ -21,7 +21,7 @@ public class ListType {
             }
         }));
 
-        self.setSlot("popFirst", self.runtime.createNativeMethod(new NativeMethodValue() {
+        self.setSlot("pop_first", self.runtime.createNativeMethod(new NativeMethodValue() {
             @Override
             public MarcoObject perform(MarcoObject scope, MarcoObject self, MarcoObject message) {
                 ListValue listValue = (ListValue) self.getValue();
@@ -29,7 +29,7 @@ public class ListType {
             }
         }));
 
-        self.setSlot("isEmpty", self.runtime.createNativeMethod(new NativeMethodValue() {
+        self.setSlot("is_empty", self.runtime.createNativeMethod(new NativeMethodValue() {
             @Override
             public MarcoObject perform(MarcoObject scope, MarcoObject self, MarcoObject message) {
                 ListValue listValue = (ListValue) self.getValue();
@@ -65,7 +65,7 @@ public class ListType {
             }
         }));
 
-        self.setSlot("toString", self.runtime.createNativeMethod(new NativeMethodValue() {
+        self.setSlot("to_string", self.runtime.createNativeMethod(new NativeMethodValue() {
             @Override
             public MarcoObject perform(MarcoObject scope, MarcoObject self, MarcoObject message) {
                 ListValue listValue = (ListValue) self.getValue();

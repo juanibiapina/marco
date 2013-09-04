@@ -1,5 +1,6 @@
 package marco.repl;
 
+import marco.MarcoException;
 import marco.lang.MarcoObject;
 import marco.lang.MarcoRuntime;
 
@@ -21,9 +22,13 @@ public class Repl {
         while (true) {
             printShell();
             String line = readLine();
-            MarcoObject chain = runtime.parse(line).sendMessage(runtime.object, "popFirst");
-            MarcoObject result = runtime.interpreter.evalLine(runtime.object, chain);
-            printResult(result);
+            try {
+                MarcoObject chain = runtime.parse(line).sendMessage(runtime.object, "pop_first");
+                MarcoObject result = runtime.interpreter.evalLine(runtime.object, chain);
+                printResult(result);
+            } catch (MarcoException e) {
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -36,7 +41,7 @@ public class Repl {
     }
 
     private void printResult(MarcoObject result) {
-        result.sendMessage(runtime.object, "println");
+        result.sendMessage(runtime.object, "puts");
     }
 
     private String readLine() throws IOException {
