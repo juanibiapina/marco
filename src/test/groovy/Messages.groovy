@@ -25,13 +25,13 @@ class Messages extends IntegrationSpecification {
 
     def  "simple symbol lookup"() {
         given:
-        MarcoObject context = new MarcoObject(runtime);
-        MarcoObject expectedResult = new MarcoObject(runtime);
-        context.setSlot("aSlot", expectedResult);
-        MarcoObject program = message("aSlot");
+        def context = new MarcoObject(runtime)
+        def expectedResult = new MarcoObject(runtime)
+        context.setSlot "aSlot", expectedResult
+        def program = message "aSlot"
 
         when:
-        MarcoObject result = runtime.interpreter.eval(context, program);
+        def result = runtime.interpreter.eval(context, program)
 
         then:
         result == expectedResult
@@ -39,18 +39,18 @@ class Messages extends IntegrationSpecification {
 
     def "sequence of symbol lookups"() {
         given:
-        MarcoObject context = new MarcoObject(runtime);
-        MarcoObject firstValue = new MarcoObject(runtime);
-        context.setSlot("firstValue", firstValue);
-        MarcoObject secondValue = new MarcoObject(runtime);
-        firstValue.setSlot("secondValue", secondValue);
-        MarcoObject thirdValue = new MarcoObject(runtime);
+        def context = new MarcoObject(runtime)
+        def firstValue = new MarcoObject(runtime)
+        context.setSlot("firstValue", firstValue)
+        def secondValue = new MarcoObject(runtime)
+        firstValue.setSlot("secondValue", secondValue)
+        def thirdValue = new MarcoObject(runtime)
         secondValue.setSlot("thirdValue", thirdValue);
 
-        MarcoObject program = message("firstValue secondValue thirdValue");
+        def program = message("firstValue secondValue thirdValue")
 
         when:
-        MarcoObject result = runtime.interpreter.eval(context, program);
+        def result = runtime.interpreter.eval(context, program);
 
         then:
         result == thirdValue
