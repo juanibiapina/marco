@@ -13,21 +13,21 @@ public class MarcoObject {
     public MarcoRuntime runtime;
 
     private String name;
-    private Map<String, MarcoObject> slots = new HashMap<String, MarcoObject>();
     private MarcoObject parent;
     private MarcoValue value;
     private boolean activatable = false;
+    private Map<String, MarcoSlot> slots = new HashMap<String, MarcoSlot>();
 
     public MarcoObject(MarcoRuntime runtime) {
         this.runtime = runtime;
     }
 
-    public MarcoObject getSlot(String slotName) {
+    public MarcoObject getSlotContent(String slotName) {
         if (slots.containsKey(slotName)) {
-            return slots.get(slotName);
+            return slots.get(slotName).activate();
         } else {
             if (hasParent()) {
-                return parent.getSlot(slotName);
+                return parent.getSlotContent(slotName);
             } else {
                 throw new RuntimeException("Can't find slot " + slotName);
             }
@@ -35,7 +35,7 @@ public class MarcoObject {
     }
 
     public void setSlot(String name, MarcoObject value) {
-        slots.put(name, value);
+        slots.put(name, new MarcoSlot(value));
     }
 
     public void setValue(MarcoValue value) {
@@ -103,7 +103,7 @@ public class MarcoObject {
 
         String slotName = MessageType.name(message);
         if (hasSlot(slotName)) {
-            return getSlot(slotName).activate(parentScope, this, message);
+            return getSlotContent(slotName).activate(parentScope, this, message);
         } else {
             throw new MarcoException("Exception: " + getName() + " does not respond to " + slotName);
         }
@@ -126,5 +126,9 @@ public class MarcoObject {
 
     public void setActivatable() {
         activatable = true;
+    }
+
+    public MarcoSlot getSlot(String slotName) {
+        return slots.get(slotName);
     }
 }

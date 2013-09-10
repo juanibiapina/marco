@@ -16,7 +16,7 @@ public class MarcoInterpreter {
 
     private MarcoObject evalChain(MarcoObject context, MarcoObject chain) {
         MarcoObject on = context;
-        List<MarcoObject> messages = Cast.toList(chain.sendMessage(context, "messages"));
+        List<MarcoObject> messages = Cast.toList(chain.getSlot("messages").activate());
         for (MarcoObject message : messages) {
             on = on.sendMessage(context, message);
         }
