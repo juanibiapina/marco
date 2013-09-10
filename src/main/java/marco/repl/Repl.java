@@ -23,8 +23,8 @@ public class Repl {
             printShell();
             String line = readLine();
             try {
-                MarcoObject chain = runtime.parse(line).sendMessage(runtime.object, "pop_first");
-                MarcoObject result = runtime.interpreter.evalLine(runtime.object, chain);
+                MarcoObject chain = runtime.parse(line);
+                MarcoObject result = runtime.interpreter.eval(runtime.object, chain);
                 printResult(result);
             } catch (MarcoException e) {
                 System.out.println(e.getMessage());
