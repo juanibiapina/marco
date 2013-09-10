@@ -47,21 +47,6 @@ public class ObjectType {
             }
         }));
 
-        self.setSlot("set_slot", self.runtime.createNativeMethod(new NativeMethodValueWith2Arguments() {
-            @Override
-            public MarcoObject perform(MarcoObject scope, MarcoObject self, MarcoObject message, MarcoObject argument1, MarcoObject argument2) {
-                self.setSlot(Cast.toString(argument1), argument2);
-                return self;
-            }
-        }));
-
-        self.setSlot("get_slot", self.runtime.createNativeMethod(new NativeMethodValueWith1Argument() {
-            @Override
-            public MarcoObject perform(MarcoObject scope, MarcoObject self, MarcoObject message, MarcoObject argument) {
-                return self.getSlot(Cast.toString(argument));
-            }
-        }));
-
         self.setSlot("slot_names", self.runtime.createNativeMethod(new NativeMethodValue() {
             @Override
             public MarcoObject perform(MarcoObject scope, MarcoObject self, MarcoObject message) {
