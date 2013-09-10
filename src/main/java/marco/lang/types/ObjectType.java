@@ -13,7 +13,6 @@ public class ObjectType {
         self.setSlot("Object", self);
         self.setSlot("Number", self.runtime.number);
         self.setSlot("Parser", self.runtime.parser);
-        self.setSlot("Method", self.runtime.method);
 
         self.setSlot("to_string", self.runtime.createNativeMethod(new NativeMethodValue() {
             @Override

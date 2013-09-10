@@ -21,7 +21,6 @@ public class MarcoRuntime {
     public MarcoObject macro;
     public MarcoObject scope;
     public MarcoObject parser;
-    public MarcoObject method;
 
     public MarcoRuntime() {
         object = new MarcoObject(this);
@@ -37,7 +36,6 @@ public class MarcoRuntime {
         macro = new MarcoObject(this);
         scope = new MarcoObject(this);
         parser = new MarcoObject(this);
-        method = new MarcoObject(this);
 
         NativeMethodType.init(nativeMethod);
         ObjectType.init(object);
@@ -52,7 +50,6 @@ public class MarcoRuntime {
         MacroType.init(macro);
         Scope.init(scope);
         ParserType.init(parser);
-        MethodType.init(method);
     }
 
     public MarcoObject createMessage(String name) {
