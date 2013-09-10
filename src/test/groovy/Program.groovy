@@ -1,6 +1,6 @@
 import helpers.MarcoSpecification
 
-class Programs extends MarcoSpecification {
+class Program extends MarcoSpecification {
     def "two chains separated by newline"() {
         when:
         def result = eval """1 to_string
