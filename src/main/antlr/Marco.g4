@@ -5,7 +5,7 @@ program
     ;
 
 chain
-    : message+
+    : message+ NEWLINE?
     ;
 
 message
@@ -20,4 +20,6 @@ STRING : '"' ( ~'"' | '\\' '"' )* '"' ;
 
 NUMBER : '-'? [0-9]+ ;
 
-WHITESPACE : [ \t\n] -> channel(HIDDEN) ;
+WHITESPACE : [ \t] -> channel(HIDDEN) ;
+
+NEWLINE: '\n' ;

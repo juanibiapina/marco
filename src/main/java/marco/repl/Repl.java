@@ -45,6 +45,6 @@ public class Repl {
     }
 
     private String readLine() throws IOException {
-        return reader.readLine() + "\n";
+        return reader.readLine();
     }
 }
