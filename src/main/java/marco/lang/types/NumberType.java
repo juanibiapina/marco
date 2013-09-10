@@ -17,26 +17,6 @@ public class NumberType {
                 return self.runtime.createString(Integer.toString(Cast.toInteger(self)));
             }
         }));
-
-        self.setSlot("+", self.runtime.createNativeMethod(new NativeMethodValue() {
-            @Override
-            public MarcoObject perform(MarcoObject scope, MarcoObject self, MarcoObject message) {
-                MarcoObject args = MessageType.argument(message);
-                MarcoObject arg0chain = args.sendMessage(scope, "popFirst");
-                MarcoObject arg0 = self.runtime.interpreter.evalLine(self, arg0chain);
-                return self.runtime.createNumber(Cast.toInteger(self) + Cast.toInteger(arg0));
-            }
-        }));
-
-        self.setSlot("*", self.runtime.createNativeMethod(new NativeMethodValue() {
-            @Override
-            public MarcoObject perform(MarcoObject scope, MarcoObject self, MarcoObject message) {
-                MarcoObject args = MessageType.argument(message);
-                MarcoObject arg0chain = args.sendMessage(scope, "popFirst");
-                MarcoObject arg0 = self.runtime.interpreter.evalLine(self, arg0chain);
-                return self.runtime.createNumber(Cast.toInteger(self) * Cast.toInteger(arg0));
-            }
-        }));
     }
 
 }
