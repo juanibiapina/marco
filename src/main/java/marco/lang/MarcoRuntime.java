@@ -33,7 +33,6 @@ public class MarcoRuntime {
         list = new MarcoObject(this);
         chain = new MarcoObject(this);
         number = new MarcoObject(this);
-        macro = new MarcoObject(this);
         scope = new MarcoObject(this);
         parser = new MarcoObject(this);
 
@@ -47,8 +46,7 @@ public class MarcoRuntime {
         NumberType.init(number);
         ListType.init(list);
         ChainType.init(chain);
-        MacroType.init(macro);
-        Scope.init(scope);
+        ScopeType.init(scope);
         ParserType.init(parser);
     }
 
@@ -116,13 +114,6 @@ public class MarcoRuntime {
         aMethod.setParent(nativeMethod);
         aMethod.setValue(nativeMethodValue);
         return aMethod;
-    }
-
-    public MarcoObject createMacro(MarcoObject body) {
-        MarcoObject aMacro = new MarcoObject(this);
-        aMacro.setParent(macro);
-        aMacro.setValue(new MacroValue(body));
-        return aMacro;
     }
 
     public MarcoObject createScope(MarcoObject on, MarcoObject message) {

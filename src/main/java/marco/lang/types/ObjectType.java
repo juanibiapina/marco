@@ -39,14 +39,6 @@ public class ObjectType {
             }
         }));
 
-        self.setSlot("macro", self.runtime.createNativeMethod(new NativeMethodValue() {
-            @Override
-            public MarcoObject perform(MarcoObject scope, MarcoObject self, MarcoObject message) {
-                MarcoObject body = MessageType.argument(message);
-                return self.runtime.createMacro(body);
-            }
-        }));
-
         self.setSlot("slot_names", self.runtime.createNativeMethod(new NativeMethodValue() {
             @Override
             public MarcoObject perform(MarcoObject scope, MarcoObject self, MarcoObject message) {
