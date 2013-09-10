@@ -14,11 +14,7 @@ public class ParserValue implements MarcoValue {
         parser = new Parser(runtime);
     }
 
-    public boolean canActivate() {
-        return false;
-    }
-
-    public MarcoObject activate(MarcoObject self, MarcoObject scope, MarcoObject on, MarcoObject message) {
+    public MarcoObject activate(MarcoObject on) {
         throw new RuntimeException(this.getClass().getSimpleName() + "  can not be activated");
     }
 

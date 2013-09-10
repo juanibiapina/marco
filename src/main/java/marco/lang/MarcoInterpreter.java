@@ -18,7 +18,7 @@ public class MarcoInterpreter {
         MarcoObject on = context;
         List<MarcoObject> messages = Cast.toList(chain.slot("messages"));
         for (MarcoObject message : messages) {
-            on = on.sendMessage(context, message);
+            on = on.sendMessage(message);
         }
         return on;
     }

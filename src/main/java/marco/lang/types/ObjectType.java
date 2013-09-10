@@ -12,15 +12,15 @@ public class ObjectType {
 
         self.setSlot("to_string", self.runtime.createNativeMethod(new NativeMethodValue() {
             @Override
-            public MarcoObject perform(MarcoObject scope, MarcoObject self, MarcoObject message) {
+            public MarcoObject perform(MarcoObject self) {
                 return self.runtime.createString(self.getName());
             }
         }));
 
         self.setSlot("puts", self.runtime.createNativeMethod(new NativeMethodValue() {
             @Override
-            public MarcoObject perform(MarcoObject scope, MarcoObject self, MarcoObject message) {
-                MarcoObject repr = self.sendMessage(scope, "to_string");
+            public MarcoObject perform(MarcoObject self) {
+                MarcoObject repr = self.slot("to_string");
                 System.out.println(((StringValue) repr.getValue()).getValue());
                 return self;
             }
@@ -28,7 +28,7 @@ public class ObjectType {
 
         self.setSlot("clone", self.runtime.createNativeMethod(new NativeMethodValue() {
             @Override
-            public MarcoObject perform(MarcoObject scope, MarcoObject self, MarcoObject message) {
+            public MarcoObject perform(MarcoObject self) {
                 MarcoObject result = new MarcoObject(self.runtime);
                 result.setParent(self);
                 return result;
@@ -37,7 +37,7 @@ public class ObjectType {
 
         self.setSlot("slot_names", self.runtime.createNativeMethod(new NativeMethodValue() {
             @Override
-            public MarcoObject perform(MarcoObject scope, MarcoObject self, MarcoObject message) {
+            public MarcoObject perform(MarcoObject self) {
                 List<String> slotNames = self.slotNames();
                 MarcoObject list = self.runtime.createList();
                 for (String slotName : slotNames) {

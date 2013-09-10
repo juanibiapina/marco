@@ -11,7 +11,7 @@ public class StringType {
 
         self.setSlot("to_string", self.runtime.createNativeMethod(new NativeMethodValue() {
             @Override
-            public MarcoObject perform(MarcoObject scope, MarcoObject self, MarcoObject message) {
+            public MarcoObject perform(MarcoObject self) {
                 String content = Cast.toString(self);
                 return self.runtime.createString(content);
             }

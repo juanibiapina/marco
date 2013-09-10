@@ -15,7 +15,7 @@ public class StringValue implements MarcoValue {
     }
 
     @Override
-    public MarcoObject activate(MarcoObject self, MarcoObject scope, MarcoObject on, MarcoObject message) {
+    public MarcoObject activate(MarcoObject on) {
         throw new RuntimeException(this.getClass().getSimpleName() + "  can not be activated");
     }
 

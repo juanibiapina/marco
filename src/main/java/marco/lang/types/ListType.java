@@ -15,7 +15,7 @@ public class ListType {
 
         self.setSlot("to_string", self.runtime.createNativeMethod(new NativeMethodValue() {
             @Override
-            public MarcoObject perform(MarcoObject scope, MarcoObject self, MarcoObject message) {
+            public MarcoObject perform(MarcoObject self) {
                 ListValue listValue = (ListValue) self.getValue();
                 StringBuilder builder = new StringBuilder();
                 builder.append("[");
@@ -23,7 +23,7 @@ public class ListType {
                 for (MarcoObject element : listValue.getValue()) {
                     builder.append(prefix);
                     prefix = ", ";
-                    builder.append(Cast.toString(element.sendMessage(scope, "to_string")));
+                    builder.append(Cast.toString(element.slot("to_string")));
                 }
                 builder.append("]");
                 return self.runtime.createString(builder.toString());

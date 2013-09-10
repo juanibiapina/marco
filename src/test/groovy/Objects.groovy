@@ -2,7 +2,7 @@
 
 import helpers.MarcoSpecification
 
-class Object extends MarcoSpecification {
+class Objects extends MarcoSpecification {
     def "slot_names"() {
         when:
         def result = eval "slot_names to_string"

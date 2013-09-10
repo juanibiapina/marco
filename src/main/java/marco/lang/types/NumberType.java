@@ -13,7 +13,7 @@ public class NumberType {
 
         self.setSlot("to_string", self.runtime.createNativeMethod(new NativeMethodValue() {
             @Override
-            public MarcoObject perform(MarcoObject scope, MarcoObject self, MarcoObject message) {
+            public MarcoObject perform(MarcoObject self) {
                 return self.runtime.createString(Integer.toString(Cast.toInteger(self)));
             }
         }));

@@ -41,7 +41,7 @@ public class Repl {
     }
 
     private void printResult(MarcoObject result) {
-        result.sendMessage(runtime.object, "puts");
+        result.slot("puts");
     }
 
     private String readLine() throws IOException {

@@ -1,6 +1,6 @@
 import helpers.MarcoSpecification
 
-class Number extends MarcoSpecification {
+class Numbers extends MarcoSpecification {
     def "integers return themselves"() {
         when:
         def result = eval "1"

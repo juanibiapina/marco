@@ -2,7 +2,7 @@ import helpers.MarcoSpecification
 import marco.MarcoException
 import marco.lang.MarcoObject
 
-class Message extends MarcoSpecification {
+class Messages extends MarcoSpecification {
     def "valid characters for messages"() {
         expect:
         message("abcdef")

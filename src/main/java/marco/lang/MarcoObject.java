@@ -1,8 +1,8 @@
 package marco.lang;
 
 import marco.MarcoException;
-import marco.lang.types.MessageType;
 import marco.lang.helpers.Cast;
+import marco.lang.types.MessageType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,18 +20,6 @@ public class MarcoObject {
 
     public MarcoObject(MarcoRuntime runtime) {
         this.runtime = runtime;
-    }
-
-    public MarcoObject getSlotContent(String slotName) {
-        if (slots.containsKey(slotName)) {
-            return slots.get(slotName).activate();
-        } else {
-            if (hasParent()) {
-                return parent.getSlotContent(slotName);
-            } else {
-                throw new RuntimeException("Can't find slot " + slotName);
-            }
-        }
     }
 
     public void setSlot(String name, MarcoObject value) {
@@ -60,18 +48,6 @@ public class MarcoObject {
         this.name = name;
     }
 
-    public boolean hasSlot(String slotName) {
-        if (slots.containsKey(slotName)) {
-            return true;
-        } else {
-            if (hasParent()) {
-                return parent.hasSlot(slotName);
-            } else {
-                return false;
-            }
-        }
-    }
-
     public boolean hasParent() {
         return parent != null;
     }
@@ -92,30 +68,17 @@ public class MarcoObject {
         return name != null;
     }
 
-    public MarcoObject sendMessage(MarcoObject parentScope, String messageName) {
-        return sendMessage(parentScope, runtime.createMessage(messageName));
-    }
-
-    public MarcoObject sendMessage(MarcoObject parentScope, MarcoObject message) {
+    public MarcoObject sendMessage(MarcoObject message) {
         if (Cast.toBoolean(MessageType.hasCachedValue(message))) {
             return MessageType.cachedValue(message);
         }
 
         String slotName = MessageType.name(message);
-        if (hasSlot(slotName)) {
-            return getSlotContent(slotName).activate(parentScope, this, message);
-        } else {
-            throw new MarcoException("Exception: " + getName() + " does not respond to " + slotName);
-        }
+        return slot(slotName);
     }
 
-    private MarcoObject activate(MarcoObject parentScope, MarcoObject on, MarcoObject message) {
-        if (activatable) {
-            MarcoObject scope = parentScope.runtime.createScope(on, message);
-            return value.activate(this, scope, on, message);
-        } else {
-            return this;
-        }
+    public MarcoObject activate(MarcoObject on) {
+        return value.activate(on);
     }
 
     public List<String> slotNames() {
@@ -128,7 +91,31 @@ public class MarcoObject {
         activatable = true;
     }
 
+    public boolean isActivatable() {
+        return activatable;
+    }
+
     public MarcoObject slot(String slotName) {
-        return slots.get(slotName).activate();
+        if (slots.containsKey(slotName)) {
+            return slots.get(slotName).activate(this);
+        } else {
+            if (hasParent()) {
+                return parent.getSlot(slotName).activate(this);
+            } else {
+                throw new MarcoException("Exception: " + getName() + " does not respond to " + slotName);
+            }
+        }
+    }
+
+    private MarcoSlot getSlot(String slotName) {
+        if (slots.containsKey(slotName)) {
+            return slots.get(slotName);
+        } else {
+            if (hasParent()) {
+                return parent.getSlot(slotName);
+            } else {
+                throw new RuntimeException("Should not happen");
+            }
+        }
     }
 }

@@ -5,11 +5,11 @@ import marco.lang.MarcoValue;
 
 public abstract class NativeMethodValue implements MarcoValue {
     @Override
-    public MarcoObject activate(MarcoObject self, MarcoObject scope, MarcoObject on, MarcoObject message) {
-        return perform(scope, on, message);
+    public MarcoObject activate(MarcoObject on) {
+        return perform(on);
     }
 
-    public abstract MarcoObject perform(MarcoObject scope, MarcoObject self, MarcoObject message);
+    public abstract MarcoObject perform(MarcoObject self);
 
     public MarcoValue duplicate() {
         return this;

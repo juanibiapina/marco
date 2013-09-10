@@ -18,8 +18,6 @@ public class MarcoRuntime {
     public MarcoObject booleanObject;
     public MarcoObject falseObject;
     public MarcoObject number;
-    public MarcoObject macro;
-    public MarcoObject scope;
     public MarcoObject parser;
 
     public MarcoRuntime() {
@@ -33,7 +31,6 @@ public class MarcoRuntime {
         list = new MarcoObject(this);
         chain = new MarcoObject(this);
         number = new MarcoObject(this);
-        scope = new MarcoObject(this);
         parser = new MarcoObject(this);
 
         NativeMethodType.init(nativeMethod);
@@ -46,7 +43,6 @@ public class MarcoRuntime {
         NumberType.init(number);
         ListType.init(list);
         ChainType.init(chain);
-        ScopeType.init(scope);
         ParserType.init(parser);
     }
 
@@ -73,13 +69,6 @@ public class MarcoRuntime {
         messageValue.setCachedResult(createNumber(name));
         aMessage.setValue(messageValue);
         return aMessage;
-    }
-
-    public MarcoObject createNumber(int value) {
-        MarcoObject aString = new MarcoObject(this);
-        aString.setParent(number);
-        aString.setValue(new NumberValue(value));
-        return aString;
     }
 
     private MarcoObject createNumber(String value) {
@@ -114,14 +103,6 @@ public class MarcoRuntime {
         aMethod.setParent(nativeMethod);
         aMethod.setValue(nativeMethodValue);
         return aMethod;
-    }
-
-    public MarcoObject createScope(MarcoObject on, MarcoObject message) {
-        MarcoObject aScope = new MarcoObject(this);
-        aScope.setParent(scope);
-        aScope.setSlot("message", message);
-        aScope.setSlot("self", on);
-        return aScope;
     }
 
     public MarcoObject parse(String code) {

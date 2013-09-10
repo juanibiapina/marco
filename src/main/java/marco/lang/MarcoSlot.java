@@ -7,7 +7,11 @@ public class MarcoSlot {
         this.contents = contents;
     }
 
-    public MarcoObject activate() {
-        return contents;
+    public MarcoObject activate(MarcoObject target) {
+        if (contents.isActivatable()) {
+            return contents.activate(target);
+        } else {
+            return contents;
+        }
     }
 }
