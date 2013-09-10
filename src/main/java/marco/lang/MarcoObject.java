@@ -128,7 +128,7 @@ public class MarcoObject {
         activatable = true;
     }
 
-    public MarcoSlot getSlot(String slotName) {
-        return slots.get(slotName);
+    public MarcoObject slot(String slotName) {
+        return slots.get(slotName).activate();
     }
 }
