@@ -112,7 +112,6 @@ public class MarcoObject {
     private MarcoObject activate(MarcoObject parentScope, MarcoObject on, MarcoObject message) {
         if (activatable) {
             MarcoObject scope = parentScope.runtime.createScope(on, message);
-            scope.setSlot("parent", parentScope);
             return value.activate(this, scope, on, message);
         } else {
             return this;
