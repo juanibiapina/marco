@@ -22,4 +22,4 @@ NUMBER : '-'? [0-9]+ ;
 
 WHITESPACE : [ \t] -> channel(HIDDEN) ;
 
-NEWLINE: '\n' ;
+NEWLINE: '\n' -> channel(HIDDEN);
