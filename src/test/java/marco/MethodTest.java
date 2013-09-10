@@ -1,7 +1,7 @@
 package marco;
 
 import marco.lang.MarcoObject;
-import marco.lang.values.Cast;
+import marco.lang.helpers.Cast;
 import marco.support.MarcoTestSupport;
 import org.junit.Ignore;
 import org.junit.Test;

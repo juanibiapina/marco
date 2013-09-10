@@ -1,7 +1,7 @@
 package marco.lang.types;
 
 import marco.lang.MarcoObject;
-import marco.lang.values.Cast;
+import marco.lang.helpers.Cast;
 import marco.lang.values.ListValue;
 import marco.lang.values.NativeMethodValue;
 

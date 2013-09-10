@@ -1,5 +1,6 @@
 package marco.lang.helpers;
 
+import marco.MarcoException;
 import marco.lang.MarcoObject;
 import marco.lang.values.BooleanValue;
 import marco.lang.values.ListValue;
@@ -15,27 +16,27 @@ public class Cast {
         return bValue.getValue();
     }
 
+    public static String toString(MarcoObject self) {
+        assertValueExists(self, "String");
+        StringValue sValue = (StringValue) self.getValue();
+        return sValue.getValue();
+    }
+
+    public static int toInteger(MarcoObject self) {
+        assertValueExists(self, "Integer");
+        NumberValue aValue = (NumberValue) self.getValue();
+        return aValue.getValue();
+    }
+
     public static List<MarcoObject> toList(MarcoObject self) {
         assertValueExists(self, "List");
         ListValue aValue = (ListValue) self.getValue();
         return aValue.getValue();
     }
 
-    public static String toString(MarcoObject self) {
-        assertValueExists(self, "String");
-        StringValue aValue = (StringValue) self.getValue();
-        return aValue.getValue();
-    }
-
-    public static Integer toInteger(MarcoObject self) {
-        assertValueExists(self, "Number");
-        NumberValue aValue = (NumberValue) self.getValue();
-        return aValue.getValue();
-    }
-
     private static void assertValueExists(MarcoObject self, String type) {
         if (self.getValue() == null) {
-            throw new RuntimeException(self.getName() + " cannot be cast to " + type);
+            throw new MarcoException(self.getName() + " cannot be cast to " + type);
         }
     }
 }
