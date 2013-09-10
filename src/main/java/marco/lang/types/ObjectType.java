@@ -10,10 +10,6 @@ public class ObjectType {
 
         self.setName("Object");
 
-        self.setSlot("Object", self);
-        self.setSlot("Number", self.runtime.number);
-        self.setSlot("Parser", self.runtime.parser);
-
         self.setSlot("to_string", self.runtime.createNativeMethod(new NativeMethodValue() {
             @Override
             public MarcoObject perform(MarcoObject scope, MarcoObject self, MarcoObject message) {
@@ -48,14 +44,6 @@ public class ObjectType {
                     ListType.add(list, self.runtime.createString(slotName));
                 }
                 return list;
-            }
-        }));
-
-        self.setSlot("set_activatable", self.runtime.createNativeMethod(new NativeMethodValue() {
-            @Override
-            public MarcoObject perform(MarcoObject scope, MarcoObject self, MarcoObject message) {
-                self.setActivatable();
-                return self;
             }
         }));
     }

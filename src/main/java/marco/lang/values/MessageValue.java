@@ -6,7 +6,6 @@ import marco.lang.MarcoValue;
 public class MessageValue implements MarcoValue {
     private String name;
     private MarcoObject cachedResult;
-    private MarcoObject argument;
 
     public MessageValue(String name) {
         this.name = name;
@@ -38,11 +37,4 @@ public class MessageValue implements MarcoValue {
         return cachedResult;
     }
 
-    public MarcoObject getArgument() {
-        return argument;
-    }
-
-    public void setArgument(MarcoObject argument) {
-        this.argument = argument;
-    }
 }
