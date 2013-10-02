@@ -1,7 +1,6 @@
 package marco.lang;
 
 import marco.lang.types.*;
-import marco.lang.values.MessageValue;
 import marco.lang.values.NativeMethodValue;
 import marco.lang.values.NumberValue;
 import marco.lang.values.StringValue;
@@ -14,9 +13,7 @@ public class MarcoRuntime {
 
     public MarcoObject object;
     public MarcoObject nativeMethod;
-    public MarcoObject message;
     public MarcoObject string;
-    public MarcoObject chain;
     public MarcoObject list;
     public MarcoObject trueObject;
     public MarcoObject booleanObject;
@@ -31,10 +28,8 @@ public class MarcoRuntime {
         booleanObject = new MarcoObject(this);
         trueObject = new MarcoObject(this);
         falseObject = new MarcoObject(this);
-        message = new MarcoObject(this);
         string = new MarcoObject(this);
         list = new MarcoObject(this);
-        chain = new MarcoObject(this);
         number = new MarcoObject(this);
 
         NativeMethodType.init(nativeMethod);
@@ -42,36 +37,9 @@ public class MarcoRuntime {
         BooleanType.init(booleanObject);
         TrueType.init(trueObject);
         FalseType.init(falseObject);
-        MessageType.init(message);
         StringType.init(string);
         NumberType.init(number);
         ListType.init(list);
-        ChainType.init(chain);
-    }
-
-    public MarcoObject createMessage(String name) {
-        MarcoObject aMessage = new MarcoObject(this);
-        aMessage.setParent(message);
-        aMessage.setValue(new MessageValue(name));
-        return aMessage;
-    }
-
-    public MarcoObject createStringMessage(String value) {
-        MarcoObject aMessage = new MarcoObject(this);
-        aMessage.setParent(message);
-        MessageValue messageValue = new MessageValue(value);
-        messageValue.setCachedResult(createString(value));
-        aMessage.setValue(messageValue);
-        return aMessage;
-    }
-
-    public MarcoObject createNumberMessage(String name) {
-        MarcoObject aMessage = new MarcoObject(this);
-        aMessage.setParent(message);
-        MessageValue messageValue = new MessageValue(name);
-        messageValue.setCachedResult(createNumber(name));
-        aMessage.setValue(messageValue);
-        return aMessage;
     }
 
     public MarcoObject createNumber(String value) {
@@ -86,13 +54,6 @@ public class MarcoRuntime {
         aString.setParent(string);
         aString.setValue(new StringValue(value));
         return aString;
-    }
-
-    public MarcoObject createChain(MarcoObject messages) {
-        MarcoObject aChain = new MarcoObject(this);
-        aChain.setParent(chain);
-        aChain.setSlot("messages", messages);
-        return aChain;
     }
 
     public MarcoObject createList() {
