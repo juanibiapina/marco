@@ -13,9 +13,6 @@ public class MarcoRuntime {
     public MarcoObject nativeMethod;
     public MarcoObject string;
     public MarcoObject list;
-    public MarcoObject trueObject;
-    public MarcoObject booleanObject;
-    public MarcoObject falseObject;
     public MarcoObject number;
 
     private Parser parser = new Parser(this);
@@ -23,18 +20,12 @@ public class MarcoRuntime {
     public MarcoRuntime() {
         object = new MarcoObject(this);
         nativeMethod = new MarcoObject(this);
-        booleanObject = new MarcoObject(this);
-        trueObject = new MarcoObject(this);
-        falseObject = new MarcoObject(this);
         string = new MarcoObject(this);
         list = new MarcoObject(this);
         number = new MarcoObject(this);
 
         NativeMethodType.init(nativeMethod);
         ObjectType.init(object);
-        BooleanType.init(booleanObject);
-        TrueType.init(trueObject);
-        FalseType.init(falseObject);
         StringType.init(string);
         NumberType.init(number);
         ListType.init(list);
