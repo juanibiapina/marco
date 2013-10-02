@@ -1,58 +1,62 @@
 package marco.parser;
 
-import marco.lang.MarcoObject;
 import marco.lang.MarcoRuntime;
-import marco.lang.types.ListType;
 import marco.parser.antlr.MarcoBaseVisitor;
 import marco.parser.antlr.MarcoParser;
 import org.antlr.v4.runtime.misc.NotNull;
 
-public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
+public class ParseTreeVisitor extends MarcoBaseVisitor<Object> {
     private MarcoRuntime runtime;
-    private MarcoObject result;
+    private MarcoProgram result;
 
     public ParseTreeVisitor(MarcoRuntime runtime) {
         this.runtime = runtime;
     }
 
     @Override
-    public MarcoObject visitProgram(@NotNull MarcoParser.ProgramContext ctx) {
-        MarcoObject chains = runtime.createList();
-
-        for (MarcoParser.ChainContext chainContext : ctx.chain()) {
-            ListType.add(chains, visit(chainContext));
-        }
-        result = chains;
+    public Object visitProgram(@NotNull MarcoParser.ProgramContext ctx) {
+        result = new MarcoProgram((MarcoExpr) visit(ctx.expr()));
         return result;
     }
 
     @Override
-    public MarcoObject visitChain(@NotNull MarcoParser.ChainContext ctx) {
-        MarcoObject messages = runtime.createList();
+    public Object visitExpr(@NotNull MarcoParser.ExprContext ctx) {
+        MarcoExpr expr = new MarcoExpr();
 
-        for (MarcoParser.MessageContext messageContext : ctx.message()) {
-            ListType.add(messages, visit(messageContext));
+        for (MarcoParser.SingleExprContext singleExprContext : ctx.singleExpr()) {
+            expr.add((MarcoSingleExpr) visit(singleExprContext));
         }
 
-        return runtime.createChain(messages);
+        return expr;
     }
 
     @Override
-    public MarcoObject visitSymbol(@NotNull MarcoParser.SymbolContext ctx) {
-        return runtime.createMessage(ctx.getText());
+    public Object visitSingleExpr(@NotNull MarcoParser.SingleExprContext ctx) {
+        MarcoSingleExpr singleExpr = new MarcoSingleExpr();
+
+        for (MarcoParser.MessageContext messageContext : ctx.message()) {
+            singleExpr.add((MarcoMessage) visit(messageContext));
+        }
+
+        return singleExpr;
     }
 
     @Override
-    public MarcoObject visitString(@NotNull MarcoParser.StringContext ctx) {
-        return runtime.createStringMessage(ctx.getText().substring(1, ctx.getText().length() - 1));
+    public MarcoSymbolMessage visitSymbol(@NotNull MarcoParser.SymbolContext ctx) {
+        return new MarcoSymbolMessage(ctx.getText());
     }
 
     @Override
-    public MarcoObject visitNumber(@NotNull MarcoParser.NumberContext ctx) {
-        return runtime.createNumberMessage(ctx.getText());
+    public MarcoStringMessage visitString(@NotNull MarcoParser.StringContext ctx) {
+        return new MarcoStringMessage(runtime, ctx.getText().substring(1, ctx.getText().length() - 1));
     }
 
-    public MarcoObject getResult() {
+    @Override
+    public MarcoNumberMessage visitNumber(@NotNull MarcoParser.NumberContext ctx) {
+        return new MarcoNumberMessage(runtime, ctx.getText());
+    }
+
+    public MarcoProgram getResult() {
         return result;
     }
 }

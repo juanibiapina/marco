@@ -2,6 +2,7 @@ package helpers
 
 import marco.lang.MarcoObject
 import marco.lang.MarcoRuntime
+import marco.parser.MarcoProgram
 import org.junit.Ignore
 import spock.lang.Specification
 
@@ -10,7 +11,7 @@ abstract class MarcoSpecification extends Specification {
     def runtime = new MarcoRuntime();
 
     def MarcoObject eval(String code) {
-        MarcoObject program = runtime.parse(code)
+        MarcoProgram program = runtime.parse(code)
         return runtime.interpreter.eval(runtime.object, program);
     }
 

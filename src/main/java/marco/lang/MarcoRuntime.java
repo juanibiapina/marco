@@ -1,8 +1,12 @@
 package marco.lang;
 
 import marco.lang.types.*;
-import marco.lang.values.*;
+import marco.lang.values.MessageValue;
+import marco.lang.values.NativeMethodValue;
+import marco.lang.values.NumberValue;
 import marco.lang.values.StringValue;
+import marco.parser.MarcoProgram;
+import marco.parser.Parser;
 
 public class MarcoRuntime {
 
@@ -18,7 +22,8 @@ public class MarcoRuntime {
     public MarcoObject booleanObject;
     public MarcoObject falseObject;
     public MarcoObject number;
-    public MarcoObject parser;
+
+    private Parser parser = new Parser(this);
 
     public MarcoRuntime() {
         object = new MarcoObject(this);
@@ -31,7 +36,6 @@ public class MarcoRuntime {
         list = new MarcoObject(this);
         chain = new MarcoObject(this);
         number = new MarcoObject(this);
-        parser = new MarcoObject(this);
 
         NativeMethodType.init(nativeMethod);
         ObjectType.init(object);
@@ -43,7 +47,6 @@ public class MarcoRuntime {
         NumberType.init(number);
         ListType.init(list);
         ChainType.init(chain);
-        ParserType.init(parser);
     }
 
     public MarcoObject createMessage(String name) {
@@ -71,7 +74,7 @@ public class MarcoRuntime {
         return aMessage;
     }
 
-    private MarcoObject createNumber(String value) {
+    public MarcoObject createNumber(String value) {
         MarcoObject aString = new MarcoObject(this);
         aString.setParent(number);
         aString.setValue(new NumberValue(value));
@@ -105,7 +108,7 @@ public class MarcoRuntime {
         return aMethod;
     }
 
-    public MarcoObject parse(String code) {
-        return ParserType.parse(parser, code);
+    public MarcoProgram parse(String code) {
+        return parser.parse(code);
     }
 }

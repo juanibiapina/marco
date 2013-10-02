@@ -1,10 +1,14 @@
 grammar Marco;
 
 program
-    : chain*
+    : expr
     ;
 
-chain
+expr
+    : singleExpr*
+    ;
+
+singleExpr
     : message+ NEWLINE?
     ;
 

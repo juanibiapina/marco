@@ -1,8 +1,7 @@
 package marco.lang;
 
 import marco.MarcoException;
-import marco.lang.helpers.Cast;
-import marco.lang.types.MessageType;
+import marco.parser.MarcoMessage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -68,12 +67,12 @@ public class MarcoObject {
         return name != null;
     }
 
-    public MarcoObject sendMessage(MarcoObject message) {
-        if (Cast.toBoolean(MessageType.hasCachedValue(message))) {
-            return MessageType.cachedValue(message);
+    public MarcoObject sendMessage(MarcoMessage message) {
+        if (message.hasCachedValue()) {
+            return message.getCachedValue();
         }
 
-        String slotName = MessageType.name(message);
+        String slotName = message.getName();
         return slot(slotName);
     }
 

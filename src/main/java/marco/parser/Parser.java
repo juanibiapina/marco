@@ -1,6 +1,5 @@
 package marco.parser;
 
-import marco.lang.MarcoObject;
 import marco.lang.MarcoRuntime;
 import marco.parser.antlr.MarcoParser;
 import org.antlr.v4.runtime.ANTLRInputStream;
@@ -14,7 +13,7 @@ public class Parser {
         this.runtime = runtime;
     }
 
-    public MarcoObject parse(String code) {
+    public MarcoProgram parse(String code) {
         ANTLRInputStream antlrInputStream = new ANTLRInputStream(code);
         Lexer lexer = new Lexer(antlrInputStream);
         CommonTokenStream tokenStream = new CommonTokenStream(lexer);

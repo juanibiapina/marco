@@ -1,25 +1,33 @@
 package marco.lang;
 
 import marco.lang.helpers.Cast;
+import marco.parser.MarcoExpr;
+import marco.parser.MarcoMessage;
+import marco.parser.MarcoProgram;
+import marco.parser.MarcoSingleExpr;
 
 import java.util.List;
 
 public class MarcoInterpreter {
-    public MarcoObject eval(MarcoObject context, MarcoObject chainList) {
+    public MarcoObject eval(MarcoObject context, MarcoProgram program) {
+        MarcoExpr expr = program.expr();
+
         MarcoObject lastResult = context;
-        List<MarcoObject> chainsList = Cast.toList(chainList);
-        for (MarcoObject chain : chainsList) {
-            lastResult = evalChain(context, chain);
+        for (MarcoSingleExpr singleExpr : expr.singleExprs()) {
+            lastResult = evalSingleExpr(context, singleExpr);
         }
+
         return lastResult;
     }
 
-    private MarcoObject evalChain(MarcoObject context, MarcoObject chain) {
+    private MarcoObject evalSingleExpr(MarcoObject context, MarcoSingleExpr singleExpr) {
         MarcoObject on = context;
-        List<MarcoObject> messages = Cast.toList(chain.slot("messages"));
-        for (MarcoObject message : messages) {
+
+        List<MarcoMessage> messages = singleExpr.messages();
+        for (MarcoMessage message : messages) {
             on = on.sendMessage(message);
         }
+
         return on;
     }
 }
