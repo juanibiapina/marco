@@ -3,7 +3,7 @@ package marco.parser;
 import marco.lang.MarcoObject;
 import marco.lang.MarcoRuntime;
 
-public class MarcoNumberMessage extends MarcoMessage {
+public class MarcoNumberMessage implements MarcoMessage {
     private MarcoObject value;
 
     public MarcoNumberMessage(MarcoRuntime runtime, String text) {
@@ -11,17 +11,7 @@ public class MarcoNumberMessage extends MarcoMessage {
     }
 
     @Override
-    public boolean hasCachedValue() {
-        return true;
-    }
-
-    @Override
-    public MarcoObject getCachedValue() {
+    public MarcoObject eval(MarcoObject target) {
         return value;
-    }
-
-    @Override
-    public String getName() {
-        throw new RuntimeException("Error");
     }
 }

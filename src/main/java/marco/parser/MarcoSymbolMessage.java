@@ -2,7 +2,7 @@ package marco.parser;
 
 import marco.lang.MarcoObject;
 
-public class MarcoSymbolMessage extends MarcoMessage {
+public class MarcoSymbolMessage implements MarcoMessage {
     private String value;
 
     public MarcoSymbolMessage(String text) {
@@ -10,17 +10,7 @@ public class MarcoSymbolMessage extends MarcoMessage {
     }
 
     @Override
-    public boolean hasCachedValue() {
-        return false;
-    }
-
-    @Override
-    public MarcoObject getCachedValue() {
-        throw new RuntimeException("Error");
-    }
-
-    @Override
-    public String getName() {
-        return value;
+    public MarcoObject eval(MarcoObject target) {
+        return target.slot(value);
     }
 }

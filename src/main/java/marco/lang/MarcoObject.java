@@ -1,7 +1,6 @@
 package marco.lang;
 
 import marco.MarcoException;
-import marco.parser.MarcoMessage;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,7 +14,7 @@ public class MarcoObject {
     private MarcoObject parent;
     private MarcoValue value;
     private boolean activatable = false;
-    private Map<String, MarcoSlot> slots = new HashMap<String, MarcoSlot>();
+    private Map<String, MarcoSlot> slots = new HashMap<>();
 
     public MarcoObject(MarcoRuntime runtime) {
         this.runtime = runtime;
@@ -67,21 +66,12 @@ public class MarcoObject {
         return name != null;
     }
 
-    public MarcoObject sendMessage(MarcoMessage message) {
-        if (message.hasCachedValue()) {
-            return message.getCachedValue();
-        }
-
-        String slotName = message.getName();
-        return slot(slotName);
-    }
-
     public MarcoObject activate(MarcoObject on) {
         return value.activate(on);
     }
 
     public List<String> slotNames() {
-        List<String> slotNames = new ArrayList<String>();
+        List<String> slotNames = new ArrayList<>();
         slotNames.addAll(slots.keySet());
         return slotNames;
     }

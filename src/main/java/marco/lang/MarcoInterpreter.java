@@ -1,6 +1,5 @@
 package marco.lang;
 
-import marco.lang.helpers.Cast;
 import marco.parser.MarcoExpr;
 import marco.parser.MarcoMessage;
 import marco.parser.MarcoProgram;
@@ -25,7 +24,7 @@ public class MarcoInterpreter {
 
         List<MarcoMessage> messages = singleExpr.messages();
         for (MarcoMessage message : messages) {
-            on = on.sendMessage(message);
+            on = message.eval(on);
         }
 
         return on;
