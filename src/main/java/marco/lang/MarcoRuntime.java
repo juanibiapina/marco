@@ -9,8 +9,6 @@ import marco.parser.Parser;
 
 public class MarcoRuntime {
 
-    public MarcoInterpreter interpreter = new MarcoInterpreter();
-
     public MarcoObject object;
     public MarcoObject nativeMethod;
     public MarcoObject string;

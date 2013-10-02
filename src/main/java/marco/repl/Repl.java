@@ -25,7 +25,7 @@ public class Repl {
             String line = readLine();
             try {
                 MarcoProgram program = runtime.parse(line);
-                MarcoObject result = runtime.interpreter.eval(runtime.object, program);
+                MarcoObject result = program.eval(runtime.object);
                 printResult(result);
             } catch (MarcoException e) {
                 System.out.println(e.getMessage());

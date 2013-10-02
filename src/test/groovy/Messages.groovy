@@ -31,7 +31,7 @@ class Messages extends MarcoSpecification {
         def program = parse "a_slot"
 
         when:
-        def result = runtime.interpreter.eval(context, program)
+        def result = program.eval(context)
 
         then:
         result == expected
@@ -50,7 +50,7 @@ class Messages extends MarcoSpecification {
         def program = parse("first_value second_value third_value")
 
         when:
-        def result = runtime.interpreter.eval(context, program);
+        def result = program.eval(context);
 
         then:
         result == thirdValue

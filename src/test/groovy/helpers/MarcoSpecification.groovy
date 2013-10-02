@@ -12,7 +12,7 @@ abstract class MarcoSpecification extends Specification {
 
     def MarcoObject eval(String code) {
         MarcoProgram program = runtime.parse(code)
-        return runtime.interpreter.eval(runtime.object, program);
+        return program.eval(runtime.object);
     }
 
     def message(String message) {

@@ -1,5 +1,7 @@
 package marco.parser;
 
+import marco.lang.MarcoObject;
+
 public class MarcoProgram {
     private MarcoExpr expr;
 
@@ -7,7 +9,13 @@ public class MarcoProgram {
         this.expr = expr;
     }
 
-    public MarcoExpr expr() {
-        return expr;
+    public MarcoObject eval(MarcoObject context) {
+
+        MarcoObject lastResult = context;
+        for (MarcoSingleExpr singleExpr : expr.singleExprs()) {
+            lastResult = singleExpr.eval(context);
+        }
+
+        return lastResult;
     }
 }

@@ -1,5 +1,7 @@
 package marco.parser;
 
+import marco.lang.MarcoObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +12,13 @@ public class MarcoSingleExpr {
         messages.add(message);
     }
 
-    public List<MarcoMessage> messages() {
-        return messages;
+    public MarcoObject eval(MarcoObject context) {
+        MarcoObject on = context;
+
+        for (MarcoMessage message : messages) {
+            on = message.eval(on);
+        }
+
+        return on;
     }
 }
