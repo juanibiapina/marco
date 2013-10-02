@@ -1,7 +1,5 @@
 package marco.lang;
 
-import marco.MarcoException;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,7 +19,7 @@ public class MarcoObject {
     }
 
     public void setSlot(String name, MarcoObject value) {
-        slots.put(name, new MarcoSlot(value));
+        slots.put(name, new MarcoSlot(name, value));
     }
 
     public void setValue(MarcoValue value) {
@@ -85,15 +83,7 @@ public class MarcoObject {
     }
 
     public MarcoObject slot(String slotName) {
-        if (slots.containsKey(slotName)) {
-            return slots.get(slotName).activate(this);
-        } else {
-            if (hasParent()) {
-                return parent.getSlot(slotName).activate(this);
-            } else {
-                throw new MarcoException("Exception: " + getName() + " does not respond to " + slotName);
-            }
-        }
+        return getSlot(slotName).activate(this);
     }
 
     private MarcoSlot getSlot(String slotName) {
@@ -103,7 +93,7 @@ public class MarcoObject {
             if (hasParent()) {
                 return parent.getSlot(slotName);
             } else {
-                throw new RuntimeException("Should not happen");
+                return new MarcoSlot(slotName, null);
             }
         }
     }

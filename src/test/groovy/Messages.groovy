@@ -14,13 +14,22 @@ class Messages extends MarcoSpecification {
         message("-_fsfFLKJ_-")
     }
 
-    def "sending a message fails when slot does not exist"() {
+    def "fail on symbol lookup"() {
         when:
         eval("message")
 
         then:
         MarcoException e = thrown()
         assert e.getMessage() == "Exception: Object does not respond to message"
+    }
+
+    def "fail on chained symbol lookup"() {
+        when:
+        eval(/"a" message/)
+
+        then:
+        MarcoException e = thrown()
+        assert e.getMessage() == "Exception: String does not respond to message"
     }
 
     def  "simple symbol lookup"() {
