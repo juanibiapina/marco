@@ -15,10 +15,7 @@ public class MarcoSlot {
         if (contents == null) {
             throw new MarcoException("Exception: " + target.getName() + " does not respond to " + name);
         }
-        if (contents.isActivatable()) {
-            return contents.activate(target);
-        } else {
-            return contents;
-        }
+
+        return contents.activate(target);
     }
 }

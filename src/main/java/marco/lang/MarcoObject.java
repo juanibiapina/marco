@@ -65,7 +65,11 @@ public class MarcoObject {
     }
 
     public MarcoObject activate(MarcoObject on) {
-        return value.activate(on);
+        if (activatable) {
+            return value.activate(on);
+        } else {
+            return this;
+        }
     }
 
     public List<String> slotNames() {
@@ -76,10 +80,6 @@ public class MarcoObject {
 
     public void setActivatable() {
         activatable = true;
-    }
-
-    public boolean isActivatable() {
-        return activatable;
     }
 
     public MarcoObject slot(String slotName) {
