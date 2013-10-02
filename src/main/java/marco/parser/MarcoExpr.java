@@ -1,5 +1,7 @@
 package marco.parser;
 
+import marco.lang.MarcoObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +12,12 @@ public class MarcoExpr {
         singleExprs.add(singleExpr);
     }
 
-    public List<MarcoSingleExpr> singleExprs() {
-        return singleExprs;
+    public MarcoObject eval(MarcoObject context) {
+        MarcoObject lastResult = context;
+        for (MarcoSingleExpr singleExpr : singleExprs) {
+            lastResult = singleExpr.eval(context);
+        }
+
+        return lastResult;
     }
 }

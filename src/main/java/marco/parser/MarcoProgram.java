@@ -10,12 +10,6 @@ public class MarcoProgram {
     }
 
     public MarcoObject eval(MarcoObject context) {
-
-        MarcoObject lastResult = context;
-        for (MarcoSingleExpr singleExpr : expr.singleExprs()) {
-            lastResult = singleExpr.eval(context);
-        }
-
-        return lastResult;
+        return expr.eval(context);
     }
 }
