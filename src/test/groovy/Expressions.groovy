@@ -1,7 +1,16 @@
 import helpers.MarcoSpecification
 
-class Programs extends MarcoSpecification {
-    def "two chains separated by newline"() {
+class Expressions extends MarcoSpecification {
+    def "ending in newline"() {
+        when:
+        def result = eval """1 to_string
+"""
+
+        then:
+        result.value.value == "1"
+    }
+
+    def "with a newline separator"() {
         when:
         def result = eval """1 to_string
 2 to_string
@@ -11,7 +20,7 @@ class Programs extends MarcoSpecification {
         result.value.value == "2"
     }
 
-    def "chains with several newlines"() {
+    def "with several newlines"() {
         when:
         def result = eval """
 1 to_string

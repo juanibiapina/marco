@@ -3,7 +3,7 @@ import marco.MarcoException
 import marco.lang.MarcoObject
 
 class Messages extends MarcoSpecification {
-    def "valid characters for messages"() {
+    def "valid characters"() {
         expect:
         message("abcdef")
         message("abc_abc")
@@ -54,5 +54,21 @@ class Messages extends MarcoSpecification {
 
         then:
         result == thirdValue
+    }
+
+    def "can be chained"() {
+        when:
+        def result = eval(/"ha" to_string/)
+
+        then:
+        result.value.value == "ha"
+    }
+
+    def "can be chained further"() {
+        when:
+        def result = eval(/"haha" "lol" to_string/)
+
+        then:
+        result.value.value == "lol"
     }
 }
