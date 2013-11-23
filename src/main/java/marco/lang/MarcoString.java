@@ -23,4 +23,9 @@ public class MarcoString implements MarcoForm {
             return false;
         }
     }
+
+    @Override
+    public String toString() {
+        return "\"" + value + "\"";
+    }
 }
