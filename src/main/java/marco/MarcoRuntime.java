@@ -20,7 +20,7 @@ public class MarcoRuntime {
         return program.eval(environment);
     }
 
-    public Environment getEnvironment() {
-        return environment;
+    public MarcoObject lookUp(String var) {
+        return environment.lookUp(var);
     }
 }
