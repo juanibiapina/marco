@@ -2,8 +2,7 @@ package marco.repl;
 
 import marco.MarcoException;
 import marco.lang.MarcoObject;
-import marco.lang.MarcoRuntime;
-import marco.parser.MarcoProgram;
+import marco.MarcoRuntime;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,8 +23,7 @@ public class Repl {
             printShell();
             String line = readLine();
             try {
-                MarcoProgram program = runtime.parse(line);
-                MarcoObject result = program.eval(runtime.object);
+                MarcoObject result = runtime.eval(line);
                 printResult(result);
             } catch (MarcoException e) {
                 System.out.println(e.getMessage());
@@ -42,7 +40,7 @@ public class Repl {
     }
 
     private void printResult(MarcoObject result) {
-        result.slot("puts");
+        System.out.println(result);
     }
 
     private String readLine() throws IOException {

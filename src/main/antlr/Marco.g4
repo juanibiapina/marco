@@ -1,18 +1,15 @@
 grammar Marco;
 
-program
-    : expr
+program: list* ;
+
+form
+    : literal # FormLiteral
+    | list    # FormList
     ;
 
-expr
-    : singleExpr*
-    ;
+list: '(' form* ')' ;
 
-singleExpr
-    : message+ NEWLINE?
-    ;
-
-message
+literal
     : SYMBOL   # Symbol
     | STRING   # String
     | NUMBER   # Number
@@ -24,6 +21,5 @@ STRING : '"' ( ~'"' | '\\' '"' )* '"' ;
 
 NUMBER : '-'? [0-9]+ ;
 
-WHITESPACE : [ \t] -> channel(HIDDEN) ;
 
-NEWLINE: '\n' -> channel(HIDDEN);
+WHITESPACE : [ \t\n] -> channel(HIDDEN) ;

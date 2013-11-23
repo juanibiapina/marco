@@ -1,59 +1,54 @@
 package marco.parser;
 
-import marco.lang.MarcoRuntime;
+import marco.lang.*;
 import marco.parser.antlr.MarcoBaseVisitor;
 import marco.parser.antlr.MarcoParser;
 import org.antlr.v4.runtime.misc.NotNull;
 
 public class ParseTreeVisitor extends MarcoBaseVisitor<Object> {
-    private MarcoRuntime runtime;
     private MarcoProgram result;
 
-    public ParseTreeVisitor(MarcoRuntime runtime) {
-        this.runtime = runtime;
-    }
-
     @Override
-    public Object visitProgram(@NotNull MarcoParser.ProgramContext ctx) {
-        result = new MarcoProgram((MarcoExpr) visit(ctx.expr()));
+    public MarcoProgram visitProgram(@NotNull MarcoParser.ProgramContext ctx) {
+        result = new MarcoProgram();
+        for (MarcoParser.ListContext listContext : ctx.list()) {
+            result.add((MarcoList) visit(listContext));
+        }
         return result;
     }
 
     @Override
-    public Object visitExpr(@NotNull MarcoParser.ExprContext ctx) {
-        MarcoExpr expr = new MarcoExpr();
-
-        for (MarcoParser.SingleExprContext singleExprContext : ctx.singleExpr()) {
-            expr.add((MarcoSingleExpr) visit(singleExprContext));
+    public MarcoList visitList(@NotNull MarcoParser.ListContext ctx) {
+        MarcoList list = new MarcoList();
+        for (MarcoParser.FormContext formContext : ctx.form()) {
+            list.add((MarcoForm) visit(formContext));
         }
-
-        return expr;
+        return list;
     }
 
     @Override
-    public Object visitSingleExpr(@NotNull MarcoParser.SingleExprContext ctx) {
-        MarcoSingleExpr singleExpr = new MarcoSingleExpr();
-
-        for (MarcoParser.MessageContext messageContext : ctx.message()) {
-            singleExpr.add((MarcoMessage) visit(messageContext));
-        }
-
-        return singleExpr;
+    public MarcoForm visitFormList(@NotNull MarcoParser.FormListContext ctx) {
+        return (MarcoForm) visit(ctx.list());
     }
 
     @Override
-    public MarcoSymbolMessage visitSymbol(@NotNull MarcoParser.SymbolContext ctx) {
-        return new MarcoSymbolMessage(ctx.getText());
+    public MarcoForm visitFormLiteral(@NotNull MarcoParser.FormLiteralContext ctx) {
+        return (MarcoForm) visit(ctx.literal());
     }
 
     @Override
-    public MarcoStringMessage visitString(@NotNull MarcoParser.StringContext ctx) {
-        return new MarcoStringMessage(runtime, ctx.getText().substring(1, ctx.getText().length() - 1));
+    public MarcoSymbol visitSymbol(@NotNull MarcoParser.SymbolContext ctx) {
+        return new MarcoSymbol(ctx.getText());
     }
 
     @Override
-    public MarcoNumberMessage visitNumber(@NotNull MarcoParser.NumberContext ctx) {
-        return new MarcoNumberMessage(runtime, ctx.getText());
+    public MarcoString visitString(@NotNull MarcoParser.StringContext ctx) {
+        return new MarcoString(ctx.getText().substring(1, ctx.getText().length() - 1));
+    }
+
+    @Override
+    public MarcoNumber visitNumber(@NotNull MarcoParser.NumberContext ctx) {
+        return new MarcoNumber(Integer.parseInt(ctx.getText()));
     }
 
     public MarcoProgram getResult() {

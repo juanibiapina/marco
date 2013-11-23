@@ -1,6 +1,6 @@
 package marco.repl;
 
-import marco.lang.MarcoRuntime;
+import marco.MarcoRuntime;
 
 public class Main {
     public static void main(String[] args) throws Exception {
