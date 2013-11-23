@@ -1,8 +1,8 @@
 package marco.internal;
 
 import marco.MarcoException;
-import marco.functions.def;
-import marco.functions.function;
+import marco.macros.def;
+import marco.macros.function;
 import marco.lang.MarcoObject;
 
 import java.util.HashMap;

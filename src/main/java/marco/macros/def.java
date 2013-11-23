@@ -1,4 +1,4 @@
-package marco.functions;
+package marco.macros;
 
 import marco.internal.Environment;
 import marco.lang.MarcoMacro;
