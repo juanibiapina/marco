@@ -11,8 +11,8 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<Object> {
     @Override
     public MarcoProgram visitProgram(@NotNull MarcoParser.ProgramContext ctx) {
         result = new MarcoProgram();
-        for (MarcoParser.ListContext listContext : ctx.list()) {
-            result.add((MarcoList) visit(listContext));
+        for (MarcoParser.FormContext formContext : ctx.form()) {
+            result.add((MarcoForm) visit(formContext));
         }
         return result;
     }

@@ -1,6 +1,6 @@
 grammar Marco;
 
-program: list* ;
+program: form* ;
 
 form
     : literal # FormLiteral
