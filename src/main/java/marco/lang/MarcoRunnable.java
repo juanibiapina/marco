@@ -4,6 +4,6 @@ import marco.internal.Environment;
 
 import java.util.List;
 
-public interface MarcoRunnable extends MarcoObject {
-    public MarcoObject call(Environment environment, List<MarcoForm> arguments);
+public abstract class MarcoRunnable implements MarcoObject {
+    public abstract MarcoObject call(Environment environment, List<MarcoForm> arguments);
 }

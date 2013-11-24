@@ -9,4 +9,12 @@ public class MarcoArityError extends MarcoException {
         this.expected = expected;
         this.actual = actual;
     }
+
+    public int getExpected() {
+        return expected;
+    }
+
+    public int getActual() {
+        return actual;
+    }
 }

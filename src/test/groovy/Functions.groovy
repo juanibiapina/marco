@@ -80,6 +80,26 @@ class Functions extends MarcoSpecification {
         e.actual == new MarcoNumber(1)
     }
 
+    def "error when defining a function with too few arguments"() {
+        when:
+        eval(/ (def f (function 1)) /)
+
+        then:
+        MarcoArityError e = thrown()
+        e.expected == 2
+        e.actual == 1
+    }
+
+    def "error when defining a function with too many arguments"() {
+        when:
+        eval(/ (def f (function (x y) x y)) /)
+
+        then:
+        MarcoArityError e = thrown()
+        e.expected == 2
+        e.actual == 3
+    }
+
     def "call with too many arguments"() {
         given:
         eval(/ (def f (function (x) x)) /)

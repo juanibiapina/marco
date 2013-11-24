@@ -5,7 +5,7 @@ import marco.internal.Environment;
 
 import java.util.List;
 
-public class MarcoFunction implements MarcoRunnable {
+public class MarcoFunction extends MarcoRunnable {
     private final Environment closureEnv;
     private final List<MarcoSymbol> parameters;
     private final MarcoForm body;

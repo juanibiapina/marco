@@ -1,6 +1,5 @@
 package marco.macros;
 
-import marco.exception.MarcoArityError;
 import marco.internal.Environment;
 import marco.lang.MarcoForm;
 import marco.lang.MarcoMacro;
@@ -9,7 +8,7 @@ import marco.lang.helpers.Cast;
 
 import java.util.List;
 
-public class def implements MarcoMacro {
+public class def extends MarcoMacro {
     @Override
     public MarcoObject call(Environment environment, List<MarcoForm> arguments) {
         assertArity(2, arguments.size());
@@ -20,11 +19,5 @@ public class def implements MarcoMacro {
         environment.bind(name, value);
 
         return environment.lookUp("nil");
-    }
-
-    private void assertArity(int expected, int actual) {
-        if (actual != expected) {
-            throw new MarcoArityError(expected, actual);
-        }
     }
 }
