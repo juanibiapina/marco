@@ -3,6 +3,14 @@ import marco.MarcoLookUpError
 import marco.lang.MarcoNumber
 
 class Functions extends MarcoSpecification {
+    def "zero argument function"() {
+        when:
+        eval(/ (def some_function (function () 4)) /)
+
+        then:
+        eval(/ (some_function) /) == new MarcoNumber(4)
+    }
+
     def "takes 1 parameter and returns it"() {
         when:
         eval(/ (def f (function (x) x)) /)
