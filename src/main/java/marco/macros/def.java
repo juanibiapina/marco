@@ -12,7 +12,7 @@ import java.util.List;
 public class def implements MarcoMacro {
     @Override
     public MarcoObject call(Environment environment, List<MarcoForm> arguments) {
-        assertArguments(2, arguments);
+        assertArity(2, arguments.size());
 
         String name = Cast.toSymbol(arguments.get(0)).getValue();
         MarcoObject value = arguments.get(1).eval(environment);
@@ -20,9 +20,9 @@ public class def implements MarcoMacro {
         return environment.lookUp("nil");
     }
 
-    private void assertArguments(int number, List<MarcoForm> arguments) {
-        if (arguments.size() != number) {
-            throw new MarcoArityError(number, arguments.size());
+    private void assertArity(int expected, int actual) {
+        if (actual != expected) {
+            throw new MarcoArityError(expected, actual);
         }
     }
 }

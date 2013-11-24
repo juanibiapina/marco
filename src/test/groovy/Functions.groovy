@@ -2,7 +2,7 @@ import helpers.MarcoSpecification
 import marco.lang.MarcoNumber
 
 class Functions extends MarcoSpecification {
-    def "takes 1 parameter and return it"() {
+    def "takes 1 parameter and returns it"() {
         when:
         eval(/ (def f (function (x) x)) /)
 
@@ -10,7 +10,7 @@ class Functions extends MarcoSpecification {
         eval(/ (f 42) /) == new MarcoNumber(42)
     }
 
-    def "takes 2 parameters and return the second"() {
+    def "takes 2 parameters and returns the second"() {
         when:
         eval(/ (def f (function (x y) y)) /)
 
