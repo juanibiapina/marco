@@ -1,6 +1,5 @@
 package marco.lang;
 
-import marco.exception.MarcoArityError;
 import marco.internal.Environment;
 
 import java.util.List;
@@ -20,7 +19,7 @@ public class MarcoFunction extends MarcoRunnable {
 
     @Override
     public MarcoObject call(Environment environment, List<MarcoForm> arguments) {
-        assertArity(arguments.size());
+        assertArity(arity, arguments.size());
 
         Environment extendedEnv = closureEnv.duplicate();
         for (int i = 0; i < arguments.size(); i++) {
@@ -29,11 +28,5 @@ public class MarcoFunction extends MarcoRunnable {
             extendedEnv.rebind(parameterName.getValue(), evaluatedArg);
         }
         return body.eval(extendedEnv);
-    }
-
-    private void assertArity(int actual) {
-        if (arity != actual) {
-            throw new MarcoArityError(arity, actual);
-        }
     }
 }
