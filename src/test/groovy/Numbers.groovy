@@ -6,4 +6,9 @@ class Numbers extends MarcoSpecification {
         expect:
         eval(/ 1 /) == new MarcoNumber(1)
     }
+
+    def "string representation"() {
+        expect:
+        new MarcoNumber(2).toString() == "2"
+    }
 }

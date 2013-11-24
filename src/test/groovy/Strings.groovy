@@ -6,4 +6,9 @@ class Strings extends MarcoSpecification {
         expect:
         eval(/ "some string" /) == new MarcoString("some string")
     }
+
+    def "string representation"() {
+        expect:
+        new MarcoString("value").toString() == /"value"/
+    }
 }

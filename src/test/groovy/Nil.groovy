@@ -6,4 +6,9 @@ class Nil extends MarcoSpecification {
         expect:
         eval(/ nil /) == new MarcoNil()
     }
+
+    def "string representation"() {
+        expect:
+        new MarcoNil().toString() == "nil"
+    }
 }

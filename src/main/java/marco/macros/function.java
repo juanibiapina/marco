@@ -10,7 +10,7 @@ public class function extends MarcoMacro {
     @Override
     public MarcoObject call(Environment environment, List<MarcoForm> arguments) {
         assertArity(2, arguments.size());
-        
+
         MarcoList formal = Cast.toList(arguments.get(0));
         List<MarcoSymbol> formalList = formal.asArgumentList();
 
