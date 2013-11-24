@@ -1,28 +1,39 @@
 package marco.lang;
 
+import marco.exception.MarcoArityError;
 import marco.internal.Environment;
 
 import java.util.List;
 
 public class MarcoFunction implements MarcoRunnable {
     private final Environment closureEnv;
-    private final MarcoList parameters;
+    private final List<MarcoSymbol> parameters;
     private final MarcoForm body;
+    private final int arity;
 
-    public MarcoFunction(Environment environment, MarcoList parameters, MarcoForm body) {
+    public MarcoFunction(Environment environment, List<MarcoSymbol> parameters, MarcoForm body) {
         this.closureEnv = environment.duplicate();
         this.parameters = parameters;
         this.body = body;
+        this.arity = parameters.size();
     }
 
     @Override
     public MarcoObject call(Environment environment, List<MarcoForm> arguments) {
+        assertArity(arguments.size());
+
         Environment extendedEnv = closureEnv.duplicate();
         for (int i = 0; i < arguments.size(); i++) {
             MarcoObject evaluatedArg = arguments.get(i).eval(environment);
-            MarcoSymbol parameterName = (MarcoSymbol) parameters.get(i);
+            MarcoSymbol parameterName = parameters.get(i);
             extendedEnv.rebind(parameterName.getValue(), evaluatedArg);
         }
         return body.eval(extendedEnv);
+    }
+
+    private void assertArity(int actual) {
+        if (arity != actual) {
+            throw new MarcoArityError(arity, actual);
+        }
     }
 }

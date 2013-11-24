@@ -1,6 +1,10 @@
 import helpers.MarcoSpecification
+import marco.exception.MarcoArityError
 import marco.exception.MarcoLookUpError
+import marco.exception.MarcoTypeError
+import marco.lang.MarcoList
 import marco.lang.MarcoNumber
+import marco.lang.MarcoSymbol
 
 class Functions extends MarcoSpecification {
     def "zero argument function"() {
@@ -54,5 +58,51 @@ class Functions extends MarcoSpecification {
         then:
         MarcoLookUpError e = thrown()
         e.binding == "s"
+    }
+
+    def "error when argument is not a list"() {
+        when:
+        eval(/ (def f (function x x)) /)
+
+        then:
+        MarcoTypeError e = thrown()
+        e.expected == MarcoList
+        e.actual == new MarcoSymbol("x")
+    }
+
+    def "error when arguments aren't symbols"() {
+        when:
+        eval(/ (def f (function (x y 1) x)) /)
+
+        then:
+        MarcoTypeError e = thrown()
+        e.expected == MarcoSymbol
+        e.actual == new MarcoNumber(1)
+    }
+
+    def "call with too many arguments"() {
+        given:
+        eval(/ (def f (function (x) x)) /)
+
+        when:
+        eval(/ (f 1 2) /)
+
+        then:
+        MarcoArityError e = thrown()
+        e.expected == 1
+        e.actual == 2
+    }
+
+    def "call with too few arguments"() {
+        given:
+        eval(/ (def f (function (x y) x)) /)
+
+        when:
+        eval(/ (f 1) /)
+
+        then:
+        MarcoArityError e = thrown()
+        e.expected == 2
+        e.actual == 1
     }
 }

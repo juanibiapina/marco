@@ -1,9 +1,7 @@
 package marco.lang.helpers;
 
 import marco.exception.MarcoTypeError;
-import marco.lang.MarcoObject;
-import marco.lang.MarcoRunnable;
-import marco.lang.MarcoSymbol;
+import marco.lang.*;
 
 public class Cast {
     public static MarcoRunnable toRunnable(MarcoObject value) {
@@ -19,6 +17,14 @@ public class Cast {
             return (MarcoSymbol) value;
         } else {
             throw new MarcoTypeError(MarcoSymbol.class, value);
+        }
+    }
+
+    public static MarcoList toList(MarcoForm value) {
+        if (value instanceof MarcoList) {
+            return (MarcoList) value;
+        } else {
+            throw new MarcoTypeError(MarcoList.class, value);
         }
     }
 }

@@ -17,4 +17,14 @@ public class MarcoSymbol implements MarcoForm {
     public String getValue() {
         return value;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof MarcoSymbol) {
+            MarcoSymbol other = (MarcoSymbol) obj;
+            return value.equals(other.value);
+        } else {
+            return false;
+        }
+    }
 }

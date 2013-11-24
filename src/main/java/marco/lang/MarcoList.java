@@ -21,7 +21,11 @@ public class MarcoList implements MarcoForm {
         return runnable.call(environment, forms.subList(1, forms.size()));
     }
 
-    public MarcoForm get(int i) {
-        return forms.get(i);
+    public List<MarcoSymbol> asArgumentList() {
+        List<MarcoSymbol> args = new ArrayList<>();
+        for (MarcoForm form : forms) {
+            args.add(Cast.toSymbol(form));
+        }
+        return args;
     }
 }
