@@ -1,4 +1,5 @@
 import helpers.MarcoSpecification
+import marco.MarcoArityError
 import marco.MarcoTypeError
 import marco.lang.MarcoNil
 import marco.lang.MarcoNumber
@@ -44,5 +45,25 @@ class Defines extends MarcoSpecification {
         MarcoTypeError e = thrown()
         e.expected == MarcoSymbol
         e.actual == new MarcoNumber(2)
+    }
+
+    def "without enough arguments"() {
+        when:
+        eval(/ (def x) /)
+
+        then:
+        MarcoArityError e = thrown()
+        e.expected == 2
+        e.actual == 1
+    }
+
+    def "with extra arguments"() {
+        when:
+        eval(/ (def x 1 2) /)
+
+        then:
+        MarcoArityError e = thrown()
+        e.expected == 2
+        e.actual == 3
     }
 }
