@@ -1,4 +1,5 @@
 import helpers.MarcoSpecification
+import marco.MarcoTypeError
 import marco.lang.MarcoNumber
 import marco.lang.MarcoString
 
@@ -26,5 +27,13 @@ class Defines extends MarcoSpecification {
 
         then:
         lookUp("y") == new MarcoNumber(1)
+    }
+
+    def "first parameter is a symbol"() {
+        when:
+        eval(/ (def 1 1) /)
+
+        then:
+        thrown(MarcoTypeError)
     }
 }
