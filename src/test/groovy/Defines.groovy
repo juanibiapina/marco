@@ -1,5 +1,6 @@
 import helpers.MarcoSpecification
 import marco.MarcoArityError
+import marco.MarcoBindingError
 import marco.MarcoTypeError
 import marco.lang.MarcoNil
 import marco.lang.MarcoNumber
@@ -39,6 +40,18 @@ class Defines extends MarcoSpecification {
 
         then:
         lookUp("y") == new MarcoNumber(1)
+    }
+
+    def "trying to bind to an already bound variable"() {
+        when:
+        eval(/ (def x 1) /)
+        eval(/ (def x 2) /)
+
+        then:
+        MarcoBindingError e = thrown()
+        e.binding == "x"
+        e.newValue == new MarcoNumber(2)
+        e.oldValue == new MarcoNumber(1)
     }
 
     def "returns nil"() {

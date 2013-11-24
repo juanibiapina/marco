@@ -1,5 +1,6 @@
 package marco.internal;
 
+import marco.MarcoBindingError;
 import marco.MarcoException;
 import marco.lang.MarcoNil;
 import marco.macros.def;
@@ -23,7 +24,11 @@ public class Environment {
     }
 
     public void add(String var, MarcoObject value) {
-        env.put(var, value);
+        if (env.containsKey(var)) {
+            throw new MarcoBindingError(var, value, env.get(var));
+        } else {
+            env.put(var, value);
+        }
     }
 
     public MarcoObject lookUp(String var) {
