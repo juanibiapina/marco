@@ -1,6 +1,7 @@
 package marco.internal;
 
 import marco.MarcoException;
+import marco.lang.MarcoNil;
 import marco.macros.def;
 import marco.macros.function;
 import marco.lang.MarcoObject;
@@ -14,6 +15,7 @@ public class Environment {
     public Environment() {
         add("def", new def());
         add("function", new function());
+        add("nil", new MarcoNil());
     }
 
     public Environment(Map env) {

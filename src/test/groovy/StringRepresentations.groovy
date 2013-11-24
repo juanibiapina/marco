@@ -1,3 +1,4 @@
+import marco.lang.MarcoNil
 import marco.lang.MarcoNumber
 import marco.lang.MarcoString
 import spock.lang.Specification
@@ -11,5 +12,10 @@ class StringRepresentations extends Specification {
     def "MarcoString"() {
         expect:
         new MarcoString("value").toString() == /"value"/
+    }
+
+    def "MarcoNil"() {
+        expect:
+        new MarcoNil().toString() == "nil"
     }
 }
