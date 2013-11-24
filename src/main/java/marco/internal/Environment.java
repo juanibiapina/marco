@@ -4,8 +4,8 @@ import marco.exception.MarcoBindingError;
 import marco.exception.MarcoLookUpError;
 import marco.lang.MarcoNil;
 import marco.lang.MarcoObject;
-import marco.macros.def;
-import marco.macros.function;
+import marco.lang.macros.def;
+import marco.lang.macros.function;
 
 import java.util.HashMap;
 import java.util.Map;
