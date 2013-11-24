@@ -17,7 +17,7 @@ public class def implements MarcoMacro {
         String name = Cast.toSymbol(arguments.get(0)).getValue();
         MarcoObject value = arguments.get(1).eval(environment);
 
-        environment.add(name, value);
+        environment.bind(name, value);
 
         return environment.lookUp("nil");
     }

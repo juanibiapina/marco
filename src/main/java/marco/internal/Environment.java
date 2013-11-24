@@ -14,16 +14,16 @@ public class Environment {
     private Map<String, MarcoObject> env = new HashMap<>();
 
     public Environment() {
-        add("def", new def());
-        add("function", new function());
-        add("nil", new MarcoNil());
+        bind("def", new def());
+        bind("function", new function());
+        bind("nil", new MarcoNil());
     }
 
     public Environment(Map env) {
         this.env = env;
     }
 
-    public void add(String var, MarcoObject value) {
+    public void bind(String var, MarcoObject value) {
         if (env.containsKey(var)) {
             throw new MarcoBindingError(var, value, env.get(var));
         } else {
@@ -43,5 +43,9 @@ public class Environment {
         Map newEnv = new HashMap();
         newEnv.putAll(env);
         return new Environment(newEnv);
+    }
+
+    public void rebind(String var, MarcoObject value) {
+        env.put(var, value);
     }
 }

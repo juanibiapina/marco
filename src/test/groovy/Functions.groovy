@@ -17,4 +17,13 @@ class Functions extends MarcoSpecification {
         then:
         eval(/ (f 3 4) /) == new MarcoNumber(4)
     }
+
+    def "parameters shadow previous bindings"() {
+        when:
+        eval(/ (def x 1) /)
+        eval(/ (def f (function (x) x)) /)
+
+        then:
+        eval(/ (f 2) /) == new MarcoNumber(2)
+    }
 }
