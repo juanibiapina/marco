@@ -1,4 +1,5 @@
 import helpers.MarcoSpecification
+import marco.MarcoLookUpError
 import marco.lang.MarcoNumber
 
 class Functions extends MarcoSpecification {
@@ -25,5 +26,25 @@ class Functions extends MarcoSpecification {
 
         then:
         eval(/ (f 2) /) == new MarcoNumber(2)
+    }
+
+    def "previous environment is available to function body"() {
+        when:
+        eval(/ (def p 5) /)
+        eval(/ (def f (function (x) p)) /)
+
+        then:
+        eval(/ (f 3) /) == new MarcoNumber(5)
+    }
+
+    def "subsequent environment is not available to function body"() {
+        when:
+        eval(/ (def f (function () s)) /)
+        eval(/ (def s 6) /)
+        eval(/ (f) /)
+
+        then:
+        MarcoLookUpError e = thrown()
+        e.binding == "s"
     }
 }

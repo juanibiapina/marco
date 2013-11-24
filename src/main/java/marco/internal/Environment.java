@@ -1,11 +1,11 @@
 package marco.internal;
 
 import marco.MarcoBindingError;
-import marco.MarcoException;
+import marco.MarcoLookUpError;
 import marco.lang.MarcoNil;
+import marco.lang.MarcoObject;
 import marco.macros.def;
 import marco.macros.function;
-import marco.lang.MarcoObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,7 +35,7 @@ public class Environment {
         if (env.containsKey(var)) {
             return env.get(var);
         } else {
-            throw new MarcoException("Undefined variable: " + var);
+            throw new MarcoLookUpError(var);
         }
     }
 
