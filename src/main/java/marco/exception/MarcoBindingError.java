@@ -1,4 +1,4 @@
-package marco;
+package marco.exception;
 
 import marco.lang.MarcoObject;
 

@@ -1,6 +1,6 @@
 package marco.macros;
 
-import marco.MarcoArityError;
+import marco.exception.MarcoArityError;
 import marco.internal.Environment;
 import marco.lang.MarcoForm;
 import marco.lang.MarcoMacro;

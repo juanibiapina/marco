@@ -1,6 +1,6 @@
 package marco.lang.helpers;
 
-import marco.MarcoTypeError;
+import marco.exception.MarcoTypeError;
 import marco.lang.MarcoObject;
 import marco.lang.MarcoRunnable;
 import marco.lang.MarcoSymbol;

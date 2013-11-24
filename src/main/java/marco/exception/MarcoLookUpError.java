@@ -1,4 +1,4 @@
-package marco;
+package marco.exception;
 
 public class MarcoLookUpError extends MarcoException {
     private String binding;

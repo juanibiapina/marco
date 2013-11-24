@@ -1,5 +1,5 @@
 import helpers.MarcoSpecification
-import marco.MarcoLookUpError
+import marco.exception.MarcoLookUpError
 import marco.lang.MarcoNumber
 
 class Functions extends MarcoSpecification {

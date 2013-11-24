@@ -1,7 +1,7 @@
 package marco.internal;
 
-import marco.MarcoBindingError;
-import marco.MarcoLookUpError;
+import marco.exception.MarcoBindingError;
+import marco.exception.MarcoLookUpError;
 import marco.lang.MarcoNil;
 import marco.lang.MarcoObject;
 import marco.macros.def;
