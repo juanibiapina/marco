@@ -23,6 +23,15 @@ class Defines extends MarcoSpecification {
         lookUp("a_value") == new MarcoString("string value")
     }
 
+    def "renaming def"() {
+        when:
+        eval(/ (def define def) /)
+        eval(/ (define x 1) /)
+
+        then:
+        eval(/ x /) == new MarcoNumber(1)
+    }
+
     def "defining in terms of other bindings"() {
         when:
         eval(/ (def x 1) /)
