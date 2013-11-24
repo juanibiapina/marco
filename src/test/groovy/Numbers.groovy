@@ -11,4 +11,9 @@ class Numbers extends MarcoSpecification {
         expect:
         new MarcoNumber(2).toString() == "2"
     }
+
+    def "+ function"() {
+        expect:
+        eval(/ (+ 1 2) /) == new MarcoNumber(3)
+    }
 }

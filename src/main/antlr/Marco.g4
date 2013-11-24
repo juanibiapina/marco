@@ -15,11 +15,22 @@ literal
     | NUMBER   # Number
     ;
 
-SYMBOL : [a-zA-Z_-]+ ;
-
 STRING : '"' ( ~'"' | '\\' '"' )* '"' ;
 
 NUMBER : '-'? [0-9]+ ;
+
+SYMBOL: SYMBOL_HEAD SYMBOL_REST* ;
+
+fragment
+SYMBOL_HEAD
+    :   'a'..'z' | 'A'..'Z' | '*' | '+' | '!' | '-' | '_' | '?' | '>' | '<' | '=' | '$'
+    ;
+
+fragment
+SYMBOL_REST
+    : SYMBOL_HEAD
+    | '0'..'9'
+    ;
 
 
 WHITESPACE : [ \t\n] -> channel(HIDDEN) ;

@@ -28,4 +28,8 @@ public class MarcoNumber implements MarcoForm {
     public String toString() {
         return Integer.toString(value);
     }
+
+    public int getValue() {
+        return value;
+    }
 }

@@ -4,6 +4,7 @@ import marco.exception.MarcoBindingError;
 import marco.exception.MarcoLookUpError;
 import marco.lang.MarcoNil;
 import marco.lang.MarcoObject;
+import marco.lang.functions.plus;
 import marco.lang.macros.def;
 import marco.lang.macros.function;
 
@@ -17,6 +18,7 @@ public class Environment {
         bind("def", new def());
         bind("function", new function());
         bind("nil", new MarcoNil());
+        bind("+", new plus());
     }
 
     public Environment(Map env) {
