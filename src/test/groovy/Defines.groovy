@@ -2,6 +2,7 @@ import helpers.MarcoSpecification
 import marco.MarcoTypeError
 import marco.lang.MarcoNumber
 import marco.lang.MarcoString
+import marco.lang.MarcoSymbol
 
 class Defines extends MarcoSpecification {
     def "defining numbers"() {
@@ -31,9 +32,11 @@ class Defines extends MarcoSpecification {
 
     def "first parameter is a symbol"() {
         when:
-        eval(/ (def 1 1) /)
+        eval(/ (def 2 1) /)
 
         then:
-        thrown(MarcoTypeError)
+        MarcoTypeError e = thrown()
+        e.expected == MarcoSymbol
+        e.actual == new MarcoNumber(2)
     }
 }
