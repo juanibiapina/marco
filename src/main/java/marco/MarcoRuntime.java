@@ -11,10 +11,6 @@ public class MarcoRuntime {
 
     private Environment environment = new Environment();
 
-    public MarcoProgram parse(String code) {
-        return parser.parse(code);
-    }
-
     public MarcoObject eval(String code) {
         MarcoProgram program = parser.parse(code);
         return program.eval(environment);

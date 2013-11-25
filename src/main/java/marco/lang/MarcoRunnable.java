@@ -1,6 +1,6 @@
 package marco.lang;
 
-import marco.exception.MarcoArityError;
+import marco.lang.exception.MarcoArityError;
 import marco.internal.Environment;
 
 import java.util.List;

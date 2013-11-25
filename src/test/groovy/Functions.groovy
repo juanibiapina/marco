@@ -1,7 +1,7 @@
 import helpers.MarcoSpecification
-import marco.exception.MarcoArityError
-import marco.exception.MarcoLookUpError
-import marco.exception.MarcoTypeError
+import marco.lang.exception.MarcoArityError
+import marco.lang.exception.MarcoLookUpError
+import marco.lang.exception.MarcoTypeError
 import marco.lang.MarcoList
 import marco.lang.MarcoNumber
 import marco.lang.MarcoSymbol

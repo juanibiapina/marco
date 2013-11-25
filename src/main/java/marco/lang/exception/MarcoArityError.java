@@ -1,4 +1,4 @@
-package marco.exception;
+package marco.lang.exception;
 
 public class MarcoArityError extends MarcoException {
     private int expected;

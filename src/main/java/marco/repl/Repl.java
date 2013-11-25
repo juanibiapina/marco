@@ -1,6 +1,6 @@
 package marco.repl;
 
-import marco.exception.MarcoException;
+import marco.lang.exception.MarcoException;
 import marco.lang.MarcoObject;
 import marco.MarcoRuntime;
 
