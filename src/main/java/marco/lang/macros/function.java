@@ -6,7 +6,7 @@ import marco.lang.helpers.Cast;
 
 import java.util.List;
 
-public class function extends MarcoMacro {
+public class function extends MarcoNativeMacro {
     @Override
     public MarcoObject call(Environment environment, List<MarcoForm> arguments) {
         assertArity(2, arguments.size());
