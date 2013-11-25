@@ -3,6 +3,7 @@ package marco.lang.macros;
 import marco.internal.Environment;
 import marco.lang.MarcoForm;
 import marco.lang.MarcoNativeMacro;
+import marco.lang.MarcoNil;
 import marco.lang.MarcoObject;
 import marco.lang.helpers.Cast;
 
@@ -18,6 +19,6 @@ public class def extends MarcoNativeMacro {
 
         environment.bind(name, value);
 
-        return environment.lookUp("nil");
+        return MarcoNil.NIL;
     }
 }

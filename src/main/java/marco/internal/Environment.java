@@ -18,7 +18,7 @@ public class Environment {
     public Environment() {
         bind("def", new def());
         bind("function", new function());
-        bind("nil", new MarcoNil());
+        bind("nil", MarcoNil.NIL);
         bind("+", new plus());
         bind("true", MarcoBoolean.TRUE);
         bind("false", MarcoBoolean.FALSE);

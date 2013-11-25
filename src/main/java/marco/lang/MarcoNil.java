@@ -1,6 +1,11 @@
 package marco.lang;
 
 public class MarcoNil extends MarcoObject {
+    public static final MarcoObject NIL = new MarcoNil();
+
+    private MarcoNil() {
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof MarcoNil) {
