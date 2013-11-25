@@ -1,9 +1,10 @@
 package marco.internal;
 
-import marco.lang.exception.MarcoBindingError;
-import marco.lang.exception.MarcoLookUpError;
+import marco.lang.MarcoBoolean;
 import marco.lang.MarcoNil;
 import marco.lang.MarcoObject;
+import marco.lang.exception.MarcoBindingError;
+import marco.lang.exception.MarcoLookUpError;
 import marco.lang.functions.plus;
 import marco.lang.macros.def;
 import marco.lang.macros.function;
@@ -19,6 +20,8 @@ public class Environment {
         bind("function", new function());
         bind("nil", new MarcoNil());
         bind("+", new plus());
+        bind("true", MarcoBoolean.TRUE);
+        bind("false", MarcoBoolean.FALSE);
     }
 
     public Environment(Map env) {

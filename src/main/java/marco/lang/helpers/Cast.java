@@ -35,4 +35,16 @@ public class Cast {
             throw new MarcoTypeError(MarcoNumber.class, value);
         }
     }
+
+    public static MarcoBoolean toBoolean(MarcoObject value) {
+        if (value instanceof MarcoBoolean) {
+            return (MarcoBoolean) value;
+        } else {
+            if (value instanceof MarcoNil) {
+                return MarcoBoolean.FALSE;
+            } else {
+                return MarcoBoolean.TRUE;
+            }
+        }
+    }
 }
