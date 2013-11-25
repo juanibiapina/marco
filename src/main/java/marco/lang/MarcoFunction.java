@@ -29,4 +29,9 @@ public class MarcoFunction extends MarcoRunnable {
         }
         return body.eval(extendedEnv);
     }
+
+    @Override
+    public String typeName() {
+        return "Function";
+    }
 }

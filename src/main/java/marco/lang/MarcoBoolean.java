@@ -1,6 +1,6 @@
 package marco.lang;
 
-public class MarcoBoolean implements MarcoObject {
+public class MarcoBoolean extends MarcoObject {
     public static final MarcoBoolean TRUE = new MarcoBoolean(true);
     public static final MarcoBoolean FALSE = new MarcoBoolean(false);
 
@@ -13,5 +13,10 @@ public class MarcoBoolean implements MarcoObject {
     @Override
     public String toString() {
         return Boolean.toString(value);
+    }
+
+    @Override
+    public String typeName() {
+        return "Boolean";
     }
 }

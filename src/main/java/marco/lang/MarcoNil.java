@@ -1,6 +1,6 @@
 package marco.lang;
 
-public class MarcoNil implements MarcoObject {
+public class MarcoNil extends MarcoObject {
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof MarcoNil) {
@@ -13,5 +13,10 @@ public class MarcoNil implements MarcoObject {
     @Override
     public String toString() {
         return "nil";
+    }
+
+    @Override
+    public String typeName() {
+        return "Nil";
     }
 }

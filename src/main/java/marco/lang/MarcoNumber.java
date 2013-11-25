@@ -2,7 +2,7 @@ package marco.lang;
 
 import marco.internal.Environment;
 
-public class MarcoNumber implements MarcoForm {
+public class MarcoNumber extends MarcoForm {
     private int value;
 
     public MarcoNumber(int value) {
@@ -27,6 +27,11 @@ public class MarcoNumber implements MarcoForm {
     @Override
     public String toString() {
         return Integer.toString(value);
+    }
+
+    @Override
+    public String typeName() {
+        return "Number";
     }
 
     public int getValue() {

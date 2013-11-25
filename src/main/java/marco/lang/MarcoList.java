@@ -6,7 +6,7 @@ import marco.lang.helpers.Cast;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MarcoList implements MarcoForm {
+public class MarcoList extends MarcoForm {
     private List<MarcoForm> forms = new ArrayList<>();
 
     public void add(MarcoForm form) {
@@ -27,5 +27,10 @@ public class MarcoList implements MarcoForm {
             args.add(Cast.toSymbol(form));
         }
         return args;
+    }
+
+    @Override
+    public String typeName() {
+        return "List";
     }
 }

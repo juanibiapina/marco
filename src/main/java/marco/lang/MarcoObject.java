@@ -1,4 +1,10 @@
 package marco.lang;
 
-public interface MarcoObject {
+public abstract class MarcoObject {
+    @Override
+    public String toString() {
+        return typeName();
+    }
+
+    public abstract String typeName();
 }

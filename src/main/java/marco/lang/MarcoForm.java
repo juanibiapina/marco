@@ -2,6 +2,6 @@ package marco.lang;
 
 import marco.internal.Environment;
 
-public interface MarcoForm extends MarcoObject {
-    MarcoObject eval(Environment environment);
+public abstract class MarcoForm extends MarcoObject {
+    public abstract MarcoObject eval(Environment environment);
 }

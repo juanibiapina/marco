@@ -2,7 +2,7 @@ package marco.lang;
 
 import marco.internal.Environment;
 
-public class MarcoSymbol implements MarcoForm {
+public class MarcoSymbol extends MarcoForm {
     private String value;
 
     public MarcoSymbol(String text) {
@@ -26,5 +26,10 @@ public class MarcoSymbol implements MarcoForm {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public String typeName() {
+        return "Symbol";
     }
 }
