@@ -3,6 +3,12 @@ import marco.lang.MarcoBoolean
 import marco.lang.helpers.Cast
 
 class Booleans extends MarcoSpecification {
+    def "string representation"() {
+        expect:
+        MarcoBoolean.TRUE.toString() == "true"
+        MarcoBoolean.FALSE.toString() == "false"
+    }
+
     def "true is defined"() {
         expect:
         eval(/ true /) == MarcoBoolean.TRUE
