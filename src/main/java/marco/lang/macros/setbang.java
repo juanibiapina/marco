@@ -2,7 +2,7 @@ package marco.lang.macros;
 
 import marco.internal.Environment;
 import marco.lang.*;
-import marco.lang.helpers.Cast;
+import marco.internal.Cast;
 
 import java.util.List;
 

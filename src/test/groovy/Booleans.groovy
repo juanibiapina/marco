@@ -1,6 +1,6 @@
 import helpers.MarcoSpecification
 import marco.lang.MarcoBoolean
-import marco.lang.helpers.Cast
+import marco.internal.Cast
 
 class Booleans extends MarcoSpecification {
     def "string representation"() {

@@ -1,4 +1,4 @@
-package marco.lang.helpers;
+package marco.internal;
 
 import marco.lang.exception.MarcoTypeError;
 import marco.lang.*;

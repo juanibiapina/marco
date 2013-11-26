@@ -5,7 +5,7 @@ import marco.lang.MarcoForm;
 import marco.lang.MarcoNativeMacro;
 import marco.lang.MarcoNil;
 import marco.lang.MarcoObject;
-import marco.lang.helpers.Cast;
+import marco.internal.Cast;
 
 import java.util.List;
 
