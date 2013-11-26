@@ -2,10 +2,12 @@ package marco.internal;
 
 import marco.lang.MarcoObject;
 
-public class Binding {
+public abstract class Binding {
+    private String symbol;
     private MarcoObject value;
 
-    public Binding(MarcoObject value) {
+    public Binding(String symbol, MarcoObject value) {
+        this.symbol = symbol;
         this.value = value;
     }
 
@@ -13,7 +15,13 @@ public class Binding {
         return value;
     }
 
-    public void mutate(MarcoObject value) {
+    protected void setValue(MarcoObject value) {
         this.value = value;
     }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    public abstract void mutate(MarcoObject value);
 }

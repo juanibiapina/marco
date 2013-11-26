@@ -1,10 +1,23 @@
 import helpers.MarcoSpecification
 import marco.lang.MarcoNumber
+import marco.lang.exception.MarcoImmutabilityError
 
 class Mutation extends MarcoSpecification {
-    def "mutating a binding"() {
+    def "mutation is not allowed on defs"() {
         given:
         eval(/ (def x 1) /)
+
+        when:
+        eval(/ (set! x 2) /)
+
+        then:
+        MarcoImmutabilityError e = thrown()
+        e.symbol == "x"
+    }
+
+    def "mutating a binding"() {
+        given:
+        eval(/ (var x 1) /)
 
         when:
         eval(/ (set! x 2) /)
@@ -15,7 +28,7 @@ class Mutation extends MarcoSpecification {
 
     def "mutating a binding affects the closure environment"() {
         given:
-        eval(/ (def x 1) /)
+        eval(/ (var x 1) /)
         eval(/ (def f (function () x)) /)
 
         when:
@@ -27,7 +40,7 @@ class Mutation extends MarcoSpecification {
 
     def "mutation inside the function affects the outer environment"() {
         given:
-        eval(/ (def x 1) /)
+        eval(/ (var x 1) /)
         eval(/ (def f (function () (set! x 2))) /)
 
         when:
@@ -37,15 +50,16 @@ class Mutation extends MarcoSpecification {
         eval(/ x /) == new MarcoNumber(2)
     }
 
-    def "parameter mutation does not affect the outer environment"() {
+    def "parameters cannot be mutated"() {
         given:
-        eval(/ (def x 1) /)
+        eval(/ (var x 1) /)
         eval(/ (def f (function (x) (set! x 2))) /)
 
         when:
         eval(/ (f 3) /)
 
         then:
-        eval(/ x /) == new MarcoNumber(1)
+        MarcoImmutabilityError e = thrown()
+        e.symbol == "x"
     }
 }

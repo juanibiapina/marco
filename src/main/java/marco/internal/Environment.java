@@ -9,6 +9,7 @@ import marco.lang.functions.plus;
 import marco.lang.macros.def;
 import marco.lang.macros.function;
 import marco.lang.macros.setbang;
+import marco.lang.macros.var;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,6 +24,7 @@ public class Environment {
         bind("+", new plus());
         bind("true", MarcoBoolean.TRUE);
         bind("false", MarcoBoolean.FALSE);
+        bind("var", new var());
         bind("set!", new setbang());
     }
 
@@ -30,12 +32,20 @@ public class Environment {
         if (env.containsKey(var)) {
             throw new MarcoBindingError(var, value, env.get(var).getValue());
         } else {
-            env.put(var, new Binding(value));
+            env.put(var, new ImmutableBinding(var, value));
+        }
+    }
+
+    public void bindVar(String var, MarcoObject value) {
+        if (env.containsKey(var)) {
+            throw new MarcoBindingError(var, value, env.get(var).getValue());
+        } else {
+            env.put(var, new MutableBinding(var, value));
         }
     }
 
     public void rebind(String var, MarcoObject value) {
-        env.put(var, new Binding(value));
+        env.put(var, new ImmutableBinding(var, value));
     }
 
     public void mutate(String var, MarcoObject value) {
