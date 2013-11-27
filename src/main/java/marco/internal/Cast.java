@@ -40,11 +40,7 @@ public class Cast {
         if (value instanceof MarcoBoolean) {
             return (MarcoBoolean) value;
         } else {
-            if (value instanceof MarcoNil) {
-                return MarcoBoolean.FALSE;
-            } else {
-                return MarcoBoolean.TRUE;
-            }
+            return MarcoBoolean.TRUE;
         }
     }
 

@@ -34,12 +34,12 @@ class Booleans extends MarcoSpecification {
         Cast.toBoolean(result) == MarcoBoolean.TRUE
     }
 
-    def "nil is false"() {
+    def "nil is true"() {
         when:
         def result = eval(/ nil /)
 
         then:
-        Cast.toBoolean(result) == MarcoBoolean.FALSE
+        Cast.toBoolean(result) == MarcoBoolean.TRUE
     }
 
     def "numbers are true"() {
