@@ -34,3 +34,5 @@ SYMBOL_REST
 
 
 WHITESPACE : [ \t\n] -> channel(HIDDEN) ;
+
+COMMENT : '//' ~[\r\n]* -> channel(HIDDEN) ;
