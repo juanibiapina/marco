@@ -18,4 +18,12 @@ class Pairs extends MarcoSpecification {
         expect:
         eval(/ (second (cons (cons 1 2) 42)) /) == new MarcoNumber(42)
     }
+
+    def "pair?"() {
+        expect:
+        eval(/ (pair? 1) /) == MarcoBoolean.FALSE
+        eval(/ (pair? (cons 1 2)) /) == MarcoBoolean.TRUE
+        eval(/ (pair? (cons (cons 1 2) (cons nil nil))) /) == MarcoBoolean.TRUE
+        eval(/ (pair? (cons 1 nil)) /) == MarcoBoolean.TRUE
+    }
 }
