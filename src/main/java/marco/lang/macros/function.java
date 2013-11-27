@@ -12,7 +12,7 @@ public class function extends MarcoNativeMacro {
         assertArity(2, arguments.size());
 
         MarcoList formal = Cast.toList(arguments.get(0));
-        List<MarcoSymbol> formalList = formal.asArgumentList();
+        List<String> formalList = formal.asArgumentList();
 
         MarcoForm body = arguments.get(1);
 

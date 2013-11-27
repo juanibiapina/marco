@@ -21,10 +21,10 @@ public class MarcoList extends MarcoForm {
         return runnable.call(environment, forms.subList(1, forms.size()));
     }
 
-    public List<MarcoSymbol> asArgumentList() {
-        List<MarcoSymbol> args = new ArrayList<>();
+    public List<String> asArgumentList() {
+        List<String> args = new ArrayList<>();
         for (MarcoForm form : forms) {
-            args.add(Cast.toSymbol(form));
+            args.add(Cast.toSymbol(form).getValue());
         }
         return args;
     }

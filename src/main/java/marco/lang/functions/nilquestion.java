@@ -1,16 +1,15 @@
 package marco.lang.functions;
 
 import marco.internal.Environment;
-import marco.lang.*;
+import marco.lang.MarcoBoolean;
+import marco.lang.MarcoNativeForm;
+import marco.lang.MarcoNil;
+import marco.lang.MarcoObject;
 
-import java.util.List;
-
-public class nilquestion extends MarcoNativeFunction {
+public class nilquestion extends MarcoNativeForm {
     @Override
-    public MarcoObject call(Environment environment, List<MarcoForm> arguments) {
-        assertArity(1, arguments.size());
-
-        MarcoObject arg = arguments.get(0).eval(environment);
+    public MarcoObject eval(Environment environment) {
+        MarcoObject arg = environment.lookUp("arg");
 
         if (arg instanceof MarcoNil) {
             return MarcoBoolean.TRUE;

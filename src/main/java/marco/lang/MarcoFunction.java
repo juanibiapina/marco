@@ -6,11 +6,11 @@ import java.util.List;
 
 public class MarcoFunction extends MarcoRunnable {
     private final Environment closureEnv;
-    private final List<MarcoSymbol> parameters;
+    private final List<String> parameters;
     private final MarcoForm body;
     private final int arity;
 
-    public MarcoFunction(Environment environment, List<MarcoSymbol> parameters, MarcoForm body) {
+    public MarcoFunction(Environment environment, List<String> parameters, MarcoForm body) {
         this.closureEnv = environment;
         this.parameters = parameters;
         this.body = body;
@@ -24,8 +24,8 @@ public class MarcoFunction extends MarcoRunnable {
         Environment extendedEnv = closureEnv.duplicate();
         for (int i = 0; i < arguments.size(); i++) {
             MarcoObject evaluatedArg = arguments.get(i).eval(environment);
-            MarcoSymbol parameterName = parameters.get(i);
-            extendedEnv.rebind(parameterName.getValue(), evaluatedArg);
+            String parameterName = parameters.get(i);
+            extendedEnv.rebind(parameterName, evaluatedArg);
         }
         return body.eval(extendedEnv);
     }

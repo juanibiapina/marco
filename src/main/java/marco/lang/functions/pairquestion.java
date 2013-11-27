@@ -3,14 +3,10 @@ package marco.lang.functions;
 import marco.internal.Environment;
 import marco.lang.*;
 
-import java.util.List;
-
-public class pairquestion extends MarcoNativeFunction {
+public class pairquestion extends MarcoNativeForm {
     @Override
-    public MarcoObject call(Environment environment, List<MarcoForm> arguments) {
-        assertArity(1, arguments.size());
-
-        MarcoObject arg = arguments.get(0).eval(environment);
+    public MarcoObject eval(Environment environment) {
+        MarcoObject arg = environment.lookUp("pair");
 
         if (arg instanceof MarcoPair) {
             return MarcoBoolean.TRUE;

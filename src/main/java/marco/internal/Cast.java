@@ -28,7 +28,7 @@ public class Cast {
         }
     }
 
-    public static MarcoNumber toNumber(MarcoForm value) {
+    public static MarcoNumber toNumber(MarcoObject value) {
         if (value instanceof MarcoNumber) {
             return (MarcoNumber) value;
         } else {

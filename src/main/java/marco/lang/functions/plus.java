@@ -1,21 +1,16 @@
 package marco.lang.functions;
 
+import marco.internal.Cast;
 import marco.internal.Environment;
-import marco.lang.MarcoNativeFunction;
-import marco.lang.MarcoForm;
+import marco.lang.MarcoNativeForm;
 import marco.lang.MarcoNumber;
 import marco.lang.MarcoObject;
-import marco.internal.Cast;
 
-import java.util.List;
-
-public class plus extends MarcoNativeFunction {
+public class plus extends MarcoNativeForm {
     @Override
-    public MarcoObject call(Environment environment, List<MarcoForm> arguments) {
-        assertArity(2, arguments.size());
-
-        MarcoNumber n1 = Cast.toNumber(arguments.get(0));
-        MarcoNumber n2 = Cast.toNumber(arguments.get(1));
+    public MarcoObject eval(Environment environment) {
+        MarcoNumber n1 = Cast.toNumber(environment.lookUp("v1"));
+        MarcoNumber n2 = Cast.toNumber(environment.lookUp("v2"));
 
         return new MarcoNumber(n1.getValue() + n2.getValue());
     }
