@@ -47,4 +47,12 @@ public class Cast {
             }
         }
     }
+
+    public static MarcoPair toPair(MarcoObject value) {
+        if (value instanceof MarcoPair) {
+            return (MarcoPair) value;
+        } else {
+            throw new MarcoTypeError(MarcoPair.class, value);
+        }
+    }
 }

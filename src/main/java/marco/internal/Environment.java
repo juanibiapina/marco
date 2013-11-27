@@ -5,7 +5,10 @@ import marco.lang.MarcoNil;
 import marco.lang.MarcoObject;
 import marco.lang.exception.MarcoBindingError;
 import marco.lang.exception.MarcoLookUpError;
+import marco.lang.functions.cons;
+import marco.lang.functions.first;
 import marco.lang.functions.plus;
+import marco.lang.functions.second;
 import marco.lang.macros.def;
 import marco.lang.macros.function;
 import marco.lang.macros.setbang;
@@ -26,6 +29,9 @@ public class Environment {
         bind("false", MarcoBoolean.FALSE);
         bind("var", new var());
         bind("set!", new setbang());
+        bind("cons", new cons());
+        bind("first", new first());
+        bind("second", new second());
     }
 
     public void bind(String var, MarcoObject value) {
