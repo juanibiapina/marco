@@ -11,7 +11,7 @@ public class MarcoFunction extends MarcoRunnable {
     private final int arity;
 
     public MarcoFunction(Environment environment, List<MarcoSymbol> parameters, MarcoForm body) {
-        this.closureEnv = environment.duplicate();
+        this.closureEnv = environment;
         this.parameters = parameters;
         this.body = body;
         this.arity = parameters.size();

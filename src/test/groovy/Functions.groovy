@@ -1,10 +1,9 @@
 import helpers.MarcoSpecification
-import marco.lang.exception.MarcoArityError
-import marco.lang.exception.MarcoLookUpError
-import marco.lang.exception.MarcoTypeError
 import marco.lang.MarcoList
 import marco.lang.MarcoNumber
 import marco.lang.MarcoSymbol
+import marco.lang.exception.MarcoArityError
+import marco.lang.exception.MarcoTypeError
 
 class Functions extends MarcoSpecification {
     def "zero argument function"() {
@@ -49,15 +48,13 @@ class Functions extends MarcoSpecification {
         eval(/ (f 3) /) == new MarcoNumber(5)
     }
 
-    def "subsequent environment is not available to function body"() {
+    def "subsequent environment is available to function body"() {
         when:
         eval(/ (def f (function () s)) /)
         eval(/ (def s 6) /)
-        eval(/ (f) /)
 
         then:
-        MarcoLookUpError e = thrown()
-        e.binding == "s"
+        eval(/ (f) /) == new MarcoNumber(6)
     }
 
     def "error when argument is not a list"() {
