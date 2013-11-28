@@ -1,35 +1,10 @@
-Tools
-  ✓ Add generated directory to sources
-  ✓ Make unit test cycle faster
-  ✓ Add JUnit4 to IntelliJ
-  ✓ Add groovy and spock
-
-Features
-  - Booleans
-  - Numbers
-    ✓ Integers
-    - Floats
-    - Scientific notation
-    - Fractions
-  ✓ Console Output
-  ✓ Strings
-  ✓ Messages
-  ✓ Message chains
-  - Block operators
-    - ()
-    - {}
-    - <>
-  - Mixins
-
-Organization
-  - Separate Types into Types object
-
-Fixes
-  ✓ REPL output
-
-Internal
-  - Slot object
-
-Refactor
-  - Creation of objects
-  - Runtime setup
+- Add quoting syntax
+- Add Modules
+- Add lists
+- Numbers
+  - Floating point
+  - Fractions
+  - Scientific notation
+- Strings as lists?
+- Add MarcoValue object
+- Pair syntax ?
