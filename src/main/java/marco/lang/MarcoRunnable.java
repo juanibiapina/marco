@@ -6,7 +6,7 @@ import marco.internal.Environment;
 import java.util.List;
 
 public abstract class MarcoRunnable extends MarcoObject {
-    public abstract MarcoObject call(Environment environment, List<MarcoForm> arguments);
+    public abstract MarcoObject call(Environment environment, List<MarcoObject> arguments);
 
     @Override
     public MarcoObject eval(Environment environment) {

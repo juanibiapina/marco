@@ -2,7 +2,7 @@ package marco.lang;
 
 import marco.internal.Environment;
 
-public class MarcoNumber extends MarcoForm {
+public class MarcoNumber extends MarcoObject {
     private int value;
 
     public MarcoNumber(int value) {

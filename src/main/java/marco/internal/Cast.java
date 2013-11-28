@@ -20,7 +20,7 @@ public class Cast {
         }
     }
 
-    public static MarcoList toList(MarcoForm value) {
+    public static MarcoList toList(MarcoObject value) {
         if (value instanceof MarcoList) {
             return (MarcoList) value;
         } else {

@@ -2,7 +2,7 @@ package marco.lang;
 
 import marco.internal.Environment;
 
-public class MarcoSymbol extends MarcoForm {
+public class MarcoSymbol extends MarcoObject {
     private String value;
 
     public MarcoSymbol(String text) {

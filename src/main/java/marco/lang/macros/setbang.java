@@ -8,7 +8,7 @@ import java.util.List;
 
 public class setbang extends MarcoNativeMacro {
     @Override
-    public MarcoObject call(Environment environment, List<MarcoForm> arguments) {
+    public MarcoObject call(Environment environment, List<MarcoObject> arguments) {
         assertArity(2, arguments.size());
 
         MarcoSymbol var = Cast.toSymbol(arguments.get(0));

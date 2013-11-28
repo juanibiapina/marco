@@ -1,17 +1,16 @@
 package marco.lang.macros;
 
+import marco.internal.Cast;
 import marco.internal.Environment;
-import marco.lang.MarcoForm;
 import marco.lang.MarcoNativeMacro;
 import marco.lang.MarcoNil;
 import marco.lang.MarcoObject;
-import marco.internal.Cast;
 
 import java.util.List;
 
 public class def extends MarcoNativeMacro {
     @Override
-    public MarcoObject call(Environment environment, List<MarcoForm> arguments) {
+    public MarcoObject call(Environment environment, List<MarcoObject> arguments) {
         assertArity(2, arguments.size());
 
         String name = Cast.toSymbol(arguments.get(0)).getValue();

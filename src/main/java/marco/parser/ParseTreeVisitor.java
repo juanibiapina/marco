@@ -5,14 +5,14 @@ import marco.parser.antlr.MarcoBaseVisitor;
 import marco.parser.antlr.MarcoParser;
 import org.antlr.v4.runtime.misc.NotNull;
 
-public class ParseTreeVisitor extends MarcoBaseVisitor<Object> {
+public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
     private MarcoProgram result;
 
     @Override
     public MarcoProgram visitProgram(@NotNull MarcoParser.ProgramContext ctx) {
         result = new MarcoProgram();
         for (MarcoParser.FormContext formContext : ctx.form()) {
-            result.add((MarcoForm) visit(formContext));
+            result.add((MarcoObject) visit(formContext));
         }
         return result;
     }
@@ -21,19 +21,19 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<Object> {
     public MarcoList visitList(@NotNull MarcoParser.ListContext ctx) {
         MarcoList list = new MarcoList();
         for (MarcoParser.FormContext formContext : ctx.form()) {
-            list.add((MarcoForm) visit(formContext));
+            list.add((MarcoObject) visit(formContext));
         }
         return list;
     }
 
     @Override
-    public MarcoForm visitFormList(@NotNull MarcoParser.FormListContext ctx) {
-        return (MarcoForm) visit(ctx.list());
+    public MarcoObject visitFormList(@NotNull MarcoParser.FormListContext ctx) {
+        return visit(ctx.list());
     }
 
     @Override
-    public MarcoForm visitFormLiteral(@NotNull MarcoParser.FormLiteralContext ctx) {
-        return (MarcoForm) visit(ctx.literal());
+    public MarcoObject visitFormLiteral(@NotNull MarcoParser.FormLiteralContext ctx) {
+        return visit(ctx.literal());
     }
 
     @Override

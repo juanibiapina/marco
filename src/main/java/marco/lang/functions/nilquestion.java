@@ -2,11 +2,11 @@ package marco.lang.functions;
 
 import marco.internal.Environment;
 import marco.lang.MarcoBoolean;
-import marco.lang.MarcoNativeForm;
+import marco.lang.MarcoNativeObject;
 import marco.lang.MarcoNil;
 import marco.lang.MarcoObject;
 
-public class nilquestion extends MarcoNativeForm {
+public class nilquestion extends MarcoNativeObject {
     @Override
     public MarcoObject eval(Environment environment) {
         MarcoObject arg = environment.lookUp("arg");

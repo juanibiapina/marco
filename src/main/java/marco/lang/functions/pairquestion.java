@@ -3,7 +3,7 @@ package marco.lang.functions;
 import marco.internal.Environment;
 import marco.lang.*;
 
-public class pairquestion extends MarcoNativeForm {
+public class pairquestion extends MarcoNativeObject {
     @Override
     public MarcoObject eval(Environment environment) {
         MarcoObject arg = environment.lookUp("pair");

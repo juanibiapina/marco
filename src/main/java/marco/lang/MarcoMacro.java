@@ -7,10 +7,10 @@ import java.util.List;
 public class MarcoMacro extends MarcoRunnable {
     private final Environment closureEnv;
     private List<String> parameters;
-    private MarcoForm body;
+    private MarcoObject body;
     private int arity;
 
-    public MarcoMacro(Environment environment, List<String> parameters, MarcoForm body) {
+    public MarcoMacro(Environment environment, List<String> parameters, MarcoObject body) {
         this.closureEnv = environment;
         this.parameters = parameters;
         this.body = body;
@@ -18,7 +18,7 @@ public class MarcoMacro extends MarcoRunnable {
     }
 
     @Override
-    public MarcoObject call(Environment environment, List<MarcoForm> arguments) {
+    public MarcoObject call(Environment environment, List<MarcoObject> arguments) {
         assertArity(arity, arguments.size());
 
         Environment extendedEnv = closureEnv.duplicate();
