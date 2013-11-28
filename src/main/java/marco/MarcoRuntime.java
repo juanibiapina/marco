@@ -3,10 +3,7 @@ package marco;
 import marco.internal.Environment;
 import marco.lang.*;
 import marco.lang.functions.*;
-import marco.lang.macros.def;
-import marco.lang.macros.function;
-import marco.lang.macros.setbang;
-import marco.lang.macros.var;
+import marco.lang.macros.*;
 import marco.parser.Parser;
 
 import java.util.Arrays;
@@ -18,6 +15,10 @@ public class MarcoRuntime {
     private Environment environment = new Environment();
 
     public MarcoRuntime() {
+        environment.bind("macro", new macro());
+        environment.bind("quote", new quote());
+        environment.bind("eval", new MarcoFunction(environment, Arrays.asList("arg"), new eval()));
+
         environment.bind("def", new def());
         environment.bind("function", new function());
         environment.bind("nil", MarcoNil.NIL);

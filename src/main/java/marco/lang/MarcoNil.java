@@ -1,5 +1,7 @@
 package marco.lang;
 
+import marco.internal.Environment;
+
 public class MarcoNil extends MarcoObject {
     public static final MarcoObject NIL = new MarcoNil();
 
@@ -13,6 +15,11 @@ public class MarcoNil extends MarcoObject {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public MarcoObject eval(Environment environment) {
+        return this;
     }
 
     @Override
