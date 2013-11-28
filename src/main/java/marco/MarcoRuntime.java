@@ -16,22 +16,26 @@ public class MarcoRuntime {
 
     public MarcoRuntime() {
         environment.bind("macro", new macro());
-        environment.bind("quote", new quote());
-        environment.bind("eval", new MarcoFunction(environment, Arrays.asList("arg"), new eval()));
-
-        environment.bind("def", new def());
         environment.bind("function", new function());
+
+        environment.bind("quote", new quote());
+
         environment.bind("nil", MarcoNil.NIL);
-        environment.bind("+", new MarcoFunction(new Environment(), Arrays.asList("v1", "v2"), new plus()));
         environment.bind("true", MarcoBoolean.TRUE);
         environment.bind("false", MarcoBoolean.FALSE);
+
+        environment.bind("def", new def());
         environment.bind("var", new var());
         environment.bind("set!", new setbang());
-        environment.bind("cons", new MarcoFunction(new Environment(), Arrays.asList("first", "second"), new cons()));
-        environment.bind("first", new MarcoFunction(new Environment(), Arrays.asList("pair"), new first()));
-        environment.bind("second", new MarcoFunction(new Environment(), Arrays.asList("pair"), new second()));
-        environment.bind("nil?", new MarcoFunction(new Environment(), Arrays.asList("arg"), new nilquestion()));
-        environment.bind("pair?", new MarcoFunction(new Environment(), Arrays.asList("pair"), new pairquestion()));
+
+        environment.bind("eval", new MarcoFunction(environment, Arrays.asList("arg"), new eval()));
+        environment.bind("cons", new MarcoFunction(environment, Arrays.asList("first", "second"), new cons()));
+        environment.bind("first", new MarcoFunction(environment, Arrays.asList("pair"), new first()));
+        environment.bind("second", new MarcoFunction(environment, Arrays.asList("pair"), new second()));
+        environment.bind("nil?", new MarcoFunction(environment, Arrays.asList("arg"), new nilquestion()));
+        environment.bind("pair?", new MarcoFunction(environment, Arrays.asList("pair"), new pairquestion()));
+
+        environment.bind("+", new MarcoFunction(environment, Arrays.asList("v1", "v2"), new plus()));
     }
 
     public MarcoObject eval(String code) {
