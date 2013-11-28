@@ -1,8 +1,6 @@
 package marco.lang;
 
-import marco.internal.Environment;
-
-public class MarcoPair extends MarcoObject {
+public class MarcoPair extends MarcoValue {
     private MarcoObject first;
     private MarcoObject second;
 
@@ -24,11 +22,6 @@ public class MarcoPair extends MarcoObject {
         } else {
             return false;
         }
-    }
-
-    @Override
-    public MarcoObject eval(Environment environment) {
-        return this;
     }
 
     @Override

@@ -1,8 +1,6 @@
 package marco.lang;
 
-import marco.internal.Environment;
-
-public class MarcoBoolean extends MarcoObject {
+public class MarcoBoolean extends MarcoValue {
     public static final MarcoBoolean TRUE = new MarcoBoolean(true);
     public static final MarcoBoolean FALSE = new MarcoBoolean(false);
 
@@ -10,11 +8,6 @@ public class MarcoBoolean extends MarcoObject {
 
     private MarcoBoolean(boolean value) {
         this.value = value;
-    }
-
-    @Override
-    public MarcoObject eval(Environment environment) {
-        return this;
     }
 
     @Override

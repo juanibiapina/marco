@@ -1,17 +1,10 @@
 package marco.lang;
 
-import marco.internal.Environment;
-
-public class MarcoString extends MarcoObject {
+public class MarcoString extends MarcoValue {
     private String value;
 
     public MarcoString(String text) {
         this.value = text;
-    }
-
-    @Override
-    public MarcoObject eval(Environment environment) {
-        return this;
     }
 
     @Override

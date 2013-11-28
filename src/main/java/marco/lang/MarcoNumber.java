@@ -1,17 +1,10 @@
 package marco.lang;
 
-import marco.internal.Environment;
-
-public class MarcoNumber extends MarcoObject {
+public class MarcoNumber extends MarcoValue {
     private int value;
 
     public MarcoNumber(int value) {
         this.value = value;
-    }
-
-    @Override
-    public MarcoObject eval(Environment environment) {
-        return this;
     }
 
     @Override
