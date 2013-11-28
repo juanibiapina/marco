@@ -1,14 +1,12 @@
 package marco.lang.macros;
 
+import marco.internal.Cast;
 import marco.internal.Environment;
 import marco.lang.*;
-import marco.internal.Cast;
-
-import java.util.List;
 
 public class setbang extends MarcoNativeMacro {
     @Override
-    public MarcoObject call(Environment environment, List<MarcoObject> arguments) {
+    public MarcoObject call(Environment environment, MarcoList arguments) {
         assertArity(2, arguments.size());
 
         MarcoSymbol var = Cast.toSymbol(arguments.get(0));

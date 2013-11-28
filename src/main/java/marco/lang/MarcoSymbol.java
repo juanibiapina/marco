@@ -32,4 +32,9 @@ public class MarcoSymbol extends MarcoObject {
     public String typeName() {
         return "Symbol";
     }
+
+    @Override
+    public String toString() {
+        return "'" + value;
+    }
 }

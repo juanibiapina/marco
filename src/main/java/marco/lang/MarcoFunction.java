@@ -18,7 +18,7 @@ public class MarcoFunction extends MarcoRunnable {
     }
 
     @Override
-    public MarcoObject call(Environment environment, List<MarcoObject> arguments) {
+    public MarcoObject call(Environment environment, MarcoList arguments) {
         assertArity(arity, arguments.size());
 
         Environment extendedEnv = closureEnv.duplicate();

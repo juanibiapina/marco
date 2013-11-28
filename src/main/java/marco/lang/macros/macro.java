@@ -8,7 +8,7 @@ import java.util.List;
 
 public class macro extends MarcoNativeMacro {
     @Override
-    public MarcoObject call(Environment environment, List<MarcoObject> arguments) {
+    public MarcoObject call(Environment environment, MarcoList arguments) {
         assertArity(2, arguments.size());
 
         MarcoList formal = Cast.toList(arguments.get(0));

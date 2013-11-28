@@ -11,6 +11,6 @@ class Quote extends MarcoSpecification {
 
     def "list"() {
         expect:
-        eval(/ (quote (+ 1 2)) /).toString() == "List" // TODO: test for contents
+        eval(/ (quote (+ 1 2)) /).toString() == "('+, (1, (2, nil)))"
     }
 }

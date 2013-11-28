@@ -1,7 +1,12 @@
 package marco.lang;
 
-public class MarcoNil extends MarcoValue {
-    public static final MarcoObject NIL = new MarcoNil();
+import marco.lang.exception.MarcoException;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class MarcoNil extends MarcoValue implements MarcoList {
+    public static final MarcoNil NIL = new MarcoNil();
 
     private MarcoNil() {
     }
@@ -23,5 +28,20 @@ public class MarcoNil extends MarcoValue {
     @Override
     public String typeName() {
         return "Nil";
+    }
+
+    @Override
+    public List<String> asArgumentList() {
+        return Arrays.asList();
+    }
+
+    @Override
+    public int size() {
+        return 0;
+    }
+
+    @Override
+    public MarcoObject get(int i) {
+        throw new MarcoException("get in nil");
     }
 }

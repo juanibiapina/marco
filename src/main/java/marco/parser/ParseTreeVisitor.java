@@ -1,9 +1,13 @@
 package marco.parser;
 
+import marco.internal.ListHelper;
 import marco.lang.*;
 import marco.parser.antlr.MarcoBaseVisitor;
 import marco.parser.antlr.MarcoParser;
 import org.antlr.v4.runtime.misc.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
     private MarcoProgram result;
@@ -12,18 +16,18 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
     public MarcoProgram visitProgram(@NotNull MarcoParser.ProgramContext ctx) {
         result = new MarcoProgram();
         for (MarcoParser.FormContext formContext : ctx.form()) {
-            result.add((MarcoObject) visit(formContext));
+            result.add(visit(formContext));
         }
         return result;
     }
 
     @Override
-    public MarcoList visitList(@NotNull MarcoParser.ListContext ctx) {
-        MarcoList list = new MarcoList();
+    public MarcoObject visitList(@NotNull MarcoParser.ListContext ctx) {
+        List<MarcoObject> rawList = new ArrayList<>();
         for (MarcoParser.FormContext formContext : ctx.form()) {
-            list.add((MarcoObject) visit(formContext));
+            rawList.add(visit(formContext));
         }
-        return list;
+        return ListHelper.fromJavaList(rawList);
     }
 
     @Override

@@ -1,5 +1,6 @@
 import helpers.MarcoSpecification
 import marco.lang.MarcoNumber
+import marco.lang.MarcoSymbol
 
 class Symbols extends MarcoSpecification {
     def "lookUp values in the environment"() {
@@ -8,5 +9,10 @@ class Symbols extends MarcoSpecification {
 
         then:
         eval(/ x /) == new MarcoNumber(2)
+    }
+
+    def "string representation"() {
+        expect:
+        new MarcoSymbol("x").toString() == "'x"
     }
 }
