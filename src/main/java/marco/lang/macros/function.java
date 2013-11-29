@@ -2,8 +2,9 @@ package marco.lang.macros;
 
 import marco.internal.Environment;
 import marco.lang.*;
-import marco.internal.Cast;
+import marco.lang.exception.MarcoTypeError;
 
+import java.util.Arrays;
 import java.util.List;
 
 public class function extends MarcoNativeMacro {
@@ -11,11 +12,24 @@ public class function extends MarcoNativeMacro {
     public MarcoObject call(Environment environment, MarcoList arguments) {
         assertArity(2, arguments.size());
 
-        MarcoList formal = Cast.toList(arguments.get(0));
-        List<String> formalList = formal.asArgumentList();
+        MarcoObject formal = arguments.get(0);
+
+        List<String> formalList = null;
+        boolean variadic = false;
+
+        if (formal instanceof MarcoList) {
+            formalList = ((MarcoList)formal).asArgumentList();
+        } else {
+            if (formal instanceof MarcoSymbol) {
+                formalList = Arrays.asList(((MarcoSymbol) formal).getValue());
+                variadic = true;
+            } else {
+                throw new MarcoTypeError(MarcoList.class, formal);
+            }
+        }
 
         MarcoObject body = arguments.get(1);
 
-        return new MarcoFunction(environment, formalList, body);
+        return new MarcoFunction(environment, formalList, body, variadic);
     }
 }
