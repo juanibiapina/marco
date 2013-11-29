@@ -3,11 +3,14 @@ grammar Marco;
 program: form* ;
 
 form
-    : literal # FormLiteral
-    | list    # FormList
+    : literal     # FormLiteral
+    | list        # FormList
+    | quoted_form # FormQuotedForm
     ;
 
 list: '(' form* ')' ;
+
+quoted_form: '\'' form ;
 
 literal
     : SYMBOL   # Symbol
