@@ -6,11 +6,14 @@ form
     : literal     # FormLiteral
     | list        # FormList
     | quoted_form # FormQuotedForm
+    | quoted_list # FormQuotedList
     ;
 
 list: '(' form* ')' ;
 
 quoted_form: '\'' form ;
+
+quoted_list: '[' form* ']' ;
 
 literal
     : SYMBOL   # Symbol

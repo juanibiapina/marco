@@ -36,6 +36,15 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
     }
 
     @Override
+    public MarcoObject visitQuoted_list(@NotNull MarcoParser.Quoted_listContext ctx) {
+        List<MarcoObject> rawList = new ArrayList<>();
+        for (MarcoParser.FormContext formContext : ctx.form()) {
+            rawList.add(visit(formContext));
+        }
+        return new MarcoQuotedForm(ListHelper.fromJavaList(rawList));
+    }
+
+    @Override
     public MarcoObject visitFormList(@NotNull MarcoParser.FormListContext ctx) {
         return visit(ctx.list());
     }
@@ -48,6 +57,11 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
     @Override
     public MarcoObject visitFormQuotedForm(@NotNull MarcoParser.FormQuotedFormContext ctx) {
         return visit(ctx.quoted_form());
+    }
+
+    @Override
+    public MarcoObject visitFormQuotedList(@NotNull MarcoParser.FormQuotedListContext ctx) {
+        return visit(ctx.quoted_list());
     }
 
     @Override

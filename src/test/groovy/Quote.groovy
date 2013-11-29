@@ -23,4 +23,9 @@ class Quote extends MarcoSpecification {
         eval(/ '34 /) == new MarcoNumber(34)
         eval(/ '(1 2) /) == new MarcoPair(new MarcoNumber(1), new MarcoPair(new MarcoNumber(2), MarcoNil.NIL))
     }
+
+    def "literal lists"() {
+        expect:
+        eval(/ [1 2] /) == new MarcoPair(new MarcoNumber(1), new MarcoPair(new MarcoNumber(2), MarcoNil.NIL))
+    }
 }
