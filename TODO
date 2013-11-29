@@ -1,20 +1,28 @@
 - Add quoting syntax
-- Add Modules
-- Add lists
+- Modules
 - Numbers
   - Floating point
   - Fractions
   - Scientific notation
 - Strings as lists?
 - Pair syntax ?
-- Add or
-- Add and
+- Variadic macros
+- Better error messages
+- Line number information
 
 
-- Examples
 
-    (def list (function arg arg))
-    (def list? (function (l) (or (nil? l) (and (pair? l) (list? (second l))))))
-    (def length (function (l) (if (nil? l) 0 (+ 1 (length (tail l))))))
-    (def head first)
-    (def tail second)
+- Can be implemented
+
+(def head first)
+(def tail second)
+
+(def list (function arg arg))
+(def length (function (l) (if (nil? l) 0 (+ 1 (length (tail l))))))
+
+
+- Need more features
+
+(def list? (function (l) (or (nil? l) (and (pair? l) (list? (second l))))))
+(def and // variadic macro
+(def or // variadic macro
