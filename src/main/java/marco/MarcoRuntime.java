@@ -17,6 +17,7 @@ public class MarcoRuntime {
     public MarcoRuntime() {
         environment.bind("macro", new macro());
         environment.bind("function", new function());
+        environment.bind("if", new ifmacro());
 
         environment.bind("quote", new quote());
 
