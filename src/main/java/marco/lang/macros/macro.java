@@ -1,8 +1,8 @@
 package marco.lang.macros;
 
+import marco.internal.Cast;
 import marco.internal.Environment;
 import marco.lang.*;
-import marco.lang.exception.MarcoTypeError;
 
 import java.util.List;
 
@@ -11,20 +11,11 @@ public class macro extends MarcoNativeMacro {
     public MarcoObject call(Environment environment, MarcoList arguments) {
         assertArity(2, arguments.size());
 
-        MarcoObject formal = arguments.get(0);
+        MarcoList formal = Cast.toList(arguments.get(0));
+        List<String> formalList = formal.asArgumentList();
 
-        if (formal instanceof MarcoList) {
-            List<String> formalList = ((MarcoList) formal).asArgumentList();
-            MarcoObject body = arguments.get(1);
-            return new MarcoMacro(environment, formalList, body);
-        }
+        MarcoObject body = arguments.get(1);
 
-        if (formal instanceof MarcoSymbol) {
-            String arg = ((MarcoSymbol) formal).getValue();
-            MarcoObject body = arguments.get(1);
-            return new MarcoVariadicMacro(environment, arg, body);
-        }
-
-        throw new MarcoTypeError(MarcoList.class, formal);
+        return new MarcoMacro(environment, formalList, body);
     }
 }
