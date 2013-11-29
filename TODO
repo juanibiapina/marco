@@ -17,12 +17,12 @@
 (def head first)
 (def tail second)
 
-(def list (function arg arg))
 (def length (function (l) (if (nil? l) 0 (+ 1 (length (tail l))))))
 
 
 - Need more features
 
+(def list (function arg arg)) // variadic functions
 (def list? (function (l) (or (nil? l) (and (pair? l) (list? (second l))))))
 (def and // variadic macro
 (def or // variadic macro
