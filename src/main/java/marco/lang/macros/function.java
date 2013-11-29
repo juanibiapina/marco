@@ -4,7 +4,6 @@ import marco.internal.Environment;
 import marco.lang.*;
 import marco.lang.exception.MarcoTypeError;
 
-import java.util.Arrays;
 import java.util.List;
 
 public class function extends MarcoNativeMacro {
@@ -14,22 +13,18 @@ public class function extends MarcoNativeMacro {
 
         MarcoObject formal = arguments.get(0);
 
-        List<String> formalList = null;
-        boolean variadic = false;
-
         if (formal instanceof MarcoList) {
-            formalList = ((MarcoList)formal).asArgumentList();
-        } else {
-            if (formal instanceof MarcoSymbol) {
-                formalList = Arrays.asList(((MarcoSymbol) formal).getValue());
-                variadic = true;
-            } else {
-                throw new MarcoTypeError(MarcoList.class, formal);
-            }
+            List<String> formalList = ((MarcoList) formal).asArgumentList();
+            MarcoObject body = arguments.get(1);
+            return new MarcoFunction(environment, formalList, body);
         }
 
-        MarcoObject body = arguments.get(1);
+        if (formal instanceof MarcoSymbol) {
+            String arg = ((MarcoSymbol) formal).getValue();
+            MarcoObject body = arguments.get(1);
+            return new MarcoVariadicFunction(environment, arg, body);
+        }
 
-        return new MarcoFunction(environment, formalList, body, variadic);
+        throw new MarcoTypeError(MarcoList.class, formal);
     }
 }
