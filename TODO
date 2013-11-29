@@ -9,4 +9,12 @@
 - Pair syntax ?
 - Add or
 - Add and
-- Refactor native macros
+
+
+- Examples
+
+    (def list (function arg arg))
+    (def list? (function (l) (or (nil? l) (and (pair? l) (list? (second l))))))
+    (def length (function (l) (if (nil? l) 0 (+ 1 (length (tail l))))))
+    (def head first)
+    (def tail second)
