@@ -59,12 +59,12 @@ class Functions extends MarcoSpecification {
 
     def "error when argument is not a list"() {
         when:
-        eval(/ (def f (function x x)) /)
+        eval(/ (def f (function 1 x)) /)
 
         then:
         MarcoTypeError e = thrown()
         e.expected == MarcoList
-        e.actual == new MarcoSymbol("x")
+        e.actual == new MarcoNumber(1)
     }
 
     def "error when arguments aren't symbols"() {
