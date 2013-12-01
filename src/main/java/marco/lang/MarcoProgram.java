@@ -24,4 +24,26 @@ public class MarcoProgram extends MarcoObject {
     public String typeName() {
         return "Program";
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof MarcoProgram) {
+            MarcoProgram other = (MarcoProgram) obj;
+            int size = forms.size();
+
+            if (size != other.forms.size()) {
+                return false;
+            }
+
+            for (int i = 0; i < size; i++) {
+                if (!forms.get(i).equals(other.forms.get(i))) {
+                    return false;
+                }
+            }
+
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

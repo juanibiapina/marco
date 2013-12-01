@@ -29,12 +29,15 @@ public class MarcoRuntime {
         environment.bind("var", new var());
         environment.bind("set!", new setbang());
 
+        environment.bind("parse", new MarcoFunction(environment, Arrays.asList("code"), new parse(parser)));
         environment.bind("eval", new MarcoFunction(environment, Arrays.asList("arg"), new eval()));
+
         environment.bind("cons", new MarcoFunction(environment, Arrays.asList("first", "second"), new cons()));
         environment.bind("first", new MarcoFunction(environment, Arrays.asList("pair"), new first()));
         environment.bind("second", new MarcoFunction(environment, Arrays.asList("pair"), new second()));
-        environment.bind("nil?", new MarcoFunction(environment, Arrays.asList("arg"), new nilquestion()));
         environment.bind("pair?", new MarcoFunction(environment, Arrays.asList("pair"), new pairquestion()));
+
+        environment.bind("nil?", new MarcoFunction(environment, Arrays.asList("arg"), new nilquestion()));
 
         environment.bind("+", new MarcoFunction(environment, Arrays.asList("v1", "v2"), new plus()));
     }

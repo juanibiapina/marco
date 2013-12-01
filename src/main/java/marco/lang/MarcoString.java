@@ -26,4 +26,8 @@ public class MarcoString extends MarcoValue {
     public String typeName() {
         return "String";
     }
+
+    public String getValue() {
+        return value;
+    }
 }

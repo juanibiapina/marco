@@ -51,4 +51,12 @@ public class Cast {
             throw new MarcoTypeError(MarcoPair.class, value);
         }
     }
+
+    public static MarcoString toString(MarcoObject value) {
+        if (value instanceof MarcoString) {
+            return (MarcoString) value;
+        } else {
+            throw new MarcoTypeError(MarcoString.class, value);
+        }
+    }
 }
