@@ -3,9 +3,9 @@
   - Floating point
   - Fractions
   - Scientific notation
-- Strings as lists?
+- Strings as lists ?
 - Pair syntax ?
-- Variadic macros
+- Literal list syntax ?
 - Better error messages
 - Line number information
 
@@ -15,13 +15,7 @@
 
 (def head first)
 (def tail second)
-
+(def or (macro (e1 e2) ...))
+(def and (macro (e1 e2) ...))
+(def list? (function (l) (or (nil? l) (and (pair? l) (list? (tail l))))))
 (def length (function (l) (if (nil? l) 0 (+ 1 (length (tail l))))))
-
-
-- Need more features
-
-(def list (function arg arg)) // variadic functions
-(def list? (function (l) (or (nil? l) (and (pair? l) (list? (second l))))))
-(def and // variadic macro
-(def or // variadic macro
