@@ -60,3 +60,12 @@ compileJava {
 clean {
   delete antlr.destinationDir
 }
+
+jar {
+  from files(sourceSets.main.output.classesDir)
+  from configurations.runtime.asFileTree.files.collect { zipTree(it) }
+
+  manifest {
+    attributes 'Main-Class': 'marco.main'
+  }
+}

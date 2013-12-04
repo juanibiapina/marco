@@ -1,8 +1,8 @@
-package marco.repl;
+package marco;
 
-import marco.MarcoRuntime;
+import marco.repl.Repl;
 
-public class Main {
+public class main {
     public static void main(String[] args) throws Exception {
         MarcoRuntime runtime = new MarcoRuntime();
 
