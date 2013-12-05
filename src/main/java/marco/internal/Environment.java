@@ -63,9 +63,19 @@ public class Environment {
         return newEnv;
     }
 
+    public MarcoProgram parse(String code) {
+        return Parser.instance().parse(code);
+    }
+
     public static Environment initial() {
         Environment environment = new Environment();
 
+        loadNativeBindings(environment);
+
+        return environment;
+    }
+
+    private static void loadNativeBindings(Environment environment) {
         environment.def("macro", new macro());
         environment.def("function", new function());
         environment.def("if", new ifmacro());
@@ -92,11 +102,5 @@ public class Environment {
         environment.def("nil?", new MarcoFunction(environment, Arrays.asList("arg"), new nilquestion()));
 
         environment.def("+", new MarcoFunction(environment, Arrays.asList("v1", "v2"), new plus()));
-
-        return environment;
-    }
-
-    public MarcoProgram parse(String code) {
-        return Parser.instance().parse(code);
     }
 }
