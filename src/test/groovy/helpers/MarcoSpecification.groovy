@@ -10,7 +10,7 @@ abstract class MarcoSpecification extends Specification {
     def environment = Environment.initial()
 
     def MarcoObject eval(String code) {
-        environment.eval(code)
+        environment.parse(code).eval(environment)
     }
 
     def MarcoObject lookUp(String var) {

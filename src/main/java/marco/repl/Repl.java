@@ -19,7 +19,7 @@ public class Repl {
             printShell();
             String line = readLine();
             try {
-                MarcoObject result = environment.eval(line);
+                MarcoObject result = environment.parse(line).eval(environment);
                 printResult(result);
             } catch (MarcoException e) {
                 System.out.println(e.getMessage());

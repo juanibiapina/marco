@@ -90,8 +90,7 @@ public class Environment {
         return environment;
     }
 
-    public MarcoObject eval(String code) {
-        MarcoProgram program = Parser.instance().parse(code);
-        return program.eval(this);
+    public MarcoProgram parse(String code) {
+        return Parser.instance().parse(code);
     }
 }
