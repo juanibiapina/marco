@@ -1,4 +1,4 @@
-package marco.internal;
+package marco.internal.bindings;
 
 import marco.lang.MarcoObject;
 import marco.lang.exception.MarcoImmutabilityError;

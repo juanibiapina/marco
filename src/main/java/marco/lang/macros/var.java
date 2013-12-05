@@ -15,7 +15,7 @@ public class var extends MarcoNativeMacro {
         String name = Cast.toSymbol(arguments.get(0)).getValue();
         MarcoObject value = arguments.get(1).eval(environment);
 
-        environment.bindVar(name, value);
+        environment.var(name, value);
 
         return MarcoNil.NIL;
     }

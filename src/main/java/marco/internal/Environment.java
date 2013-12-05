@@ -1,5 +1,6 @@
 package marco.internal;
 
+import marco.internal.bindings.*;
 import marco.lang.*;
 import marco.lang.exception.MarcoBindingError;
 import marco.lang.exception.MarcoLookUpError;
@@ -17,7 +18,7 @@ public class Environment {
     public Environment() {
     }
 
-    public void bind(String var, MarcoObject value) {
+    public void def(String var, MarcoObject value) {
         if (env.containsKey(var)) {
             throw new MarcoBindingError(var, value, env.get(var).getValue());
         } else {
@@ -25,7 +26,7 @@ public class Environment {
         }
     }
 
-    public void bindVar(String var, MarcoObject value) {
+    public void var(String var, MarcoObject value) {
         if (env.containsKey(var)) {
             throw new MarcoBindingError(var, value, env.get(var).getValue());
         } else {
@@ -33,8 +34,12 @@ public class Environment {
         }
     }
 
-    public void rebind(String var, MarcoObject value) {
-        env.put(var, new ImmutableBinding(var, value));
+    public void parameter(String var, MarcoObject value) {
+        env.put(var, new ParameterBinding(var, value));
+    }
+
+    public void let(String var, MarcoObject value) {
+        env.put(var, new LetBinding(var, value));
     }
 
     public void mutate(String var, MarcoObject value) {
@@ -61,31 +66,32 @@ public class Environment {
     public static Environment initial() {
         Environment environment = new Environment();
 
-        environment.bind("macro", new macro());
-        environment.bind("function", new function());
-        environment.bind("if", new ifmacro());
+        environment.def("macro", new macro());
+        environment.def("function", new function());
+        environment.def("if", new ifmacro());
 
-        environment.bind("quote", new quote());
+        environment.def("quote", new quote());
 
-        environment.bind("nil", MarcoNil.NIL);
-        environment.bind("true", MarcoBoolean.TRUE);
-        environment.bind("false", MarcoBoolean.FALSE);
+        environment.def("nil", MarcoNil.NIL);
+        environment.def("true", MarcoBoolean.TRUE);
+        environment.def("false", MarcoBoolean.FALSE);
 
-        environment.bind("def", new def());
-        environment.bind("var", new var());
-        environment.bind("set!", new setbang());
+        environment.def("def", new def());
+        environment.def("var", new var());
+        environment.def("set!", new setbang());
+        environment.def("let", new let());
 
-        environment.bind("parse", new MarcoFunction(environment, Arrays.asList("code"), new parse(Parser.instance())));
-        environment.bind("eval", new MarcoFunction(environment, Arrays.asList("arg"), new eval()));
+        environment.def("parse", new MarcoFunction(environment, Arrays.asList("code"), new parse(Parser.instance())));
+        environment.def("eval", new MarcoFunction(environment, Arrays.asList("arg"), new eval()));
 
-        environment.bind("cons", new MarcoFunction(environment, Arrays.asList("first", "second"), new cons()));
-        environment.bind("first", new MarcoFunction(environment, Arrays.asList("pair"), new first()));
-        environment.bind("second", new MarcoFunction(environment, Arrays.asList("pair"), new second()));
-        environment.bind("pair?", new MarcoFunction(environment, Arrays.asList("pair"), new pairquestion()));
+        environment.def("cons", new MarcoFunction(environment, Arrays.asList("first", "second"), new cons()));
+        environment.def("first", new MarcoFunction(environment, Arrays.asList("pair"), new first()));
+        environment.def("second", new MarcoFunction(environment, Arrays.asList("pair"), new second()));
+        environment.def("pair?", new MarcoFunction(environment, Arrays.asList("pair"), new pairquestion()));
 
-        environment.bind("nil?", new MarcoFunction(environment, Arrays.asList("arg"), new nilquestion()));
+        environment.def("nil?", new MarcoFunction(environment, Arrays.asList("arg"), new nilquestion()));
 
-        environment.bind("+", new MarcoFunction(environment, Arrays.asList("v1", "v2"), new plus()));
+        environment.def("+", new MarcoFunction(environment, Arrays.asList("v1", "v2"), new plus()));
 
         return environment;
     }

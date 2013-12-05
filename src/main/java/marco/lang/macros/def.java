@@ -15,7 +15,7 @@ public class def extends MarcoNativeMacro {
         String name = Cast.toSymbol(arguments.get(0)).getValue();
         MarcoObject value = arguments.get(1).eval(environment);
 
-        environment.bind(name, value);
+        environment.def(name, value);
 
         return MarcoNil.NIL;
     }

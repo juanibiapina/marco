@@ -1,6 +1,6 @@
 package marco.lang.exception;
 
-import marco.internal.ImmutableBinding;
+import marco.internal.bindings.ImmutableBinding;
 
 public class MarcoImmutabilityError extends MarcoException {
     private String symbol;

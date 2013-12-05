@@ -25,7 +25,7 @@ public class MarcoMacro extends MarcoRunnable {
         for (int i = 0; i < arguments.size(); i++) {
             MarcoObject arg = new MarcoBlock(environment, arguments.get(i));
             String parameterName = parameters.get(i);
-            extendedEnv.rebind(parameterName, arg);
+            extendedEnv.parameter(parameterName, arg);
         }
 
         return body.eval(extendedEnv);

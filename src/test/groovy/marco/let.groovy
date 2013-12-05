@@ -1,0 +1,31 @@
+package marco
+
+import helpers.MarcoSpecification
+
+class let extends MarcoSpecification {
+    def "value let"() {
+        expect:
+        eval(/ (let (a 1) a) /) == eval(/ 1 /)
+    }
+
+    def "let in expression"() {
+        expect:
+        eval(/ (let (a (+ 1 2)) (+ a 2)) /) == eval(/ 5 /)
+    }
+
+    def "function using let"() {
+        when:
+        eval(/ (def f (function (x) (let (a x) a))) /)
+
+        then:
+        eval(/ (f 3) /) == eval(/ 3 /)
+    }
+
+    def "passing a literal list"() {
+        when:
+        eval(/ (def f (function (x) (let (a x) (first a)))) /)
+
+        then:
+        eval(/ (f '(1 2 3)) /) == eval(/ 1 /)
+    }
+}

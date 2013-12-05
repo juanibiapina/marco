@@ -25,7 +25,7 @@ public class MarcoFunction extends MarcoRunnable {
         for (int i = 0; i < arguments.size(); i++) {
             MarcoObject evaluatedArg = arguments.get(i).eval(environment);
             String parameterName = parameters.get(i);
-            extendedEnv.rebind(parameterName, evaluatedArg);
+            extendedEnv.parameter(parameterName, evaluatedArg);
         }
         return body.eval(extendedEnv);
     }
