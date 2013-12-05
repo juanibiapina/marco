@@ -1,20 +1,16 @@
 package marco.repl;
 
-import marco.lang.exception.MarcoException;
+import marco.internal.Environment;
 import marco.lang.MarcoObject;
-import marco.MarcoRuntime;
+import marco.lang.exception.MarcoException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class Repl {
-    private MarcoRuntime runtime;
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
-    public Repl(MarcoRuntime runtime) {
-        this.runtime = runtime;
-    }
+    private Environment environment = Environment.initial();
 
     public void start() throws IOException {
         printGreeting();
@@ -23,7 +19,7 @@ public class Repl {
             printShell();
             String line = readLine();
             try {
-                MarcoObject result = runtime.eval(line);
+                MarcoObject result = environment.eval(line);
                 printResult(result);
             } catch (MarcoException e) {
                 System.out.println(e.getMessage());

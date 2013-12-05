@@ -7,6 +7,8 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 public class Parser {
+    private static Parser parser;
+
     public MarcoProgram parse(String code) {
         ANTLRInputStream antlrInputStream = new ANTLRInputStream(code);
         Lexer lexer = new Lexer(antlrInputStream);
@@ -19,5 +21,13 @@ public class Parser {
         visitor.visit(tree);
 
         return visitor.getResult();
+    }
+
+    public static Parser instance() {
+        if (parser == null) {
+            parser = new Parser();
+        }
+
+        return parser;
     }
 }

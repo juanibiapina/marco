@@ -1,18 +1,19 @@
 package helpers
-import marco.MarcoRuntime
+
+import marco.internal.Environment
 import marco.lang.MarcoObject
 import org.junit.Ignore
 import spock.lang.Specification
 
 @Ignore
 abstract class MarcoSpecification extends Specification {
-    def runtime = new MarcoRuntime();
+    def environment = Environment.initial()
 
     def MarcoObject eval(String code) {
-        runtime.eval(code)
+        environment.eval(code)
     }
 
     def MarcoObject lookUp(String var) {
-        runtime.lookUp(var)
+        environment.lookUp(var)
     }
 }
