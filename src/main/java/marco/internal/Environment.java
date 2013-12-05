@@ -47,12 +47,10 @@ public class Environment {
     }
 
     public Environment duplicate() {
-        Map newEnv = new HashMap();
-        newEnv.putAll(env);
-        return new Environment(newEnv);
-    }
-
-    private Environment(Map env) {
-        this.env = env;
+        Map newEnvMap = new HashMap();
+        newEnvMap.putAll(env);
+        Environment newEnv = new Environment();
+        newEnv.env = newEnvMap;
+        return newEnv;
     }
 }
