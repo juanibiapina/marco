@@ -8,9 +8,3 @@
 - Literal list syntax ?
 - Better error messages
 - Line number information
-
-
-
-- Can be implemented
-
-(def length (function (l) (if (nil? l) 0 (+ 1 (length (tail l))))))

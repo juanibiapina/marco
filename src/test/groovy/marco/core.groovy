@@ -43,4 +43,12 @@ class core extends MarcoSpecification {
         eval(/ (list? '(1 2 3)) /) == eval(/ true /)
         eval(/ (list? (quote (1 2 3))) /) == eval(/ true /)
     }
+
+    def "length"() {
+        expect:
+        eval(/ (length '()) /) == eval(/ 0 /)
+        eval(/ (length '(1)) /) == eval(/ 1 /)
+        eval(/ (length '(1 2 3)) /) == eval(/ 3 /)
+        eval(/ (length nil) /) == eval(/ 0 /)
+    }
 }
