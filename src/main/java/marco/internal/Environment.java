@@ -71,8 +71,14 @@ public class Environment {
         Environment environment = new Environment();
 
         loadNativeBindings(environment);
+        loadStandardLibrary(environment);
 
         return environment;
+    }
+
+    private static void loadStandardLibrary(Environment environment) {
+        MarcoProgram program = MarcoLoader.load("core");
+        program.eval(environment);
     }
 
     private static void loadNativeBindings(Environment environment) {

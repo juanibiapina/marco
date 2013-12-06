@@ -13,9 +13,4 @@
 
 - Can be implemented
 
-(def head first)
-(def tail second)
-(def or (macro (e1 e2) ...))
-(def and (macro (e1 e2) ...))
-(def list? (function (l) (or (nil? l) (and (pair? l) (list? (tail l))))))
 (def length (function (l) (if (nil? l) 0 (+ 1 (length (tail l))))))
