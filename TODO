@@ -10,3 +10,8 @@
 - Line number information
 - Contract information for functions
   - Can be used to generate proper error messages
+
+- Refactor
+  - equals method
+  - string representations
+  - print
