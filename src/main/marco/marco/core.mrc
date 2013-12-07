@@ -9,3 +9,8 @@
 (def list? (function (l) (or (nil? l) (and (pair? l) (list? (tail l))))))
 
 (def length (function (l) (if (nil? l) 0 (+ 1 (length (tail l))))))
+
+(def map (function (f l)
+           (if (nil? l)
+             nil
+             (cons (f (head l)) (map f (tail l))))))
