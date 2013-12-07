@@ -36,7 +36,15 @@ class Macros extends MarcoSpecification {
         eval(/ (m (+ 1 2) (error "should not eval")) /) == new MarcoNumber(3)
     }
 
-    def "arguments have lexical scope"() {
+    def "breaking a list"() {
+        when:
+        eval(/ (def m (macro (e) (head e))) /)
+
+        then:
+        eval(/ (m (1 2 3)) /) == eval(/ 1 /)
+    }
+
+    def "eval works with lexical scope"() {
         when:
         eval(/ (def x 1) /)
         eval(/ (def m (macro (e) (eval e))) /)

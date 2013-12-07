@@ -15,3 +15,8 @@
   - equals method
   - string representations
   - print
+
+- Bugs
+  - Macros are completely broken. Need to be rethought.
+    - Make current macros in marco.core native
+    - Remove 'macro'

@@ -55,6 +55,10 @@ public class Environment {
         }
     }
 
+    public void internalBind(String var, MarcoObject value) {
+        env.put(var, new InternalBinding(var, value));
+    }
+
     public Environment duplicate() {
         Map newEnvMap = new HashMap();
         newEnvMap.putAll(env);
