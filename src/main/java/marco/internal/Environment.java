@@ -97,6 +97,8 @@ public class Environment {
         environment.def("set!", new setbang());
         environment.def("let", new let());
 
+        environment.def("print", new MarcoFunction(environment, Arrays.asList("e"), new print()));
+
         environment.def("parse", new MarcoFunction(environment, Arrays.asList("code"), new parse(Parser.instance())));
         environment.def("eval", new MarcoFunction(environment, Arrays.asList("arg"), new eval()));
 
