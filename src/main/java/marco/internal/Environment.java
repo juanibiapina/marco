@@ -109,6 +109,7 @@ public class Environment {
 
         environment.def("nil?", new MarcoFunction(environment, Arrays.asList("arg"), new nilquestion()));
 
+        environment.def("=", new MarcoFunction(environment, Arrays.asList("v1", "v2"), new equal()));
         environment.def("+", new MarcoFunction(environment, Arrays.asList("v1", "v2"), new plus()));
     }
 }
