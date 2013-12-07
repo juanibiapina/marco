@@ -8,6 +8,7 @@
 - Literal list syntax ?
 - Better error messages
 - Line number information
+- Error context information
 - Contract information for functions
   - Can be used to generate proper error messages
 
@@ -18,5 +19,5 @@
 
 - Bugs
   - Macros are completely broken. Need to be rethought.
-    - Make current macros in marco.core native
-    - Remove 'macro'
+    - Make current macros in marco.core native (or not, there might be a simple solution)
+    - Remove 'macro' if necessary
