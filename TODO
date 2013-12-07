@@ -2,9 +2,11 @@
 - Numbers
   - Floating point
   - Fractions
-  - Scientific notation
+  - Scientific notation ?
 - Strings as lists ?
 - Pair syntax ?
 - Literal list syntax ?
 - Better error messages
 - Line number information
+- Contract information for functions
+  - Can be used to generate proper error messages
