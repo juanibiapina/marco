@@ -111,5 +111,8 @@ public class Environment {
 
         environment.def("=", new MarcoFunction(environment, Arrays.asList("v1", "v2"), new equal()));
         environment.def("+", new MarcoFunction(environment, Arrays.asList("v1", "v2"), new plus()));
+        environment.def("*", new MarcoFunction(environment, Arrays.asList("v1", "v2"), new multiplication()));
+        environment.def("/", new MarcoFunction(environment, Arrays.asList("v1", "v2"), new division()));
+        environment.def("%", new MarcoFunction(environment, Arrays.asList("v1", "v2"), new remainder()));
     }
 }

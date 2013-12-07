@@ -23,3 +23,6 @@
            (if (nil? l)
              nil
              (cons (f (head l)) (map f (tail l))))))
+
+
+(def even? (function (v) (= (% v 2) 0)))
