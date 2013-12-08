@@ -6,6 +6,7 @@ import marco.parser.antlr.MarcoBaseVisitor;
 import marco.parser.antlr.MarcoParser;
 import org.antlr.v4.runtime.misc.NotNull;
 
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,7 +63,7 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
 
     @Override
     public MarcoNumber visitNumber(@NotNull MarcoParser.NumberContext ctx) {
-        return new MarcoNumber(Integer.parseInt(ctx.getText()));
+        return new MarcoNumber(new BigInteger(ctx.getText()));
     }
 
     public MarcoProgram getResult() {

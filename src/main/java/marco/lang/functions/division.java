@@ -12,6 +12,6 @@ public class division extends MarcoNativeObject {
         MarcoNumber v1 = Cast.toNumber(environment.lookUp("v1"));
         MarcoNumber v2 = Cast.toNumber(environment.lookUp("v2"));
 
-        return new MarcoNumber(v1.getValue() / v2.getValue());
+        return new MarcoNumber(v1.getValue().divide(v2.getValue()));
     }
 }

@@ -1,9 +1,15 @@
 package marco.lang;
 
+import java.math.BigInteger;
+
 public class MarcoNumber extends MarcoValue {
-    private int value;
+    private BigInteger value;
 
     public MarcoNumber(int value) {
+        this.value = BigInteger.valueOf(value);
+    }
+
+    public MarcoNumber(BigInteger value) {
         this.value = value;
     }
 
@@ -11,7 +17,7 @@ public class MarcoNumber extends MarcoValue {
     public boolean equals(Object obj) {
         if (obj instanceof MarcoNumber) {
             MarcoNumber other = (MarcoNumber) obj;
-            return value == other.value;
+            return value.equals(other.value);
         } else {
             return false;
         }
@@ -19,7 +25,7 @@ public class MarcoNumber extends MarcoValue {
 
     @Override
     public String toString() {
-        return Integer.toString(value);
+        return value.toString();
     }
 
     @Override
@@ -27,7 +33,7 @@ public class MarcoNumber extends MarcoValue {
         return "Number";
     }
 
-    public int getValue() {
+    public BigInteger getValue() {
         return value;
     }
 }

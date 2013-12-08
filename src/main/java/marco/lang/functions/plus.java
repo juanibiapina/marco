@@ -12,6 +12,6 @@ public class plus extends MarcoNativeObject {
         MarcoNumber n1 = Cast.toNumber(environment.lookUp("v1"));
         MarcoNumber n2 = Cast.toNumber(environment.lookUp("v2"));
 
-        return new MarcoNumber(n1.getValue() + n2.getValue());
+        return new MarcoNumber(n1.getValue().add(n2.getValue()));
     }
 }

@@ -23,7 +23,7 @@ class Mutation extends MarcoSpecification {
         eval(/ (set! x 2) /)
 
         then:
-        eval(/ x /) == new MarcoNumber(2)
+        eval(/ x /) == eval(/ 2 /)
     }
 
     def "mutating a binding affects the closure environment"() {
