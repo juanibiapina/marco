@@ -14,7 +14,9 @@
 
 - Refactor
   - string representations
-  - print
 
 - Bugs
   - Pairs should not evaluate to applications
+
+- Features
+  - Stack control and TCO
