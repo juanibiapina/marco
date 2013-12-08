@@ -2,13 +2,6 @@
 
 (def tail second)
 
-(def and (macro (e1 e2)
-           (if (eval e1) (eval e2) false)))
-
-(def or (macro (e1 e2)
-          (let (v1 (eval e1))
-            (if v1 v1 (eval e2)))))
-
 (def list? (function (l)
              (or (nil? l)
                  (and (pair? l)

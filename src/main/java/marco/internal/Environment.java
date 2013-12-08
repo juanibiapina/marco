@@ -87,9 +87,10 @@ public class Environment {
     }
 
     private static void loadNativeBindings(Environment environment) {
-        environment.def("macro", new macro());
         environment.def("function", new function());
         environment.def("if", new ifmacro());
+        environment.def("and", new and());
+        environment.def("or", new or());
 
         environment.def("quote", new quote());
 
