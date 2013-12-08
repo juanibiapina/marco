@@ -5,6 +5,7 @@ import marco.lang.*;
 import marco.lang.exception.MarcoBindingError;
 import marco.lang.exception.MarcoLookUpError;
 import marco.lang.functions.*;
+import marco.lang.functions.numbers.*;
 import marco.lang.macros.*;
 import marco.parser.Parser;
 
@@ -113,10 +114,12 @@ public class Environment {
 
         environment.def("nil?", new MarcoFunction(environment, Arrays.asList("arg"), new nilquestion()));
 
-        environment.def("=", new MarcoFunction(environment, Arrays.asList("v1", "v2"), new equal()));
-        environment.def("+", new MarcoFunction(environment, Arrays.asList("v1", "v2"), new plus()));
-        environment.def("*", new MarcoFunction(environment, Arrays.asList("v1", "v2"), new multiplication()));
-        environment.def("/", new MarcoFunction(environment, Arrays.asList("v1", "v2"), new division()));
-        environment.def("%", new MarcoFunction(environment, Arrays.asList("v1", "v2"), new remainder()));
+        environment.def("=", new BinaryOperator(environment, new equal()));
+        environment.def("<", new BinaryOperator(environment, new lessthan()));
+        environment.def(">", new BinaryOperator(environment, new greaterthan()));
+        environment.def("+", new BinaryOperator(environment, new plus()));
+        environment.def("*", new BinaryOperator(environment, new multiplication()));
+        environment.def("/", new BinaryOperator(environment, new division()));
+        environment.def("%", new BinaryOperator(environment, new remainder()));
     }
 }

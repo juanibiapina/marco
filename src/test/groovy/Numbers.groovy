@@ -40,10 +40,31 @@ class Numbers extends MarcoSpecification {
         eval(/ (% 4 3) /) == eval(/ 1 /)
     }
 
+    def "="() {
+        expect:
+        eval(/ (= 1 1) /) == eval(/ true /)
+        eval(/ (= 0 1) /) == eval(/ false /)
+    }
+
+    def "<"() {
+        expect:
+        eval(/ (< 1 3) /) == eval(/ true /)
+        eval(/ (< 3 3) /) == eval(/ false /)
+        eval(/ (< 3 1) /) == eval(/ false /)
+        eval(/ (< -1 0) /) == eval(/ true /)
+    }
+
     def "even?"() {
         expect:
         eval(/ (even? 0) /) == eval(/ true /)
         eval(/ (even? 1) /) == eval(/ false /)
         eval(/ (even? 2) /) == eval(/ true /)
+    }
+
+    def "max"() {
+        expect:
+        eval(/ (max 1 2) /) == eval(/ 2 /)
+        eval(/ (max 3 2) /) == eval(/ 3 /)
+        eval(/ (max 3 3) /) == eval(/ 3 /)
     }
 }
