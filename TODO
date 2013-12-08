@@ -21,3 +21,4 @@
   - Macros are completely broken. Need to be rethought.
     - Make current macros in marco.core native (or not, there might be a simple solution)
     - Remove 'macro' if necessary
+  - Pairs should not evaluate to applications
