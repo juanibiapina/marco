@@ -13,7 +13,6 @@
   - Can be used to generate proper error messages
 
 - Refactor
-  - equals method
   - string representations
   - print
 

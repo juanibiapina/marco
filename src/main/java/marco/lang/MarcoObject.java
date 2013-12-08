@@ -11,12 +11,4 @@ public abstract class MarcoObject {
     }
 
     public abstract String typeName();
-
-    public MarcoBoolean equal(MarcoObject other) {
-        if (this.equals(other)) {
-            return MarcoBoolean.TRUE;
-        } else {
-            return MarcoBoolean.FALSE;
-        }
-    }
 }
