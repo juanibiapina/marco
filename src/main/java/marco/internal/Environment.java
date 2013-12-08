@@ -60,7 +60,7 @@ public class Environment {
     }
 
     public Environment duplicate() {
-        Map newEnvMap = new HashMap();
+        Map<String, Binding> newEnvMap = new HashMap();
         newEnvMap.putAll(env);
         Environment newEnv = new Environment();
         newEnv.env = newEnvMap;
