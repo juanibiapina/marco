@@ -5,10 +5,15 @@ import marco.internal.Environment;
 import marco.lang.MarcoList;
 import marco.lang.MarcoNativeMacro;
 import marco.lang.MarcoObject;
+import marco.lang.contracts.Contract;
 
 public class let extends MarcoNativeMacro {
+    public let() {
+        super(new Contract(2));
+    }
+
     @Override
-    public MarcoObject call(Environment environment, MarcoList arguments) {
+    public MarcoObject performInvoke(Environment environment, MarcoList arguments) {
         assertArity(2, arguments.size());
 
         MarcoList list = Cast.toList(arguments.get(0));

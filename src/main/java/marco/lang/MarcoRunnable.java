@@ -1,14 +1,27 @@
 package marco.lang;
 
 import marco.internal.Environment;
-import marco.lang.exception.MarcoArityError;
+import marco.lang.contracts.Contract;
+import marco.lang.exception.ContractViolation;
 
 public abstract class MarcoRunnable extends MarcoValue {
-    public abstract MarcoObject call(Environment environment, MarcoList arguments);
+    private Contract contract;
+
+    public MarcoRunnable(Contract contract) {
+        this.contract = contract;
+    }
+
+    public MarcoObject invoke(Environment environment, MarcoList arguments) {
+        contract.validate(arguments);
+
+        return performInvoke(environment, arguments);
+    }
+
+    protected abstract MarcoObject performInvoke(Environment environment, MarcoList arguments);
 
     protected void assertArity(int expected, int actual) {
         if (actual != expected) {
-            throw new MarcoArityError(expected, actual);
+            throw new ContractViolation(expected, actual);
         }
     }
 }

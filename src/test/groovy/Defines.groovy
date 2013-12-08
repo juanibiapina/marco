@@ -1,5 +1,5 @@
 import helpers.MarcoSpecification
-import marco.lang.exception.MarcoArityError
+import marco.lang.exception.ContractViolation
 import marco.lang.exception.MarcoBindingError
 import marco.lang.exception.MarcoTypeError
 import marco.lang.MarcoNil
@@ -74,7 +74,7 @@ class Defines extends MarcoSpecification {
         eval(/ (def x) /)
 
         then:
-        MarcoArityError e = thrown()
+        ContractViolation e = thrown()
         e.expected == 2
         e.actual == 1
     }
@@ -84,7 +84,7 @@ class Defines extends MarcoSpecification {
         eval(/ (def x 1 2) /)
 
         then:
-        MarcoArityError e = thrown()
+        ContractViolation e = thrown()
         e.expected == 2
         e.actual == 3
     }

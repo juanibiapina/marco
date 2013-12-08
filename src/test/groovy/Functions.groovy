@@ -2,7 +2,7 @@ import helpers.MarcoSpecification
 import marco.lang.MarcoList
 import marco.lang.MarcoNumber
 import marco.lang.MarcoSymbol
-import marco.lang.exception.MarcoArityError
+import marco.lang.exception.ContractViolation
 import marco.lang.exception.MarcoTypeError
 
 class Functions extends MarcoSpecification {
@@ -82,7 +82,7 @@ class Functions extends MarcoSpecification {
         eval(/ (def f (function 1)) /)
 
         then:
-        MarcoArityError e = thrown()
+        ContractViolation e = thrown()
         e.expected == 2
         e.actual == 1
     }
@@ -92,7 +92,7 @@ class Functions extends MarcoSpecification {
         eval(/ (def f (function (x y) x y)) /)
 
         then:
-        MarcoArityError e = thrown()
+        ContractViolation e = thrown()
         e.expected == 2
         e.actual == 3
     }
@@ -105,7 +105,7 @@ class Functions extends MarcoSpecification {
         eval(/ (f 1 2) /)
 
         then:
-        MarcoArityError e = thrown()
+        ContractViolation e = thrown()
         e.expected == 1
         e.actual == 2
     }
@@ -118,7 +118,7 @@ class Functions extends MarcoSpecification {
         eval(/ (f 1) /)
 
         then:
-        MarcoArityError e = thrown()
+        ContractViolation e = thrown()
         e.expected == 2
         e.actual == 1
     }

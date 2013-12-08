@@ -3,12 +3,15 @@ package marco.lang.macros;
 import marco.internal.Cast;
 import marco.internal.Environment;
 import marco.lang.*;
+import marco.lang.contracts.Contract;
 
 public class setbang extends MarcoNativeMacro {
-    @Override
-    public MarcoObject call(Environment environment, MarcoList arguments) {
-        assertArity(2, arguments.size());
+    public setbang() {
+        super(new Contract(2));
+    }
 
+    @Override
+    public MarcoObject performInvoke(Environment environment, MarcoList arguments) {
         MarcoSymbol var = Cast.toSymbol(arguments.get(0));
         MarcoObject value = arguments.get(1).eval(environment);
 

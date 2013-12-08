@@ -6,12 +6,15 @@ import marco.lang.MarcoBoolean;
 import marco.lang.MarcoList;
 import marco.lang.MarcoNativeMacro;
 import marco.lang.MarcoObject;
+import marco.lang.contracts.Contract;
 
 public class ifmacro extends MarcoNativeMacro {
-    @Override
-    public MarcoObject call(Environment environment, MarcoList arguments) {
-        assertArity(3, arguments.size());
+    public ifmacro() {
+        super(new Contract(3));
+    }
 
+    @Override
+    public MarcoObject performInvoke(Environment environment, MarcoList arguments) {
         MarcoObject e1 = arguments.get(0);
         MarcoObject e2 = arguments.get(1);
         MarcoObject e3 = arguments.get(2);

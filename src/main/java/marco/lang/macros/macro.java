@@ -3,14 +3,17 @@ package marco.lang.macros;
 import marco.internal.Cast;
 import marco.internal.Environment;
 import marco.lang.*;
+import marco.lang.contracts.Contract;
 
 import java.util.List;
 
 public class macro extends MarcoNativeMacro {
-    @Override
-    public MarcoObject call(Environment environment, MarcoList arguments) {
-        assertArity(2, arguments.size());
+    public macro() {
+        super(new Contract(2));
+    }
 
+    @Override
+    public MarcoObject performInvoke(Environment environment, MarcoList arguments) {
         MarcoList formal = Cast.toList(arguments.get(0));
         List<String> formalList = formal.asArgumentList();
 

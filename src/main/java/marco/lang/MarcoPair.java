@@ -35,7 +35,7 @@ public class MarcoPair extends MarcoObject implements MarcoList {
         if (this instanceof MarcoList) {
             MarcoObject firstVal = first.eval(environment);
             MarcoRunnable runnable = Cast.toRunnable(firstVal);
-            return runnable.call(environment, Cast.toList(second));
+            return runnable.invoke(environment, Cast.toList(second));
         } else {
             return this;
         }
