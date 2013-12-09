@@ -14,8 +14,6 @@ public class let extends MarcoNativeMacro {
 
     @Override
     public MarcoObject performInvoke(Environment environment, MarcoList arguments) {
-        assertArity(2, arguments.size());
-
         MarcoList list = Cast.toList(arguments.get(0));
 
         String name = Cast.toSymbol(list.get(0)).getValue();

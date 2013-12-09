@@ -14,8 +14,6 @@ public class function extends MarcoNativeMacro {
 
     @Override
     public MarcoObject performInvoke(Environment environment, MarcoList arguments) {
-        assertArity(2, arguments.size());
-
         MarcoList formal = Cast.toList(arguments.get(0));
         List<String> formalList = formal.asArgumentList();
 
