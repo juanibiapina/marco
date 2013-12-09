@@ -23,4 +23,10 @@ class Lists extends MarcoSpecification {
         expect:
         eval(/ (range 1 10) /) == eval(/ '(1 2 3 4 5 6 7 8 9) /)
     }
+
+    def "literal lists"() {
+        expect:
+        eval(/ [] /) == eval(/ nil /)
+        eval(/ [1 2 3] /) == eval(/ (cons 1 (cons 2 (cons 3 nil))) /)
+    }
 }

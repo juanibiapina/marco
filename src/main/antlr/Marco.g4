@@ -3,9 +3,10 @@ grammar Marco;
 program: form* ;
 
 form
-    : literal     # FormLiteral
-    | list        # FormList
-    | quoted_form # FormQuotedForm
+    : literal      # FormLiteral
+    | literal_list # FormLiteralList
+    | list         # FormList
+    | quoted_form  # FormQuotedForm
     ;
 
 list: '(' form* ')' ;
@@ -17,6 +18,8 @@ literal
     | STRING   # String
     | NUMBER   # Number
     ;
+
+literal_list: '[' form* ']' ;
 
 STRING : '"' ( ~'"' | '\\' '"' )* '"' ;
 
