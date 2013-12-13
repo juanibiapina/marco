@@ -14,7 +14,13 @@ class Numbers extends MarcoSpecification {
 
     def "sum"() {
         expect:
-        eval(/ (+ 1 2) /) == new MarcoNumber(3)
+        eval(/ (+ 1 2) /) == eval(/ 3 /)
+    }
+
+    def "subtraction"() {
+        expect:
+        eval(/ (- 2 1) /) == eval(/ 1 /)
+        eval(/ (- 1 2) /) == eval(/ -1 /)
     }
 
     def "multiplication"() {

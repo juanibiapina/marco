@@ -6,6 +6,13 @@ import marco.lang.exception.ContractViolation
 import marco.lang.exception.MarcoTypeError
 
 class Functions extends MarcoSpecification {
+    def "type"() {
+        expect:
+        eval(/ (function? (function () x))) /) == eval(/ true /)
+        eval(/ (function? 1) /) == eval(/ false /)
+        eval(/ (function? def) /) == eval(/ false /)
+    }
+
     def "zero argument function"() {
         when:
         eval(/ (def some_function (function () 4)) /)

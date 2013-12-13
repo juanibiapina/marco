@@ -28,4 +28,9 @@ class let extends MarcoSpecification {
         then:
         eval(/ (f '(1 2 3)) /) == eval(/ 1 /)
     }
+
+    def "with recursion"() {
+        expect:
+        eval(/ (let (a (function (x) (if (= x 0) 0 (a (- x 1))))) (a 3)) /) == eval(/ 0 /)
+    }
 }

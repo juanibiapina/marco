@@ -88,6 +88,7 @@ public class Environment {
 
     private static void loadNativeBindings(Environment environment) {
         environment.def("function", new function());
+        environment.def("function?", new MarcoFunction(environment, Arrays.asList("v"), new functionquestion()));
         environment.def("if", new ifmacro());
         environment.def("and", new and());
         environment.def("or", new or());
@@ -107,6 +108,8 @@ public class Environment {
 
         environment.def("parse", new MarcoFunction(environment, Arrays.asList("code"), new parse(Parser.instance())));
         environment.def("eval", new MarcoFunction(environment, Arrays.asList("arg"), new eval()));
+        environment.def("do", new domacro());
+        environment.def("while", new whilemacro());
 
         environment.def("cons", new MarcoFunction(environment, Arrays.asList("first", "second"), new cons()));
         environment.def("first", new MarcoFunction(environment, Arrays.asList("pair"), new first()));
@@ -119,6 +122,7 @@ public class Environment {
         environment.def("<", new BinaryOperator(environment, new lessthan()));
         environment.def(">", new BinaryOperator(environment, new greaterthan()));
         environment.def("+", new BinaryOperator(environment, new plus()));
+        environment.def("-", new BinaryOperator(environment, new minus()));
         environment.def("*", new BinaryOperator(environment, new multiplication()));
         environment.def("/", new BinaryOperator(environment, new division()));
         environment.def("%", new BinaryOperator(environment, new remainder()));
