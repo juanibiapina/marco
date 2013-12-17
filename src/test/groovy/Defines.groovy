@@ -1,10 +1,9 @@
 import helpers.MarcoSpecification
-import marco.lang.exception.ContractViolation
-import marco.lang.exception.BindingError
 import marco.lang.MarcoNil
 import marco.lang.MarcoNumber
-import marco.lang.MarcoString
 import marco.lang.MarcoSymbol
+import marco.lang.exception.BindingError
+import marco.lang.exception.ContractViolation
 import marco.lang.exception.TypeError
 
 class Defines extends MarcoSpecification {
@@ -13,7 +12,7 @@ class Defines extends MarcoSpecification {
         eval(/ (def x 1) /)
 
         then:
-        lookUp("x") == new MarcoNumber(1)
+        eval(/ x /) == eval(/ 1 /)
     }
 
     def "defining strings"() {
@@ -21,7 +20,7 @@ class Defines extends MarcoSpecification {
         eval(/ (def a_value "string value") /)
 
         then:
-        lookUp("a_value") == new MarcoString("string value")
+        eval(/ a_value /) == eval(/ "string value" /)
     }
 
     def "renaming def"() {
@@ -39,7 +38,7 @@ class Defines extends MarcoSpecification {
         eval(/ (def y x) /)
 
         then:
-        lookUp("y") == new MarcoNumber(1)
+        eval(/ y /) == eval(/ 1 /)
     }
 
     def "trying to bind to an already bound variable"() {
