@@ -17,6 +17,7 @@
 
 - Bugs
   - Pairs should not evaluate to applications
+  - Syntax error not failing to run
 
 - Features
   - Stack control and TCO
