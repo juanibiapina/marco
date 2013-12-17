@@ -7,7 +7,7 @@ import marco.lang.contracts.Contract;
 
 import java.util.List;
 
-public class function extends MarcoNativeMacro {
+public class function extends MarcoMacro {
     public function() {
         super(new Contract(2));
     }

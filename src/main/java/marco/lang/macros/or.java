@@ -4,11 +4,11 @@ import marco.internal.Cast;
 import marco.internal.Environment;
 import marco.lang.MarcoBoolean;
 import marco.lang.MarcoList;
-import marco.lang.MarcoNativeMacro;
+import marco.lang.MarcoMacro;
 import marco.lang.MarcoObject;
 import marco.lang.contracts.Contract;
 
-public class or extends MarcoNativeMacro {
+public class or extends MarcoMacro {
     public or() {
         super(new Contract(2));
     }

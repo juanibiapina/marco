@@ -2,11 +2,11 @@ package marco.lang.macros;
 
 import marco.internal.Environment;
 import marco.lang.MarcoList;
-import marco.lang.MarcoNativeMacro;
+import marco.lang.MarcoMacro;
 import marco.lang.MarcoObject;
 import marco.lang.contracts.Contract;
 
-public class quote extends MarcoNativeMacro {
+public class quote extends MarcoMacro {
     public quote() {
         super(new Contract(1));
     }

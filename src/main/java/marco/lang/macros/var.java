@@ -3,12 +3,12 @@ package marco.lang.macros;
 import marco.internal.Cast;
 import marco.internal.Environment;
 import marco.lang.MarcoList;
-import marco.lang.MarcoNativeMacro;
+import marco.lang.MarcoMacro;
 import marco.lang.MarcoNil;
 import marco.lang.MarcoObject;
 import marco.lang.contracts.Contract;
 
-public class var extends MarcoNativeMacro {
+public class var extends MarcoMacro {
     public var() {
         super(new Contract(2));
     }

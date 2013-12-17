@@ -3,11 +3,11 @@ package marco.lang.macros;
 import marco.internal.Cast;
 import marco.internal.Environment;
 import marco.lang.MarcoList;
-import marco.lang.MarcoNativeMacro;
+import marco.lang.MarcoMacro;
 import marco.lang.MarcoObject;
 import marco.lang.contracts.Contract;
 
-public class domacro extends MarcoNativeMacro {
+public class domacro extends MarcoMacro {
     public domacro() {
         super(new Contract(1));
     }

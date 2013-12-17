@@ -5,7 +5,7 @@ import marco.internal.Environment;
 import marco.lang.*;
 import marco.lang.contracts.Contract;
 
-public class whilemacro extends MarcoNativeMacro {
+public class whilemacro extends MarcoMacro {
     public whilemacro() {
         super(new Contract(2));
     }

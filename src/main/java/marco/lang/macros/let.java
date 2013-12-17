@@ -3,11 +3,11 @@ package marco.lang.macros;
 import marco.internal.Cast;
 import marco.internal.Environment;
 import marco.lang.MarcoList;
-import marco.lang.MarcoNativeMacro;
+import marco.lang.MarcoMacro;
 import marco.lang.MarcoObject;
 import marco.lang.contracts.Contract;
 
-public class let extends MarcoNativeMacro {
+public class let extends MarcoMacro {
     public let() {
         super(new Contract(2));
     }

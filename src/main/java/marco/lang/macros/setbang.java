@@ -5,7 +5,7 @@ import marco.internal.Environment;
 import marco.lang.*;
 import marco.lang.contracts.Contract;
 
-public class setbang extends MarcoNativeMacro {
+public class setbang extends MarcoMacro {
     public setbang() {
         super(new Contract(2));
     }
