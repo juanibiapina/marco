@@ -16,8 +16,15 @@ public class Parser {
     public MarcoProgram parse(String code) {
         ANTLRInputStream antlrInputStream = new ANTLRInputStream(code);
         Lexer lexer = new Lexer(antlrInputStream);
+
+        lexer.removeErrorListeners();
+        lexer.addErrorListener(new ExceptionErrorListener());
+
         CommonTokenStream tokenStream = new CommonTokenStream(lexer);
         MarcoParser parser = new MarcoParser(tokenStream);
+
+        parser.removeErrorListeners();
+        parser.addErrorListener(new ExceptionErrorListener());
 
         ParseTree tree = parser.program();
 
@@ -35,8 +42,15 @@ public class Parser {
             throw new MarcoException("inputstream error");
         }
         Lexer lexer = new Lexer(antlrInputStream);
+
+        lexer.removeErrorListeners();
+        lexer.addErrorListener(new ExceptionErrorListener());
+
         CommonTokenStream tokenStream = new CommonTokenStream(lexer);
         MarcoParser parser = new MarcoParser(tokenStream);
+
+        parser.removeErrorListeners();
+        parser.addErrorListener(new ExceptionErrorListener());
 
         ParseTree tree = parser.program();
 

@@ -1,23 +1,33 @@
 - Modules
+
 - Numbers
   - Floating point
   - Fractions
   - Scientific notation ?
+
 - Strings as lists ?
+
 - Pair syntax ?
+
 - Literal list syntax ?
-- Better error messages
-- Line number information
-- Error context information
-- Contract information for functions
+
+- Error messages
+  - Line number information
+  - Error context information (actual code?)
+
+- Contracts (type checking for native macros)
   - Can be used to generate proper error messages
+  - Can be used for user defined functions too ?
 
 - Refactor
   - string representations
+    - specially lists
+  - parser
 
 - Bugs
   - Pairs should not evaluate to applications
-  - Syntax error not failing to run
 
-- Features
-  - Stack control and TCO
+- Tail call Optimization
+
+- Optimize Closure Environments
+  - Disallow undefined variables in function bodies
