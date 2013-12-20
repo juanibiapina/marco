@@ -16,9 +16,12 @@ public class def extends MarcoMacro {
     @Override
     public MarcoObject performInvoke(Environment environment, MarcoList arguments) {
         String name = Cast.toSymbol(arguments.get(0)).getValue();
+
+        environment.predefine(name);
+
         MarcoObject value = arguments.get(1).eval(environment);
 
-        environment.def(name, value);
+        environment.redefine(name, value);
 
         return MarcoNil.NIL;
     }

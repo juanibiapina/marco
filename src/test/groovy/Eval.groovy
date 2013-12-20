@@ -13,4 +13,9 @@ class Eval extends MarcoSpecification {
         expect:
         eval(/ (eval (quote (+ 1 2))) /) == new MarcoNumber(3)
     }
+
+    def "in a function"() {
+        expect:
+        eval(/ (def f (function (l) (eval l))) /)
+    }
 }

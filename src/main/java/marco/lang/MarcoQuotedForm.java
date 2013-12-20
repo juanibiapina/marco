@@ -2,6 +2,8 @@ package marco.lang;
 
 import marco.internal.Environment;
 
+import java.util.List;
+
 public class MarcoQuotedForm extends MarcoObject {
     private MarcoObject form;
 
@@ -17,5 +19,10 @@ public class MarcoQuotedForm extends MarcoObject {
     @Override
     public String typeName() {
         return form.typeName();
+    }
+
+    @Override
+    public List<String> freeVariables() {
+        return form.freeVariables();
     }
 }

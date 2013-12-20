@@ -1,9 +1,9 @@
 (def trampoline (function (f)
-                 (do (
-                   (var result f)
-                   (while (function? result) (set! result (result)))
-                   result
-                 ))))
+                  (let (result f)
+                    (do (
+                      (while (function? result) (set! result (result)))
+                      result
+                    )))))
 
 (def collatz-size (function (n)
                     (let (helper (function (n size)
@@ -50,6 +50,6 @@
                                  (function () (helper (tail list) (cons (f (head list)) acc))))))
                 (my-reverse (trampoline (function () (helper l nil)))))))
 
-(def max-n 5000)
+(def max-n 10000)
 
 (print (my-list-max (my-map collatz-size (my-range 1 max-n))))

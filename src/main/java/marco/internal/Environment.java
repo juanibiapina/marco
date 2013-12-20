@@ -3,6 +3,7 @@ package marco.internal;
 import marco.internal.bindings.*;
 import marco.lang.*;
 import marco.lang.exception.MarcoBindingError;
+import marco.lang.exception.MarcoException;
 import marco.lang.exception.MarcoLookUpError;
 import marco.lang.functions.*;
 import marco.lang.functions.numbers.*;
@@ -11,46 +12,67 @@ import marco.parser.Parser;
 
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Environment {
-    private Map<String, Binding> env = new HashMap<>();
+    private Map<String, Binding> bindings = new HashMap<>();
 
     public Environment() {
     }
 
-    public void def(String var, MarcoObject value) {
-        if (env.containsKey(var)) {
-            throw new MarcoBindingError(var, value, env.get(var).getValue());
+    public void prelet(String var) {
+        bindings.put(var, new LetBinding(var, null));
+    }
+
+    public void predefine(String var) {
+        if (bindings.containsKey(var)) {
+            throw new MarcoBindingError(var, bindings.get(var).getValue());
         } else {
-            env.put(var, new ImmutableBinding(var, value));
+            bindings.put(var, new ImmutableBinding(var, null));
+        }
+    }
+
+    public void redefine(String var, MarcoObject value) {
+        if (bindings.containsKey(var)) {
+            bindings.get(var).redefine(value);
+        } else {
+            throw new MarcoException("bug");
+        }
+    }
+
+    public void def(String var, MarcoObject value) {
+        if (bindings.containsKey(var)) {
+            throw new MarcoBindingError(var, bindings.get(var).getValue());
+        } else {
+            bindings.put(var, new ImmutableBinding(var, value));
         }
     }
 
     public void var(String var, MarcoObject value) {
-        if (env.containsKey(var)) {
-            throw new MarcoBindingError(var, value, env.get(var).getValue());
+        if (bindings.containsKey(var)) {
+            throw new MarcoBindingError(var, bindings.get(var).getValue());
         } else {
-            env.put(var, new MutableBinding(var, value));
+            bindings.put(var, new MutableBinding(var, value));
         }
     }
 
     public void parameter(String var, MarcoObject value) {
-        env.put(var, new ParameterBinding(var, value));
+        bindings.put(var, new ParameterBinding(var, value));
     }
 
     public void let(String var, MarcoObject value) {
-        env.put(var, new LetBinding(var, value));
+        bindings.put(var, new LetBinding(var, value));
     }
 
     public void mutate(String var, MarcoObject value) {
-        Binding b = env.get(var);
+        Binding b = bindings.get(var);
         b.mutate(value);
     }
 
     public MarcoObject lookUp(String var) {
-        if (env.containsKey(var)) {
-            return env.get(var).getValue();
+        if (bindings.containsKey(var)) {
+            return bindings.get(var).getValue();
         } else {
             throw new MarcoLookUpError(var);
         }
@@ -58,9 +80,9 @@ public class Environment {
 
     public Environment duplicate() {
         Map<String, Binding> newEnvMap = new HashMap();
-        newEnvMap.putAll(env);
+        newEnvMap.putAll(bindings);
         Environment newEnv = new Environment();
-        newEnv.env = newEnvMap;
+        newEnv.bindings = newEnvMap;
         return newEnv;
     }
 
@@ -103,7 +125,7 @@ public class Environment {
         environment.def("print", new MarcoFunction(environment, Arrays.asList("e"), new print()));
 
         environment.def("parse", new MarcoFunction(environment, Arrays.asList("code"), new parse(Parser.instance())));
-        environment.def("eval", new MarcoFunction(environment, Arrays.asList("arg"), new eval()));
+        environment.def("eval", new eval());
         environment.def("do", new domacro());
         environment.def("while", new whilemacro());
 
@@ -122,5 +144,27 @@ public class Environment {
         environment.def("*", new BinaryOperator(environment, new multiplication()));
         environment.def("/", new BinaryOperator(environment, new division()));
         environment.def("%", new BinaryOperator(environment, new remainder()));
+    }
+
+    public Environment filter(List<String> vars) {
+        Environment result = new Environment();
+
+        for (String var : vars) {
+            Binding binding = get(var);
+            if (binding == null) {
+                binding = new EmptyBinding(var);
+            }
+            result.add(var, binding);
+        }
+
+        return result;
+    }
+
+    private void add(String var, Binding value) {
+        bindings.put(var, value);
+    }
+
+    private Binding get(String var) {
+        return bindings.get(var);
     }
 }

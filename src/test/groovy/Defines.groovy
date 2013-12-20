@@ -50,7 +50,6 @@ class Defines extends MarcoSpecification {
         then:
         MarcoBindingError e = thrown()
         e.binding == "x"
-        e.newValue == new MarcoNumber(2)
         e.oldValue == new MarcoNumber(1)
     }
 

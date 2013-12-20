@@ -3,6 +3,7 @@ package marco.lang;
 import marco.internal.Environment;
 import marco.lang.contracts.Contract;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MarcoFunction extends MarcoRunnable {
@@ -12,7 +13,12 @@ public class MarcoFunction extends MarcoRunnable {
 
     public MarcoFunction(Environment environment, List<String> parameters, MarcoObject body) {
         super(new Contract(parameters.size()));
-        this.closureEnv = environment;
+
+        List<String> freeVariables = new ArrayList<>();
+        freeVariables.addAll(body.freeVariables());
+        freeVariables.removeAll(parameters);
+
+        this.closureEnv = environment.filter(freeVariables);
         this.parameters = parameters;
         this.body = body;
     }

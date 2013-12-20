@@ -2,6 +2,8 @@ package marco.lang;
 
 import marco.internal.Environment;
 
+import java.util.List;
+
 public abstract class MarcoObject {
     public abstract MarcoObject eval(Environment environment);
 
@@ -11,4 +13,6 @@ public abstract class MarcoObject {
     }
 
     public abstract String typeName();
+
+    public abstract List<String> freeVariables();
 }

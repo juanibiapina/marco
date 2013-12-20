@@ -15,19 +15,26 @@
   - Line number information
   - Error context information (actual code?)
 
-- Contracts (type checking for native macros)
+- Contracts (type checking for special forms)
   - Can be used to generate proper error messages
   - Can be used for user defined functions too ?
 
 - Refactor
-  - string representations
+  - String representations
     - specially lists
-  - parser
+  - Duplication on parser
+  - Rename exceptions
+  - Drop the generic exception
+  - Bindings
+  - Type names
+  - Rename macros as special forms
 
 - Bugs
   - Pairs should not evaluate to applications
+  - Usage of def and var inside 'do'
 
-- Tail call Optimization
-
-- Optimize Closure Environments
-  - Disallow undefined variables in function bodies
+- Optimizations
+  - Tail calls
+  - List length
+  - Conversion from and to java lists
+  - Avoid recursive calls on the java side

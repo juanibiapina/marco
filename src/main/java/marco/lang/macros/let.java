@@ -19,11 +19,14 @@ public class let extends MarcoMacro {
         MarcoList list = Cast.toList(arguments.get(0));
 
         String name = Cast.toSymbol(list.get(0)).getValue();
+
+        extendedEnv.prelet(name);
+
         MarcoObject value = list.get(1).eval(extendedEnv);
 
         MarcoObject body = arguments.get(1);
 
-        extendedEnv.let(name, value);
+        extendedEnv.redefine(name, value);
 
         return body.eval(extendedEnv);
     }

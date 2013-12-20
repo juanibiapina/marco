@@ -3,12 +3,13 @@ import marco.lang.MarcoList
 import marco.lang.MarcoNumber
 import marco.lang.MarcoSymbol
 import marco.lang.exception.ContractViolation
+import marco.lang.exception.MarcoLookUpError
 import marco.lang.exception.MarcoTypeError
 
 class Functions extends MarcoSpecification {
     def "type"() {
         expect:
-        eval(/ (function? (function () x)) /) == eval(/ true /)
+        eval(/ (function? (function () 1)) /) == eval(/ true /)
         eval(/ (function? 1) /) == eval(/ false /)
         eval(/ (function? def) /) == eval(/ false /)
     }
@@ -55,13 +56,16 @@ class Functions extends MarcoSpecification {
         eval(/ (f 3) /) == new MarcoNumber(5)
     }
 
-    def "subsequent environment is available to function body"() {
-        when:
+    def "cannot access variable before its definition"() {
+        given:
         eval(/ (def f (function () s)) /)
-        eval(/ (def s 6) /)
+
+        when:
+        eval(/ (f) /)
 
         then:
-        eval(/ (f) /) == new MarcoNumber(6)
+        MarcoLookUpError e = thrown()
+        e.binding == "s"
     }
 
     def "error when argument is not a list"() {

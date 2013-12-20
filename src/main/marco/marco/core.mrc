@@ -12,6 +12,8 @@
                 0
                 (+ 1 (length (tail l))))))
 
+(def max (function (v1 v2) (if (> v1 v2) v1 v2)))
+
 (def list-max (function (xs)
                 (if (= (length xs) 1)
                     (head xs)
@@ -24,8 +26,6 @@
 
 
 (def even? (function (v) (= (% v 2) 0)))
-
-(def max (function (v1 v2) (if (> v1 v2) v1 v2)))
 
 (def range (function (v1 v2)
              (if (= v1 v2)

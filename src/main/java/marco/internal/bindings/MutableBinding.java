@@ -11,5 +11,4 @@ public class MutableBinding extends Binding {
     public void mutate(MarcoObject value) {
         setValue(value);
     }
-
 }

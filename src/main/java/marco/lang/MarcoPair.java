@@ -4,6 +4,7 @@ import marco.internal.Cast;
 import marco.internal.Environment;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class MarcoPair extends MarcoObject implements MarcoList {
@@ -18,6 +19,18 @@ public class MarcoPair extends MarcoObject implements MarcoList {
     @Override
     public String typeName() {
         return "Pair";
+    }
+
+    @Override
+    public List<String> freeVariables() {
+        if (this instanceof MarcoList) {
+            List<String> result = new ArrayList<>();
+            result.addAll(first.freeVariables());
+            result.addAll(second.freeVariables());
+            return result;
+        } else {
+            return Collections.EMPTY_LIST;
+        }
     }
 
     @Override
