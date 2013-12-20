@@ -3,8 +3,8 @@ import marco.lang.MarcoList
 import marco.lang.MarcoNumber
 import marco.lang.MarcoSymbol
 import marco.lang.exception.ContractViolation
-import marco.lang.exception.MarcoLookUpError
-import marco.lang.exception.MarcoTypeError
+import marco.lang.exception.LookUpError
+import marco.lang.exception.TypeError
 
 class Functions extends MarcoSpecification {
     def "type"() {
@@ -64,7 +64,7 @@ class Functions extends MarcoSpecification {
         eval(/ (f) /)
 
         then:
-        MarcoLookUpError e = thrown()
+        LookUpError e = thrown()
         e.binding == "s"
     }
 
@@ -73,7 +73,7 @@ class Functions extends MarcoSpecification {
         eval(/ (def f (function 1 x)) /)
 
         then:
-        MarcoTypeError e = thrown()
+        TypeError e = thrown()
         e.expected == MarcoList
         e.actual == new MarcoNumber(1)
     }
@@ -83,7 +83,7 @@ class Functions extends MarcoSpecification {
         eval(/ (def f (function (x y 1) x)) /)
 
         then:
-        MarcoTypeError e = thrown()
+        TypeError e = thrown()
         e.expected == MarcoSymbol
         e.actual == new MarcoNumber(1)
     }

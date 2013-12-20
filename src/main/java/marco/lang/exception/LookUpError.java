@@ -1,9 +1,9 @@
 package marco.lang.exception;
 
-public class MarcoLookUpError extends MarcoException {
+public class LookUpError extends MarcoException {
     private String binding;
 
-    public MarcoLookUpError(String binding) {
+    public LookUpError(String binding) {
         super("Undefined binding '" + binding + "'");
         this.binding = binding;
     }

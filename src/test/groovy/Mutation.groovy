@@ -1,6 +1,6 @@
 import helpers.MarcoSpecification
 import marco.lang.MarcoNumber
-import marco.lang.exception.MarcoImmutabilityError
+import marco.lang.exception.ImmutabilityError
 
 class Mutation extends MarcoSpecification {
     def "mutation is not allowed on defs"() {
@@ -11,7 +11,7 @@ class Mutation extends MarcoSpecification {
         eval(/ (set! x 2) /)
 
         then:
-        MarcoImmutabilityError e = thrown()
+        ImmutabilityError e = thrown()
         e.symbol == "x"
     }
 
@@ -59,7 +59,7 @@ class Mutation extends MarcoSpecification {
         eval(/ (f 3) /)
 
         then:
-        MarcoImmutabilityError e = thrown()
+        ImmutabilityError e = thrown()
         e.symbol == "x"
     }
 }

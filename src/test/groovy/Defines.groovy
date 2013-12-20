@@ -1,11 +1,11 @@
 import helpers.MarcoSpecification
 import marco.lang.exception.ContractViolation
-import marco.lang.exception.MarcoBindingError
-import marco.lang.exception.MarcoTypeError
+import marco.lang.exception.BindingError
 import marco.lang.MarcoNil
 import marco.lang.MarcoNumber
 import marco.lang.MarcoString
 import marco.lang.MarcoSymbol
+import marco.lang.exception.TypeError
 
 class Defines extends MarcoSpecification {
     def "defining numbers"() {
@@ -48,7 +48,7 @@ class Defines extends MarcoSpecification {
         eval(/ (def x 2) /)
 
         then:
-        MarcoBindingError e = thrown()
+        BindingError e = thrown()
         e.binding == "x"
         e.oldValue == new MarcoNumber(1)
     }
@@ -63,7 +63,7 @@ class Defines extends MarcoSpecification {
         eval(/ (def 2 1) /)
 
         then:
-        MarcoTypeError e = thrown()
+        TypeError e = thrown()
         e.expected == MarcoSymbol
         e.actual == new MarcoNumber(2)
     }

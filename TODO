@@ -23,7 +23,6 @@
   - String representations
     - specially lists
   - Duplication on parser
-  - Rename exceptions
   - Drop the generic exception
   - Bindings
   - Type names

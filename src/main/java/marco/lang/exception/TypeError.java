@@ -2,11 +2,11 @@ package marco.lang.exception;
 
 import marco.lang.MarcoObject;
 
-public class MarcoTypeError extends MarcoException {
+public class TypeError extends MarcoException {
     private final Class expected;
     private final MarcoObject actualValue;
 
-    public MarcoTypeError(Class expected, MarcoObject value) {
+    public TypeError(Class expected, MarcoObject value) {
         super("Expected " + expected.getName() + " but got a " + value.getClass().getName());
         this.expected = expected;
         this.actualValue = value;

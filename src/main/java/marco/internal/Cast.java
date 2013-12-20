@@ -1,6 +1,6 @@
 package marco.internal;
 
-import marco.lang.exception.MarcoTypeError;
+import marco.lang.exception.TypeError;
 import marco.lang.*;
 
 public class Cast {
@@ -8,7 +8,7 @@ public class Cast {
         if (value instanceof MarcoRunnable) {
             return (MarcoRunnable) value;
         } else {
-            throw new MarcoTypeError(MarcoRunnable.class, value);
+            throw new TypeError(MarcoRunnable.class, value);
         }
     }
 
@@ -16,7 +16,7 @@ public class Cast {
         if (value instanceof MarcoSymbol) {
             return (MarcoSymbol) value;
         } else {
-            throw new MarcoTypeError(MarcoSymbol.class, value);
+            throw new TypeError(MarcoSymbol.class, value);
         }
     }
 
@@ -24,7 +24,7 @@ public class Cast {
         if (value instanceof MarcoList) {
             return (MarcoList) value;
         } else {
-            throw new MarcoTypeError(MarcoList.class, value);
+            throw new TypeError(MarcoList.class, value);
         }
     }
 
@@ -32,7 +32,7 @@ public class Cast {
         if (value instanceof MarcoNumber) {
             return (MarcoNumber) value;
         } else {
-            throw new MarcoTypeError(MarcoNumber.class, value);
+            throw new TypeError(MarcoNumber.class, value);
         }
     }
 
@@ -48,7 +48,7 @@ public class Cast {
         if (value instanceof MarcoPair) {
             return (MarcoPair) value;
         } else {
-            throw new MarcoTypeError(MarcoPair.class, value);
+            throw new TypeError(MarcoPair.class, value);
         }
     }
 
@@ -56,7 +56,7 @@ public class Cast {
         if (value instanceof MarcoString) {
             return (MarcoString) value;
         } else {
-            throw new MarcoTypeError(MarcoString.class, value);
+            throw new TypeError(MarcoString.class, value);
         }
     }
 }

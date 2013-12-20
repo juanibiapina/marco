@@ -2,9 +2,9 @@ package marco.internal;
 
 import marco.internal.bindings.*;
 import marco.lang.*;
-import marco.lang.exception.MarcoBindingError;
+import marco.lang.exception.BindingError;
+import marco.lang.exception.LookUpError;
 import marco.lang.exception.MarcoException;
-import marco.lang.exception.MarcoLookUpError;
 import marco.lang.functions.*;
 import marco.lang.functions.numbers.*;
 import marco.lang.macros.*;
@@ -27,7 +27,7 @@ public class Environment {
 
     public void predefine(String var) {
         if (bindings.containsKey(var)) {
-            throw new MarcoBindingError(var, bindings.get(var).getValue());
+            throw new BindingError(var, bindings.get(var).getValue());
         } else {
             bindings.put(var, new ImmutableBinding(var, null));
         }
@@ -43,7 +43,7 @@ public class Environment {
 
     public void def(String var, MarcoObject value) {
         if (bindings.containsKey(var)) {
-            throw new MarcoBindingError(var, bindings.get(var).getValue());
+            throw new BindingError(var, bindings.get(var).getValue());
         } else {
             bindings.put(var, new ImmutableBinding(var, value));
         }
@@ -51,7 +51,7 @@ public class Environment {
 
     public void var(String var, MarcoObject value) {
         if (bindings.containsKey(var)) {
-            throw new MarcoBindingError(var, bindings.get(var).getValue());
+            throw new BindingError(var, bindings.get(var).getValue());
         } else {
             bindings.put(var, new MutableBinding(var, value));
         }
@@ -74,7 +74,7 @@ public class Environment {
         if (bindings.containsKey(var)) {
             return bindings.get(var).getValue();
         } else {
-            throw new MarcoLookUpError(var);
+            throw new LookUpError(var);
         }
     }
 
