@@ -65,11 +65,6 @@ public class Environment {
         bindings.put(var, new LetBinding(var, value));
     }
 
-    public void mutate(String var, MarcoObject value) {
-        Binding b = bindings.get(var);
-        b.mutate(value);
-    }
-
     public MarcoObject lookUp(String var) {
         if (bindings.containsKey(var)) {
             return bindings.get(var).getValue();
@@ -150,7 +145,7 @@ public class Environment {
         Environment result = new Environment();
 
         for (String var : vars) {
-            Binding binding = get(var);
+            Binding binding = bindings.get(var);
             if (binding == null) {
                 binding = new EmptyBinding(var);
             }
@@ -164,7 +159,7 @@ public class Environment {
         bindings.put(var, value);
     }
 
-    private Binding get(String var) {
-        return bindings.get(var);
+    public Binding get(MarcoSymbol symbol) {
+        return bindings.get(symbol.getValue());
     }
 }
