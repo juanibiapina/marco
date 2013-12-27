@@ -1,6 +1,7 @@
 package marco.lang;
 
 import marco.internal.Environment;
+import marco.internal.bindings.ParameterBinding;
 import marco.lang.contracts.Contract;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class MarcoFunction extends MarcoRunnable {
         for (int i = 0; i < arguments.size(); i++) {
             MarcoObject evaluatedArg = arguments.get(i).eval(environment);
             String parameterName = parameters.get(i);
-            extendedEnv.parameter(parameterName, evaluatedArg);
+            extendedEnv.forceAdd(new ParameterBinding(parameterName, evaluatedArg));
         }
         return body.eval(extendedEnv);
     }

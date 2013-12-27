@@ -24,7 +24,6 @@
     - specially lists
   - Duplication on parser
   - Drop the generic exception
-  - Bindings
   - Type names
   - Rename macros as special forms
 

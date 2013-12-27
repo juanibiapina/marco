@@ -1,6 +1,8 @@
 package marco.internal;
 
-import marco.internal.bindings.*;
+import marco.internal.bindings.Binding;
+import marco.internal.bindings.EmptyBinding;
+import marco.internal.bindings.ImmutableBinding;
 import marco.lang.*;
 import marco.lang.exception.BindingError;
 import marco.lang.exception.LookUpError;
@@ -26,22 +28,6 @@ public class Environment {
         } else {
             bindings.put(var, new ImmutableBinding(var, value));
         }
-    }
-
-    public void var(String var, MarcoObject value) {
-        if (bindings.containsKey(var)) {
-            throw new BindingError(var, bindings.get(var).getValue());
-        } else {
-            bindings.put(var, new MutableBinding(var, value));
-        }
-    }
-
-    public void parameter(String var, MarcoObject value) {
-        bindings.put(var, new ParameterBinding(var, value));
-    }
-
-    public void let(String var, MarcoObject value) {
-        bindings.put(var, new LetBinding(var, value));
     }
 
     public MarcoObject lookUp(String var) {
