@@ -2,6 +2,7 @@ package marco.lang.macros;
 
 import marco.internal.Cast;
 import marco.internal.Environment;
+import marco.internal.bindings.ImmutableBinding;
 import marco.lang.MarcoList;
 import marco.lang.MarcoMacro;
 import marco.lang.MarcoNil;
@@ -17,11 +18,12 @@ public class def extends MarcoMacro {
     public MarcoObject performInvoke(Environment environment, MarcoList arguments) {
         String name = Cast.toSymbol(arguments.get(0)).getValue();
 
-        environment.predefine(name);
+        ImmutableBinding binding = new ImmutableBinding(name, null);
+        environment.add(binding);
 
         MarcoObject value = arguments.get(1).eval(environment);
 
-        environment.redefine(name, value);
+        binding.redefine(value);
 
         return MarcoNil.NIL;
     }

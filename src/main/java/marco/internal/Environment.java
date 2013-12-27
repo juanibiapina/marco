@@ -4,7 +4,6 @@ import marco.internal.bindings.*;
 import marco.lang.*;
 import marco.lang.exception.BindingError;
 import marco.lang.exception.LookUpError;
-import marco.lang.exception.MarcoException;
 import marco.lang.functions.*;
 import marco.lang.functions.numbers.*;
 import marco.lang.macros.*;
@@ -19,26 +18,6 @@ public class Environment {
     private Map<String, Binding> bindings = new HashMap<>();
 
     public Environment() {
-    }
-
-    public void prelet(String var) {
-        bindings.put(var, new LetBinding(var, null));
-    }
-
-    public void predefine(String var) {
-        if (bindings.containsKey(var)) {
-            throw new BindingError(var, bindings.get(var).getValue());
-        } else {
-            bindings.put(var, new ImmutableBinding(var, null));
-        }
-    }
-
-    public void redefine(String var, MarcoObject value) {
-        if (bindings.containsKey(var)) {
-            bindings.get(var).redefine(value);
-        } else {
-            throw new MarcoException("bug");
-        }
     }
 
     public void def(String var, MarcoObject value) {
@@ -160,6 +139,20 @@ public class Environment {
             return bindings.get(name);
         } else {
             throw new LookUpError(name);
+        }
+    }
+
+    public void forceAdd(Binding binding) {
+        bindings.put(binding.getSymbol(), binding);
+    }
+
+    public void add(Binding binding) {
+        String name = binding.getSymbol();
+
+        if (bindings.containsKey(name)) {
+            throw new BindingError(name, bindings.get(name).getValue());
+        } else {
+            bindings.put(name, binding);
         }
     }
 }

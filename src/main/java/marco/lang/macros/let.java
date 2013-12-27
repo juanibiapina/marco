@@ -2,6 +2,7 @@ package marco.lang.macros;
 
 import marco.internal.Cast;
 import marco.internal.Environment;
+import marco.internal.bindings.LetBinding;
 import marco.lang.MarcoList;
 import marco.lang.MarcoMacro;
 import marco.lang.MarcoObject;
@@ -20,13 +21,15 @@ public class let extends MarcoMacro {
 
         String name = Cast.toSymbol(list.get(0)).getValue();
 
-        extendedEnv.prelet(name);
+        LetBinding binding = new LetBinding(name, null);
+
+        extendedEnv.forceAdd(binding);
 
         MarcoObject value = list.get(1).eval(extendedEnv);
 
         MarcoObject body = arguments.get(1);
 
-        extendedEnv.redefine(name, value);
+        binding.redefine(value);
 
         return body.eval(extendedEnv);
     }
