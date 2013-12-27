@@ -149,17 +149,17 @@ public class Environment {
             if (binding == null) {
                 binding = new EmptyBinding(var);
             }
-            result.add(var, binding);
+            result.bindings.put(var, binding);
         }
 
         return result;
     }
 
-    private void add(String var, Binding value) {
-        bindings.put(var, value);
-    }
-
-    public Binding get(MarcoSymbol symbol) {
-        return bindings.get(symbol.getValue());
+    public Binding get(String name) {
+        if (bindings.containsKey(name)) {
+            return bindings.get(name);
+        } else {
+            throw new LookUpError(name);
+        }
     }
 }

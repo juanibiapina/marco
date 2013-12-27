@@ -16,7 +16,7 @@ public class setbang extends MarcoMacro {
         MarcoSymbol var = Cast.toSymbol(arguments.get(0));
         MarcoObject value = arguments.get(1).eval(environment);
 
-        Binding binding = environment.get(var);
+        Binding binding = environment.get(var.getValue());
         binding.mutate(value);
 
         return MarcoNil.NIL;

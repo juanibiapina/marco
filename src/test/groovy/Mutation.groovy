@@ -1,6 +1,7 @@
 import helpers.MarcoSpecification
 import marco.lang.MarcoNumber
 import marco.lang.exception.ImmutabilityError
+import marco.lang.exception.LookUpError
 
 class Mutation extends MarcoSpecification {
     def "mutation is not allowed on defs"() {
@@ -61,5 +62,14 @@ class Mutation extends MarcoSpecification {
         then:
         ImmutabilityError e = thrown()
         e.symbol == "x"
+    }
+
+    def "mutating an undefined variable"() {
+        when:
+        eval(/ (set! x 1) /)
+
+        then:
+        LookUpError e = thrown()
+        e.binding == "x"
     }
 }
