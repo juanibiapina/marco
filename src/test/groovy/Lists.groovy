@@ -29,4 +29,13 @@ class Lists extends MarcoSpecification {
         eval(/ [] /) == eval(/ nil /)
         eval(/ [1 2 3] /) == eval(/ (cons 1 (cons 2 (cons 3 nil))) /)
     }
+
+    def "constructor"() {
+        expect:
+        eval(/ (list? '(1 2)) /) == eval(/ true /)
+        eval(/ (list? (cons 1 2)) /) == eval(/ false /)
+        eval(/ (list? (cons 1 nil)) /) == eval(/ true /)
+        eval(/ (list? (cons 1 (cons 2 nil))) /) == eval(/ true /)
+        eval(/ (list? (cons 1 (cons 2 (cons 3 4)))) /) == eval(/ false /)
+    }
 }

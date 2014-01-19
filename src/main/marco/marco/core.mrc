@@ -2,11 +2,6 @@
 
 (def tail second)
 
-(def list? (function (l)
-             (or (nil? l)
-                 (and (pair? l)
-                      (list? (tail l))))))
-
 (def length (function (l)
               (if (nil? l)
                 0
