@@ -1,4 +1,4 @@
-package marco.lang.functions;
+package marco.lang.functions.nil;
 
 import marco.internal.Environment;
 import marco.lang.MarcoBoolean;

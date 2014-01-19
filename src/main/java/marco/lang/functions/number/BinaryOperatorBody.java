@@ -1,4 +1,4 @@
-package marco.lang.functions.numbers;
+package marco.lang.functions.number;
 
 import marco.internal.Cast;
 import marco.internal.Environment;

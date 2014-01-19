@@ -7,8 +7,14 @@ import marco.lang.*;
 import marco.lang.exception.BindingError;
 import marco.lang.exception.LookUpError;
 import marco.lang.functions.*;
-import marco.lang.functions.lists.listquestion;
-import marco.lang.functions.numbers.*;
+import marco.lang.functions.function.functionquestion;
+import marco.lang.functions.list.listquestion;
+import marco.lang.functions.nil.nilquestion;
+import marco.lang.functions.number.*;
+import marco.lang.functions.pair.cons;
+import marco.lang.functions.pair.first;
+import marco.lang.functions.pair.pairquestion;
+import marco.lang.functions.pair.second;
 import marco.lang.macros.*;
 import marco.parser.Parser;
 
