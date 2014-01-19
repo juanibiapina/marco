@@ -44,4 +44,9 @@ public class MarcoNil extends MarcoValue implements MarcoList {
     public MarcoObject get(int i) {
         throw new MarcoException("get in nil");
     }
+
+    @Override
+    public boolean isList() {
+        return true;
+    }
 }

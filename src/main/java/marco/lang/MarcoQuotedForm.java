@@ -25,4 +25,9 @@ public class MarcoQuotedForm extends MarcoObject {
     public List<String> freeVariables() {
         return form.freeVariables();
     }
+
+    @Override
+    public boolean isList() {
+        return false;
+    }
 }

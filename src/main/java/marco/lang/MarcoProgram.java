@@ -35,6 +35,11 @@ public class MarcoProgram extends MarcoObject {
     }
 
     @Override
+    public boolean isList() {
+        return false;
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (obj instanceof MarcoProgram) {
             MarcoProgram other = (MarcoProgram) obj;

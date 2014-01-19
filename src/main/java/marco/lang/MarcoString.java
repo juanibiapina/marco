@@ -27,6 +27,11 @@ public class MarcoString extends MarcoValue {
         return "String";
     }
 
+    @Override
+    public boolean isList() {
+        return false;
+    }
+
     public String getValue() {
         return value;
     }

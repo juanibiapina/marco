@@ -13,4 +13,9 @@ public abstract class MarcoNativeObject extends MarcoObject {
     public List<String> freeVariables() {
         return Collections.EMPTY_LIST;
     }
+
+    @Override
+    public boolean isList() {
+        return false;
+    }
 }

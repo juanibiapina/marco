@@ -17,4 +17,9 @@ public abstract class MarcoRunnable extends MarcoValue {
     }
 
     protected abstract MarcoObject performInvoke(Environment environment, MarcoList arguments);
+
+    @Override
+    public boolean isList() {
+        return false;
+    }
 }

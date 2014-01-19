@@ -15,4 +15,6 @@ public abstract class MarcoObject {
     public abstract String typeName();
 
     public abstract List<String> freeVariables();
+
+    public abstract boolean isList();
 }

@@ -42,6 +42,11 @@ public class MarcoSymbol extends MarcoObject {
     }
 
     @Override
+    public boolean isList() {
+        return false;
+    }
+
+    @Override
     public String toString() {
         return "'" + value;
     }

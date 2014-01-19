@@ -10,10 +10,12 @@ import java.util.List;
 public class MarcoPair extends MarcoObject implements MarcoList {
     private MarcoObject first;
     private MarcoObject second;
+    private boolean isList;
 
     public MarcoPair(MarcoObject first, MarcoObject second) {
         this.first = first;
         this.second = second;
+        this.isList = second.isList();
     }
 
     @Override
@@ -23,7 +25,7 @@ public class MarcoPair extends MarcoObject implements MarcoList {
 
     @Override
     public List<String> freeVariables() {
-        if (this instanceof MarcoList) {
+        if (isList()) {
             List<String> result = new ArrayList<>();
             result.addAll(first.freeVariables());
             result.addAll(second.freeVariables());
@@ -31,6 +33,11 @@ public class MarcoPair extends MarcoObject implements MarcoList {
         } else {
             return Collections.EMPTY_LIST;
         }
+    }
+
+    @Override
+    public boolean isList() {
+        return isList;
     }
 
     @Override
@@ -45,7 +52,7 @@ public class MarcoPair extends MarcoObject implements MarcoList {
 
     @Override
     public MarcoObject eval(Environment environment) {
-        if (this instanceof MarcoList) {
+        if (isList()) {
             MarcoObject firstVal = first.eval(environment);
             MarcoRunnable runnable = Cast.toRunnable(firstVal);
             return runnable.invoke(environment, Cast.toList(second));

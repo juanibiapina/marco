@@ -19,4 +19,9 @@ public class MarcoBoolean extends MarcoValue {
     public String typeName() {
         return "Boolean";
     }
+
+    @Override
+    public boolean isList() {
+        return false;
+    }
 }

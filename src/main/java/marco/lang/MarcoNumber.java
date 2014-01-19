@@ -33,6 +33,11 @@ public class MarcoNumber extends MarcoValue {
         return "Number";
     }
 
+    @Override
+    public boolean isList() {
+        return false;
+    }
+
     public BigInteger getValue() {
         return value;
     }

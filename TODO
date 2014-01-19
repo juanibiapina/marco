@@ -28,7 +28,6 @@
   - Rename macros as special forms
 
 - Bugs
-  - Pairs should not evaluate to applications
   - Usage of def and var inside 'do'
 
 - Optimizations
