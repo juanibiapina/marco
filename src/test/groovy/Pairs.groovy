@@ -1,5 +1,4 @@
 import helpers.MarcoSpecification
-import marco.lang.MarcoBoolean
 import marco.lang.MarcoNumber
 import marco.lang.MarcoPair
 
@@ -11,7 +10,7 @@ class Pairs extends MarcoSpecification {
 
     def "first"() {
         expect:
-        eval(/ (first (cons true "value")) /) == MarcoBoolean.TRUE
+        eval(/ (first (cons true "value")) /) == eval(/ true /)
     }
 
     def "second"() {
@@ -21,10 +20,10 @@ class Pairs extends MarcoSpecification {
 
     def "pair?"() {
         expect:
-        eval(/ (pair? 1) /) == MarcoBoolean.FALSE
-        eval(/ (pair? (cons 1 2)) /) == MarcoBoolean.TRUE
-        eval(/ (pair? (cons (cons 1 2) (cons nil nil))) /) == MarcoBoolean.TRUE
-        eval(/ (pair? (cons 1 nil)) /) == MarcoBoolean.TRUE
+        eval(/ (pair? 1) /) == eval(/ false /)
+        eval(/ (pair? (cons 1 2)) /) == eval(/ true /)
+        eval(/ (pair? (cons (cons 1 2) (cons nil nil))) /) == eval(/ true /)
+        eval(/ (pair? (cons 1 nil)) /) == eval(/ true /)
     }
 
     def "evaluate to themselves"() {

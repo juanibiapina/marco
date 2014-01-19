@@ -8,10 +8,6 @@ public class pairquestion extends MarcoNativeObject {
     public MarcoObject eval(Environment environment) {
         MarcoObject arg = environment.lookUp("pair");
 
-        if (arg instanceof MarcoPair) {
-            return MarcoBoolean.TRUE;
-        } else {
-            return MarcoBoolean.FALSE;
-        }
+        return MarcoBoolean.from(arg instanceof MarcoPair);
     }
 }

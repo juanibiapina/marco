@@ -24,4 +24,12 @@ public class MarcoBoolean extends MarcoValue {
     public boolean isList() {
         return false;
     }
+
+    public static MarcoBoolean from(boolean value) {
+        if (value) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
 }

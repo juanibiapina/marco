@@ -7,10 +7,6 @@ import marco.lang.MarcoObject;
 public class equal extends BinaryOperatorBody {
     @Override
     protected MarcoObject doEval(MarcoNumber v1, MarcoNumber v2) {
-        if (v1.getValue().equals(v2.getValue())) {
-            return MarcoBoolean.TRUE;
-        } else {
-            return MarcoBoolean.FALSE;
-        }
+        return MarcoBoolean.from(v1.getValue().equals(v2.getValue()));
     }
 }

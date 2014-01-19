@@ -10,10 +10,6 @@ public class listquestion extends MarcoNativeObject {
     public MarcoObject eval(Environment environment) {
         MarcoObject value = environment.lookUp("value");
 
-        if (value.isList()) {
-            return MarcoBoolean.TRUE;
-        } else {
-            return MarcoBoolean.FALSE;
-        }
+        return MarcoBoolean.from(value.isList());
     }
 }

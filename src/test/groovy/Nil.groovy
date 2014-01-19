@@ -1,5 +1,4 @@
 import helpers.MarcoSpecification
-import marco.lang.MarcoBoolean
 import marco.lang.MarcoNil
 
 class Nil extends MarcoSpecification {
@@ -10,8 +9,8 @@ class Nil extends MarcoSpecification {
 
     def "nil?"() {
         expect:
-        eval(/ (nil? 1) /) == MarcoBoolean.FALSE
-        eval(/ (nil? nil) /) == MarcoBoolean.TRUE
+        eval(/ (nil? 1) /) == eval(/ false /)
+        eval(/ (nil? nil) /) == eval(/ true /)
     }
 
     def "string representation"() {

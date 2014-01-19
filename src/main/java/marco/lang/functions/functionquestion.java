@@ -11,10 +11,6 @@ public class functionquestion extends MarcoNativeObject {
     public MarcoObject eval(Environment environment) {
         MarcoObject v = environment.lookUp("v");
 
-        if (v instanceof MarcoFunction) {
-            return MarcoBoolean.TRUE;
-        } else {
-            return MarcoBoolean.FALSE;
-        }
+        return MarcoBoolean.from(v instanceof MarcoFunction);
     }
 }

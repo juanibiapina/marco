@@ -11,10 +11,6 @@ public class nilquestion extends MarcoNativeObject {
     public MarcoObject eval(Environment environment) {
         MarcoObject arg = environment.lookUp("arg");
 
-        if (arg instanceof MarcoNil) {
-            return MarcoBoolean.TRUE;
-        } else {
-            return MarcoBoolean.FALSE;
-        }
+        return MarcoBoolean.from(arg instanceof MarcoNil);
     }
 }
