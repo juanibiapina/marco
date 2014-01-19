@@ -11,11 +11,15 @@ public class MarcoPair extends MarcoObject implements MarcoList {
     private MarcoObject first;
     private MarcoObject second;
     private boolean isList;
+    private int length;
 
     public MarcoPair(MarcoObject first, MarcoObject second) {
         this.first = first;
         this.second = second;
         this.isList = second.isList();
+        if (isList()) {
+            this.length = 1 + Cast.toList(second).length();
+        }
     }
 
     @Override
@@ -83,8 +87,8 @@ public class MarcoPair extends MarcoObject implements MarcoList {
     }
 
     @Override
-    public int size() {
-        return 1 + Cast.toList(second).size();
+    public int length() {
+        return length;
     }
 
     @Override

@@ -2,12 +2,12 @@ import helpers.MarcoSpecification
 import marco.lang.MarcoNumber
 
 class Lists extends MarcoSpecification {
-    def "first works for lists"() {
+    def "first"() {
         expect:
         eval(/ (first (quote (1 2))) /) == new MarcoNumber(1)
     }
 
-    def "second works for lists"() {
+    def "second"() {
         expect:
         eval(/ (first (second (quote (1 2 3)))) /) == new MarcoNumber(2)
     }
@@ -37,5 +37,18 @@ class Lists extends MarcoSpecification {
         eval(/ (list? (cons 1 nil)) /) == eval(/ true /)
         eval(/ (list? (cons 1 (cons 2 nil))) /) == eval(/ true /)
         eval(/ (list? (cons 1 (cons 2 (cons 3 4)))) /) == eval(/ false /)
+        eval(/ (list? 1) /) == eval(/ false /)
+        eval(/ (list? "string") /) == eval(/ false /)
+        eval(/ (list? nil) /) == eval(/ true /)
+        eval(/ (list? (quote (1 2 3))) /) == eval(/ true /)
+    }
+
+    def "length"() {
+        expect:
+        eval(/ (length nil) /) == eval(/ 0 /)
+        eval(/ (length '()) /) == eval(/ 0 /)
+        eval(/ (length '("lol")) /) == eval(/ 1 /)
+        eval(/ (length '(1 2 3)) /) == eval(/ 3 /)
+        eval(/ (length '(1 2 3 "house")) /) == eval(/ 4 /)
     }
 }

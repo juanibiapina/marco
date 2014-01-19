@@ -27,7 +27,7 @@ public class MarcoFunction extends MarcoRunnable {
     @Override
     public MarcoObject performInvoke(Environment environment, MarcoList arguments) {
         Environment extendedEnv = closureEnv.duplicate();
-        for (int i = 0; i < arguments.size(); i++) {
+        for (int i = 0; i < arguments.length(); i++) {
             MarcoObject evaluatedArg = arguments.get(i).eval(environment);
             String parameterName = parameters.get(i);
             extendedEnv.forceAdd(new ParameterBinding(parameterName, evaluatedArg));

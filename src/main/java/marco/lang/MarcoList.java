@@ -5,7 +5,7 @@ import java.util.List;
 public interface MarcoList {
     List<String> asArgumentList();
 
-    int size();
+    int length();
 
     MarcoObject get(int i);
 }

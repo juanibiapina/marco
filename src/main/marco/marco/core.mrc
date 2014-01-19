@@ -2,11 +2,6 @@
 
 (def tail second)
 
-(def length (function (l)
-              (if (nil? l)
-                0
-                (+ 1 (length (tail l))))))
-
 (def max (function (v1 v2) (if (> v1 v2) v1 v2)))
 
 (def list-max (function (xs)

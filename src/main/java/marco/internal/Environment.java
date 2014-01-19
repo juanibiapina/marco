@@ -8,6 +8,7 @@ import marco.lang.exception.BindingError;
 import marco.lang.exception.LookUpError;
 import marco.lang.functions.*;
 import marco.lang.functions.function.functionquestion;
+import marco.lang.functions.list.length;
 import marco.lang.functions.list.listquestion;
 import marco.lang.functions.nil.nilquestion;
 import marco.lang.functions.number.*;
@@ -101,6 +102,7 @@ public class Environment {
         environment.def("second", new MarcoFunction(environment, Arrays.asList("pair"), new second()));
         environment.def("pair?", new MarcoFunction(environment, Arrays.asList("pair"), new pairquestion()));
         environment.def("list?", new MarcoFunction(environment, Arrays.asList("value"), new listquestion()));
+        environment.def("length", new MarcoFunction(environment, Arrays.asList("l"), new length()));
 
         environment.def("nil?", new MarcoFunction(environment, Arrays.asList("arg"), new nilquestion()));
 

@@ -36,7 +36,7 @@ public class MarcoNil extends MarcoValue implements MarcoList {
     }
 
     @Override
-    public int size() {
+    public int length() {
         return 0;
     }
 

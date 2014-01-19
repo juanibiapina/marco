@@ -11,7 +11,7 @@ public class Contract {
     }
 
     public void validate(MarcoList arguments) {
-        int actualArity = arguments.size();
+        int actualArity = arguments.length();
         if (actualArity != expectedArity) {
             throw new ContractViolation(expectedArity, actualArity);
         }

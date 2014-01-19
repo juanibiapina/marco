@@ -17,7 +17,7 @@ public class domacro extends MarcoMacro {
         MarcoList es = Cast.toList(arguments.get(0));
 
         MarcoObject result = null;
-        for (int i = 0; i < es.size(); i++) {
+        for (int i = 0; i < es.length(); i++) {
             result = es.get(i).eval(environment);
         }
 
