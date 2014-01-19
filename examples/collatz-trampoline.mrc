@@ -22,16 +22,9 @@
                                    (function () (helper v1 (- v2 1) (cons v2 l))))))
                   (trampoline (function () (helper v1 v2 nil))))))
 
-(def my-length (function (l)
-                 (let (helper (function (l size)
-                                (if (nil? l)
-                                    size
-                                    (function () (helper (tail l) (+ size 1))))))
-                   (trampoline (function () (helper l 0))))))
-
 (def my-list-max (function (xs)
                    (let (helper (function (xs m)
-                                  (if (= (my-length xs) 1)
+                                  (if (= (length xs) 1)
                                       (max (head xs) m)
                                       (function () (helper (tail xs) (max (head xs) m))))))
                      (trampoline (function () (helper (tail xs) (head xs)))))))
@@ -50,6 +43,6 @@
                                  (function () (helper (tail list) (cons (f (head list)) acc))))))
                 (my-reverse (trampoline (function () (helper l nil)))))))
 
-(def max-n 10000)
+(def max-n 100000)
 
 (print (my-list-max (my-map collatz-size (my-range 1 max-n))))
