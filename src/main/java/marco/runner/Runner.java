@@ -12,7 +12,7 @@ public class Runner {
     private Environment environment = Environment.initial();
 
     public void run(String fileName) {
-        Parser parser = new Parser();
+        Parser parser = Parser.instance();
         MarcoProgram program;
 
         try {

@@ -13,6 +13,9 @@ import java.io.InputStream;
 public class Parser {
     private static Parser parser;
 
+    private Parser() {
+    }
+
     public MarcoProgram parse(String code) {
         ANTLRInputStream antlrInputStream = new ANTLRInputStream(code);
         Lexer lexer = new Lexer(antlrInputStream);
