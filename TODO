@@ -22,7 +22,6 @@
 - Refactor
   - String representations
     - specially lists
-  - Duplication on parser
   - Drop the generic exception
   - Type names
   - Rename macros as special forms
