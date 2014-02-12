@@ -30,6 +30,10 @@
 - Bugs
   - Usage of def and var inside 'do'
 
+- Remove or Rework
+  - do
+  - while
+
 - Optimizations
   - Tail calls
   - Conversion from and to java lists
