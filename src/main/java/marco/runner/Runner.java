@@ -1,6 +1,6 @@
 package marco.runner;
 
-import marco.internal.Environment;
+import marco.interpreter.MarcoInterpreter;
 import marco.lang.MarcoProgram;
 import marco.lang.exception.MarcoException;
 import marco.parser.Parser;
@@ -9,7 +9,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class Runner {
-    private Environment environment = Environment.initial();
+    private MarcoInterpreter interpreter = new MarcoInterpreter();
 
     public void run(String fileName) {
         Parser parser = Parser.instance();
@@ -21,6 +21,6 @@ public class Runner {
             throw new MarcoException("File not found: " + fileName);
         }
 
-        program.eval(environment);
+        interpreter.eval(program);
     }
 }

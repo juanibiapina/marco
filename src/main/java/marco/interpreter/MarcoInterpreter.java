@@ -8,6 +8,10 @@ public class MarcoInterpreter {
     private Environment environment = Environment.initial();
 
     public MarcoObject runLine(String line) {
-        return Parser.instance().parse(line).eval(environment);
+        return eval(Parser.instance().parse(line));
+    }
+
+    public MarcoObject eval(MarcoObject object) {
+        return object.eval(environment);
     }
 }
