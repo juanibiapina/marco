@@ -12,16 +12,16 @@ public class if_specialform extends MarcoSpecialForm {
 
     @Override
     public MarcoObject performInvoke(Environment environment, MarcoList arguments) {
-        MarcoObject e1 = arguments.get(0);
-        MarcoObject e2 = arguments.get(1);
-        MarcoObject e3 = arguments.get(2);
+        MarcoObject condition = arguments.get(0);
+        MarcoObject thenClause = arguments.get(1);
+        MarcoObject elseClause = arguments.get(2);
 
-        MarcoObject v1 = e1.eval(environment);
+        MarcoObject v1 = condition.eval(environment);
 
         if (Cast.toBoolean(v1) == MarcoBoolean.TRUE) {
-            return new MarcoContinuation(e2, environment);
+            return new MarcoContinuation(thenClause, environment);
         } else {
-            return new MarcoContinuation(e3, environment);
+            return new MarcoContinuation(elseClause, environment);
         }
     }
 }
