@@ -2,10 +2,7 @@ package marco.lang.especialforms;
 
 import marco.internal.Cast;
 import marco.internal.Environment;
-import marco.lang.MarcoBoolean;
-import marco.lang.MarcoList;
-import marco.lang.MarcoSpecialForm;
-import marco.lang.MarcoObject;
+import marco.lang.*;
 import marco.lang.contracts.Contract;
 
 public class and extends MarcoSpecialForm {
@@ -19,7 +16,7 @@ public class and extends MarcoSpecialForm {
         MarcoObject e2 = arguments.get(1);
 
         if (Cast.toBoolean(e1.eval(environment)).equals(MarcoBoolean.TRUE)) {
-            return e2.eval(environment);
+            return new MarcoContinuation(e2, environment);
         } else {
             return MarcoBoolean.FALSE;
         }
