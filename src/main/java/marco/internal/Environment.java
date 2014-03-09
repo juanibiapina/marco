@@ -54,10 +54,6 @@ public class Environment {
         return newEnv;
     }
 
-    public MarcoProgram parse(String code) {
-        return Parser.instance().parse(code);
-    }
-
     public static Environment initial() {
         Environment environment = new Environment();
 
