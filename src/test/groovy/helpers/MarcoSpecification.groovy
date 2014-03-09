@@ -1,15 +1,16 @@
 package helpers
-
-import marco.interpreter.MarcoInterpreter
+import marco.internal.Environment
 import marco.lang.MarcoObject
+import marco.parser.Parser
 import org.junit.Ignore
 import spock.lang.Specification
 
 @Ignore
 abstract class MarcoSpecification extends Specification {
-    def interpreter = new MarcoInterpreter()
+    def environment = Environment.initial()
+    def parser = Parser.instance()
 
     def MarcoObject eval(String code) {
-        interpreter.runLine(code)
+        parser.parse(code).eval(environment)
     }
 }
