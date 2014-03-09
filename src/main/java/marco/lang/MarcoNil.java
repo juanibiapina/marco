@@ -1,6 +1,6 @@
 package marco.lang;
 
-import marco.lang.exception.MarcoException;
+import marco.lang.exceptions.MarcoException;
 
 import java.util.Arrays;
 import java.util.List;

@@ -2,9 +2,9 @@ import helpers.MarcoSpecification
 import marco.lang.MarcoNil
 import marco.lang.MarcoNumber
 import marco.lang.MarcoSymbol
-import marco.lang.exception.BindingError
-import marco.lang.exception.ContractViolation
-import marco.lang.exception.TypeError
+import marco.lang.exceptions.BindingError
+import marco.lang.exceptions.ContractViolation
+import marco.lang.exceptions.TypeError
 
 class Defines extends MarcoSpecification {
     def "defining numbers"() {

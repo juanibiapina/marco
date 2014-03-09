@@ -2,7 +2,7 @@ package marco.runner;
 
 import marco.interpreter.MarcoInterpreter;
 import marco.lang.MarcoProgram;
-import marco.lang.exception.MarcoException;
+import marco.lang.exceptions.MarcoException;
 import marco.parser.Parser;
 
 import java.io.FileInputStream;

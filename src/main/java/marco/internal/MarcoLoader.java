@@ -1,7 +1,7 @@
 package marco.internal;
 
 import marco.lang.MarcoProgram;
-import marco.lang.exception.MarcoException;
+import marco.lang.exceptions.MarcoException;
 import marco.parser.Parser;
 
 import java.io.InputStream;

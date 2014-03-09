@@ -1,7 +1,7 @@
 package marco.parser;
 
 import marco.lang.MarcoProgram;
-import marco.lang.exception.MarcoException;
+import marco.lang.exceptions.MarcoException;
 import marco.parser.antlr.MarcoParser;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;

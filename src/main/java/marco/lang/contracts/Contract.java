@@ -1,7 +1,7 @@
 package marco.lang.contracts;
 
 import marco.lang.MarcoList;
-import marco.lang.exception.ContractViolation;
+import marco.lang.exceptions.ContractViolation;
 
 public class Contract {
     private int expectedArity;

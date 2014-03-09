@@ -1,4 +1,4 @@
-package marco.lang.exception;
+package marco.lang.exceptions;
 
 public class ContractViolation extends MarcoException {
     private int expected;

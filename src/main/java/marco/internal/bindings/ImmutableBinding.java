@@ -1,7 +1,7 @@
 package marco.internal.bindings;
 
 import marco.lang.MarcoObject;
-import marco.lang.exception.ImmutabilityError;
+import marco.lang.exceptions.ImmutabilityError;
 
 public class ImmutableBinding extends Binding {
     public ImmutableBinding(String var, MarcoObject value) {

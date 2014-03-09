@@ -1,6 +1,6 @@
 package marco.internal;
 
-import marco.lang.exception.TypeError;
+import marco.lang.exceptions.TypeError;
 import marco.lang.*;
 
 public class Cast {

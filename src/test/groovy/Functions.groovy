@@ -2,9 +2,9 @@ import helpers.MarcoSpecification
 import marco.lang.MarcoList
 import marco.lang.MarcoNumber
 import marco.lang.MarcoSymbol
-import marco.lang.exception.ContractViolation
-import marco.lang.exception.LookUpError
-import marco.lang.exception.TypeError
+import marco.lang.exceptions.ContractViolation
+import marco.lang.exceptions.LookUpError
+import marco.lang.exceptions.TypeError
 
 class Functions extends MarcoSpecification {
     def "type"() {

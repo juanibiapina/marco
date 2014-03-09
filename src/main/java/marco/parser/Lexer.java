@@ -1,6 +1,6 @@
 package marco.parser;
 
-import marco.lang.exception.MarcoException;
+import marco.lang.exceptions.MarcoException;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.LexerNoViableAltException;
 import org.antlr.v4.runtime.misc.Interval;

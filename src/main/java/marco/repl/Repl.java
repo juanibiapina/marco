@@ -2,7 +2,7 @@ package marco.repl;
 
 import marco.interpreter.MarcoInterpreter;
 import marco.lang.MarcoObject;
-import marco.lang.exception.MarcoException;
+import marco.lang.exceptions.MarcoException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
