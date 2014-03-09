@@ -3,6 +3,7 @@ package marco.lang.especialforms;
 import marco.internal.Cast;
 import marco.internal.Environment;
 import marco.internal.bindings.LetBinding;
+import marco.lang.MarcoContinuation;
 import marco.lang.MarcoList;
 import marco.lang.MarcoSpecialForm;
 import marco.lang.MarcoObject;
@@ -31,6 +32,6 @@ public class let extends MarcoSpecialForm {
 
         binding.redefine(value);
 
-        return body.eval(extendedEnv);
+        return new MarcoContinuation(body, extendedEnv);
     }
 }

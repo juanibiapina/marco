@@ -32,7 +32,7 @@ public class MarcoFunction extends MarcoRunnable {
             String parameterName = parameters.get(i);
             extendedEnv.forceAdd(new ParameterBinding(parameterName, evaluatedArg));
         }
-        return body.eval(extendedEnv);
+        return new MarcoContinuation(body, extendedEnv);
     }
 
     @Override

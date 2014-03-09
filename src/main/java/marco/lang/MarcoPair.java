@@ -55,11 +55,10 @@ public class MarcoPair extends MarcoObject implements MarcoList {
     }
 
     @Override
-    public MarcoObject eval(Environment environment) {
+    public MarcoObject doEval(Environment environment) {
         if (isList()) {
-            MarcoObject firstVal = first.eval(environment);
-            MarcoRunnable runnable = Cast.toRunnable(firstVal);
-            return runnable.invoke(environment, Cast.toList(second));
+            MarcoObject operator = first.eval(environment);
+            return new MarcoContinuation(new MarcoApplication(Cast.toRunnable(operator), Cast.toList(second)), environment);
         } else {
             return this;
         }
@@ -98,5 +97,10 @@ public class MarcoPair extends MarcoObject implements MarcoList {
         } else {
             return Cast.toList(second).get(i - 1);
         }
+    }
+
+    @Override
+    public boolean isContinuation() {
+        return false;
     }
 }

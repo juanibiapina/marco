@@ -18,4 +18,9 @@ public abstract class MarcoNativeObject extends MarcoObject {
     public boolean isList() {
         return false;
     }
+
+    @Override
+    public boolean isContinuation() {
+        return false;
+    }
 }

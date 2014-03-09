@@ -12,7 +12,7 @@ public class MarcoQuotedForm extends MarcoObject {
     }
 
     @Override
-    public MarcoObject eval(Environment environment) {
+    public MarcoObject doEval(Environment environment) {
         return form;
     }
 
@@ -28,6 +28,11 @@ public class MarcoQuotedForm extends MarcoObject {
 
     @Override
     public boolean isList() {
+        return false;
+    }
+
+    @Override
+    public boolean isContinuation() {
         return false;
     }
 }

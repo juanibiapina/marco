@@ -13,7 +13,7 @@ public class MarcoSymbol extends MarcoObject {
     }
 
     @Override
-    public MarcoObject eval(Environment environment) {
+    public MarcoObject doEval(Environment environment) {
         return environment.lookUp(value);
     }
 
@@ -49,5 +49,10 @@ public class MarcoSymbol extends MarcoObject {
     @Override
     public String toString() {
         return "'" + value;
+    }
+
+    @Override
+    public boolean isContinuation() {
+        return false;
     }
 }

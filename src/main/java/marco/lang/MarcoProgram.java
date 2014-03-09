@@ -12,7 +12,7 @@ public class MarcoProgram extends MarcoObject {
         forms.add(form);
     }
 
-    public MarcoObject eval(Environment environment) {
+    public MarcoObject doEval(Environment environment) {
         MarcoObject result = null;
         for (MarcoObject form : forms) {
             result = form.eval(environment);
@@ -59,5 +59,10 @@ public class MarcoProgram extends MarcoObject {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public boolean isContinuation() {
+        return false;
     }
 }
