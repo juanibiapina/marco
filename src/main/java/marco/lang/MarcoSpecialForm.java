@@ -9,6 +9,6 @@ public abstract class MarcoSpecialForm extends MarcoRunnable {
 
     @Override
     public String typeName() {
-        return "Macro";
+        return "SpecialForm";
     }
 }
