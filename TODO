@@ -33,6 +33,5 @@
   - while
 
 - Optimizations
-  - Tail calls
   - Conversion from and to java lists
   - Avoid recursive calls on the java side
