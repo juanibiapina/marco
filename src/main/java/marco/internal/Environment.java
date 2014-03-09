@@ -71,7 +71,7 @@ public class Environment {
     private static void loadNativeBindings(Environment environment) {
         environment.def("function", new function());
         environment.def("function?", new MarcoFunction(environment, Arrays.asList("v"), new functionquestion()));
-        environment.def("if", new ifmacro());
+        environment.def("if", new if_specialform());
         environment.def("and", new and());
         environment.def("or", new or());
 
@@ -90,8 +90,8 @@ public class Environment {
 
         environment.def("parse", new MarcoFunction(environment, Arrays.asList("code"), new parse(Parser.instance())));
         environment.def("eval", new eval());
-        environment.def("do", new domacro());
-        environment.def("while", new whilemacro());
+        environment.def("do", new do_specialform());
+        environment.def("while", new while_specialform());
 
         environment.def("cons", new MarcoFunction(environment, Arrays.asList("first", "second"), new cons()));
         environment.def("first", new MarcoFunction(environment, Arrays.asList("pair"), new first()));

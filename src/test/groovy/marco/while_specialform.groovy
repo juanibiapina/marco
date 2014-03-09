@@ -1,8 +1,8 @@
-package marco.natives
+package marco
 
 import helpers.MarcoSpecification
 
-class while_macro extends MarcoSpecification {
+class while_specialform extends MarcoSpecification {
     def "simple case"() {
         given:
         eval(/ (var x 5) /)

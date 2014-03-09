@@ -2,11 +2,11 @@ package marco.lang.especialforms;
 
 import marco.internal.Environment;
 import marco.lang.MarcoList;
-import marco.lang.MarcoMacro;
+import marco.lang.MarcoSpecialForm;
 import marco.lang.MarcoObject;
 import marco.lang.contracts.Contract;
 
-public class quote extends MarcoMacro {
+public class quote extends MarcoSpecialForm {
     public quote() {
         super(new Contract(1));
     }

@@ -5,8 +5,8 @@ import marco.internal.Environment;
 import marco.lang.*;
 import marco.lang.contracts.Contract;
 
-public class whilemacro extends MarcoMacro {
-    public whilemacro() {
+public class while_specialform extends MarcoSpecialForm {
+    public while_specialform() {
         super(new Contract(2));
     }
 

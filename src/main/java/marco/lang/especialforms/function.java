@@ -7,7 +7,7 @@ import marco.lang.contracts.Contract;
 
 import java.util.List;
 
-public class function extends MarcoMacro {
+public class function extends MarcoSpecialForm {
     public function() {
         super(new Contract(2));
     }

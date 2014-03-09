@@ -4,12 +4,12 @@ import marco.internal.Cast;
 import marco.internal.Environment;
 import marco.internal.bindings.ImmutableBinding;
 import marco.lang.MarcoList;
-import marco.lang.MarcoMacro;
+import marco.lang.MarcoSpecialForm;
 import marco.lang.MarcoNil;
 import marco.lang.MarcoObject;
 import marco.lang.contracts.Contract;
 
-public class def extends MarcoMacro {
+public class def extends MarcoSpecialForm {
     public def() {
         super(new Contract(2));
     }

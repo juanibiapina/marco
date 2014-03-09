@@ -24,7 +24,6 @@
     - specially lists
   - Drop the generic exception
   - Type names
-  - Rename macros as special forms
 
 - Bugs
   - Usage of def and var inside 'do'

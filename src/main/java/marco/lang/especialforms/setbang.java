@@ -6,7 +6,7 @@ import marco.internal.bindings.Binding;
 import marco.lang.*;
 import marco.lang.contracts.Contract;
 
-public class setbang extends MarcoMacro {
+public class setbang extends MarcoSpecialForm {
     public setbang() {
         super(new Contract(2));
     }
