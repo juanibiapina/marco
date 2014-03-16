@@ -59,4 +59,12 @@ public class Cast {
             throw new TypeError(MarcoString.class, value);
         }
     }
+
+    public static MarcoDataInstance toDataInstance(MarcoObject value) {
+        if (value instanceof MarcoDataInstance) {
+            return (MarcoDataInstance) value;
+        } else {
+            throw new TypeError(MarcoDataInstance.class, value);
+        }
+    }
 }

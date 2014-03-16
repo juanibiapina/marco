@@ -110,6 +110,8 @@ public class Environment {
         environment.def("*", new BinaryOperator(environment, new multiplication()));
         environment.def("/", new BinaryOperator(environment, new division()));
         environment.def("%", new BinaryOperator(environment, new remainder()));
+
+        environment.def("data", new data());
     }
 
     public Environment filter(List<String> vars) {

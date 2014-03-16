@@ -3,10 +3,11 @@ grammar Marco;
 program: form* ;
 
 form
-    : literal      # FormLiteral
-    | literal_list # FormLiteralList
-    | list         # FormList
-    | quoted_form  # FormQuotedForm
+    : literal       # FormLiteral
+    | nested_access # FormNestedAccess
+    | literal_list  # FormLiteralList
+    | list          # FormList
+    | quoted_form   # FormQuotedForm
     ;
 
 list: '(' form* ')' ;
@@ -14,9 +15,13 @@ list: '(' form* ')' ;
 quoted_form: '\'' form ;
 
 literal
-    : SYMBOL   # Symbol
-    | STRING   # String
-    | NUMBER   # Number
+    : SYMBOL     # Symbol
+    | STRING     # String
+    | NUMBER     # Number
+    ;
+
+nested_access
+    : SYMBOL ('.' SYMBOL)+    # NestedAccess
     ;
 
 literal_list: '[' form* ']' ;

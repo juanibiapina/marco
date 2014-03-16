@@ -15,4 +15,12 @@ class Symbols extends MarcoSpecification {
         expect:
         new MarcoSymbol("x").toString() == "'x"
     }
+
+    def "with numbers"() {
+        when:
+        eval(/ (def value1 "haha") /)
+
+        then:
+        eval(/ value1 /) == eval(/ "haha" /)
+    }
 }

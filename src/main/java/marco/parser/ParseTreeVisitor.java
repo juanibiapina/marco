@@ -5,6 +5,7 @@ import marco.lang.*;
 import marco.parser.antlr.MarcoBaseVisitor;
 import marco.parser.antlr.MarcoParser;
 import org.antlr.v4.runtime.misc.NotNull;
+import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -51,6 +52,11 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
     }
 
     @Override
+    public MarcoObject visitFormNestedAccess(@NotNull MarcoParser.FormNestedAccessContext ctx) {
+        return visit(ctx.nested_access());
+    }
+
+    @Override
     public MarcoObject visitFormLiteral(@NotNull MarcoParser.FormLiteralContext ctx) {
         return visit(ctx.literal());
     }
@@ -63,6 +69,15 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
     @Override
     public MarcoObject visitFormLiteralList(@NotNull MarcoParser.FormLiteralListContext ctx) {
         return visit(ctx.literal_list());
+    }
+
+    @Override
+    public MarcoNestedAccess visitNestedAccess(@NotNull MarcoParser.NestedAccessContext ctx) {
+        List<MarcoSymbol> symbols = new ArrayList<>();
+        for (TerminalNode node : ctx.SYMBOL()) {
+            symbols.add(new MarcoSymbol(node.getText()));
+        }
+        return new MarcoNestedAccess(symbols);
     }
 
     @Override
