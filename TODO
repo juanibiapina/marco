@@ -1,15 +1,18 @@
 - Modules
+  - include
+  - require
+  - load
 
 - Numbers
   - Floating point
   - Fractions
-  - Scientific notation ?
+  - Scientific notation
 
-- Strings as lists ?
+- Blocks
 
-- Pair syntax ?
+- Data structures
 
-- Literal list syntax ?
+- Type Checking
 
 - Error messages
   - Line number information
@@ -31,7 +34,3 @@
 - Remove or Rework
   - do
   - while
-
-- Optimizations
-  - Conversion from and to java lists
-  - Avoid recursive calls on the java side
