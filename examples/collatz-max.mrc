@@ -6,6 +6,6 @@
                                      (collatz (/ n 2))
                                      (collatz (+ (* 3 n) 1)))))))
 
-(def max-n 800) // 900 causes stackoverflow
+(def max-n 2500) // 2600 causes stackoverflow
 
 (print (list-max (map length (map collatz (range 1 (+ max-n 1))))))
