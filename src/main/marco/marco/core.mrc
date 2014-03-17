@@ -21,3 +21,10 @@
              (if (= v1 v2)
                  nil
                  (cons v1 (range (+ v1 1) v2)))))
+
+(def filter (function (predicate list)
+              (if (nil? list)
+                  nil
+                  (if (predicate (head list))
+                      (cons (head list) (filter predicate (tail list)))
+                      (filter predicate (tail list))))))

@@ -10,7 +10,18 @@ abstract class MarcoSpecification extends Specification {
     def environment = Environment.initial()
     def parser = Parser.instance()
 
+
     def MarcoObject eval(String code) {
         parser.parse(code).eval(environment)
+    }
+
+    def classpathFile(content) {
+        def file = File.createTempFile("tempFile", ".mrc")
+        file.write(content)
+
+        def loader = this.class.classLoader
+        loader.addURL(file.parentFile.toURI().toURL())
+
+        file.name
     }
 }

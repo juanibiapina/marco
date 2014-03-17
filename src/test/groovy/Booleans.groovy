@@ -51,4 +51,11 @@ class Booleans extends MarcoSpecification {
         Cast.toBoolean(number0) == MarcoBoolean.TRUE
         Cast.toBoolean(number1) == MarcoBoolean.TRUE
     }
+
+    def "not"() {
+        expect:
+        eval(/ (not true) /) == eval(/ false /)
+        eval(/ (not false) /) == eval(/ true /)
+        eval(/ (not 1) /) == eval(/ false /)
+    }
 }

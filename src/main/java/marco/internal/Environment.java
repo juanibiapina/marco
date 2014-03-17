@@ -7,6 +7,7 @@ import marco.lang.*;
 import marco.lang.exceptions.BindingError;
 import marco.lang.exceptions.LookUpError;
 import marco.lang.functions.*;
+import marco.lang.functions.booleans._not;
 import marco.lang.functions.function.functionquestion;
 import marco.lang.functions.list.length;
 import marco.lang.functions.list.listquestion;
@@ -80,6 +81,7 @@ public class Environment {
         environment.def("nil", MarcoNil.NIL);
         environment.def("true", MarcoBoolean.TRUE);
         environment.def("false", MarcoBoolean.FALSE);
+        environment.def("not", new MarcoFunction(environment, Arrays.asList("e"), new _not()));
 
         environment.def("def", new def());
         environment.def("var", new var());
@@ -114,6 +116,10 @@ public class Environment {
         environment.def("data", new data());
 
         environment.def("equal?", new MarcoFunction(environment, Arrays.asList("e1", "e2"), new equal_question()));
+
+        environment.def("include", new include());
+
+        environment.def("exit", new exit());
     }
 
     public Environment filter(List<String> vars) {

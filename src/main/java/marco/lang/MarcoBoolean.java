@@ -32,4 +32,8 @@ public class MarcoBoolean extends MarcoValue {
             return FALSE;
         }
     }
+
+    public MarcoObject not() {
+        return from(!value);
+    }
 }
