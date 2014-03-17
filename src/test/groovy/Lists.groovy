@@ -29,6 +29,11 @@ class Lists extends MarcoSpecification {
         eval(/ [1 2 3] /) == eval(/ (cons 1 (cons 2 (cons 3 nil))) /)
     }
 
+    def "literal lists evaluate their inner elements"() {
+        expect:
+        eval(/ [1 ((function () true))] /) == eval(/ (cons 1 (cons true nil)) /)
+    }
+
     def "constructor"() {
         expect:
         eval(/ (list? '(1 2)) /) == eval(/ true /)
