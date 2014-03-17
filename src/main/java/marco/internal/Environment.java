@@ -112,6 +112,8 @@ public class Environment {
         environment.def("%", new BinaryOperator(environment, new remainder()));
 
         environment.def("data", new data());
+
+        environment.def("equal?", new MarcoFunction(environment, Arrays.asList("e1", "e2"), new equal_question()));
     }
 
     public Environment filter(List<String> vars) {
