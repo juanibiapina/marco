@@ -1,22 +1,25 @@
 package marco.lang;
 
+import marco.internal.Cast;
 import marco.internal.Environment;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.List;
 
 public class MarcoApplication extends MarcoObject {
-    private MarcoRunnable operator;
-    private MarcoList arguments;
+    private MarcoObject list;
 
-    public MarcoApplication(MarcoRunnable operator, MarcoList arguments) {
-        this.operator = operator;
-        this.arguments = arguments;
+    public MarcoApplication(MarcoObject list) {
+        this.list = list;
     }
 
     @Override
     public MarcoObject doEval(Environment environment) {
-        return operator.invoke(environment, arguments);
+        MarcoList marcoList = (MarcoList) list;
+        MarcoObject head = marcoList.getHead();
+        MarcoList tail = marcoList.getTail();
+
+        MarcoObject operator = head.eval(environment);
+        return new MarcoContinuation(new MarcoInvocation(Cast.toRunnable(operator), tail), environment);
     }
 
     @Override
@@ -26,7 +29,7 @@ public class MarcoApplication extends MarcoObject {
 
     @Override
     public List<String> freeVariables() {
-        throw new NotImplementedException();
+        return list.freeVariables();
     }
 
     @Override
@@ -37,5 +40,15 @@ public class MarcoApplication extends MarcoObject {
     @Override
     public boolean isContinuation() {
         return false;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof MarcoApplication) {
+            MarcoApplication other = (MarcoApplication) obj;
+            return list.equals(other.list);
+        } else {
+            return false;
+        }
     }
 }

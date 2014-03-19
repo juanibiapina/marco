@@ -24,6 +24,20 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
     }
 
     @Override
+    public MarcoApplication visitApplication(@NotNull MarcoParser.ApplicationContext ctx) {
+        List<MarcoObject> rawList = new ArrayList<>();
+        for (MarcoParser.FormContext formContext : ctx.form()) {
+            rawList.add(visit(formContext));
+        }
+        return new MarcoApplication(ListHelper.fromJavaList(rawList));
+    }
+
+    @Override
+    public MarcoObject visitQuoted_form(@NotNull MarcoParser.Quoted_formContext ctx) {
+        return new MarcoQuotedForm(visit(ctx.form()));
+    }
+
+    @Override
     public MarcoObject visitList(@NotNull MarcoParser.ListContext ctx) {
         List<MarcoObject> rawList = new ArrayList<>();
         for (MarcoParser.FormContext formContext : ctx.form()) {
@@ -33,22 +47,8 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
     }
 
     @Override
-    public MarcoObject visitQuoted_form(@NotNull MarcoParser.Quoted_formContext ctx) {
-        return new MarcoQuotedForm(visit(ctx.form()));
-    }
-
-    @Override
-    public MarcoObject visitLiteral_list(@NotNull MarcoParser.Literal_listContext ctx) {
-        List<MarcoObject> rawList = new ArrayList<>();
-        for (MarcoParser.FormContext formContext : ctx.form()) {
-            rawList.add(visit(formContext));
-        }
-        return new MarcoLiteralList((MarcoList) ListHelper.fromJavaList(rawList));
-    }
-
-    @Override
-    public MarcoObject visitFormList(@NotNull MarcoParser.FormListContext ctx) {
-        return visit(ctx.list());
+    public MarcoObject visitFormApplication(@NotNull MarcoParser.FormApplicationContext ctx) {
+        return visit(ctx.application());
     }
 
     @Override
@@ -67,8 +67,8 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
     }
 
     @Override
-    public MarcoObject visitFormLiteralList(@NotNull MarcoParser.FormLiteralListContext ctx) {
-        return visit(ctx.literal_list());
+    public MarcoObject visitFormList(@NotNull MarcoParser.FormListContext ctx) {
+        return visit(ctx.list());
     }
 
     @Override

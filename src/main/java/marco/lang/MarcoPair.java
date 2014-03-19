@@ -2,9 +2,9 @@ package marco.lang;
 
 import marco.internal.Cast;
 import marco.internal.Environment;
+import marco.internal.ListHelper;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class MarcoPair extends MarcoObject implements MarcoList {
@@ -29,14 +29,12 @@ public class MarcoPair extends MarcoObject implements MarcoList {
 
     @Override
     public List<String> freeVariables() {
-        if (isList()) {
-            List<String> result = new ArrayList<>();
-            result.addAll(first.freeVariables());
-            result.addAll(second.freeVariables());
-            return result;
-        } else {
-            return Collections.EMPTY_LIST;
-        }
+        List<String> result = new ArrayList<>();
+
+        result.addAll(first.freeVariables());
+        result.addAll(second.freeVariables());
+
+        return result;
     }
 
     @Override
@@ -57,8 +55,13 @@ public class MarcoPair extends MarcoObject implements MarcoList {
     @Override
     public MarcoObject doEval(Environment environment) {
         if (isList()) {
-            MarcoObject operator = first.eval(environment);
-            return new MarcoContinuation(new MarcoApplication(Cast.toRunnable(operator), Cast.toList(second)), environment);
+            List<MarcoObject> evaluatedElements = new ArrayList<>();
+
+            for (int i = 0; i < length(); i++) {
+                evaluatedElements.add(get(i).eval(environment));
+            }
+
+            return ListHelper.fromJavaList(evaluatedElements);
         } else {
             return this;
         }
@@ -97,6 +100,16 @@ public class MarcoPair extends MarcoObject implements MarcoList {
         } else {
             return Cast.toList(second).get(i - 1);
         }
+    }
+
+    @Override
+    public MarcoObject getHead() {
+        return first;
+    }
+
+    @Override
+    public MarcoList getTail() {
+        return Cast.toList(second);
     }
 
     @Override

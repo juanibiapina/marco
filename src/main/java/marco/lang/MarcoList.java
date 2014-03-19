@@ -8,4 +8,8 @@ public interface MarcoList {
     int length();
 
     MarcoObject get(int i);
+
+    MarcoObject getHead();
+
+    MarcoList getTail();
 }

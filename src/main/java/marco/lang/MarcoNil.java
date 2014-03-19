@@ -46,6 +46,16 @@ public class MarcoNil extends MarcoValue implements MarcoList {
     }
 
     @Override
+    public MarcoObject getHead() {
+        throw new MarcoException("head called on nil");
+    }
+
+    @Override
+    public MarcoList getTail() {
+        throw new MarcoException("tail called on nil");
+    }
+
+    @Override
     public boolean isList() {
         return true;
     }

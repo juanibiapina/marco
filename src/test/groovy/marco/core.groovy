@@ -4,12 +4,12 @@ import helpers.MarcoSpecification
 class core extends MarcoSpecification {
     def "head"() {
         expect:
-        eval(/ (head '(1 2 3 4)) /) == eval(/ 1 /)
+        eval(/ (head [1 2 3 4]) /) == eval(/ 1 /)
     }
 
     def "tail"() {
         expect:
-        eval(/ (tail '(1 2 3)) /) == eval(/ '(2 3) /)
+        eval(/ (tail [1 2 3]) /) == eval(/ [2 3] /)
     }
 
     def "or"() {
@@ -20,7 +20,7 @@ class core extends MarcoSpecification {
         eval(/ (or "string" true) /) == eval(/ "string" /)
         eval(/ (or 0 5) /) == eval(/ 0 /)
         eval(/ (or "" "s") /) == eval(/ "" /)
-        eval(/ (or '(1 2) true) /) == eval(/ '(1 2) /)
+        eval(/ (or [1 2] true) /) == eval(/ [1 2] /)
 
         eval(/ (or true (error "never happens")) /) == eval(/ true /)
     }
@@ -35,6 +35,6 @@ class core extends MarcoSpecification {
 
     def "map"() {
         expect:
-        eval(/ (map (function (x) (+ x 1)) '(1 2 3)) /) == eval(/ '(2 3 4) /)
+        eval(/ (map (function [x] (+ x 1)) [1 2 3]) /) == eval(/ [2 3 4] /)
     }
 }

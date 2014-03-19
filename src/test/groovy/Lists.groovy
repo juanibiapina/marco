@@ -3,24 +3,12 @@ import helpers.MarcoSpecification
 class Lists extends MarcoSpecification {
     def "first"() {
         expect:
-        eval(/ (first '(1 2)) /) == eval(/ 1 /)
+        eval(/ (first [1 2]) /) == eval(/ 1 /)
     }
 
     def "second"() {
         expect:
-        eval(/ (first (second (quote (1 2 3)))) /) == eval(/ 2 /)
-    }
-
-    def "list-max"() {
-        expect:
-        eval(/ (list-max '(5 4 3 2 1)) /) == eval(/ 5 /)
-        eval(/ (list-max '(1 2 3 4)) /) == eval(/ 4 /)
-        eval(/ (list-max '(2 4 1 3)) /) == eval(/ 4 /)
-    }
-
-    def "range"() {
-        expect:
-        eval(/ (range 1 10) /) == eval(/ '(1 2 3 4 5 6 7 8 9) /)
+        eval(/ (first (second [1 2 3])) /) == eval(/ 2 /)
     }
 
     def "literal lists"() {
@@ -31,12 +19,12 @@ class Lists extends MarcoSpecification {
 
     def "literal lists evaluate their inner elements"() {
         expect:
-        eval(/ [1 ((function () true))] /) == eval(/ (cons 1 (cons true nil)) /)
+        eval(/ [1 ((function [] true))] /) == eval(/ (cons 1 (cons true nil)) /)
     }
 
     def "constructor"() {
         expect:
-        eval(/ (list? '(1 2)) /) == eval(/ true /)
+        eval(/ (list? [1 2]) /) == eval(/ true /)
         eval(/ (list? (cons 1 2)) /) == eval(/ false /)
         eval(/ (list? (cons 1 nil)) /) == eval(/ true /)
         eval(/ (list? (cons 1 (cons 2 nil))) /) == eval(/ true /)
@@ -44,15 +32,26 @@ class Lists extends MarcoSpecification {
         eval(/ (list? 1) /) == eval(/ false /)
         eval(/ (list? "string") /) == eval(/ false /)
         eval(/ (list? nil) /) == eval(/ true /)
-        eval(/ (list? (quote (1 2 3))) /) == eval(/ true /)
     }
 
     def "length"() {
         expect:
         eval(/ (length nil) /) == eval(/ 0 /)
-        eval(/ (length '()) /) == eval(/ 0 /)
-        eval(/ (length '("lol")) /) == eval(/ 1 /)
-        eval(/ (length '(1 2 3)) /) == eval(/ 3 /)
-        eval(/ (length '(1 2 3 "house")) /) == eval(/ 4 /)
+        eval(/ (length []) /) == eval(/ 0 /)
+        eval(/ (length ["lol"]) /) == eval(/ 1 /)
+        eval(/ (length [1 2 3]) /) == eval(/ 3 /)
+        eval(/ (length [1 2 3 "house"]) /) == eval(/ 4 /)
+    }
+
+    def "list-max"() {
+        expect:
+        eval(/ (list-max [5 4 3 2 1]) /) == eval(/ 5 /)
+        eval(/ (list-max [1 2 3 4]) /) == eval(/ 4 /)
+        eval(/ (list-max [2 4 1 3]) /) == eval(/ 4 /)
+    }
+
+    def "range"() {
+        expect:
+        eval(/ (range 1 10) /) == eval(/ [1 2 3 4 5 6 7 8 9] /)
     }
 }

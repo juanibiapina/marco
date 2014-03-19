@@ -5,12 +5,12 @@ program: form* ;
 form
     : literal       # FormLiteral
     | nested_access # FormNestedAccess
-    | literal_list  # FormLiteralList
     | list          # FormList
+    | application   # FormApplication
     | quoted_form   # FormQuotedForm
     ;
 
-list: '(' form* ')' ;
+application: '(' form* ')' ;
 
 quoted_form: '\'' form ;
 
@@ -24,7 +24,7 @@ nested_access
     : SYMBOL ('.' SYMBOL)+    # NestedAccess
     ;
 
-literal_list: '[' form* ']' ;
+list: '[' form* ']' ;
 
 STRING : '"' ( ~'"' | '\\' '"' )* '"' ;
 
