@@ -15,7 +15,7 @@ public class parse extends MarcoNativeObject {
     }
 
     @Override
-    public MarcoObject doEval(Environment environment) {
+    public MarcoObject doEval(Environment environment, Environment global) {
         MarcoString code = Cast.toString(environment.lookUp("code"));
 
         return parser.parse(code.getValue());

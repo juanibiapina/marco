@@ -1,6 +1,7 @@
 package marco.lang;
 
 import marco.internal.Environment;
+import marco.internal.bindings.ImmutableBinding;
 import marco.internal.bindings.ParameterBinding;
 import marco.lang.contracts.Contract;
 
@@ -20,6 +21,7 @@ public class MarcoFunction extends MarcoRunnable {
         freeVariables.removeAll(parameters);
 
         this.closureEnv = environment.filter(freeVariables);
+        this.closureEnv.forceAdd(new ImmutableBinding("recur", this));
         this.parameters = parameters;
         this.body = body;
     }

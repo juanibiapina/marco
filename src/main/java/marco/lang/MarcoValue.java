@@ -7,7 +7,7 @@ import java.util.List;
 
 public abstract class MarcoValue extends MarcoObject {
     @Override
-    public MarcoObject doEval(Environment environment) {
+    public MarcoObject doEval(Environment environment, Environment global) {
         return this;
     }
 

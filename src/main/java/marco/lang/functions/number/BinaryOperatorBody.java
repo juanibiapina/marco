@@ -8,7 +8,7 @@ import marco.lang.MarcoObject;
 
 public abstract class BinaryOperatorBody extends MarcoNativeObject {
     @Override
-    public MarcoObject doEval(Environment environment) {
+    public MarcoObject doEval(Environment environment, Environment global) {
         MarcoNumber v1 = Cast.toNumber(environment.lookUp("v1"));
         MarcoNumber v2 = Cast.toNumber(environment.lookUp("v2"));
 

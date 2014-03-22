@@ -12,7 +12,7 @@ public class MarcoQuotedForm extends MarcoObject {
     }
 
     @Override
-    public MarcoObject doEval(Environment environment) {
+    public MarcoObject doEval(Environment environment, Environment global) {
         return form;
     }
 

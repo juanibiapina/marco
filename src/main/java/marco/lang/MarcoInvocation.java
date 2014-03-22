@@ -15,7 +15,7 @@ public class MarcoInvocation extends MarcoObject {
     }
 
     @Override
-    protected MarcoObject doEval(Environment environment) {
+    protected MarcoObject doEval(Environment environment, Environment global) {
         return operator.invoke(environment, arguments);
     }
 

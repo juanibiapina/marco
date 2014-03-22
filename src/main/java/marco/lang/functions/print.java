@@ -7,7 +7,7 @@ import marco.lang.MarcoObject;
 
 public class print extends MarcoNativeObject {
     @Override
-    public MarcoObject doEval(Environment environment) {
+    public MarcoObject doEval(Environment environment, Environment global) {
         MarcoObject v = environment.lookUp("e");
 
         System.out.println(v);

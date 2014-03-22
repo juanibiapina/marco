@@ -14,7 +14,7 @@ public class MarcoNestedAccess extends MarcoObject {
     }
 
     @Override
-    protected MarcoObject doEval(Environment environment) {
+    protected MarcoObject doEval(Environment environment, Environment global) {
         MarcoDataInstance data = Cast.toDataInstance(symbols.get(0).eval(environment));
 
         MarcoObject result = data.getField(symbols.get(1));

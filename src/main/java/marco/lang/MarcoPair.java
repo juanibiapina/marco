@@ -53,7 +53,7 @@ public class MarcoPair extends MarcoObject implements MarcoList {
     }
 
     @Override
-    public MarcoObject doEval(Environment environment) {
+    public MarcoObject doEval(Environment environment, Environment global) {
         if (isList()) {
             List<MarcoObject> evaluatedElements = new ArrayList<>();
 

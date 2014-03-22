@@ -6,14 +6,14 @@ import java.util.List;
 
 public abstract class MarcoObject {
     public MarcoObject eval(Environment environment) {
-        MarcoObject result = doEval(environment);
+        MarcoObject result = doEval(environment, environment);
         while (result.isContinuation()) {
-            result = result.doEval(environment);
+            result = result.doEval(environment, environment);
         }
         return result;
     }
 
-    protected abstract MarcoObject doEval(Environment environment);
+    protected abstract MarcoObject doEval(Environment environment, Environment global);
 
     @Override
     public String toString() {

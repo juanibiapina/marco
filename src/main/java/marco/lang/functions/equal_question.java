@@ -7,7 +7,7 @@ import marco.lang.MarcoObject;
 
 public class equal_question extends MarcoNativeObject {
     @Override
-    protected MarcoObject doEval(Environment environment) {
+    protected MarcoObject doEval(Environment environment, Environment global) {
         MarcoObject e1 = environment.lookUp("e1");
         MarcoObject e2 = environment.lookUp("e2");
 

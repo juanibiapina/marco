@@ -15,8 +15,8 @@ public class MarcoContinuation extends MarcoObject {
     }
 
     @Override
-    public MarcoObject doEval(Environment environment) {
-        return value.doEval(closure);
+    public MarcoObject doEval(Environment environment, Environment global) {
+        return value.doEval(closure, global);
     }
 
     @Override

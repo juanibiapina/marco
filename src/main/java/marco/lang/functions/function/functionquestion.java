@@ -8,7 +8,7 @@ import marco.lang.MarcoObject;
 
 public class functionquestion extends MarcoNativeObject {
     @Override
-    public MarcoObject doEval(Environment environment) {
+    public MarcoObject doEval(Environment environment, Environment global) {
         MarcoObject v = environment.lookUp("v");
 
         return MarcoBoolean.from(v instanceof MarcoFunction);

@@ -11,7 +11,7 @@ class Functions extends MarcoSpecification {
         expect:
         eval(/ (function? (function [] 1)) /) == eval(/ true /)
         eval(/ (function? 1) /) == eval(/ false /)
-        eval(/ (function? def) /) == eval(/ false /)
+        eval(/ (function? def) /) == eval(/ true /)
     }
 
     def "zero argument function"() {
