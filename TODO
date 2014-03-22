@@ -2,6 +2,16 @@
   - require
   - load
 
+- Blocks
+  - Invocation
+    - Lexically
+    - With a blank environment
+
+- Environments
+  - Get current
+  - Create
+  - Add bindings
+
 - Numbers
   - Floating point
   - Fractions
