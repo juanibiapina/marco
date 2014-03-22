@@ -4,10 +4,11 @@ import marco.internal.bindings.Binding;
 import marco.internal.bindings.EmptyBinding;
 import marco.internal.bindings.ImmutableBinding;
 import marco.lang.*;
+import marco.lang.especialforms.*;
 import marco.lang.exceptions.BindingError;
 import marco.lang.exceptions.LookUpError;
-import marco.lang.functions.*;
 import marco.lang.functions.booleans._not;
+import marco.lang.functions.*;
 import marco.lang.functions.function.functionquestion;
 import marco.lang.functions.list.length;
 import marco.lang.functions.list.listquestion;
@@ -17,7 +18,6 @@ import marco.lang.functions.pair.cons;
 import marco.lang.functions.pair.first;
 import marco.lang.functions.pair.pairquestion;
 import marco.lang.functions.pair.second;
-import marco.lang.especialforms.*;
 import marco.parser.Parser;
 
 import java.util.Arrays;
@@ -27,8 +27,10 @@ import java.util.Map;
 
 public class Environment {
     private Map<String, Binding> bindings = new HashMap<>();
+    private Environment enclosing;
 
     public Environment() {
+        enclosing = this;
     }
 
     public void def(String var, MarcoObject value) {
@@ -156,5 +158,13 @@ public class Environment {
         } else {
             bindings.put(name, binding);
         }
+    }
+
+    public Environment getEnclosing() {
+        return enclosing;
+    }
+
+    public void setEnclosing(Environment enclosing) {
+        this.enclosing = enclosing;
     }
 }

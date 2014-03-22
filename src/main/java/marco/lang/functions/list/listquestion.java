@@ -7,7 +7,7 @@ import marco.lang.MarcoObject;
 
 public class listquestion extends MarcoNativeObject {
     @Override
-    public MarcoObject doEval(Environment environment, Environment global) {
+    public MarcoObject doEval(Environment environment) {
         MarcoObject value = environment.lookUp("value");
 
         return MarcoBoolean.from(value.isList());

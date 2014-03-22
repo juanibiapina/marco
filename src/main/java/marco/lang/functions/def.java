@@ -10,12 +10,12 @@ import marco.lang.MarcoSymbol;
 
 public class def extends MarcoNativeObject {
     @Override
-    protected MarcoObject doEval(Environment environment, Environment global) {
+    protected MarcoObject doEval(Environment environment) {
         MarcoSymbol name = Cast.toSymbol(environment.lookUp("name"));
         MarcoObject value = environment.lookUp("value");
 
         ImmutableBinding binding = new ImmutableBinding(name.getValue(), value);
-        global.add(binding);
+        environment.getEnclosing().add(binding);
 
         return MarcoNil.NIL;
     }

@@ -8,7 +8,7 @@ import marco.lang.MarcoPair;
 
 public class second extends MarcoNativeObject {
     @Override
-    public MarcoObject doEval(Environment environment, Environment global) {
+    public MarcoObject doEval(Environment environment) {
         MarcoPair pair = Cast.toPair(environment.lookUp("pair"));
 
         return pair.getSecond();

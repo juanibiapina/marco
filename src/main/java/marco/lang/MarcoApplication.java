@@ -13,7 +13,7 @@ public class MarcoApplication extends MarcoObject {
     }
 
     @Override
-    public MarcoObject doEval(Environment environment, Environment global) {
+    public MarcoObject doEval(Environment environment) {
         MarcoList marcoList = (MarcoList) list;
         MarcoObject head = marcoList.getHead();
         MarcoList tail = marcoList.getTail();

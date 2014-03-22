@@ -7,7 +7,7 @@ import marco.lang.MarcoPair;
 
 public class cons extends MarcoNativeObject {
     @Override
-    public MarcoObject doEval(Environment environment, Environment global) {
+    public MarcoObject doEval(Environment environment) {
         MarcoObject first = environment.lookUp("first");
         MarcoObject second = environment.lookUp("second");
 

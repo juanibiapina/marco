@@ -9,7 +9,7 @@ import marco.lang.MarcoObject;
 
 public class data extends MarcoNativeObject {
     @Override
-    protected MarcoObject doEval(Environment environment, Environment global) {
+    protected MarcoObject doEval(Environment environment) {
         MarcoList fields = Cast.toList(environment.lookUp("fields"));
 
         return new MarcoData(fields);

@@ -15,7 +15,7 @@ public class MarcoLiteralList extends MarcoObject {
     }
 
     @Override
-    protected MarcoObject doEval(Environment environment, Environment global) {
+    protected MarcoObject doEval(Environment environment) {
         List<MarcoObject> evaluatedElements = new ArrayList<>();
 
         for (int i = 0; i < list.length(); i++) {

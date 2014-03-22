@@ -8,7 +8,7 @@ import marco.lang.MarcoObject;
 
 public class _not extends MarcoNativeObject {
     @Override
-    protected MarcoObject doEval(Environment environment, Environment global) {
+    protected MarcoObject doEval(Environment environment) {
         MarcoObject v = environment.lookUp("e");
 
         MarcoBoolean b = Cast.toBoolean(v);
