@@ -25,9 +25,4 @@ class Pairs extends MarcoSpecification {
         eval(/ (pair? (cons (cons 1 2) (cons nil nil))) /) == eval(/ true /)
         eval(/ (pair? (cons 1 nil)) /) == eval(/ true /)
     }
-
-    def "evaluate to themselves"() {
-        expect:
-        eval(/ (eval (cons 1 2)) /) == eval(/ (cons 1 2) /)
-    }
 }

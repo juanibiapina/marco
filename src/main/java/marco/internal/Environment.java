@@ -82,8 +82,6 @@ public class Environment {
         environment.def("and", new and());
         environment.def("or", new or());
 
-        environment.def("quote", new quote());
-
         environment.def("nil", MarcoNil.NIL);
         environment.def("true", MarcoBoolean.TRUE);
         environment.def("false", MarcoBoolean.FALSE);
@@ -96,7 +94,6 @@ public class Environment {
 
         environment.def("print", new MarcoFunction(environment, Arrays.asList("e"), new print()));
 
-        environment.def("eval", new eval());
         environment.def("do", new do_specialform());
         environment.def("while", new while_specialform());
 
