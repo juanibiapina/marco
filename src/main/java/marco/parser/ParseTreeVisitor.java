@@ -86,6 +86,11 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
     }
 
     @Override
+    public MarcoSymbol visitSymbol(@NotNull MarcoParser.SymbolContext ctx) {
+        return new MarcoSymbol(ctx.getText().substring(1));
+    }
+
+    @Override
     public MarcoString visitString(@NotNull MarcoParser.StringContext ctx) {
         return new MarcoString(ctx.getText().substring(1, ctx.getText().length() - 1));
     }

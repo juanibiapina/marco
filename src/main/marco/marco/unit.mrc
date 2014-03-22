@@ -3,14 +3,14 @@
 
 (def test-case-result (data [name result]))
 
-(def print-results (function [result]
+(def print-results (function [:result]
                      (print result.name)))
 
-(def run-test-case (function [test-case]
+(def run-test-case (function [:test-case]
     (test-case-result test-case.name (test-case.runnable))))
 
-(def run-tests (function [group]
-    (let [failed-results (filter (function [test-case-result]
+(def run-tests (function [:group]
+    (let [failed-results (filter (function [:test-case-result]
                                    (not test-case-result.result))
                                  (map run-test-case group.tests))]
       (do [

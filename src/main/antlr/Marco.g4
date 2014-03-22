@@ -16,6 +16,7 @@ quoted_form: '\'' form ;
 
 literal
     : NAME       # Name
+    | SYMBOL     # Symbol
     | STRING     # String
     | NUMBER     # Number
     ;
@@ -29,6 +30,8 @@ list: '[' form* ']' ;
 STRING : '"' ( ~'"' | '\\' '"' )* '"' ;
 
 NUMBER : '-'? [0-9]+ ;
+
+SYMBOL : ':' NAME ;
 
 NAME: SYMBOL_HEAD SYMBOL_REST* ;
 

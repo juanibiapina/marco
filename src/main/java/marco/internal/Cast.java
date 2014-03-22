@@ -67,4 +67,12 @@ public class Cast {
             throw new TypeError(MarcoDataInstance.class, value);
         }
     }
+
+    public static MarcoSymbol toSymbol(MarcoObject value) {
+        if (value instanceof MarcoSymbol) {
+            return (MarcoSymbol) value;
+        } else {
+            throw new TypeError(MarcoSymbol.class, value);
+        }
+    }
 }

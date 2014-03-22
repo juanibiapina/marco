@@ -54,7 +54,7 @@ class Mutation extends MarcoSpecification {
     def "parameters cannot be mutated"() {
         given:
         eval(/ (var x 1) /)
-        eval(/ (def f (function [x] (set! x 2))) /)
+        eval(/ (def f (function [:x] (set! x 2))) /)
 
         when:
         eval(/ (f 3) /)

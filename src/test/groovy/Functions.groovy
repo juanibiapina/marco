@@ -1,7 +1,7 @@
 import helpers.MarcoSpecification
 import marco.lang.MarcoList
 import marco.lang.MarcoNumber
-import marco.lang.MarcoName
+import marco.lang.MarcoSymbol
 import marco.lang.exceptions.ContractViolation
 import marco.lang.exceptions.LookUpError
 import marco.lang.exceptions.TypeError
@@ -24,7 +24,7 @@ class Functions extends MarcoSpecification {
 
     def "takes 1 parameter and returns it"() {
         when:
-        eval(/ (def f (function [x] x)) /)
+        eval(/ (def f (function [:x] x)) /)
 
         then:
         eval(/ (f 42) /) == new MarcoNumber(42)
@@ -32,7 +32,7 @@ class Functions extends MarcoSpecification {
 
     def "takes 2 parameters and returns the second"() {
         when:
-        eval(/ (def f (function [x y] y)) /)
+        eval(/ (def f (function [:x :y] y)) /)
 
         then:
         eval(/ (f 3 4) /) == new MarcoNumber(4)
@@ -41,7 +41,7 @@ class Functions extends MarcoSpecification {
     def "parameters shadow previous bindings"() {
         when:
         eval(/ (def x 1) /)
-        eval(/ (def f (function [x] x)) /)
+        eval(/ (def f (function [:x] x)) /)
 
         then:
         eval(/ (f 2) /) == new MarcoNumber(2)
@@ -50,7 +50,7 @@ class Functions extends MarcoSpecification {
     def "previous environment is available to function body"() {
         when:
         eval(/ (def p 5) /)
-        eval(/ (def f (function [x] p)) /)
+        eval(/ (def f (function [:x] p)) /)
 
         then:
         eval(/ (f 3) /) == new MarcoNumber(5)
@@ -80,11 +80,11 @@ class Functions extends MarcoSpecification {
 
     def "error when arguments aren't symbols"() {
         when:
-        eval(/ (def f (function [x y 1] x)) /)
+        eval(/ (def f (function [:x :y 1] x)) /)
 
         then:
         TypeError e = thrown()
-        e.expected == MarcoName
+        e.expected == MarcoSymbol
         e.actual == new MarcoNumber(1)
     }
 
@@ -100,7 +100,7 @@ class Functions extends MarcoSpecification {
 
     def "error when defining a function with too many arguments"() {
         when:
-        eval(/ (def f (function (x y) x y)) /)
+        eval(/ (def f (function (:x :y) x y)) /)
 
         then:
         ContractViolation e = thrown()
@@ -110,7 +110,7 @@ class Functions extends MarcoSpecification {
 
     def "call with too many arguments"() {
         given:
-        eval(/ (def f (function [x] x)) /)
+        eval(/ (def f (function [:x] x)) /)
 
         when:
         eval(/ (f 1 2) /)
@@ -123,7 +123,7 @@ class Functions extends MarcoSpecification {
 
     def "call with too few arguments"() {
         given:
-        eval(/ (def f (function [x y] x)) /)
+        eval(/ (def f (function [:x :y] x)) /)
 
         when:
         eval(/ (f 1) /)

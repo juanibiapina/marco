@@ -16,6 +16,6 @@ class Eval extends MarcoSpecification {
 
     def "in a function"() {
         expect:
-        eval(/ (def f (function [l] (eval l))) /)
+        eval(/ (def f (function [:l] (eval l))) /)
     }
 }
