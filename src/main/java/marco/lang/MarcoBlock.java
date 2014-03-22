@@ -39,7 +39,7 @@ public class MarcoBlock extends MarcoValue {
     public MarcoObject invoke(Environment closure, Environment environment) {
         MarcoObject result = null;
         for (MarcoObject form : forms) {
-            result = form.eval(closure);
+            result = form.doEval(closure, environment);
         }
         return result;
     }
