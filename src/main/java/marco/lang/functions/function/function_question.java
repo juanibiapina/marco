@@ -6,7 +6,7 @@ import marco.lang.MarcoFunction;
 import marco.lang.MarcoNativeBlock;
 import marco.lang.MarcoObject;
 
-public class functionquestion extends MarcoNativeBlock {
+public class function_question extends MarcoNativeBlock {
     @Override
     public MarcoObject invoke(Environment closure, Environment environment) {
         MarcoObject v = closure.lookUp("v");

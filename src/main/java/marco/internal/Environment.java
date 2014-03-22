@@ -13,7 +13,7 @@ import marco.lang.functions.data.data;
 import marco.lang.functions.def;
 import marco.lang.functions.equal_question;
 import marco.lang.functions.function.function;
-import marco.lang.functions.function.functionquestion;
+import marco.lang.functions.function.function_question;
 import marco.lang.functions.io.print;
 import marco.lang.functions.list.length;
 import marco.lang.functions.list.list_question;
@@ -22,7 +22,7 @@ import marco.lang.functions.nil.nil_question;
 import marco.lang.functions.number.*;
 import marco.lang.functions.pair.cons;
 import marco.lang.functions.pair.first;
-import marco.lang.functions.pair.pairquestion;
+import marco.lang.functions.pair.pair_question;
 import marco.lang.functions.pair.second;
 import marco.lang.functions.system.exit;
 
@@ -77,7 +77,7 @@ public class Environment {
 
     private static void loadNativeBindings(Environment environment) {
         environment.def("function", new MarcoFunction(environment, Arrays.asList("formal", "body"), new function()));
-        environment.def("function?", new MarcoFunction(environment, Arrays.asList("v"), new functionquestion()));
+        environment.def("function?", new MarcoFunction(environment, Arrays.asList("v"), new function_question()));
 
         environment.def("true", MarcoBoolean.TRUE);
         environment.def("false", MarcoBoolean.FALSE);
@@ -97,7 +97,7 @@ public class Environment {
         environment.def("cons", new MarcoFunction(environment, Arrays.asList("first", "second"), new cons()));
         environment.def("first", new MarcoFunction(environment, Arrays.asList("pair"), new first()));
         environment.def("second", new MarcoFunction(environment, Arrays.asList("pair"), new second()));
-        environment.def("pair?", new MarcoFunction(environment, Arrays.asList("pair"), new pairquestion()));
+        environment.def("pair?", new MarcoFunction(environment, Arrays.asList("pair"), new pair_question()));
 
         environment.def("list?", new MarcoFunction(environment, Arrays.asList("value"), new list_question()));
         environment.def("length", new MarcoFunction(environment, Arrays.asList("l"), new length()));
