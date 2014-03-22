@@ -1,22 +1,17 @@
-package marco.lang.especialforms;
+package marco.lang.functions;
 
 import marco.internal.Cast;
 import marco.internal.Environment;
 import marco.lang.*;
-import marco.lang.contracts.Contract;
 import marco.lang.exceptions.MarcoException;
 import marco.parser.Parser;
 
 import java.io.InputStream;
 
-public class include extends MarcoSpecialForm {
-    public include() {
-        super(new Contract(1));
-    }
-
+public class include extends MarcoNativeBlock {
     @Override
-    protected MarcoObject performInvoke(Environment environment, MarcoList arguments) {
-        MarcoString moduleName = Cast.toString(arguments.get(0));
+    public MarcoObject invoke(Environment closure, Environment environment) {
+        MarcoString moduleName = Cast.toString(closure.lookUp("module-name"));
 
         InputStream input = this.getClass().getClassLoader().getResourceAsStream(moduleName.getValue() + ".mrc");
 

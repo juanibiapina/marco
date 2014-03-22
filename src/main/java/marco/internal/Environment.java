@@ -118,7 +118,7 @@ public class Environment {
 
         environment.def("equal?", new MarcoFunction(environment, Arrays.asList("e1", "e2"), new equal_question()));
 
-        environment.def("include", new include());
+        environment.def("include", new MarcoFunction(environment, Arrays.asList("module-name"), new include()));
 
         environment.def("exit", new MarcoFunction(environment, Arrays.asList("code"), new exit()));
     }
