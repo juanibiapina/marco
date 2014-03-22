@@ -3,19 +3,19 @@
 
 (def :test-case-result (data [:name :result]))
 
-(def :print-results (function [:result]
-                     (print result.name)))
+(def :print-results (function [:result] {
+                     (print result.name) }))
 
-(def :run-test-case (function [:test-case]
-    (test-case-result test-case.name (test-case.runnable))))
+(def :run-test-case (function [:test-case] {
+    (test-case-result test-case.name (test-case.runnable)) }))
 
-(def :run-tests (function [:group]
-    (let [:failed-results (filter (function [:test-case-result]
-                                   (not test-case-result.result))
+(def :run-tests (function [:group] {
+    (let [:failed-results (filter (function [:test-case-result] {
+                                   (not test-case-result.result) })
                                  (map run-test-case group.tests))]
       (do [
         (map print-results failed-results)
         (if (> (length failed-results) 0)
             (exit 1)
-            nil)]))))
+            nil)])) }))
 

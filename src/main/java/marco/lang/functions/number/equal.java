@@ -6,7 +6,7 @@ import marco.lang.MarcoObject;
 
 public class equal extends BinaryOperatorBody {
     @Override
-    protected MarcoObject doEval(MarcoNumber v1, MarcoNumber v2) {
+    protected MarcoObject invoke(MarcoNumber v1, MarcoNumber v2) {
         return MarcoBoolean.from(v1.getValue().equals(v2.getValue()));
     }
 }

@@ -1,11 +1,14 @@
 package marco.lang;
 
+import marco.internal.Environment;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class MarcoBlock extends MarcoValue {
-    private MarcoObject forms;
+    private List<MarcoObject> forms;
 
-    public MarcoBlock(MarcoObject forms) {
+    public MarcoBlock(List<MarcoObject> forms) {
         this.forms = forms;
     }
 
@@ -16,7 +19,11 @@ public class MarcoBlock extends MarcoValue {
 
     @Override
     public List<String> freeVariables() {
-        return forms.freeVariables();
+        List<String> result = new ArrayList<>();
+        for (MarcoObject form : forms) {
+            result.addAll(form.freeVariables());
+        }
+        return result;
     }
 
     @Override
@@ -27,5 +34,13 @@ public class MarcoBlock extends MarcoValue {
     @Override
     public boolean isContinuation() {
         return false;
+    }
+
+    public MarcoObject invoke(Environment environment) {
+        MarcoObject result = null;
+        for (MarcoObject form : forms) {
+            result = form.eval(environment);
+        }
+        return result;
     }
 }

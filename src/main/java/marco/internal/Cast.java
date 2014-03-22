@@ -75,4 +75,12 @@ public class Cast {
             throw new TypeError(MarcoSymbol.class, value);
         }
     }
+
+    public static MarcoBlock toBlock(MarcoObject value) {
+        if (value instanceof MarcoBlock) {
+            return (MarcoBlock) value;
+        } else {
+            throw new TypeError(MarcoBlock.class, value);
+        }
+    }
 }

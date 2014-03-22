@@ -2,18 +2,18 @@ package marco.lang.functions.number;
 
 import marco.internal.Cast;
 import marco.internal.Environment;
-import marco.lang.MarcoNativeObject;
+import marco.lang.MarcoNativeBlock;
 import marco.lang.MarcoNumber;
 import marco.lang.MarcoObject;
 
-public abstract class BinaryOperatorBody extends MarcoNativeObject {
+public abstract class BinaryOperatorBody extends MarcoNativeBlock {
     @Override
-    public MarcoObject doEval(Environment environment) {
+    public MarcoObject invoke(Environment environment) {
         MarcoNumber v1 = Cast.toNumber(environment.lookUp("v1"));
         MarcoNumber v2 = Cast.toNumber(environment.lookUp("v2"));
 
-        return doEval(v1, v2);
+        return invoke(v1, v2);
     }
 
-    protected abstract MarcoObject doEval(MarcoNumber v1, MarcoNumber v2);
+    protected abstract MarcoObject invoke(MarcoNumber v1, MarcoNumber v2);
 }

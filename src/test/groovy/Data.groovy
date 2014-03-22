@@ -18,7 +18,7 @@ class Data extends MarcoSpecification {
 
         when:
         eval(/ (def :x 42) /)
-        eval(/ (def :ll (lots_of_data "string value" [1 2] (function [] true) x)) /)
+        eval(/ (def :ll (lots_of_data "string value" [1 2] (function [] { true }) x)) /)
 
         then:
         eval(/ ll.value1 /) == eval(/ "string value" /)

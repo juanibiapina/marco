@@ -14,10 +14,10 @@ public class function extends MarcoSpecialForm {
 
     @Override
     public MarcoObject performInvoke(Environment environment, MarcoList arguments) {
-        MarcoList formal = Cast.toList(arguments.get(0));
+        MarcoList formal = Cast.toList(arguments.get(0).eval(environment));
         List<String> formalList = formal.asArgumentList();
 
-        MarcoObject body = arguments.get(1);
+        MarcoBlock body = Cast.toBlock(arguments.get(1).eval(environment));
 
         return new MarcoFunction(environment, formalList, body);
     }

@@ -1,13 +1,13 @@
 package marco.lang.functions;
 
 import marco.internal.Environment;
-import marco.lang.MarcoNativeObject;
+import marco.lang.MarcoNativeBlock;
 import marco.lang.MarcoNil;
 import marco.lang.MarcoObject;
 
-public class print extends MarcoNativeObject {
+public class print extends MarcoNativeBlock {
     @Override
-    public MarcoObject doEval(Environment environment) {
+    public MarcoObject invoke(Environment environment) {
         MarcoObject v = environment.lookUp("e");
 
         System.out.println(v);

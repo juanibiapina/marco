@@ -72,7 +72,7 @@ public class Environment {
     }
 
     private static void loadNativeBindings(Environment environment) {
-        environment.def("function", new function());
+        environment.def("function", new marco.lang.especialforms.function());
         environment.def("function?", new MarcoFunction(environment, Arrays.asList("v"), new functionquestion()));
         environment.def("if", new if_specialform());
         environment.def("and", new and());

@@ -1,18 +1,27 @@
 package marco.lang;
 
+import marco.internal.Environment;
+
 import java.util.Collections;
 import java.util.List;
 
-public abstract class MarcoNativeObject extends MarcoObject {
+public abstract class MarcoNativeBlock extends MarcoBlock {
+    public MarcoNativeBlock() {
+        super(null);
+    }
+
     @Override
     public String typeName() {
-        return "NativeObject";
+        return "NativeBlock";
     }
 
     @Override
     public List<String> freeVariables() {
         return Collections.EMPTY_LIST;
     }
+
+    @Override
+    public abstract MarcoObject invoke(Environment environment);
 
     @Override
     public boolean isList() {

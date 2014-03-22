@@ -11,9 +11,9 @@ import java.util.List;
 public class MarcoFunction extends MarcoRunnable {
     private final Environment closureEnv;
     private final List<String> parameters;
-    private final MarcoObject body;
+    private final MarcoBlock body;
 
-    public MarcoFunction(Environment environment, List<String> parameters, MarcoObject body) {
+    public MarcoFunction(Environment environment, List<String> parameters, MarcoBlock body) {
         super(new Contract(parameters.size()));
 
         List<String> freeVariables = new ArrayList<>();
@@ -36,7 +36,7 @@ public class MarcoFunction extends MarcoRunnable {
             String parameterName = parameters.get(i);
             extendedEnv.forceAdd(new ParameterBinding(parameterName, evaluatedArg));
         }
-        return new MarcoContinuation(body, extendedEnv);
+        return new MarcoContinuation(new MarcoBlockInvocation(body), extendedEnv);
     }
 
     @Override

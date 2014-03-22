@@ -30,7 +30,7 @@ class Mutation extends MarcoSpecification {
     def "mutating a binding affects the closure environment"() {
         given:
         eval(/ (var x 1) /)
-        eval(/ (def :f (function [] x)) /)
+        eval(/ (def :f (function [] { x })) /)
 
         when:
         eval(/ (set! x 2) /)
@@ -42,7 +42,7 @@ class Mutation extends MarcoSpecification {
     def "mutation inside the function affects the outer environment"() {
         given:
         eval(/ (var x 1) /)
-        eval(/ (def :f (function [] (set! x 2))) /)
+        eval(/ (def :f (function [] { (set! x 2) })) /)
 
         when:
         eval(/ (f) /)
@@ -54,7 +54,7 @@ class Mutation extends MarcoSpecification {
     def "parameters cannot be mutated"() {
         given:
         eval(/ (var x 1) /)
-        eval(/ (def :f (function [:x] (set! x 2))) /)
+        eval(/ (def :f (function [:x] { (set! x 2) })) /)
 
         when:
         eval(/ (f 3) /)
