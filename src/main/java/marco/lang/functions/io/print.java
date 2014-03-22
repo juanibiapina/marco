@@ -1,4 +1,4 @@
-package marco.lang.functions;
+package marco.lang.functions.io;
 
 import marco.internal.Environment;
 import marco.lang.MarcoNativeBlock;

@@ -7,18 +7,23 @@ import marco.lang.*;
 import marco.lang.especialforms.*;
 import marco.lang.exceptions.BindingError;
 import marco.lang.exceptions.LookUpError;
+import marco.lang.functions.booleans._if;
 import marco.lang.functions.booleans._not;
 import marco.lang.functions.*;
+import marco.lang.functions.data.data;
 import marco.lang.functions.function.*;
 import marco.lang.functions.function.function;
+import marco.lang.functions.io.print;
 import marco.lang.functions.list.length;
-import marco.lang.functions.list.listquestion;
-import marco.lang.functions.nil.nilquestion;
+import marco.lang.functions.list.list_question;
+import marco.lang.functions.modules.include;
+import marco.lang.functions.nil.nil_question;
 import marco.lang.functions.number.*;
 import marco.lang.functions.pair.cons;
 import marco.lang.functions.pair.first;
 import marco.lang.functions.pair.pairquestion;
 import marco.lang.functions.pair.second;
+import marco.lang.functions.system.exit;
 import marco.parser.Parser;
 
 import java.util.Arrays;
@@ -100,10 +105,10 @@ public class Environment {
         environment.def("first", new MarcoFunction(environment, Arrays.asList("pair"), new first()));
         environment.def("second", new MarcoFunction(environment, Arrays.asList("pair"), new second()));
         environment.def("pair?", new MarcoFunction(environment, Arrays.asList("pair"), new pairquestion()));
-        environment.def("list?", new MarcoFunction(environment, Arrays.asList("value"), new listquestion()));
+        environment.def("list?", new MarcoFunction(environment, Arrays.asList("value"), new list_question()));
         environment.def("length", new MarcoFunction(environment, Arrays.asList("l"), new length()));
 
-        environment.def("nil?", new MarcoFunction(environment, Arrays.asList("arg"), new nilquestion()));
+        environment.def("nil?", new MarcoFunction(environment, Arrays.asList("arg"), new nil_question()));
 
         environment.def("=", new BinaryOperator(environment, new equal()));
         environment.def("<", new BinaryOperator(environment, new lessthan()));

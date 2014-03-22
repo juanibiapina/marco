@@ -1,16 +1,15 @@
-package marco.lang.functions.nil;
+package marco.lang.functions.list;
 
 import marco.internal.Environment;
 import marco.lang.MarcoBoolean;
 import marco.lang.MarcoNativeBlock;
-import marco.lang.MarcoNil;
 import marco.lang.MarcoObject;
 
-public class nilquestion extends MarcoNativeBlock {
+public class list_question extends MarcoNativeBlock {
     @Override
     public MarcoObject invoke(Environment closure, Environment environment) {
-        MarcoObject arg = closure.lookUp("arg");
+        MarcoObject value = closure.lookUp("value");
 
-        return MarcoBoolean.from(arg instanceof MarcoNil);
+        return MarcoBoolean.from(value.isList());
     }
 }

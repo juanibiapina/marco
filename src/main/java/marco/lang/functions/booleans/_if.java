@@ -1,4 +1,4 @@
-package marco.lang.functions;
+package marco.lang.functions.booleans;
 
 import marco.internal.Cast;
 import marco.internal.Environment;
