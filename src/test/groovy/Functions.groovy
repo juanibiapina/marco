@@ -56,9 +56,22 @@ class Functions extends MarcoSpecification {
         eval(/ (f 3) /) == new MarcoNumber(5)
     }
 
+    def "cannot access variable that is not defined"() {
+        given:
+        eval(/ (def :f (function [] s)) /)
+
+        when:
+        eval(/ (f) /)
+
+        then:
+        LookUpError e = thrown()
+        e.binding == "s"
+    }
+
     def "cannot access variable before its definition"() {
         given:
         eval(/ (def :f (function [] s)) /)
+        eval(/ (def :s 1) /)
 
         when:
         eval(/ (f) /)
