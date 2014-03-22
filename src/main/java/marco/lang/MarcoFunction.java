@@ -23,7 +23,7 @@ public class MarcoFunction extends MarcoRunnable {
 
         this.environment = environment;
         this.closureEnv = environment.filter(freeVariables);
-        this.closureEnv.forceAdd(new ImmutableBinding("recur", this));
+        this.closureEnv.forceAdd(new ImmutableBinding("recurse", this));
         this.parameters = parameters;
         this.body = body;
     }

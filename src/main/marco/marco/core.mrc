@@ -7,7 +7,7 @@
 (def :map (function [:f :l] {
            (if (nil? l)
              nil
-             (cons (f (head l)) (recur f (tail l)))) }))
+             (cons (f (head l)) (recurse f (tail l)))) }))
 
 
 (def :even? (function [:v] { (= (% v 2) 0) }))
@@ -16,15 +16,15 @@
               (if (nil? list)
                   nil
                   (if (predicate (head list))
-                      (cons (head list) (recur predicate (tail list)))
-                      (recur predicate (tail list)))) }))
+                      (cons (head list) (recurse predicate (tail list)))
+                      (recurse predicate (tail list)))) }))
 
 (def :list-max (function [:xs] {
                 (if (= (length xs) 1)
                     (head xs)
-                    (max (head xs) (recur (tail xs)))) }))
+                    (max (head xs) (recurse (tail xs)))) }))
 
 (def :range (function [:v1 :v2] {
              (if (= v1 v2)
                  nil
-                 (cons v1 (recur (+ v1 1) v2))) }))
+                 (cons v1 (recurse (+ v1 1) v2))) }))
