@@ -1,5 +1,4 @@
 - Modules
-  - include
   - require
   - load
 
@@ -7,8 +6,6 @@
   - Floating point
   - Fractions
   - Scientific notation
-
-- Blocks
 
 - Type Checking
 
