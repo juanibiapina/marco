@@ -27,10 +27,8 @@ import java.util.Map;
 
 public class Environment {
     private Map<String, Binding> bindings = new HashMap<>();
-    private Environment enclosing;
 
     public Environment() {
-        enclosing = this;
     }
 
     public void def(String var, MarcoObject value) {
@@ -158,13 +156,5 @@ public class Environment {
         } else {
             bindings.put(name, binding);
         }
-    }
-
-    public Environment getEnclosing() {
-        return enclosing;
-    }
-
-    public void setEnclosing(Environment enclosing) {
-        this.enclosing = enclosing;
     }
 }

@@ -15,8 +15,8 @@ public class parse extends MarcoNativeBlock {
     }
 
     @Override
-    public MarcoObject invoke(Environment environment) {
-        MarcoString code = Cast.toString(environment.lookUp("code"));
+    public MarcoObject invoke(Environment closure, Environment environment) {
+        MarcoString code = Cast.toString(closure.lookUp("code"));
 
         return parser.parse(code.getValue());
     }

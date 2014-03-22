@@ -13,8 +13,8 @@ public class MarcoBlockInvocation extends MarcoObject {
     }
 
     @Override
-    protected MarcoObject doEval(Environment environment) {
-        return block.invoke(environment);
+    protected MarcoObject doEval(Environment closure, Environment environment) {
+        return block.invoke(closure, environment);
     }
 
     @Override

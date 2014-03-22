@@ -12,10 +12,10 @@ public class MarcoProgram extends MarcoObject {
         forms.add(form);
     }
 
-    public MarcoObject doEval(Environment environment) {
+    public MarcoObject doEval(Environment closure, Environment environment) {
         MarcoObject result = null;
         for (MarcoObject form : forms) {
-            result = form.eval(environment);
+            result = form.eval(closure);
         }
         return result;
     }

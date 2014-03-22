@@ -13,13 +13,13 @@ public class MarcoApplication extends MarcoObject {
     }
 
     @Override
-    public MarcoObject doEval(Environment environment) {
+    public MarcoObject doEval(Environment closure, Environment environment) {
         MarcoList marcoList = (MarcoList) list;
         MarcoObject head = marcoList.getHead();
         MarcoList tail = marcoList.getTail();
 
-        MarcoObject operator = head.eval(environment);
-        return new MarcoContinuation(new MarcoInvocation(Cast.toRunnable(operator), tail), environment);
+        MarcoObject operator = head.eval(closure);
+        return new MarcoContinuation(new MarcoInvocation(Cast.toRunnable(operator), tail), closure, environment);
     }
 
     @Override

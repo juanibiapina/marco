@@ -12,6 +12,7 @@ public class MarcoFunction extends MarcoRunnable {
     private final Environment closureEnv;
     private final List<String> parameters;
     private final MarcoBlock body;
+    private Environment environment;
 
     public MarcoFunction(Environment environment, List<String> parameters, MarcoBlock body) {
         super(new Contract(parameters.size()));
@@ -20,8 +21,8 @@ public class MarcoFunction extends MarcoRunnable {
         freeVariables.addAll(body.freeVariables());
         freeVariables.removeAll(parameters);
 
+        this.environment = environment;
         this.closureEnv = environment.filter(freeVariables);
-        this.closureEnv.setEnclosing(environment);
         this.closureEnv.forceAdd(new ImmutableBinding("recur", this));
         this.parameters = parameters;
         this.body = body;
@@ -30,13 +31,12 @@ public class MarcoFunction extends MarcoRunnable {
     @Override
     public MarcoObject performInvoke(Environment environment, MarcoList arguments) {
         Environment extendedEnv = closureEnv.duplicate();
-        extendedEnv.setEnclosing(closureEnv.getEnclosing());
         for (int i = 0; i < arguments.length(); i++) {
             MarcoObject evaluatedArg = arguments.get(i).eval(environment);
             String parameterName = parameters.get(i);
             extendedEnv.forceAdd(new ParameterBinding(parameterName, evaluatedArg));
         }
-        return new MarcoContinuation(new MarcoBlockInvocation(body), extendedEnv);
+        return new MarcoContinuation(new MarcoBlockInvocation(body), extendedEnv, environment);
     }
 
     @Override

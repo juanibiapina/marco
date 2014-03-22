@@ -21,7 +21,7 @@ public abstract class MarcoNativeBlock extends MarcoBlock {
     }
 
     @Override
-    public abstract MarcoObject invoke(Environment environment);
+    public abstract MarcoObject invoke(Environment closure, Environment environment);
 
     @Override
     public boolean isList() {

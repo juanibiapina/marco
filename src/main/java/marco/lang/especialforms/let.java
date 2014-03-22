@@ -32,6 +32,6 @@ public class let extends MarcoSpecialForm {
 
         binding.redefine(value);
 
-        return new MarcoContinuation(body, extendedEnv);
+        return new MarcoContinuation(body, extendedEnv, environment);
     }
 }

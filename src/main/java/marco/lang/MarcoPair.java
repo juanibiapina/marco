@@ -53,12 +53,12 @@ public class MarcoPair extends MarcoObject implements MarcoList {
     }
 
     @Override
-    public MarcoObject doEval(Environment environment) {
+    public MarcoObject doEval(Environment closure, Environment environment) {
         if (isList()) {
             List<MarcoObject> evaluatedElements = new ArrayList<>();
 
             for (int i = 0; i < length(); i++) {
-                evaluatedElements.add(get(i).eval(environment));
+                evaluatedElements.add(get(i).eval(closure));
             }
 
             return ListHelper.fromJavaList(evaluatedElements);

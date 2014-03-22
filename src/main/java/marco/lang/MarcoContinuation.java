@@ -7,16 +7,18 @@ import java.util.List;
 
 public class MarcoContinuation extends MarcoObject {
     private MarcoObject value;
+    private Environment environment;
     private Environment closure;
 
-    public MarcoContinuation(MarcoObject value, Environment closure) {
+    public MarcoContinuation(MarcoObject value, Environment closure, Environment environment) {
         this.value = value;
+        this.environment = environment;
         this.closure = closure;
     }
 
     @Override
-    public MarcoObject doEval(Environment environment) {
-        return value.doEval(closure);
+    public MarcoObject doEval(Environment closure, Environment environment) {
+        return value.doEval(this.closure, this.environment);
     }
 
     @Override

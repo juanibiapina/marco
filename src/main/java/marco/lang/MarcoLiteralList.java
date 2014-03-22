@@ -15,11 +15,11 @@ public class MarcoLiteralList extends MarcoObject {
     }
 
     @Override
-    protected MarcoObject doEval(Environment environment) {
+    protected MarcoObject doEval(Environment closure, Environment environment) {
         List<MarcoObject> evaluatedElements = new ArrayList<>();
 
         for (int i = 0; i < list.length(); i++) {
-            evaluatedElements.add(list.get(i).eval(environment));
+            evaluatedElements.add(list.get(i).eval(closure));
         }
 
         return ListHelper.fromJavaList(evaluatedElements);

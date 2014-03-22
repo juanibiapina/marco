@@ -13,8 +13,8 @@ public class MarcoName extends MarcoObject {
     }
 
     @Override
-    public MarcoObject doEval(Environment environment) {
-        return environment.lookUp(value);
+    public MarcoObject doEval(Environment closure, Environment environment) {
+        return closure.lookUp(value);
     }
 
     public String getValue() {

@@ -36,10 +36,10 @@ public class MarcoBlock extends MarcoValue {
         return false;
     }
 
-    public MarcoObject invoke(Environment environment) {
+    public MarcoObject invoke(Environment closure, Environment environment) {
         MarcoObject result = null;
         for (MarcoObject form : forms) {
-            result = form.eval(environment);
+            result = form.eval(closure);
         }
         return result;
     }

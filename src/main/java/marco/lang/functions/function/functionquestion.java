@@ -8,8 +8,8 @@ import marco.lang.MarcoObject;
 
 public class functionquestion extends MarcoNativeBlock {
     @Override
-    public MarcoObject invoke(Environment environment) {
-        MarcoObject v = environment.lookUp("v");
+    public MarcoObject invoke(Environment closure, Environment environment) {
+        MarcoObject v = closure.lookUp("v");
 
         return MarcoBoolean.from(v instanceof MarcoFunction);
     }

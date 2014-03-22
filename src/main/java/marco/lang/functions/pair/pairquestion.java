@@ -5,8 +5,8 @@ import marco.lang.*;
 
 public class pairquestion extends MarcoNativeBlock {
     @Override
-    public MarcoObject invoke(Environment environment) {
-        MarcoObject arg = environment.lookUp("pair");
+    public MarcoObject invoke(Environment closure, Environment environment) {
+        MarcoObject arg = closure.lookUp("pair");
 
         return MarcoBoolean.from(arg instanceof MarcoPair);
     }

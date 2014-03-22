@@ -6,10 +6,10 @@ import marco.lang.*;
 
 public class function extends MarcoNativeBlock {
     @Override
-    public MarcoObject invoke(Environment environment) {
-        MarcoList formal = Cast.toList(environment.lookUp("formal"));
-        MarcoBlock body = Cast.toBlock(environment.lookUp("body"));
+    public MarcoObject invoke(Environment closure, Environment environment) {
+        MarcoList formal = Cast.toList(closure.lookUp("formal"));
+        MarcoBlock body = Cast.toBlock(closure.lookUp("body"));
 
-        return new MarcoFunction(environment.getEnclosing(), formal.asArgumentList(), body);
+        return new MarcoFunction(environment, formal.asArgumentList(), body);
     }
 }

@@ -20,7 +20,7 @@ public class or extends MarcoSpecialForm {
         if (Cast.toBoolean(v1).equals(MarcoBoolean.TRUE)) {
             return v1;
         } else {
-            return new MarcoContinuation(e2, environment);
+            return new MarcoContinuation(e2, environment, environment);
         }
     }
 }

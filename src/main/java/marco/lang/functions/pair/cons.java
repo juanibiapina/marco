@@ -7,9 +7,9 @@ import marco.lang.MarcoPair;
 
 public class cons extends MarcoNativeBlock {
     @Override
-    public MarcoObject invoke(Environment environment) {
-        MarcoObject first = environment.lookUp("first");
-        MarcoObject second = environment.lookUp("second");
+    public MarcoObject invoke(Environment closure, Environment environment) {
+        MarcoObject first = closure.lookUp("first");
+        MarcoObject second = closure.lookUp("second");
 
         return new MarcoPair(first, second);
     }

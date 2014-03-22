@@ -8,8 +8,8 @@ import marco.lang.MarcoPair;
 
 public class second extends MarcoNativeBlock {
     @Override
-    public MarcoObject invoke(Environment environment) {
-        MarcoPair pair = Cast.toPair(environment.lookUp("pair"));
+    public MarcoObject invoke(Environment closure, Environment environment) {
+        MarcoPair pair = Cast.toPair(closure.lookUp("pair"));
 
         return pair.getSecond();
     }

@@ -16,7 +16,7 @@ public class and extends MarcoSpecialForm {
         MarcoObject e2 = arguments.get(1);
 
         if (Cast.toBoolean(e1.eval(environment)).equals(MarcoBoolean.TRUE)) {
-            return new MarcoContinuation(e2, environment);
+            return new MarcoContinuation(e2, environment, environment);
         } else {
             return MarcoBoolean.FALSE;
         }

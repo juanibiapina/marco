@@ -19,9 +19,9 @@ public class if_specialform extends MarcoSpecialForm {
         MarcoObject v1 = condition.eval(environment);
 
         if (Cast.toBoolean(v1) == MarcoBoolean.TRUE) {
-            return new MarcoContinuation(thenClause, environment);
+            return new MarcoContinuation(thenClause, environment, environment);
         } else {
-            return new MarcoContinuation(elseClause, environment);
+            return new MarcoContinuation(elseClause, environment, environment);
         }
     }
 }
