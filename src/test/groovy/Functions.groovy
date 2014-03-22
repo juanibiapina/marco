@@ -145,4 +145,13 @@ class Functions extends MarcoSpecification {
         then:
         eval(/ result /) == eval(/ true /)
     }
+
+    def "nested"() {
+        given:
+        eval(/ (def :t 1) /)
+        eval(/ (def :f (function [:n] (+ n ((function [:x] (+ (+ x n) t)) n)))) /)
+
+        expect:
+        eval(/ (f 1) /) == eval(/ 4 /)
+    }
 }
