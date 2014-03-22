@@ -1,4 +1,4 @@
-(def :collatz (function [n]
+(def :collatz (function [:n]
                        (if (= n 1)
                            (cons 1 nil)
                            (cons n
