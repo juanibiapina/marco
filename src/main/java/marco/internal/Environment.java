@@ -9,10 +9,11 @@ import marco.lang.exceptions.BindingError;
 import marco.lang.exceptions.LookUpError;
 import marco.lang.functions.booleans._if;
 import marco.lang.functions.booleans._not;
-import marco.lang.functions.*;
 import marco.lang.functions.data.data;
-import marco.lang.functions.function.*;
+import marco.lang.functions.def;
+import marco.lang.functions.equal_question;
 import marco.lang.functions.function.function;
+import marco.lang.functions.function.functionquestion;
 import marco.lang.functions.io.print;
 import marco.lang.functions.list.length;
 import marco.lang.functions.list.list_question;
@@ -24,7 +25,6 @@ import marco.lang.functions.pair.first;
 import marco.lang.functions.pair.pairquestion;
 import marco.lang.functions.pair.second;
 import marco.lang.functions.system.exit;
-import marco.parser.Parser;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -96,7 +96,6 @@ public class Environment {
 
         environment.def("print", new MarcoFunction(environment, Arrays.asList("e"), new print()));
 
-        environment.def("parse", new MarcoFunction(environment, Arrays.asList("code"), new parse(Parser.instance())));
         environment.def("eval", new eval());
         environment.def("do", new do_specialform());
         environment.def("while", new while_specialform());
