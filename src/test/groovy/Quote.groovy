@@ -10,7 +10,7 @@ class Quote extends MarcoSpecification {
 
     def "syntactic quote"() {
         expect:
-        eval(/ 'x /) == new MarcoSymbol("x")
+        eval(/ 'x /) == new MarcoName("x")
         eval(/ '34 /) == new MarcoNumber(34)
         eval(/ '[1 2] /) == new MarcoPair(new MarcoNumber(1), new MarcoPair(new MarcoNumber(2), MarcoNil.NIL))
     }

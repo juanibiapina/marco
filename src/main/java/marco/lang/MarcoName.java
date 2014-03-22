@@ -5,10 +5,10 @@ import marco.internal.Environment;
 import java.util.Arrays;
 import java.util.List;
 
-public class MarcoSymbol extends MarcoObject {
+public class MarcoName extends MarcoObject {
     private String value;
 
-    public MarcoSymbol(String text) {
+    public MarcoName(String text) {
         this.value = text;
     }
 
@@ -23,8 +23,8 @@ public class MarcoSymbol extends MarcoObject {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof MarcoSymbol) {
-            MarcoSymbol other = (MarcoSymbol) obj;
+        if (obj instanceof MarcoName) {
+            MarcoName other = (MarcoName) obj;
             return value.equals(other.value);
         } else {
             return false;
@@ -33,7 +33,7 @@ public class MarcoSymbol extends MarcoObject {
 
     @Override
     public String typeName() {
-        return "Symbol";
+        return "Name";
     }
 
     @Override

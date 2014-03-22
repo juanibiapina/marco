@@ -1,7 +1,7 @@
 import helpers.MarcoSpecification
 import marco.lang.MarcoNil
 import marco.lang.MarcoNumber
-import marco.lang.MarcoSymbol
+import marco.lang.MarcoName
 import marco.lang.exceptions.BindingError
 import marco.lang.exceptions.ContractViolation
 import marco.lang.exceptions.TypeError
@@ -63,7 +63,7 @@ class Defines extends MarcoSpecification {
 
         then:
         TypeError e = thrown()
-        e.expected == MarcoSymbol
+        e.expected == MarcoName
         e.actual == new MarcoNumber(2)
     }
 

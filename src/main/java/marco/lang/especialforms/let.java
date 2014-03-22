@@ -20,7 +20,7 @@ public class let extends MarcoSpecialForm {
 
         MarcoList list = Cast.toList(arguments.get(0));
 
-        String name = Cast.toSymbol(list.get(0)).getValue();
+        String name = Cast.toName(list.get(0)).getValue();
 
         LetBinding binding = new LetBinding(name, null);
 

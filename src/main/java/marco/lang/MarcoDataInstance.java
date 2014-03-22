@@ -12,7 +12,7 @@ public class MarcoDataInstance extends MarcoValue {
     public MarcoDataInstance(MarcoData data, List<MarcoObject> values) {
         MarcoList fields = data.getFields();
         for (int i = 0; i < fields.length(); i++) {
-            this.values.put(Cast.toSymbol(fields.get(i)).getValue(), values.get(i));
+            this.values.put(Cast.toName(fields.get(i)).getValue(), values.get(i));
         }
     }
 
@@ -26,7 +26,7 @@ public class MarcoDataInstance extends MarcoValue {
         return false;
     }
 
-    public MarcoObject getField(MarcoSymbol field) {
+    public MarcoObject getField(MarcoName field) {
         return values.get(field.getValue());
     }
 }

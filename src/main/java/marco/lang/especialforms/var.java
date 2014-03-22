@@ -16,7 +16,7 @@ public class var extends MarcoSpecialForm {
 
     @Override
     public MarcoObject performInvoke(Environment environment, MarcoList arguments) {
-        String name = Cast.toSymbol(arguments.get(0)).getValue();
+        String name = Cast.toName(arguments.get(0)).getValue();
         MarcoObject value = arguments.get(1).eval(environment);
 
         MutableBinding binding = new MutableBinding(name, value);

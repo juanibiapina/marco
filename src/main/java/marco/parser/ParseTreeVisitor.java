@@ -73,16 +73,16 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
 
     @Override
     public MarcoNestedAccess visitNestedAccess(@NotNull MarcoParser.NestedAccessContext ctx) {
-        List<MarcoSymbol> symbols = new ArrayList<>();
-        for (TerminalNode node : ctx.SYMBOL()) {
-            symbols.add(new MarcoSymbol(node.getText()));
+        List<MarcoName> names = new ArrayList<>();
+        for (TerminalNode node : ctx.NAME()) {
+            names.add(new MarcoName(node.getText()));
         }
-        return new MarcoNestedAccess(symbols);
+        return new MarcoNestedAccess(names);
     }
 
     @Override
-    public MarcoSymbol visitSymbol(@NotNull MarcoParser.SymbolContext ctx) {
-        return new MarcoSymbol(ctx.getText());
+    public MarcoName visitName(@NotNull MarcoParser.NameContext ctx) {
+        return new MarcoName(ctx.getText());
     }
 
     @Override

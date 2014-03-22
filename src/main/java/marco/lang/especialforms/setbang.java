@@ -13,7 +13,7 @@ public class setbang extends MarcoSpecialForm {
 
     @Override
     public MarcoObject performInvoke(Environment environment, MarcoList arguments) {
-        MarcoSymbol var = Cast.toSymbol(arguments.get(0));
+        MarcoName var = Cast.toName(arguments.get(0));
         MarcoObject value = arguments.get(1).eval(environment);
 
         Binding binding = environment.get(var.getValue());

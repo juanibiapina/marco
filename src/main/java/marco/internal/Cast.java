@@ -12,11 +12,11 @@ public class Cast {
         }
     }
 
-    public static MarcoSymbol toSymbol(MarcoObject value) {
-        if (value instanceof MarcoSymbol) {
-            return (MarcoSymbol) value;
+    public static MarcoName toName(MarcoObject value) {
+        if (value instanceof MarcoName) {
+            return (MarcoName) value;
         } else {
-            throw new TypeError(MarcoSymbol.class, value);
+            throw new TypeError(MarcoName.class, value);
         }
     }
 

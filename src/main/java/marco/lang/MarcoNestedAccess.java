@@ -7,9 +7,9 @@ import java.util.Collections;
 import java.util.List;
 
 public class MarcoNestedAccess extends MarcoObject {
-    private List<MarcoSymbol> symbols;
+    private List<MarcoName> symbols;
 
-    public MarcoNestedAccess(List<MarcoSymbol> symbols) {
+    public MarcoNestedAccess(List<MarcoName> symbols) {
         this.symbols = symbols;
     }
 

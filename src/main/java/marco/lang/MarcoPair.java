@@ -83,7 +83,7 @@ public class MarcoPair extends MarcoObject implements MarcoList {
     @Override
     public List<String> asArgumentList() {
         List<String> result = new ArrayList<>();
-        result.add(Cast.toSymbol(first).getValue());
+        result.add(Cast.toName(first).getValue());
         result.addAll(Cast.toList(second).asArgumentList());
         return result;
     }

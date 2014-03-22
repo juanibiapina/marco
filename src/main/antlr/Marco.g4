@@ -15,13 +15,13 @@ application: '(' form* ')' ;
 quoted_form: '\'' form ;
 
 literal
-    : SYMBOL     # Symbol
+    : NAME       # Name
     | STRING     # String
     | NUMBER     # Number
     ;
 
 nested_access
-    : SYMBOL ('.' SYMBOL)+    # NestedAccess
+    : NAME ('.' NAME)+    # NestedAccess
     ;
 
 list: '[' form* ']' ;
@@ -30,7 +30,7 @@ STRING : '"' ( ~'"' | '\\' '"' )* '"' ;
 
 NUMBER : '-'? [0-9]+ ;
 
-SYMBOL: SYMBOL_HEAD SYMBOL_REST* ;
+NAME: SYMBOL_HEAD SYMBOL_REST* ;
 
 fragment
 SYMBOL_HEAD

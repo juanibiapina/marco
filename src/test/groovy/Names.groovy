@@ -1,19 +1,18 @@
 import helpers.MarcoSpecification
-import marco.lang.MarcoNumber
-import marco.lang.MarcoSymbol
+import marco.lang.MarcoName
 
-class Symbols extends MarcoSpecification {
-    def "lookUp values in the environment"() {
+class Names extends MarcoSpecification {
+    def "look up values in the environment"() {
         when:
         eval(/ (def x 2) /)
 
         then:
-        eval(/ x /) == new MarcoNumber(2)
+        eval(/ x /) == eval(/ 2 /)
     }
 
     def "string representation"() {
         expect:
-        new MarcoSymbol("x").toString() == "'x"
+        new MarcoName("x").toString() == "'x"
     }
 
     def "with numbers"() {
