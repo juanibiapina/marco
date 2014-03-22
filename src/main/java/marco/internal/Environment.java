@@ -119,7 +119,7 @@ public class Environment {
 
         environment.def("include", new include());
 
-        environment.def("exit", new exit());
+        environment.def("exit", new MarcoFunction(environment, Arrays.asList("code"), new exit()));
     }
 
     public Environment filter(List<String> vars) {
