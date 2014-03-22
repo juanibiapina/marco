@@ -1,7 +1,7 @@
-(def :test-group (data [name tests]))
-(def :test-case (data [name runnable]))
+(def :test-group (data [:name :tests]))
+(def :test-case (data [:name :runnable]))
 
-(def :test-case-result (data [name result]))
+(def :test-case-result (data [:name :result]))
 
 (def :print-results (function [:result]
                      (print result.name)))
