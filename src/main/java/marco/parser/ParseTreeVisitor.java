@@ -33,11 +33,6 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
     }
 
     @Override
-    public MarcoObject visitQuoted_form(@NotNull MarcoParser.Quoted_formContext ctx) {
-        return new MarcoQuotedForm(visit(ctx.form()));
-    }
-
-    @Override
     public MarcoObject visitList(@NotNull MarcoParser.ListContext ctx) {
         List<MarcoObject> rawList = new ArrayList<>();
         for (MarcoParser.FormContext formContext : ctx.form()) {
@@ -64,11 +59,6 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
     @Override
     public MarcoObject visitFormLiteral(@NotNull MarcoParser.FormLiteralContext ctx) {
         return visit(ctx.literal());
-    }
-
-    @Override
-    public MarcoObject visitFormQuotedForm(@NotNull MarcoParser.FormQuotedFormContext ctx) {
-        return visit(ctx.quoted_form());
     }
 
     @Override

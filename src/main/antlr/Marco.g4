@@ -8,7 +8,6 @@ form
     | block         # FormBlock
     | literal       # FormLiteral
     | nested_access # FormNestedAccess
-    | quoted_form   # FormQuotedForm
     ;
 
 list: '[' form* ']' ;
@@ -16,8 +15,6 @@ list: '[' form* ']' ;
 application: '(' form* ')' ;
 
 block: '{' form* '}' ;
-
-quoted_form: '\'' form ;
 
 literal
     : NAME       # Name
