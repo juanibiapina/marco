@@ -78,21 +78,18 @@ public class Environment {
     private static void loadNativeBindings(Environment environment) {
         environment.def("function", new MarcoFunction(environment, Arrays.asList("formal", "body"), new function()));
         environment.def("function?", new MarcoFunction(environment, Arrays.asList("v"), new functionquestion()));
-        environment.def("if", new MarcoFunction(environment, Arrays.asList("condition", "then-clause", "else-clause"), new _if()));
-        environment.def("and", new and());
-        environment.def("or", new or());
 
-        environment.def("nil", MarcoNil.NIL);
         environment.def("true", MarcoBoolean.TRUE);
         environment.def("false", MarcoBoolean.FALSE);
         environment.def("not", new MarcoFunction(environment, Arrays.asList("e"), new _not()));
+        environment.def("if", new MarcoFunction(environment, Arrays.asList("condition", "then-clause", "else-clause"), new _if()));
+        environment.def("and", new and());
+        environment.def("or", new or());
 
         environment.def("def", new MarcoFunction(environment, Arrays.asList("name", "value"), new def()));
         environment.def("var", new var());
         environment.def("set!", new setbang());
         environment.def("let", new let());
-
-        environment.def("print", new MarcoFunction(environment, Arrays.asList("e"), new print()));
 
         environment.def("do", new do_specialform());
         environment.def("while", new while_specialform());
@@ -101,10 +98,12 @@ public class Environment {
         environment.def("first", new MarcoFunction(environment, Arrays.asList("pair"), new first()));
         environment.def("second", new MarcoFunction(environment, Arrays.asList("pair"), new second()));
         environment.def("pair?", new MarcoFunction(environment, Arrays.asList("pair"), new pairquestion()));
+
         environment.def("list?", new MarcoFunction(environment, Arrays.asList("value"), new list_question()));
         environment.def("length", new MarcoFunction(environment, Arrays.asList("l"), new length()));
 
         environment.def("nil?", new MarcoFunction(environment, Arrays.asList("arg"), new nil_question()));
+        environment.def("nil", MarcoNil.NIL);
 
         environment.def("=", new BinaryOperator(environment, new equal()));
         environment.def("<", new BinaryOperator(environment, new lessthan()));
@@ -122,6 +121,8 @@ public class Environment {
         environment.def("include", new MarcoFunction(environment, Arrays.asList("module-name"), new include()));
 
         environment.def("exit", new MarcoFunction(environment, Arrays.asList("code"), new exit()));
+
+        environment.def("print", new MarcoFunction(environment, Arrays.asList("e"), new print()));
     }
 
     public Environment filter(List<String> vars) {
