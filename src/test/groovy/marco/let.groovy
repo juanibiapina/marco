@@ -5,17 +5,17 @@ import helpers.MarcoSpecification
 class let extends MarcoSpecification {
     def "value let"() {
         expect:
-        eval(/ (let [a 1] a) /) == eval(/ 1 /)
+        eval(/ (let [:a 1] a) /) == eval(/ 1 /)
     }
 
     def "let in expression"() {
         expect:
-        eval(/ (let [a (+ 1 2)] (+ a 2)) /) == eval(/ 5 /)
+        eval(/ (let [:a (+ 1 2)] (+ a 2)) /) == eval(/ 5 /)
     }
 
     def "function using let"() {
         when:
-        eval(/ (def :f (function [:x] (let [a x] a))) /)
+        eval(/ (def :f (function [:x] (let [:a x] a))) /)
 
         then:
         eval(/ (f 3) /) == eval(/ 3 /)
@@ -23,7 +23,7 @@ class let extends MarcoSpecification {
 
     def "passing a literal list"() {
         when:
-        eval(/ (def :f (function [:x] (let [a x] (first a)))) /)
+        eval(/ (def :f (function [:x] (let [:a x] (first a)))) /)
 
         then:
         eval(/ (f [1 2 3]) /) == eval(/ 1 /)
@@ -31,6 +31,6 @@ class let extends MarcoSpecification {
 
     def "with recursion"() {
         expect:
-        eval(/ (let [a (function [:x] (if (= x 0) 0 (a (- x 1))))] (a 3)) /) == eval(/ 0 /)
+        eval(/ (let [:a (function [:x] (if (= x 0) 0 (a (- x 1))))] (a 3)) /) == eval(/ 0 /)
     }
 }
