@@ -15,7 +15,7 @@ class let extends MarcoSpecification {
 
     def "function using let"() {
         when:
-        eval(/ (def f (function [:x] (let [a x] a))) /)
+        eval(/ (def :f (function [:x] (let [a x] a))) /)
 
         then:
         eval(/ (f 3) /) == eval(/ 3 /)
@@ -23,7 +23,7 @@ class let extends MarcoSpecification {
 
     def "passing a literal list"() {
         when:
-        eval(/ (def f (function [:x] (let [a x] (first a)))) /)
+        eval(/ (def :f (function [:x] (let [a x] (first a)))) /)
 
         then:
         eval(/ (f [1 2 3]) /) == eval(/ 1 /)

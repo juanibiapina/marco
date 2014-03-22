@@ -1,6 +1,6 @@
 (include "marco/unit")
 
-(def filter-tests
+(def :filter-tests
   (test-group "filter" [
     (test-case "matches all elements" (function []
       (equal? (filter (function [:x] true) [1 2 3]) [1 2 3])))

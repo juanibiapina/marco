@@ -1,7 +1,7 @@
 import helpers.MarcoSpecification
 import marco.lang.MarcoNil
 import marco.lang.MarcoNumber
-import marco.lang.MarcoName
+import marco.lang.MarcoSymbol
 import marco.lang.exceptions.BindingError
 import marco.lang.exceptions.ContractViolation
 import marco.lang.exceptions.TypeError
@@ -9,7 +9,7 @@ import marco.lang.exceptions.TypeError
 class Defines extends MarcoSpecification {
     def "defining numbers"() {
         when:
-        eval(/ (def x 1) /)
+        eval(/ (def :x 1) /)
 
         then:
         eval(/ x /) == eval(/ 1 /)
@@ -17,7 +17,7 @@ class Defines extends MarcoSpecification {
 
     def "defining strings"() {
         when:
-        eval(/ (def a_value "string value") /)
+        eval(/ (def :a_value "string value") /)
 
         then:
         eval(/ a_value /) == eval(/ "string value" /)
@@ -25,8 +25,8 @@ class Defines extends MarcoSpecification {
 
     def "renaming def"() {
         when:
-        eval(/ (def define def) /)
-        eval(/ (define x 1) /)
+        eval(/ (def :define def) /)
+        eval(/ (define :x 1) /)
 
         then:
         eval(/ x /) == new MarcoNumber(1)
@@ -34,8 +34,8 @@ class Defines extends MarcoSpecification {
 
     def "defining in terms of other bindings"() {
         when:
-        eval(/ (def x 1) /)
-        eval(/ (def y x) /)
+        eval(/ (def :x 1) /)
+        eval(/ (def :y x) /)
 
         then:
         eval(/ y /) == eval(/ 1 /)
@@ -43,8 +43,8 @@ class Defines extends MarcoSpecification {
 
     def "trying to bind to an already bound variable"() {
         when:
-        eval(/ (def x 1) /)
-        eval(/ (def x 2) /)
+        eval(/ (def :x 1) /)
+        eval(/ (def :x 2) /)
 
         then:
         BindingError e = thrown()
@@ -54,7 +54,7 @@ class Defines extends MarcoSpecification {
 
     def "returns nil"() {
         expect:
-        eval(/ (def xx 11) /) == new MarcoNil()
+        eval(/ (def :xx 11) /) == new MarcoNil()
     }
 
     def "first parameter is a symbol"() {
@@ -63,13 +63,13 @@ class Defines extends MarcoSpecification {
 
         then:
         TypeError e = thrown()
-        e.expected == MarcoName
+        e.expected == MarcoSymbol
         e.actual == new MarcoNumber(2)
     }
 
     def "without enough arguments"() {
         when:
-        eval(/ (def x) /)
+        eval(/ (def :x) /)
 
         then:
         ContractViolation e = thrown()
@@ -79,7 +79,7 @@ class Defines extends MarcoSpecification {
 
     def "with extra arguments"() {
         when:
-        eval(/ (def x 1 2) /)
+        eval(/ (def :x 1 2) /)
 
         then:
         ContractViolation e = thrown()
