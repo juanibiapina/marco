@@ -9,7 +9,8 @@ import marco.lang.exceptions.BindingError;
 import marco.lang.exceptions.LookUpError;
 import marco.lang.functions.booleans._not;
 import marco.lang.functions.*;
-import marco.lang.functions.function.functionquestion;
+import marco.lang.functions.function.*;
+import marco.lang.functions.function.function;
 import marco.lang.functions.list.length;
 import marco.lang.functions.list.listquestion;
 import marco.lang.functions.nil.nilquestion;
@@ -70,7 +71,7 @@ public class Environment {
     }
 
     private static void loadNativeBindings(Environment environment) {
-        environment.def("function", new marco.lang.especialforms.function());
+        environment.def("function", new MarcoFunction(environment, Arrays.asList("formal", "body"), new function()));
         environment.def("function?", new MarcoFunction(environment, Arrays.asList("v"), new functionquestion()));
         environment.def("if", new if_specialform());
         environment.def("and", new and());
