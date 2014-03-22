@@ -4,6 +4,7 @@ program: form* ;
 
 form
     : literal       # FormLiteral
+    | block         # FormBlock
     | nested_access # FormNestedAccess
     | list          # FormList
     | application   # FormApplication
@@ -20,6 +21,9 @@ literal
     | STRING     # String
     | NUMBER     # Number
     ;
+
+block
+    : '{' form* '}' ;
 
 nested_access
     : NAME ('.' NAME)+    # NestedAccess
