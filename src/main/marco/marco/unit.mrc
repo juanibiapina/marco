@@ -16,6 +16,6 @@
       (do [
         (map print-results failed-results)
         (if (> (length failed-results) 0)
-            (exit 1)
-            nil)])) }))
+            { (exit 1) }
+            {nil})])) }))
 
