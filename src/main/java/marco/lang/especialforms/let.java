@@ -3,10 +3,7 @@ package marco.lang.especialforms;
 import marco.internal.Cast;
 import marco.internal.Environment;
 import marco.internal.bindings.LetBinding;
-import marco.lang.MarcoContinuation;
-import marco.lang.MarcoList;
-import marco.lang.MarcoSpecialForm;
-import marco.lang.MarcoObject;
+import marco.lang.*;
 import marco.lang.contracts.Contract;
 
 public class let extends MarcoSpecialForm {
@@ -18,7 +15,7 @@ public class let extends MarcoSpecialForm {
     public MarcoObject performInvoke(Environment environment, MarcoList arguments) {
         Environment extendedEnv = environment.duplicate();
 
-        MarcoList list = Cast.toList(arguments.get(0));
+        MarcoList list = Cast.toList(arguments.get(0).eval(environment));
 
         String name = Cast.toSymbol(list.get(0)).getValue();
 
@@ -26,12 +23,14 @@ public class let extends MarcoSpecialForm {
 
         extendedEnv.forceAdd(binding);
 
-        MarcoObject value = list.get(1).eval(extendedEnv);
+        MarcoBlock block = Cast.toBlock(list.get(1).eval(extendedEnv));
 
-        MarcoObject body = arguments.get(1);
+        MarcoObject value = block.invoke(extendedEnv, environment);
+
+        MarcoBlock body = Cast.toBlock(arguments.get(1).eval(environment));
 
         binding.redefine(value);
 
-        return new MarcoContinuation(body, extendedEnv, environment);
+        return new MarcoContinuation(new MarcoBlockInvocation(body), extendedEnv, environment);
     }
 }
