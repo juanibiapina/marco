@@ -83,8 +83,6 @@ public class Environment {
         environment.def("false", MarcoBoolean.FALSE);
         environment.def("not", new MarcoFunction(environment, Arrays.asList("e"), new _not()));
         environment.def("if", new MarcoFunction(environment, Arrays.asList("condition", "then-clause", "else-clause"), new _if()));
-        environment.def("and", new and());
-        environment.def("or", new or());
 
         environment.def("def", new MarcoFunction(environment, Arrays.asList("name", "value"), new def()));
         environment.def("var", new var());
