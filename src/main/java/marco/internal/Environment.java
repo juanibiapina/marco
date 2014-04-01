@@ -15,6 +15,7 @@ import marco.lang.functions.equal_question;
 import marco.lang.functions.function.function;
 import marco.lang.functions.function.function_question;
 import marco.lang.functions.io.print;
+import marco.lang.functions.let;
 import marco.lang.functions.list.length;
 import marco.lang.functions.list.list_question;
 import marco.lang.functions.modules.include;
@@ -87,7 +88,7 @@ public class Environment {
         environment.def("def", new MarcoFunction(environment, Arrays.asList("name", "value"), new def()));
         environment.def("var", new var());
         environment.def("set!", new setbang());
-        environment.def("let", new let());
+        environment.def("let", new MarcoFunction(environment, Arrays.asList("binding", "body"), new let()));
 
         environment.def("do", new do_specialform());
         environment.def("while", new while_specialform());
