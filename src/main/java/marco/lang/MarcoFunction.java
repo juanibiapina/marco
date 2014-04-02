@@ -23,7 +23,7 @@ public class MarcoFunction extends MarcoRunnable {
 
         this.environment = environment;
         this.closureEnv = environment.filter(freeVariables);
-        this.closureEnv.forceAdd(new ImmutableBinding("recurse", this));
+        this.closureEnv.addSlot(new ImmutableBinding("recurse", this));
         this.parameters = parameters;
         this.body = body;
     }
@@ -34,7 +34,7 @@ public class MarcoFunction extends MarcoRunnable {
         for (int i = 0; i < arguments.length(); i++) {
             MarcoObject evaluatedArg = arguments.get(i).eval(environment);
             String parameterName = parameters.get(i);
-            extendedEnv.forceAdd(new ParameterBinding(parameterName, evaluatedArg));
+            extendedEnv.addSlot(new ParameterBinding(parameterName, evaluatedArg));
         }
         return new MarcoContinuation(new MarcoBlockInvocation(body), extendedEnv, environment);
     }

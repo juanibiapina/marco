@@ -3,6 +3,7 @@
   - load
 
 - Blocks
+  - Defining in inner scope
   - Invocation
     - Lexically
     - With a blank environment
@@ -23,7 +24,7 @@
   - Line number information
   - Error context information (actual code?)
 
-- Contracts (type checking for special forms)
+- Contracts
   - Can be used to generate proper error messages
   - Can be used for user defined functions too ?
 
@@ -33,9 +34,5 @@
   - Drop the generic exception
   - Type names
 
-- Bugs
-  - Usage of def and var inside 'do'
-
 - Remove or Rework
-  - do
   - while

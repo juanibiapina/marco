@@ -15,11 +15,9 @@
                                                   })
                                                   (map run-test-case group.tests)) }]
                     {
-                      (do [
-                        (map print-results failed-results)
-                        (if (> (length failed-results) 0)
-                            { (exit 1) }
-                            {nil})
-                      ])
+                      (map print-results failed-results)
+                      (if (> (length failed-results) 0)
+                          { (exit 1) }
+                          {nil})
                     })
                 }))

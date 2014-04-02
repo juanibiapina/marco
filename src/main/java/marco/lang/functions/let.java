@@ -17,7 +17,7 @@ public class let extends MarcoNativeBlock {
 
         LetBinding letBinding = new LetBinding(name, null);
 
-        extendedEnv.forceAdd(letBinding);
+        extendedEnv.addSlot(letBinding);
 
         MarcoBlock block = Cast.toBlock(binding.get(1).eval(extendedEnv));
 
