@@ -26,13 +26,9 @@
 
 - Contracts
   - Can be used to generate proper error messages
-  - Can be used for user defined functions too ?
 
 - Refactor
   - String representations
     - specially lists
   - Drop the generic exception
   - Type names
-
-- Remove or Rework
-  - while
