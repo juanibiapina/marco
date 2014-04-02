@@ -1,7 +1,7 @@
 (def :trampoline (function [:f] {
                    (let [:result { f }]
                      {
-                       (while (function? result) (set! result (result)))
+                       (while (function? result) (set! :result (result)))
                        result
                      }
                    )

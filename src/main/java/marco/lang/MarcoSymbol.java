@@ -1,5 +1,8 @@
 package marco.lang;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class MarcoSymbol extends MarcoValue {
     private String value;
 
@@ -29,5 +32,10 @@ public class MarcoSymbol extends MarcoValue {
 
     public String getValue() {
         return value;
+    }
+
+    @Override
+    public List<String> freeVariables() {
+        return Arrays.asList(value);
     }
 }

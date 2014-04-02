@@ -9,7 +9,7 @@ class Mutation extends MarcoSpecification {
         eval(/ (def :x 1) /)
 
         when:
-        eval(/ (set! x 2) /)
+        eval(/ (set! :x 2) /)
 
         then:
         ImmutabilityError e = thrown()
@@ -18,10 +18,10 @@ class Mutation extends MarcoSpecification {
 
     def "mutating a binding"() {
         given:
-        eval(/ (var x 1) /)
+        eval(/ (var :x 1) /)
 
         when:
-        eval(/ (set! x 2) /)
+        eval(/ (set! :x 2) /)
 
         then:
         eval(/ x /) == eval(/ 2 /)
@@ -29,11 +29,11 @@ class Mutation extends MarcoSpecification {
 
     def "mutating a binding affects the closure environment"() {
         given:
-        eval(/ (var x 1) /)
+        eval(/ (var :x 1) /)
         eval(/ (def :f (function [] { x })) /)
 
         when:
-        eval(/ (set! x 2) /)
+        eval(/ (set! :x 2) /)
 
         then:
         eval(/ (f) /) == new MarcoNumber(2)
@@ -41,8 +41,8 @@ class Mutation extends MarcoSpecification {
 
     def "mutation inside the function affects the outer environment"() {
         given:
-        eval(/ (var x 1) /)
-        eval(/ (def :f (function [] { (set! x 2) })) /)
+        eval(/ (var :x 1) /)
+        eval(/ (def :f (function [] { (set! :x 2) })) /)
 
         when:
         eval(/ (f) /)
@@ -53,8 +53,8 @@ class Mutation extends MarcoSpecification {
 
     def "parameters cannot be mutated"() {
         given:
-        eval(/ (var x 1) /)
-        eval(/ (def :f (function [:x] { (set! x 2) })) /)
+        eval(/ (var :x 1) /)
+        eval(/ (def :f (function [:x] { (set! :x 2) })) /)
 
         when:
         eval(/ (f 3) /)
@@ -66,7 +66,7 @@ class Mutation extends MarcoSpecification {
 
     def "mutating an undefined variable"() {
         when:
-        eval(/ (set! x 1) /)
+        eval(/ (set! :x 1) /)
 
         then:
         LookUpError e = thrown()

@@ -4,8 +4,8 @@ import marco.internal.bindings.Binding;
 import marco.internal.bindings.ImmutableBinding;
 import marco.internal.bindings.MutableBinding;
 import marco.lang.*;
-import marco.lang.especialforms.setbang;
-import marco.lang.especialforms.var;
+import marco.lang.functions.setbang;
+import marco.lang.functions.var;
 import marco.lang.especialforms.while_specialform;
 import marco.lang.exceptions.BindingError;
 import marco.lang.exceptions.LookUpError;
@@ -88,8 +88,8 @@ public class Environment {
         environment.def("if", new MarcoFunction(environment, Arrays.asList("condition", "then-clause", "else-clause"), new _if()));
 
         environment.def("def", new MarcoFunction(environment, Arrays.asList("name", "value"), new def()));
-        environment.def("var", new var());
-        environment.def("set!", new setbang());
+        environment.def("var", new MarcoFunction(environment, Arrays.asList("name", "value"), new var()));
+        environment.def("set!", new MarcoFunction(environment, Arrays.asList("name", "value"), new setbang()));
         environment.def("let", new MarcoFunction(environment, Arrays.asList("binding", "body"), new let()));
 
         environment.def("while", new while_specialform());
