@@ -4,9 +4,9 @@ import marco.internal.bindings.Binding;
 import marco.internal.bindings.ImmutableBinding;
 import marco.internal.bindings.MutableBinding;
 import marco.lang.*;
+import marco.lang.functions._while;
 import marco.lang.functions.setbang;
 import marco.lang.functions.var;
-import marco.lang.especialforms.while_specialform;
 import marco.lang.exceptions.BindingError;
 import marco.lang.exceptions.LookUpError;
 import marco.lang.functions.booleans._if;
@@ -92,7 +92,7 @@ public class Environment {
         environment.def("set!", new MarcoFunction(environment, Arrays.asList("name", "value"), new setbang()));
         environment.def("let", new MarcoFunction(environment, Arrays.asList("binding", "body"), new let()));
 
-        environment.def("while", new while_specialform());
+        environment.def("while", new MarcoFunction(environment, Arrays.asList("cond", "body"), new _while()));
 
         environment.def("cons", new MarcoFunction(environment, Arrays.asList("first", "second"), new cons()));
         environment.def("first", new MarcoFunction(environment, Arrays.asList("pair"), new first()));
