@@ -116,4 +116,9 @@ public class MarcoPair extends MarcoObject implements MarcoList {
     public boolean isContinuation() {
         return false;
     }
+
+    @Override
+    public String asString() {
+        return toString();
+    }
 }

@@ -36,6 +36,11 @@ public class MarcoBlock extends MarcoValue {
         return false;
     }
 
+    @Override
+    public String asString() {
+        return toString();
+    }
+
     public MarcoObject invoke(Environment closure, Environment environment) {
         MarcoObject result = null;
         for (MarcoObject form : forms) {

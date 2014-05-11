@@ -25,6 +25,11 @@ public class MarcoBoolean extends MarcoValue {
         return false;
     }
 
+    @Override
+    public String asString() {
+        return toString();
+    }
+
     public static MarcoBoolean from(boolean value) {
         if (value) {
             return TRUE;

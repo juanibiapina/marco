@@ -38,6 +38,11 @@ public class MarcoNumber extends MarcoValue {
         return false;
     }
 
+    @Override
+    public String asString() {
+        return toString();
+    }
+
     public BigInteger getValue() {
         return value;
     }

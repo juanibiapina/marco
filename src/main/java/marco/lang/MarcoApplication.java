@@ -43,6 +43,11 @@ public class MarcoApplication extends MarcoObject {
     }
 
     @Override
+    public String asString() {
+        return toString();
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (obj instanceof MarcoApplication) {
             MarcoApplication other = (MarcoApplication) obj;

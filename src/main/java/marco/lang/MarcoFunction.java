@@ -43,4 +43,9 @@ public class MarcoFunction extends MarcoRunnable {
     public String typeName() {
         return "Function";
     }
+
+    @Override
+    public String asString() {
+        return toString();
+    }
 }

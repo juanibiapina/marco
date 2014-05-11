@@ -29,6 +29,11 @@ public class MarcoData extends MarcoRunnable {
         return "Data";
     }
 
+    @Override
+    public String asString() {
+        return toString();
+    }
+
     public MarcoList getFields() {
         return fields;
     }

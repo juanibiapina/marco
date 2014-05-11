@@ -6,6 +6,7 @@ import marco.internal.bindings.MutableBinding;
 import marco.lang.*;
 import marco.lang.functions._while;
 import marco.lang.functions.setbang;
+import marco.lang.functions.string.string_concat;
 import marco.lang.functions.var;
 import marco.lang.exceptions.BindingError;
 import marco.lang.exceptions.LookUpError;
@@ -123,6 +124,8 @@ public class Environment {
         environment.def("exit", new MarcoFunction(environment, Arrays.asList("code"), new exit()));
 
         environment.def("print", new MarcoFunction(environment, Arrays.asList("e"), new print()));
+
+        environment.def("string-concat", new MarcoFunction(environment, Arrays.asList("values"), new string_concat()));
     }
 
     public Environment filter(List<String> vars) {

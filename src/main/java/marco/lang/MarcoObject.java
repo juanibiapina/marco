@@ -27,4 +27,6 @@ public abstract class MarcoObject {
     public abstract boolean isList();
 
     public abstract boolean isContinuation();
+
+    public abstract String asString();
 }

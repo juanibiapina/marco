@@ -32,6 +32,11 @@ public class MarcoString extends MarcoValue {
         return false;
     }
 
+    @Override
+    public String asString() {
+        return value;
+    }
+
     public String getValue() {
         return value;
     }

@@ -59,4 +59,9 @@ public class MarcoNil extends MarcoValue implements MarcoList {
     public boolean isList() {
         return true;
     }
+
+    @Override
+    public String asString() {
+        return toString();
+    }
 }

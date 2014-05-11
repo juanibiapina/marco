@@ -21,6 +21,11 @@ public class MarcoSymbol extends MarcoValue {
     }
 
     @Override
+    public String asString() {
+        return toString();
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (obj instanceof MarcoSymbol) {
             MarcoSymbol other = (MarcoSymbol) obj;

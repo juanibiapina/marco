@@ -26,6 +26,11 @@ public class MarcoDataInstance extends MarcoValue {
         return false;
     }
 
+    @Override
+    public String asString() {
+        return toString();
+    }
+
     public MarcoObject getField(MarcoName field) {
         return values.get(field.getValue());
     }

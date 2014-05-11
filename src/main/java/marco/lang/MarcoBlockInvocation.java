@@ -36,4 +36,9 @@ public class MarcoBlockInvocation extends MarcoObject {
     public boolean isContinuation() {
         return false;
     }
+
+    @Override
+    public String asString() {
+        return toString();
+    }
 }
