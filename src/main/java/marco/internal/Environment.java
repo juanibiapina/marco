@@ -8,13 +8,18 @@ import marco.lang.exceptions.BindingError;
 import marco.lang.exceptions.LookUpError;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class Environment {
     private Map<String, Slot> slots = new HashMap<>();
+    private final Environment parent;
 
     public Environment() {
+        parent = null;
+    }
+
+    public Environment(Environment parent) {
+        this.parent = parent;
     }
 
     public void def(String name, MarcoObject value) {
@@ -29,37 +34,31 @@ public class Environment {
         if (slots.containsKey(var)) {
             return slots.get(var).getBinding().getValue();
         } else {
-            throw new LookUpError(var);
+            if (hasParent()) {
+                return parent.lookUp(var);
+            } else {
+                throw new LookUpError(var);
+            }
         }
     }
 
     public Environment duplicate() {
         Map<String, Slot> newEnvMap = new HashMap<>();
         newEnvMap.putAll(slots);
-        Environment newEnv = new Environment();
+        Environment newEnv = new Environment(this);
         newEnv.slots = newEnvMap;
         return newEnv;
-    }
-
-    public Environment filter(List<String> vars) {
-        Environment result = new Environment();
-
-        for (String var : vars) {
-            Slot slot = slots.get(var);
-            if (slot == null) {
-                slot = new Slot(var);
-            }
-            result.slots.put(var, slot);
-        }
-
-        return result;
     }
 
     public Binding get(String name) {
         if (slots.containsKey(name)) {
             return slots.get(name).getBinding();
         } else {
-            throw new LookUpError(name);
+            if (hasParent()) {
+                return parent.get(name);
+            } else {
+                throw new LookUpError(name);
+            }
         }
     }
 
@@ -67,18 +66,33 @@ public class Environment {
         slots.put(binding.getSymbol(), new Slot(binding.getSymbol(), binding));
     }
 
+    public Environment spawn() {
+        return new Environment(this);
+    }
+
+    private boolean hasParent() {
+        return parent != null;
+    }
+
     private void addBinding(Binding binding) {
         String name = binding.getSymbol();
 
+        if (hasBinding(name)) {
+            throw new BindingError(name, lookUp(name));
+        }
+
+        slots.put(name, new Slot(name, binding));
+    }
+
+    private boolean hasBinding(String name) {
         if (slots.containsKey(name)) {
-            Slot slot = slots.get(name);
-            if (slot.isEmpty()) {
-                slot.setBinding(binding);
-            } else {
-                throw new BindingError(name, slot.getBinding().getValue());
-            }
+            return true;
         } else {
-            slots.put(name, new Slot(name, binding));
+            if (hasParent()) {
+                return parent.hasBinding(name);
+            } else {
+                return false;
+            }
         }
     }
 }

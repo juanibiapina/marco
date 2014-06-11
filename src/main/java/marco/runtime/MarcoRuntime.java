@@ -2,6 +2,7 @@ package marco.runtime;
 
 import marco.internal.Environment;
 import marco.internal.TopLevelEnvironment;
+import marco.lang.MarcoModule;
 import marco.lang.MarcoObject;
 import marco.parser.Parser;
 
@@ -12,10 +13,22 @@ public class MarcoRuntime {
     private Parser parser = Parser.instance();
 
     public MarcoObject run(InputStream inputStream) {
-        return parser.parse(inputStream).eval(environment);
+        MarcoModule program = parser.parse(inputStream);
+        MarcoObject result = null;
+        for (MarcoObject form : program.getForms()) {
+            environment = environment.spawn();
+            result = form.eval(environment);
+        }
+        return result;
     }
 
     public MarcoObject run(String line) {
-        return parser.parse(line).eval(environment);
+        MarcoModule program = parser.parse(line);
+        MarcoObject result = null;
+        for (MarcoObject form : program.getForms()) {
+            environment = environment.spawn();
+            result = form.eval(environment);
+        }
+        return result;
     }
 }

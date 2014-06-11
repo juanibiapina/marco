@@ -5,7 +5,7 @@ import marco.internal.Environment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MarcoProgram extends MarcoObject {
+public class MarcoModule extends MarcoObject {
     private List<MarcoObject> forms = new ArrayList<>();
 
     public void add(MarcoObject form) {
@@ -41,8 +41,8 @@ public class MarcoProgram extends MarcoObject {
 
     @Override
     public boolean equals(Object obj) {
-        if (obj instanceof MarcoProgram) {
-            MarcoProgram other = (MarcoProgram) obj;
+        if (obj instanceof MarcoModule) {
+            MarcoModule other = (MarcoModule) obj;
             int size = forms.size();
 
             if (size != other.forms.size()) {
@@ -69,5 +69,9 @@ public class MarcoProgram extends MarcoObject {
     @Override
     public String asString() {
         return toString();
+    }
+
+    public List<MarcoObject> getForms() {
+        return forms;
     }
 }

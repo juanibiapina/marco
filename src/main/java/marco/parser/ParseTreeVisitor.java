@@ -12,11 +12,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
-    private MarcoProgram result;
+    private MarcoModule result;
 
     @Override
-    public MarcoProgram visitProgram(@NotNull MarcoParser.ProgramContext ctx) {
-        result = new MarcoProgram();
+    public MarcoModule visitProgram(@NotNull MarcoParser.ProgramContext ctx) {
+        result = new MarcoModule();
         for (MarcoParser.FormContext formContext : ctx.form()) {
             result.add(visit(formContext));
         }
@@ -104,7 +104,7 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
         return new MarcoNumber(new BigInteger(ctx.getText()));
     }
 
-    public MarcoProgram getResult() {
+    public MarcoModule getResult() {
         return result;
     }
 }

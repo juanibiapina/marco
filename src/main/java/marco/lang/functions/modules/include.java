@@ -19,7 +19,7 @@ public class include extends MarcoNativeBlock {
             throw new MarcoException("Module not found in classpath:" + moduleName.getValue());
         }
 
-        MarcoProgram module = Parser.instance().parse(input);
+        MarcoModule module = Parser.instance().parse(input);
         module.eval(environment);
 
         return MarcoNil.NIL;

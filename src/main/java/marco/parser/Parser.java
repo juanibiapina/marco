@@ -1,6 +1,6 @@
 package marco.parser;
 
-import marco.lang.MarcoProgram;
+import marco.lang.MarcoModule;
 import marco.lang.exceptions.MarcoException;
 import marco.parser.antlr.MarcoParser;
 import org.antlr.v4.runtime.ANTLRInputStream;
@@ -16,13 +16,13 @@ public class Parser {
     private Parser() {
     }
 
-    public MarcoProgram parse(String code) {
+    public MarcoModule parse(String code) {
         ANTLRInputStream antlrInputStream = new ANTLRInputStream(code);
 
         return parseANTLRInputStream(antlrInputStream);
     }
 
-    public MarcoProgram parse(InputStream in) {
+    public MarcoModule parse(InputStream in) {
         ANTLRInputStream antlrInputStream;
         try {
             antlrInputStream = new ANTLRInputStream(in);
@@ -33,7 +33,7 @@ public class Parser {
         return parseANTLRInputStream(antlrInputStream);
     }
 
-    private MarcoProgram parseANTLRInputStream(ANTLRInputStream antlrInputStream) {
+    private MarcoModule parseANTLRInputStream(ANTLRInputStream antlrInputStream) {
         Lexer lexer = new Lexer(antlrInputStream);
 
         lexer.removeErrorListeners();
