@@ -12,20 +12,11 @@ public class Slot {
         this.binding = binding;
     }
 
-    public Slot(String name) {
-        this.name = name;
-        this.binding = null;
-    }
-
     public Binding getBinding() {
         if (binding == null) {
             throw new LookUpError(name);
         }
         return binding;
-    }
-
-    public boolean isEmpty() {
-        return binding == null;
     }
 
     public void setBinding(Binding binding) {

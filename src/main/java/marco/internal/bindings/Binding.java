@@ -19,10 +19,6 @@ public abstract class Binding {
         this.value = value;
     }
 
-    public void redefine(MarcoObject value) {
-        this.value = value;
-    }
-
     public String getSymbol() {
         return symbol;
     }

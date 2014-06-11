@@ -2,6 +2,7 @@ package marco.internal;
 
 import marco.internal.bindings.Binding;
 import marco.internal.bindings.ImmutableBinding;
+import marco.internal.bindings.LetBinding;
 import marco.internal.bindings.MutableBinding;
 import marco.lang.MarcoObject;
 import marco.lang.exceptions.BindingError;
@@ -30,6 +31,10 @@ public class Environment {
         addBinding(new MutableBinding(name, value));
     }
 
+    public void let(String name, MarcoObject value) {
+        addSlot(new LetBinding(name, value));
+    }
+
     public MarcoObject lookUp(String var) {
         if (slots.containsKey(var)) {
             return slots.get(var).getBinding().getValue();
@@ -40,14 +45,6 @@ public class Environment {
                 throw new LookUpError(var);
             }
         }
-    }
-
-    public Environment duplicate() {
-        Map<String, Slot> newEnvMap = new HashMap<>();
-        newEnvMap.putAll(slots);
-        Environment newEnv = new Environment(this);
-        newEnv.slots = newEnvMap;
-        return newEnv;
     }
 
     public Binding get(String name) {
