@@ -1,13 +1,14 @@
 package marco.runtime;
 
 import marco.internal.Environment;
+import marco.internal.TopLevelEnvironment;
 import marco.lang.MarcoObject;
 import marco.parser.Parser;
 
 import java.io.InputStream;
 
 public class MarcoRuntime {
-    private Environment environment = Environment.initial();
+    private Environment environment = new TopLevelEnvironment();
     private Parser parser = Parser.instance();
 
     public MarcoObject run(InputStream inputStream) {
