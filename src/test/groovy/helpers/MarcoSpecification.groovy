@@ -1,18 +1,16 @@
 package helpers
-import marco.internal.Environment
+
 import marco.lang.MarcoObject
-import marco.parser.Parser
+import marco.runtime.MarcoRuntime
 import org.junit.Ignore
 import spock.lang.Specification
 
 @Ignore
 abstract class MarcoSpecification extends Specification {
-    def environment = Environment.initial()
-    def parser = Parser.instance()
-
+    def runtime = new MarcoRuntime()
 
     def MarcoObject eval(String code) {
-        parser.parse(code).eval(environment)
+        runtime.run(code)
     }
 
     def classpathFile(content) {

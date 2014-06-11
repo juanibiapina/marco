@@ -27,8 +27,12 @@
 - Contracts
   - Can be used to generate proper error messages
 
+- Evaluation
+  - Use a stack
+
 - Refactor
   - String representations
     - specially lists
   - Drop the generic exception
   - Type names
+  - Environment class is too complicated
