@@ -20,9 +20,12 @@
 
 - Type Checking
 
+- Pattern Matching
+
 - Error messages
   - Line number information
   - Error context information (actual code?)
+  - Stack trace
 
 - Contracts
   - Can be used to generate proper error messages
@@ -30,9 +33,15 @@
 - Evaluation
   - Use a stack
 
+- Maps
+
 - Refactor
   - String representations
     - specially lists
   - Drop the generic exception
   - Type names
   - Environment class is too complicated
+
+
+
+Immutable Map -> Better environments
