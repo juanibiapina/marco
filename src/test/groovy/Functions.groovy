@@ -113,7 +113,7 @@ class Functions extends MarcoSpecification {
 
     def "error when defining a function with too many arguments"() {
         when:
-        eval(/ (def :f (function (:x :y) x y)) /)
+        eval(/ (def :f (function [:x] 1 1)) /)
 
         then:
         ContractViolation e = thrown()

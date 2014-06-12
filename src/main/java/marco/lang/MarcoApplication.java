@@ -3,6 +3,9 @@ package marco.lang;
 import marco.internal.Cast;
 import marco.internal.Environment;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MarcoApplication extends MarcoObject {
     private MarcoObject list;
 
@@ -17,7 +20,11 @@ public class MarcoApplication extends MarcoObject {
         MarcoList tail = marcoList.getTail();
 
         MarcoObject operator = head.eval(closure);
-        return new MarcoContinuation(new MarcoInvocation(Cast.toRunnable(operator), tail), closure, environment);
+        List<MarcoObject> arguments = new ArrayList<>();
+        for (int i = 0; i < tail.length(); i++) {
+            arguments.add(tail.get(i).eval(closure));
+        }
+        return new MarcoContinuation(new MarcoInvocation(Cast.toRunnable(operator), arguments), closure, environment);
     }
 
     @Override

@@ -3,7 +3,6 @@ package marco.lang;
 import marco.internal.Environment;
 import marco.lang.contracts.Contract;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MarcoData extends MarcoRunnable {
@@ -15,13 +14,8 @@ public class MarcoData extends MarcoRunnable {
     }
 
     @Override
-    protected MarcoObject performInvoke(Environment environment, MarcoList arguments) {
-        List<MarcoObject> values = new ArrayList<>();
-        for (int i = 0; i < arguments.length(); i++) {
-            MarcoObject evaluatedArg = arguments.get(i).eval(environment);
-            values.add(evaluatedArg);
-        }
-        return new MarcoDataInstance(this, values);
+    protected MarcoObject performInvoke(Environment environment, List<MarcoObject> arguments) {
+        return new MarcoDataInstance(this, arguments);
     }
 
     @Override

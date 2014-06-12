@@ -1,7 +1,9 @@
 package marco.lang.contracts;
 
-import marco.lang.MarcoList;
+import marco.lang.MarcoObject;
 import marco.lang.exceptions.ContractViolation;
+
+import java.util.List;
 
 public class Contract {
     private int expectedArity;
@@ -10,8 +12,8 @@ public class Contract {
         this.expectedArity = expectedArity;
     }
 
-    public void validate(MarcoList arguments) {
-        int actualArity = arguments.length();
+    public void validate(List<MarcoObject> arguments) {
+        int actualArity = arguments.size();
         if (actualArity != expectedArity) {
             throw new ContractViolation(expectedArity, actualArity);
         }

@@ -19,14 +19,13 @@ public class MarcoFunction extends MarcoRunnable {
     }
 
     @Override
-    public MarcoObject performInvoke(Environment environment, MarcoList arguments) {
+    public MarcoObject performInvoke(Environment environment, List<MarcoObject> arguments) {
         Environment closure = this.environment.spawn();
         closure.let("recurse", this);
 
-        for (int i = 0; i < arguments.length(); i++) {
-            MarcoObject evaluatedArg = arguments.get(i).eval(environment);
+        for (int i = 0; i < arguments.size(); i++) {
             String parameterName = parameters.get(i);
-            closure.parameter(parameterName, evaluatedArg);
+            closure.parameter(parameterName, arguments.get(i));
         }
         return new MarcoContinuation(new MarcoBlockInvocation(body), closure, environment);
     }

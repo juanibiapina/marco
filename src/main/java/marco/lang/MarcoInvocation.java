@@ -2,11 +2,13 @@ package marco.lang;
 
 import marco.internal.Environment;
 
+import java.util.List;
+
 public class MarcoInvocation extends MarcoObject {
     private MarcoRunnable operator;
-    private MarcoList arguments;
+    private List<MarcoObject> arguments;
 
-    public MarcoInvocation(MarcoRunnable operator, MarcoList arguments) {
+    public MarcoInvocation(MarcoRunnable operator, List<MarcoObject> arguments) {
         this.operator = operator;
         this.arguments = arguments;
     }
