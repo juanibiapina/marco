@@ -24,7 +24,7 @@ public class MarcoApplication extends MarcoObject {
         for (int i = 0; i < tail.length(); i++) {
             arguments.add(tail.get(i).eval(closure));
         }
-        return new MarcoContinuation(new MarcoInvocation(Cast.toRunnable(operator), arguments), closure, environment);
+        return new MarcoInvocation(Cast.toRunnable(operator), arguments, closure, environment);
     }
 
     @Override

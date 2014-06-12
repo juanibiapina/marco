@@ -7,15 +7,19 @@ import java.util.List;
 public class MarcoInvocation extends MarcoObject {
     private MarcoRunnable operator;
     private List<MarcoObject> arguments;
+    private Environment closure;
+    private Environment environment;
 
-    public MarcoInvocation(MarcoRunnable operator, List<MarcoObject> arguments) {
+    public MarcoInvocation(MarcoRunnable operator, List<MarcoObject> arguments, Environment closure, Environment environment) {
         this.operator = operator;
         this.arguments = arguments;
+        this.closure = closure;
+        this.environment = environment;
     }
 
     @Override
     protected MarcoObject doEval(Environment closure, Environment environment) {
-        return operator.invoke(closure, arguments);
+        return operator.invoke(this.closure, arguments);
     }
 
     @Override
@@ -30,7 +34,7 @@ public class MarcoInvocation extends MarcoObject {
 
     @Override
     public boolean isContinuation() {
-        return false;
+        return true;
     }
 
     @Override

@@ -12,9 +12,9 @@ public class _if extends MarcoNativeBlock {
         MarcoBlock elseClause = Cast.toBlock(closure.lookUp("else-clause"));
 
         if (Cast.toBoolean(condition) == MarcoBoolean.TRUE) {
-            return new MarcoContinuation(new MarcoBlockInvocation(thenClause), environment, environment);
+            return new MarcoBlockInvocation(thenClause, environment, environment);
         } else {
-            return new MarcoContinuation(new MarcoBlockInvocation(elseClause), environment, environment);
+            return new MarcoBlockInvocation(elseClause, environment, environment);
         }
     }
 }

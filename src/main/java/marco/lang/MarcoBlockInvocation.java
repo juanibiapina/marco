@@ -4,14 +4,18 @@ import marco.internal.Environment;
 
 public class MarcoBlockInvocation extends MarcoObject {
     private MarcoBlock block;
+    private Environment closure;
+    private Environment environment;
 
-    public MarcoBlockInvocation(MarcoBlock block) {
+    public MarcoBlockInvocation(MarcoBlock block, Environment closure, Environment environment) {
         this.block = block;
+        this.closure = closure;
+        this.environment = environment;
     }
 
     @Override
     protected MarcoObject doEval(Environment closure, Environment environment) {
-        return block.invoke(closure, environment);
+        return block.invoke(this.closure, this.environment);
     }
 
     @Override
@@ -26,7 +30,7 @@ public class MarcoBlockInvocation extends MarcoObject {
 
     @Override
     public boolean isContinuation() {
-        return false;
+        return true;
     }
 
     @Override

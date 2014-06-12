@@ -19,6 +19,6 @@ public class let extends MarcoNativeBlock {
 
         extended.let(name, value);
 
-        return new MarcoContinuation(new MarcoBlockInvocation(body), extended, environment);
+        return new MarcoBlockInvocation(body, extended, environment);
     }
 }
