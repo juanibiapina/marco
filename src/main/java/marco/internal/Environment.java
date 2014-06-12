@@ -1,9 +1,6 @@
 package marco.internal;
 
-import marco.internal.bindings.Binding;
-import marco.internal.bindings.ImmutableBinding;
-import marco.internal.bindings.LetBinding;
-import marco.internal.bindings.MutableBinding;
+import marco.internal.bindings.*;
 import marco.lang.MarcoObject;
 import marco.lang.exceptions.BindingError;
 import marco.lang.exceptions.LookUpError;
@@ -35,6 +32,10 @@ public class Environment {
         addSlot(new LetBinding(name, value));
     }
 
+    public void parameter(String name, MarcoObject value) {
+        addSlot(new ParameterBinding(name, value));
+    }
+
     public MarcoObject lookUp(String var) {
         if (slots.containsKey(var)) {
             return slots.get(var).getBinding().getValue();
@@ -59,16 +60,12 @@ public class Environment {
         }
     }
 
-    public void addSlot(Binding binding) {
-        slots.put(binding.getSymbol(), new Slot(binding.getSymbol(), binding));
-    }
-
     public Environment spawn() {
         return new Environment(this);
     }
 
-    private boolean hasParent() {
-        return parent != null;
+    private void addSlot(Binding binding) {
+        slots.put(binding.getSymbol(), new Slot(binding.getSymbol(), binding));
     }
 
     private void addBinding(Binding binding) {
@@ -91,5 +88,9 @@ public class Environment {
                 return false;
             }
         }
+    }
+
+    private boolean hasParent() {
+        return parent != null;
     }
 }

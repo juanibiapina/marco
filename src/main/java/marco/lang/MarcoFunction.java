@@ -1,8 +1,6 @@
 package marco.lang;
 
 import marco.internal.Environment;
-import marco.internal.bindings.ImmutableBinding;
-import marco.internal.bindings.ParameterBinding;
 import marco.lang.contracts.Contract;
 
 import java.util.ArrayList;
@@ -28,12 +26,12 @@ public class MarcoFunction extends MarcoRunnable {
     @Override
     public MarcoObject performInvoke(Environment environment, MarcoList arguments) {
         Environment closure = this.environment.spawn();
-        closure.addSlot(new ImmutableBinding("recurse", this));
+        closure.let("recurse", this);
 
         for (int i = 0; i < arguments.length(); i++) {
             MarcoObject evaluatedArg = arguments.get(i).eval(environment);
             String parameterName = parameters.get(i);
-            closure.addSlot(new ParameterBinding(parameterName, evaluatedArg));
+            closure.parameter(parameterName, evaluatedArg);
         }
         return new MarcoContinuation(new MarcoBlockInvocation(body), closure, environment);
     }
