@@ -39,9 +39,3 @@
   - String representations
     - specially lists
   - Drop the generic exception
-  - Type names
-  - Environment class is too complicated
-
-
-
-Immutable Map -> Better environments
