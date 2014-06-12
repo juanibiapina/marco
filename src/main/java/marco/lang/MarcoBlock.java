@@ -2,7 +2,6 @@ package marco.lang;
 
 import marco.internal.Environment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MarcoBlock extends MarcoValue {
@@ -15,15 +14,6 @@ public class MarcoBlock extends MarcoValue {
     @Override
     public String typeName() {
         return "Block";
-    }
-
-    @Override
-    public List<String> freeVariables() {
-        List<String> result = new ArrayList<>();
-        for (MarcoObject form : forms) {
-            result.addAll(form.freeVariables());
-        }
-        return result;
     }
 
     @Override

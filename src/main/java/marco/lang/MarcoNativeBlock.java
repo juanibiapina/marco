@@ -2,9 +2,6 @@ package marco.lang;
 
 import marco.internal.Environment;
 
-import java.util.Collections;
-import java.util.List;
-
 public abstract class MarcoNativeBlock extends MarcoBlock {
     public MarcoNativeBlock() {
         super(null);
@@ -13,11 +10,6 @@ public abstract class MarcoNativeBlock extends MarcoBlock {
     @Override
     public String typeName() {
         return "NativeBlock";
-    }
-
-    @Override
-    public List<String> freeVariables() {
-        return Collections.EMPTY_LIST;
     }
 
     @Override

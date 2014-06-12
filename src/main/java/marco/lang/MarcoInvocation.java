@@ -1,9 +1,6 @@
 package marco.lang;
 
 import marco.internal.Environment;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
-import java.util.List;
 
 public class MarcoInvocation extends MarcoObject {
     private MarcoRunnable operator;
@@ -22,11 +19,6 @@ public class MarcoInvocation extends MarcoObject {
     @Override
     public String typeName() {
         return "Invocation";
-    }
-
-    @Override
-    public List<String> freeVariables() {
-        throw new NotImplementedException();
     }
 
     @Override

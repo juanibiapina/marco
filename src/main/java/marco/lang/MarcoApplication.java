@@ -3,8 +3,6 @@ package marco.lang;
 import marco.internal.Cast;
 import marco.internal.Environment;
 
-import java.util.List;
-
 public class MarcoApplication extends MarcoObject {
     private MarcoObject list;
 
@@ -25,11 +23,6 @@ public class MarcoApplication extends MarcoObject {
     @Override
     public String typeName() {
         return "Application";
-    }
-
-    @Override
-    public List<String> freeVariables() {
-        return list.freeVariables();
     }
 
     @Override

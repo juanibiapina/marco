@@ -2,9 +2,6 @@ package marco.lang;
 
 import marco.internal.Environment;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class MarcoName extends MarcoObject {
     private String value;
 
@@ -34,11 +31,6 @@ public class MarcoName extends MarcoObject {
     @Override
     public String typeName() {
         return "Name";
-    }
-
-    @Override
-    public List<String> freeVariables() {
-        return Arrays.asList(value);
     }
 
     @Override

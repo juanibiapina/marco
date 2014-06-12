@@ -1,9 +1,6 @@
 package marco.lang;
 
 import marco.internal.Environment;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
-import java.util.List;
 
 public class MarcoBlockInvocation extends MarcoObject {
     private MarcoBlock block;
@@ -20,11 +17,6 @@ public class MarcoBlockInvocation extends MarcoObject {
     @Override
     public String typeName() {
         return "BlockInvocation";
-    }
-
-    @Override
-    public List<String> freeVariables() {
-        throw new NotImplementedException();
     }
 
     @Override

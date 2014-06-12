@@ -28,16 +28,6 @@ public class MarcoPair extends MarcoObject implements MarcoList {
     }
 
     @Override
-    public List<String> freeVariables() {
-        List<String> result = new ArrayList<>();
-
-        result.addAll(first.freeVariables());
-        result.addAll(second.freeVariables());
-
-        return result;
-    }
-
-    @Override
     public boolean isList() {
         return isList;
     }

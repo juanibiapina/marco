@@ -26,15 +26,6 @@ public class MarcoModule extends MarcoObject {
     }
 
     @Override
-    public List<String> freeVariables() {
-        List<String> result = new ArrayList<>();
-        for (MarcoObject form : forms) {
-            result.addAll(form.freeVariables());
-        }
-        return result;
-    }
-
-    @Override
     public boolean isList() {
         return false;
     }

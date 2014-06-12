@@ -1,9 +1,6 @@
 package marco.lang;
 
 import marco.internal.Environment;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
-
-import java.util.List;
 
 public class MarcoContinuation extends MarcoObject {
     private MarcoObject value;
@@ -24,11 +21,6 @@ public class MarcoContinuation extends MarcoObject {
     @Override
     public String typeName() {
         return "Continuation";
-    }
-
-    @Override
-    public List<String> freeVariables() {
-        throw new NotImplementedException();
     }
 
     @Override

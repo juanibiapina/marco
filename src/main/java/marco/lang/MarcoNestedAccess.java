@@ -3,7 +3,6 @@ package marco.lang;
 import marco.internal.Cast;
 import marco.internal.Environment;
 
-import java.util.Collections;
 import java.util.List;
 
 public class MarcoNestedAccess extends MarcoObject {
@@ -27,11 +26,6 @@ public class MarcoNestedAccess extends MarcoObject {
     @Override
     public String typeName() {
         return "NestedAccess";
-    }
-
-    @Override
-    public List<String> freeVariables() {
-        return Collections.emptyList();
     }
 
     @Override
