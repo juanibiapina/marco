@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Environment {
-    private Map<String, Slot> slots = new HashMap<>();
+    private Map<String, Binding> bindings = new HashMap<>();
     private final Environment parent;
 
     public Environment() {
@@ -29,16 +29,16 @@ public class Environment {
     }
 
     public void let(String name, MarcoObject value) {
-        addSlot(new LetBinding(name, value));
+        addLocalBinding(new LetBinding(name, value));
     }
 
     public void parameter(String name, MarcoObject value) {
-        addSlot(new ParameterBinding(name, value));
+        addLocalBinding(new ParameterBinding(name, value));
     }
 
     public MarcoObject lookUp(String var) {
-        if (slots.containsKey(var)) {
-            return slots.get(var).getBinding().getValue();
+        if (bindings.containsKey(var)) {
+            return bindings.get(var).getValue();
         } else {
             if (hasParent()) {
                 return parent.lookUp(var);
@@ -49,8 +49,8 @@ public class Environment {
     }
 
     public Binding get(String name) {
-        if (slots.containsKey(name)) {
-            return slots.get(name).getBinding();
+        if (bindings.containsKey(name)) {
+            return bindings.get(name);
         } else {
             if (hasParent()) {
                 return parent.get(name);
@@ -64,8 +64,8 @@ public class Environment {
         return new Environment(this);
     }
 
-    private void addSlot(Binding binding) {
-        slots.put(binding.getSymbol(), new Slot(binding.getSymbol(), binding));
+    private void addLocalBinding(Binding binding) {
+        bindings.put(binding.getSymbol(), binding);
     }
 
     private void addBinding(Binding binding) {
@@ -75,11 +75,11 @@ public class Environment {
             throw new BindingError(name, lookUp(name));
         }
 
-        slots.put(name, new Slot(name, binding));
+        bindings.put(name, binding);
     }
 
     private boolean hasBinding(String name) {
-        if (slots.containsKey(name)) {
+        if (bindings.containsKey(name)) {
             return true;
         } else {
             if (hasParent()) {
