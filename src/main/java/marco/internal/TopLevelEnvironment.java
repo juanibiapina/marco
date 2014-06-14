@@ -23,12 +23,14 @@ import marco.lang.functions.list.tail;
 import marco.lang.functions.string.string_concat;
 import marco.lang.functions.system.exit;
 import marco.parser.Parser;
+import marco.runtime.MarcoRuntime;
 
 import java.io.InputStream;
 import java.util.Arrays;
 
 public class TopLevelEnvironment extends Environment {
-    public TopLevelEnvironment() {
+    public TopLevelEnvironment(MarcoRuntime runtime) {
+        super(runtime);
         loadNativeBindings();
         loadStandardLibrary();
     }

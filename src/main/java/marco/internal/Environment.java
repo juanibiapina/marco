@@ -4,6 +4,7 @@ import marco.internal.bindings.*;
 import marco.lang.MarcoObject;
 import marco.lang.exceptions.BindingError;
 import marco.lang.exceptions.LookUpError;
+import marco.runtime.MarcoRuntime;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,13 +12,16 @@ import java.util.Map;
 public class Environment {
     private Map<String, Binding> bindings = new HashMap<>();
     private final Environment parent;
+    private MarcoRuntime runtime;
 
-    public Environment() {
+    public Environment(MarcoRuntime runtime) {
+        this.runtime = runtime;
         parent = null;
     }
 
     public Environment(Environment parent) {
         this.parent = parent;
+        this.runtime = parent.runtime;
     }
 
     public void def(String name, MarcoObject value) {
@@ -92,5 +96,9 @@ public class Environment {
 
     private boolean hasParent() {
         return parent != null;
+    }
+
+    public MarcoObject stack(Frame frame) {
+        return runtime.stack(frame);
     }
 }

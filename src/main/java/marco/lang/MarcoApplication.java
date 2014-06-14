@@ -2,6 +2,7 @@ package marco.lang;
 
 import marco.internal.Cast;
 import marco.internal.Environment;
+import marco.internal.Frame;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ public class MarcoApplication extends MarcoObject {
         for (int i = 0; i < tail.length(); i++) {
             arguments.add(tail.get(i).eval(dynamic));
         }
-        return Cast.toRunnable(operator).invoke(dynamic, arguments);
+        return dynamic.stack(new Frame(Cast.toRunnable(operator), arguments, dynamic));
     }
 
     @Override

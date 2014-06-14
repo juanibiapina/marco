@@ -1,6 +1,8 @@
 package marco.runtime;
 
 import marco.internal.Environment;
+import marco.internal.Frame;
+import marco.internal.Stack;
 import marco.internal.TopLevelEnvironment;
 import marco.lang.MarcoModule;
 import marco.lang.MarcoObject;
@@ -9,8 +11,15 @@ import marco.parser.Parser;
 import java.io.InputStream;
 
 public class MarcoRuntime {
-    private Environment environment = new TopLevelEnvironment();
-    private Parser parser = Parser.instance();
+    private Environment environment;
+    private Parser parser;
+    private Stack stack;
+
+    public MarcoRuntime() {
+        parser = Parser.instance();
+        stack = new Stack();
+        environment = new TopLevelEnvironment(this);
+    }
 
     public MarcoObject run(InputStream inputStream) {
         MarcoModule program = parser.parse(inputStream);
@@ -30,5 +39,9 @@ public class MarcoRuntime {
             result = form.eval(environment);
         }
         return result;
+    }
+
+    public MarcoObject stack(Frame frame) {
+        return stack.push(frame);
     }
 }
