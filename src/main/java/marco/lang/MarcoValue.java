@@ -7,9 +7,4 @@ public abstract class MarcoValue extends MarcoObject {
     public MarcoObject doEval(Environment closure, Environment environment) {
         return this;
     }
-
-    @Override
-    public boolean isContinuation() {
-        return false;
-    }
 }

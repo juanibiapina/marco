@@ -23,7 +23,7 @@ public class MarcoApplication extends MarcoObject {
         for (int i = 0; i < tail.length(); i++) {
             arguments.add(tail.get(i).eval(closure));
         }
-        return new MarcoInvocation(Cast.toRunnable(operator), arguments, closure, environment);
+        return Cast.toRunnable(operator).invoke(closure, arguments);
     }
 
     @Override
@@ -33,11 +33,6 @@ public class MarcoApplication extends MarcoObject {
 
     @Override
     public boolean isList() {
-        return false;
-    }
-
-    @Override
-    public boolean isContinuation() {
         return false;
     }
 

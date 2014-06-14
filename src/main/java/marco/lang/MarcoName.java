@@ -44,11 +44,6 @@ public class MarcoName extends MarcoObject {
     }
 
     @Override
-    public boolean isContinuation() {
-        return false;
-    }
-
-    @Override
     public String asString() {
         return toString();
     }

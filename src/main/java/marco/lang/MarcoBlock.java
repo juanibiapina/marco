@@ -22,11 +22,6 @@ public class MarcoBlock extends MarcoValue {
     }
 
     @Override
-    public boolean isContinuation() {
-        return false;
-    }
-
-    @Override
     public String asString() {
         return toString();
     }
@@ -35,9 +30,6 @@ public class MarcoBlock extends MarcoValue {
         MarcoObject result = null;
         for (MarcoObject form : forms) {
             result = form.doEval(closure, environment);
-            while (result.isContinuation()) {
-                result = result.doEval(closure, environment);
-            }
         }
         return result;
     }

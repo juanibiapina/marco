@@ -87,11 +87,6 @@ public class MarcoCons extends MarcoList {
     }
 
     @Override
-    public boolean isContinuation() {
-        return false;
-    }
-
-    @Override
     public String asString() {
         return toString();
     }

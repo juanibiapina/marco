@@ -27,7 +27,7 @@ public class MarcoFunction extends MarcoRunnable {
             String parameterName = parameters.get(i);
             closure.parameter(parameterName, arguments.get(i));
         }
-        return new MarcoBlockInvocation(body, closure, environment);
+        return body.invoke(closure, environment);
     }
 
     @Override

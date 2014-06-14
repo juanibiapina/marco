@@ -20,8 +20,4 @@ public abstract class MarcoNativeBlock extends MarcoBlock {
         return false;
     }
 
-    @Override
-    public boolean isContinuation() {
-        return false;
-    }
 }
