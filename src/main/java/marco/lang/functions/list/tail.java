@@ -1,16 +1,16 @@
-package marco.lang.functions.pair;
+package marco.lang.functions.list;
 
 import marco.internal.Cast;
 import marco.internal.Environment;
+import marco.lang.MarcoList;
 import marco.lang.MarcoNativeBlock;
 import marco.lang.MarcoObject;
-import marco.lang.MarcoPair;
 
-public class first extends MarcoNativeBlock {
+public class tail extends MarcoNativeBlock {
     @Override
     public MarcoObject invoke(Environment closure, Environment environment) {
-        MarcoPair pair = Cast.toPair(closure.lookUp("pair"));
+        MarcoList list = Cast.toList(closure.lookUp("list"));
 
-        return pair.getFirst();
+        return list.getTail();
     }
 }

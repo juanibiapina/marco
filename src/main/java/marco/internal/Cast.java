@@ -12,14 +12,6 @@ public class Cast {
         }
     }
 
-    public static MarcoName toName(MarcoObject value) {
-        if (value instanceof MarcoName) {
-            return (MarcoName) value;
-        } else {
-            throw new TypeError(MarcoName.class, value);
-        }
-    }
-
     public static MarcoList toList(MarcoObject value) {
         if (value instanceof MarcoList) {
             return (MarcoList) value;
@@ -41,14 +33,6 @@ public class Cast {
             return (MarcoBoolean) value;
         } else {
             return MarcoBoolean.TRUE;
-        }
-    }
-
-    public static MarcoPair toPair(MarcoObject value) {
-        if (value instanceof MarcoPair) {
-            return (MarcoPair) value;
-        } else {
-            throw new TypeError(MarcoPair.class, value);
         }
     }
 

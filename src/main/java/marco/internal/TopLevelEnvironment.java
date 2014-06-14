@@ -1,6 +1,9 @@
 package marco.internal;
 
-import marco.lang.*;
+import marco.lang.MarcoBoolean;
+import marco.lang.MarcoFunction;
+import marco.lang.MarcoNil;
+import marco.lang.MarcoObject;
 import marco.lang.exceptions.MarcoException;
 import marco.lang.functions.*;
 import marco.lang.functions.booleans._if;
@@ -14,10 +17,9 @@ import marco.lang.functions.list.list_question;
 import marco.lang.functions.modules.include;
 import marco.lang.functions.nil.nil_question;
 import marco.lang.functions.number.*;
-import marco.lang.functions.pair.cons;
-import marco.lang.functions.pair.first;
-import marco.lang.functions.pair.pair_question;
-import marco.lang.functions.pair.second;
+import marco.lang.functions.list.cons;
+import marco.lang.functions.list.head;
+import marco.lang.functions.list.tail;
 import marco.lang.functions.string.string_concat;
 import marco.lang.functions.system.exit;
 import marco.parser.Parser;
@@ -62,10 +64,9 @@ public class TopLevelEnvironment extends Environment {
 
         def("while", new MarcoFunction(this, Arrays.asList("cond", "body"), new _while()));
 
-        def("cons", new MarcoFunction(this, Arrays.asList("first", "second"), new cons()));
-        def("first", new MarcoFunction(this, Arrays.asList("pair"), new first()));
-        def("second", new MarcoFunction(this, Arrays.asList("pair"), new second()));
-        def("pair?", new MarcoFunction(this, Arrays.asList("pair"), new pair_question()));
+        def("cons", new MarcoFunction(this, Arrays.asList("head", "tail"), new cons()));
+        def("head", new MarcoFunction(this, Arrays.asList("list"), new head()));
+        def("tail", new MarcoFunction(this, Arrays.asList("list"), new tail()));
 
         def("list?", new MarcoFunction(this, Arrays.asList("value"), new list_question()));
         def("length", new MarcoFunction(this, Arrays.asList("l"), new length()));

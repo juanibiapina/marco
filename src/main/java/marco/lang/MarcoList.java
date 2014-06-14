@@ -2,14 +2,14 @@ package marco.lang;
 
 import java.util.List;
 
-public interface MarcoList {
-    List<String> asArgumentList();
+public abstract class MarcoList extends MarcoValue {
+    public abstract List<String> asArgumentList();
 
-    int length();
+    public abstract int length();
 
-    MarcoObject get(int i);
+    public abstract MarcoObject get(int i);
 
-    MarcoObject getHead();
+    public abstract MarcoObject getHead();
 
-    MarcoList getTail();
+    public abstract MarcoList getTail();
 }

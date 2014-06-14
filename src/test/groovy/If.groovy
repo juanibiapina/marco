@@ -9,6 +9,6 @@ class If extends MarcoSpecification {
 
     def "else clause"() {
         expect:
-        eval(/ (if (pair? 4) { (error "here") } { (+ 3 6) }) /) == new MarcoNumber(9)
+        eval(/ (if (list? 4) { (error "here") } { (+ 3 6) }) /) == new MarcoNumber(9)
     }
 }

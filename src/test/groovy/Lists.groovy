@@ -1,14 +1,14 @@
 import helpers.MarcoSpecification
 
 class Lists extends MarcoSpecification {
-    def "first"() {
+    def "head"() {
         expect:
-        eval(/ (first [1 2]) /) == eval(/ 1 /)
+        eval(/ (head [1 2]) /) == eval(/ 1 /)
     }
 
-    def "second"() {
+    def "tail"() {
         expect:
-        eval(/ (first (second [1 2 3])) /) == eval(/ 2 /)
+        eval(/ (tail [1 2 3]) /) == eval(/ [2 3] /)
     }
 
     def "literal lists"() {
@@ -25,10 +25,8 @@ class Lists extends MarcoSpecification {
     def "constructor"() {
         expect:
         eval(/ (list? [1 2]) /) == eval(/ true /)
-        eval(/ (list? (cons 1 2)) /) == eval(/ false /)
         eval(/ (list? (cons 1 nil)) /) == eval(/ true /)
         eval(/ (list? (cons 1 (cons 2 nil))) /) == eval(/ true /)
-        eval(/ (list? (cons 1 (cons 2 (cons 3 4)))) /) == eval(/ false /)
         eval(/ (list? 1) /) == eval(/ false /)
         eval(/ (list? "string") /) == eval(/ false /)
         eval(/ (list? nil) /) == eval(/ true /)

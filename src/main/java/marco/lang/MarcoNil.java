@@ -5,7 +5,7 @@ import marco.lang.exceptions.MarcoException;
 import java.util.Arrays;
 import java.util.List;
 
-public class MarcoNil extends MarcoValue implements MarcoList {
+public class MarcoNil extends MarcoList {
     public static final MarcoNil NIL = new MarcoNil();
 
     private MarcoNil() {

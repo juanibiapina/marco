@@ -1,7 +1,3 @@
-(def :head first)
-
-(def :tail second)
-
 (def :max (function [:v1 :v2] { (if (> v1 v2) {v1} {v2}) }))
 
 (def :map (function [:f :l] {

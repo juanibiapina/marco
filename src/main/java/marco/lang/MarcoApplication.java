@@ -7,17 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MarcoApplication extends MarcoObject {
-    private MarcoObject list;
+    private MarcoList list;
 
-    public MarcoApplication(MarcoObject list) {
+    public MarcoApplication(MarcoList list) {
         this.list = list;
     }
 
     @Override
     public MarcoObject doEval(Environment closure, Environment environment) {
-        MarcoList marcoList = (MarcoList) list;
-        MarcoObject head = marcoList.getHead();
-        MarcoList tail = marcoList.getTail();
+        MarcoObject head = list.getHead();
+        MarcoList tail = list.getTail();
 
         MarcoObject operator = head.eval(closure);
         List<MarcoObject> arguments = new ArrayList<>();
