@@ -47,7 +47,7 @@ public class Environment {
             if (hasParent()) {
                 return parent.lookUp(var);
             } else {
-                throw new LookUpError(var);
+                throw new LookUpError(var); // Bug in Marco?
             }
         }
     }
@@ -59,7 +59,7 @@ public class Environment {
             if (hasParent()) {
                 return parent.get(name);
             } else {
-                throw new LookUpError(name);
+                return new EmptyBinding(name);
             }
         }
     }

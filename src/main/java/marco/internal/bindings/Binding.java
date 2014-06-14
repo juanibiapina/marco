@@ -24,4 +24,8 @@ public abstract class Binding {
     }
 
     public abstract void mutate(MarcoObject value);
+
+    public boolean isEmpty() {
+        return value == null;
+    }
 }

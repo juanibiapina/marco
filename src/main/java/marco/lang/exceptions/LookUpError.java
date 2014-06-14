@@ -7,4 +7,8 @@ public class LookUpError extends MarcoException {
         super("Undefined binding '" + binding + "'");
         this.binding = binding;
     }
+
+    public String getBinding() {
+        return binding;
+    }
 }

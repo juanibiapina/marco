@@ -1,6 +1,8 @@
 package marco.lang;
 
 import marco.internal.Environment;
+import marco.internal.bindings.Binding;
+import marco.lang.exceptions.LookUpError;
 
 public class MarcoName extends MarcoObject {
     private String value;
@@ -11,7 +13,11 @@ public class MarcoName extends MarcoObject {
 
     @Override
     public MarcoObject eval(Environment dynamic) {
-        return dynamic.lookUp(value);
+        Binding binding = dynamic.get(value);
+        if (binding.isEmpty()) {
+            throw new LookUpError(value);
+        }
+        return binding.getValue();
     }
 
     public String getValue() {
