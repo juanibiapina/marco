@@ -1,7 +1,6 @@
 package marco.internal.bindings;
 
 import marco.lang.MarcoObject;
-import marco.lang.exceptions.LookUpError;
 
 public class EmptyBinding extends Binding {
     public EmptyBinding(String name) {
@@ -10,6 +9,6 @@ public class EmptyBinding extends Binding {
 
     @Override
     public void mutate(MarcoObject value) {
-        throw new LookUpError(getSymbol());
+        throw new RuntimeException("Mutation of empty binding. Should not happen.");
     }
 }
