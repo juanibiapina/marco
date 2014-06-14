@@ -7,7 +7,7 @@ import marco.lang.MarcoNativeBlock;
 import marco.lang.MarcoNil;
 import marco.lang.MarcoObject;
 import marco.lang.MarcoSymbol;
-import marco.lang.exceptions.LookUpError;
+import marco.lang.error.LookUpError;
 
 public class setbang extends MarcoNativeBlock {
     @Override
@@ -17,7 +17,7 @@ public class setbang extends MarcoNativeBlock {
 
         Binding binding = dynamic.get(name.getValue());
         if (binding.isEmpty()) {
-            throw new LookUpError(name.getValue());
+            throw new LookUpError(-1, name.getValue());
         }
         binding.mutate(value);
 

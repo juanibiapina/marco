@@ -3,7 +3,7 @@ package marco.internal;
 import marco.internal.bindings.*;
 import marco.lang.MarcoObject;
 import marco.lang.exceptions.BindingError;
-import marco.lang.exceptions.LookUpError;
+import marco.lang.error.LookUpError;
 import marco.runtime.MarcoRuntime;
 
 import java.util.HashMap;
@@ -47,7 +47,7 @@ public class Environment {
             if (hasParent()) {
                 return parent.lookUp(var);
             } else {
-                throw new LookUpError(var); // Bug in Marco?
+                throw new LookUpError(-1, var); // Bug in Marco?
             }
         }
     }

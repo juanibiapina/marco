@@ -1,5 +1,4 @@
 import helpers.MarcoSpecification
-import marco.lang.MarcoName
 
 class Names extends MarcoSpecification {
     def "look up values in the environment"() {
@@ -8,11 +7,6 @@ class Names extends MarcoSpecification {
 
         then:
         eval(/ x /) == eval(/ 2 /)
-    }
-
-    def "string representation"() {
-        expect:
-        new MarcoName("x").toString() == "'x"
     }
 
     def "with numbers"() {

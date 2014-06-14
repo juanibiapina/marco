@@ -70,7 +70,7 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
     public MarcoNestedAccess visitNestedAccess(@NotNull MarcoParser.NestedAccessContext ctx) {
         List<MarcoName> names = new ArrayList<>();
         for (TerminalNode node : ctx.NAME()) {
-            names.add(new MarcoName(node.getText()));
+            names.add(new MarcoName(node.getSymbol().getLine(), node.getText()));
         }
         return new MarcoNestedAccess(names);
     }
@@ -86,7 +86,7 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
 
     @Override
     public MarcoName visitName(@NotNull MarcoParser.NameContext ctx) {
-        return new MarcoName(ctx.getText());
+        return new MarcoName(ctx.getStart().getLine(), ctx.getText());
     }
 
     @Override

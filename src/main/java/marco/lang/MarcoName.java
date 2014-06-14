@@ -2,12 +2,14 @@ package marco.lang;
 
 import marco.internal.Environment;
 import marco.internal.bindings.Binding;
-import marco.lang.exceptions.LookUpError;
+import marco.lang.error.LookUpError;
 
 public class MarcoName extends MarcoObject {
     private String value;
+    private int line;
 
-    public MarcoName(String text) {
+    public MarcoName(int line, String text) {
+        this.line = line;
         this.value = text;
     }
 
@@ -15,7 +17,7 @@ public class MarcoName extends MarcoObject {
     public MarcoObject eval(Environment dynamic) {
         Binding binding = dynamic.get(value);
         if (binding.isEmpty()) {
-            throw new LookUpError(value);
+            throw new LookUpError(line, value);
         }
         return binding.getValue();
     }

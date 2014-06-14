@@ -1,6 +1,6 @@
 import helpers.MarcoSpecification
 import marco.lang.exceptions.ImmutabilityError
-import marco.lang.exceptions.LookUpError
+import marco.lang.error.LookUpError
 
 class Mutation extends MarcoSpecification {
     def "mutation is not allowed on defs"() {
