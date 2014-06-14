@@ -1,9 +1,6 @@
 package marco.runtime;
 
-import marco.internal.Environment;
-import marco.internal.Frame;
-import marco.internal.Stack;
-import marco.internal.TopLevelEnvironment;
+import marco.internal.*;
 import marco.lang.MarcoModule;
 import marco.lang.MarcoObject;
 import marco.parser.Parser;
@@ -43,5 +40,9 @@ public class MarcoRuntime {
 
     public MarcoObject stack(Frame frame) {
         return stack.push(frame);
+    }
+
+    public StackTrace buildStackTrace() {
+        return new StackTrace(stack);
     }
 }

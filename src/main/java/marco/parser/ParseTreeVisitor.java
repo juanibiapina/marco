@@ -29,7 +29,9 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
         for (MarcoParser.FormContext formContext : ctx.form()) {
             rawList.add(visit(formContext));
         }
-        return new MarcoApplication(ListHelper.fromJavaList(rawList));
+        MarcoApplication marcoApplication = new MarcoApplication(ListHelper.fromJavaList(rawList));
+        marcoApplication.setStartLine(ctx.getStart().getLine());
+        return marcoApplication;
     }
 
     @Override

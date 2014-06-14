@@ -24,7 +24,7 @@ public class MarcoApplication extends MarcoObject {
         for (int i = 0; i < tail.length(); i++) {
             arguments.add(tail.get(i).eval(dynamic));
         }
-        return dynamic.stack(new Frame(Cast.toRunnable(operator), arguments, dynamic));
+        return dynamic.stack(new Frame(getStartLine(), Cast.toRunnable(operator), arguments, dynamic));
     }
 
     @Override
