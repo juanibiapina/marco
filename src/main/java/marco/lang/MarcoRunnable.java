@@ -1,19 +1,22 @@
 package marco.lang;
 
 import marco.internal.Environment;
-import marco.lang.contracts.Contract;
+import marco.lang.exceptions.ContractViolation;
 
 import java.util.List;
 
 public abstract class MarcoRunnable extends MarcoValue {
-    private Contract contract;
+    private int arity;
 
-    public MarcoRunnable(Contract contract) {
-        this.contract = contract;
+    public MarcoRunnable(int arity) {
+        this.arity = arity;
     }
 
     public MarcoObject invoke(Environment dynamic, List<MarcoObject> arguments) {
-        contract.validate(arguments);
+        int actualArity = arguments.size();
+        if (actualArity != arity) {
+            throw new ContractViolation(arity, actualArity);
+        }
 
         return performInvoke(dynamic, arguments);
     }

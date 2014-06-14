@@ -1,7 +1,6 @@
 package marco.lang;
 
 import marco.internal.Environment;
-import marco.lang.contracts.Contract;
 
 import java.util.List;
 
@@ -11,7 +10,7 @@ public class MarcoFunction extends MarcoRunnable {
     private Environment lexical;
 
     public MarcoFunction(Environment lexical, List<String> parameters, MarcoBlock body) {
-        super(new Contract(parameters.size()));
+        super(parameters.size());
 
         this.lexical = lexical;
         this.parameters = parameters;

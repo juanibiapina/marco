@@ -1,7 +1,6 @@
 package marco.lang;
 
 import marco.internal.Environment;
-import marco.lang.contracts.Contract;
 
 import java.util.List;
 
@@ -9,7 +8,7 @@ public class MarcoData extends MarcoRunnable {
     private MarcoList fields;
 
     public MarcoData(MarcoList fields) {
-        super(new Contract(fields.length()));
+        super(fields.length());
         this.fields = fields;
     }
 
