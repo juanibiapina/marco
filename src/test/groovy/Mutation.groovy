@@ -1,5 +1,4 @@
 import helpers.MarcoSpecification
-import marco.lang.MarcoNumber
 import marco.lang.exceptions.ImmutabilityError
 import marco.lang.exceptions.LookUpError
 
@@ -36,7 +35,7 @@ class Mutation extends MarcoSpecification {
         eval(/ (set! :x 2) /)
 
         then:
-        eval(/ (f) /) == new MarcoNumber(2)
+        eval(/ (f) /) == eval(/ 2 /)
     }
 
     def "mutation inside the function affects the outer environment"() {
@@ -48,7 +47,7 @@ class Mutation extends MarcoSpecification {
         eval(/ (f) /)
 
         then:
-        eval(/ x /) == new MarcoNumber(2)
+        eval(/ x /) == eval(/ 2 /)
     }
 
     def "parameters cannot be mutated"() {

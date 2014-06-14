@@ -1,6 +1,5 @@
 import helpers.MarcoSpecification
 import marco.lang.MarcoList
-import marco.lang.MarcoNumber
 import marco.lang.MarcoSymbol
 import marco.lang.exceptions.ContractViolation
 import marco.lang.exceptions.LookUpError
@@ -19,7 +18,7 @@ class Functions extends MarcoSpecification {
         eval(/ (def :some_function (function [] { 4 })) /)
 
         then:
-        eval(/ (some_function) /) == new MarcoNumber(4)
+        eval(/ (some_function) /) == eval(/ 4 /)
     }
 
     def "takes 1 parameter and returns it"() {
@@ -27,7 +26,7 @@ class Functions extends MarcoSpecification {
         eval(/ (def :f (function [:x] { x })) /)
 
         then:
-        eval(/ (f 42) /) == new MarcoNumber(42)
+        eval(/ (f 42) /) == eval(/ 42 /)
     }
 
     def "takes 2 parameters and returns the second"() {
@@ -35,7 +34,7 @@ class Functions extends MarcoSpecification {
         eval(/ (def :f (function [:x :y] { y })) /)
 
         then:
-        eval(/ (f 3 4) /) == new MarcoNumber(4)
+        eval(/ (f 3 4) /) == eval(/ 4 /)
     }
 
     def "parameters shadow previous bindings"() {
@@ -44,7 +43,7 @@ class Functions extends MarcoSpecification {
         eval(/ (def :f (function [:x] {x})) /)
 
         then:
-        eval(/ (f 2) /) == new MarcoNumber(2)
+        eval(/ (f 2) /) == eval(/ 2 /)
     }
 
     def "previous environment is available to function body"() {
@@ -53,7 +52,7 @@ class Functions extends MarcoSpecification {
         eval(/ (def :f (function [:x] { p })) /)
 
         then:
-        eval(/ (f 3) /) == new MarcoNumber(5)
+        eval(/ (f 3) /) == eval(/ 5 /)
     }
 
     def "cannot access variable that is not defined"() {
@@ -88,7 +87,7 @@ class Functions extends MarcoSpecification {
         then:
         TypeError e = thrown()
         e.expected == MarcoList
-        e.actual == new MarcoNumber(1)
+        e.actual == eval(/ 1 /)
     }
 
     def "error when arguments aren't symbols"() {
@@ -98,7 +97,7 @@ class Functions extends MarcoSpecification {
         then:
         TypeError e = thrown()
         e.expected == MarcoSymbol
-        e.actual == new MarcoNumber(1)
+        e.actual == eval(/ 1 /)
     }
 
     def "error when defining a function with too few arguments"() {

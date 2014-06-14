@@ -1,6 +1,4 @@
 import helpers.MarcoSpecification
-import marco.lang.MarcoNil
-import marco.lang.MarcoNumber
 import marco.lang.MarcoSymbol
 import marco.lang.exceptions.BindingError
 import marco.lang.exceptions.ContractViolation
@@ -29,7 +27,7 @@ class Defines extends MarcoSpecification {
         eval(/ (define :x 1) /)
 
         then:
-        eval(/ x /) == new MarcoNumber(1)
+        eval(/ x /) == eval(/ 1 /)
     }
 
     def "defining in terms of other bindings"() {
@@ -49,12 +47,12 @@ class Defines extends MarcoSpecification {
         then:
         BindingError e = thrown()
         e.binding == "x"
-        e.oldValue == new MarcoNumber(1)
+        e.oldValue == eval(/ 1 /)
     }
 
     def "returns nil"() {
         expect:
-        eval(/ (def :xx 11) /) == new MarcoNil()
+        eval(/ (def :xx 11) /) == eval(/ nil /)
     }
 
     def "first parameter is a symbol"() {
@@ -64,7 +62,7 @@ class Defines extends MarcoSpecification {
         then:
         TypeError e = thrown()
         e.expected == MarcoSymbol
-        e.actual == new MarcoNumber(2)
+        e.actual == eval(/ 2 /)
     }
 
     def "without enough arguments"() {

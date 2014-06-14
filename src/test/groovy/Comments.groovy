@@ -1,5 +1,4 @@
 import helpers.MarcoSpecification
-import marco.lang.MarcoNumber
 
 class Comments extends MarcoSpecification {
     def "in the end of the line"() {
@@ -7,6 +6,6 @@ class Comments extends MarcoSpecification {
         eval(" (def :x 1 ) // some comment ")
 
         then:
-        eval(" x // more comments ") == new MarcoNumber(1)
+        eval(" x // more comments ") == eval(/ 1 /)
     }
 }
