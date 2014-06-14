@@ -9,7 +9,7 @@ import marco.lang.MarcoString;
 
 public class string_concat extends MarcoNativeBlock {
     @Override
-    public MarcoObject invoke(Environment closure, Environment environment) {
+    public MarcoObject invoke(Environment closure, Environment dynamic) {
         MarcoList values = Cast.toList(closure.lookUp("values"));
 
         StringBuilder builder = new StringBuilder();

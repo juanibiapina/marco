@@ -7,7 +7,7 @@ import marco.lang.MarcoObject;
 
 public class equal_question extends MarcoNativeBlock {
     @Override
-    public MarcoObject invoke(Environment closure, Environment environment) {
+    public MarcoObject invoke(Environment closure, Environment dynamic) {
         MarcoObject e1 = closure.lookUp("e1");
         MarcoObject e2 = closure.lookUp("e2");
 

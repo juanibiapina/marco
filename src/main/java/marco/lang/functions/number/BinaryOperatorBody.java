@@ -8,7 +8,7 @@ import marco.lang.MarcoObject;
 
 public abstract class BinaryOperatorBody extends MarcoNativeBlock {
     @Override
-    public MarcoObject invoke(Environment closure, Environment environment) {
+    public MarcoObject invoke(Environment closure, Environment dynamic) {
         MarcoNumber v1 = Cast.toNumber(closure.lookUp("v1"));
         MarcoNumber v2 = Cast.toNumber(closure.lookUp("v2"));
 

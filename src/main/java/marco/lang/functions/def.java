@@ -9,11 +9,11 @@ import marco.lang.MarcoSymbol;
 
 public class def extends MarcoNativeBlock {
     @Override
-    public MarcoObject invoke(Environment closure, Environment environment) {
+    public MarcoObject invoke(Environment closure, Environment dynamic) {
         MarcoSymbol name = Cast.toSymbol(closure.lookUp("name"));
         MarcoObject value = closure.lookUp("value");
 
-        environment.def(name.getValue(), value);
+        dynamic.def(name.getValue(), value);
 
         return MarcoNil.NIL;
     }

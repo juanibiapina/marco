@@ -10,7 +10,7 @@ import java.io.InputStream;
 
 public class include extends MarcoNativeBlock {
     @Override
-    public MarcoObject invoke(Environment closure, Environment environment) {
+    public MarcoObject invoke(Environment closure, Environment dynamic) {
         MarcoString moduleName = Cast.toString(closure.lookUp("module-name"));
 
         InputStream input = this.getClass().getClassLoader().getResourceAsStream(moduleName.getValue() + ".mrc");
@@ -20,7 +20,7 @@ public class include extends MarcoNativeBlock {
         }
 
         MarcoModule module = Parser.instance().parse(input);
-        module.eval(environment);
+        module.eval(dynamic);
 
         return MarcoNil.NIL;
     }

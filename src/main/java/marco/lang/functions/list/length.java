@@ -9,7 +9,7 @@ import marco.lang.MarcoObject;
 
 public class length extends MarcoNativeBlock {
     @Override
-    public MarcoObject invoke(Environment closure, Environment environment) {
+    public MarcoObject invoke(Environment closure, Environment dynamic) {
         MarcoList list = Cast.toList(closure.lookUp("l"));
 
         return new MarcoNumber(list.length());

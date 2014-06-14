@@ -3,11 +3,7 @@ package marco.lang;
 import marco.internal.Environment;
 
 public abstract class MarcoObject {
-    public MarcoObject eval(Environment environment) {
-        return doEval(environment, environment);
-    }
-
-    protected abstract MarcoObject doEval(Environment closure, Environment environment);
+    public abstract MarcoObject eval(Environment dynamic);
 
     @Override
     public String toString() {

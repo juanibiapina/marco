@@ -9,7 +9,7 @@ import marco.lang.MarcoObject;
 
 public class cons extends MarcoNativeBlock {
     @Override
-    public MarcoObject invoke(Environment closure, Environment environment) {
+    public MarcoObject invoke(Environment closure, Environment dynamic) {
         MarcoObject head = closure.lookUp("head");
         MarcoList tail = Cast.toList(closure.lookUp("tail"));
 

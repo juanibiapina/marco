@@ -8,11 +8,11 @@ import marco.lang.MarcoObject;
 
 public class var extends MarcoNativeBlock {
     @Override
-    public MarcoObject invoke(Environment closure, Environment environment) {
+    public MarcoObject invoke(Environment closure, Environment dynamic) {
         String name = Cast.toSymbol(closure.lookUp("name")).getValue();
         MarcoObject value = closure.lookUp("value");
 
-        environment.var(name, value);
+        dynamic.var(name, value);
 
         return MarcoNil.NIL;
     }

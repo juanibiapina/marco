@@ -10,8 +10,8 @@ public class MarcoName extends MarcoObject {
     }
 
     @Override
-    public MarcoObject doEval(Environment closure, Environment environment) {
-        return closure.lookUp(value);
+    public MarcoObject eval(Environment dynamic) {
+        return dynamic.lookUp(value);
     }
 
     public String getValue() {

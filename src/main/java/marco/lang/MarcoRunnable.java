@@ -12,10 +12,10 @@ public abstract class MarcoRunnable extends MarcoValue {
         this.contract = contract;
     }
 
-    public MarcoObject invoke(Environment environment, List<MarcoObject> arguments) {
+    public MarcoObject invoke(Environment dynamic, List<MarcoObject> arguments) {
         contract.validate(arguments);
 
-        return performInvoke(environment, arguments);
+        return performInvoke(dynamic, arguments);
     }
 
     protected abstract MarcoObject performInvoke(Environment environment, List<MarcoObject> arguments);

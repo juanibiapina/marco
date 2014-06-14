@@ -7,7 +7,7 @@ import marco.lang.MarcoObject;
 
 public class list_question extends MarcoNativeBlock {
     @Override
-    public MarcoObject invoke(Environment closure, Environment environment) {
+    public MarcoObject invoke(Environment closure, Environment dynamic) {
         MarcoObject value = closure.lookUp("value");
 
         return MarcoBoolean.from(value.isList());

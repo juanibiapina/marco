@@ -14,16 +14,16 @@ public class MarcoApplication extends MarcoObject {
     }
 
     @Override
-    public MarcoObject doEval(Environment closure, Environment environment) {
+    public MarcoObject eval(Environment dynamic) {
         MarcoObject head = list.getHead();
         MarcoList tail = list.getTail();
 
-        MarcoObject operator = head.eval(closure);
+        MarcoObject operator = head.eval(dynamic);
         List<MarcoObject> arguments = new ArrayList<>();
         for (int i = 0; i < tail.length(); i++) {
-            arguments.add(tail.get(i).eval(closure));
+            arguments.add(tail.get(i).eval(dynamic));
         }
-        return Cast.toRunnable(operator).invoke(closure, arguments);
+        return Cast.toRunnable(operator).invoke(dynamic, arguments);
     }
 
     @Override

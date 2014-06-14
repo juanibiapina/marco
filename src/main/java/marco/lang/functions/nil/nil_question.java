@@ -8,7 +8,7 @@ import marco.lang.MarcoObject;
 
 public class nil_question extends MarcoNativeBlock {
     @Override
-    public MarcoObject invoke(Environment closure, Environment environment) {
+    public MarcoObject invoke(Environment closure, Environment dynamic) {
         MarcoObject arg = closure.lookUp("arg");
 
         return MarcoBoolean.from(arg instanceof MarcoNil);

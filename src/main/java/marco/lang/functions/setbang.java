@@ -10,11 +10,11 @@ import marco.lang.MarcoSymbol;
 
 public class setbang extends MarcoNativeBlock {
     @Override
-    public MarcoObject invoke(Environment closure, Environment environment) {
+    public MarcoObject invoke(Environment closure, Environment dynamic) {
         MarcoSymbol name = Cast.toSymbol(closure.lookUp("name"));
         MarcoObject value = closure.lookUp("value");
 
-        Binding binding = environment.get(name.getValue());
+        Binding binding = dynamic.get(name.getValue());
         binding.mutate(value);
 
         return MarcoNil.NIL;

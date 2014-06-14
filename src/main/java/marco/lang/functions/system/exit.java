@@ -8,7 +8,7 @@ import marco.lang.MarcoObject;
 
 public class exit extends MarcoNativeBlock {
     @Override
-    public MarcoObject invoke(Environment closure, Environment environment) {
+    public MarcoObject invoke(Environment closure, Environment dynamic) {
         MarcoNumber exitCode = Cast.toNumber(closure.lookUp("code"));
 
         System.exit(exitCode.getValue().intValue());
