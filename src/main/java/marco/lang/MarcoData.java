@@ -14,7 +14,7 @@ public class MarcoData extends MarcoRunnable {
     }
 
     @Override
-    protected MarcoObject performInvoke(Environment environment, List<MarcoObject> arguments) {
+    protected MarcoObject performInvoke(Environment dynamic, List<MarcoObject> arguments) {
         return new MarcoDataInstance(this, arguments);
     }
 
