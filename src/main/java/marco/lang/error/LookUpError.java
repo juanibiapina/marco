@@ -5,18 +5,12 @@ import marco.runtime.MarcoRuntime;
 
 public class LookUpError extends Error {
     private MarcoRuntime runtime;
-    private int line;
     private String binding;
 
-    public LookUpError(MarcoRuntime runtime, int line, String binding) {
-        super(runtime, "Undefined binding '" + binding + "'");
+    public LookUpError(MarcoRuntime runtime, String fileName, int line, String binding) {
+        super(runtime, fileName, line, "Undefined binding '" + binding + "'");
         this.runtime = runtime;
-        this.line = line;
         this.binding = binding;
-    }
-
-    public int getLine() {
-        return line;
     }
 
     public String getBinding() {

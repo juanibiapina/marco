@@ -47,7 +47,7 @@ public class Environment {
             if (hasParent()) {
                 return parent.lookUp(var);
             } else {
-                throw new LookUpError(runtime, -1, var); // Bug in Marco?
+                throw new LookUpError(runtime, null, -1, var); // Bug in Marco?
             }
         }
     }

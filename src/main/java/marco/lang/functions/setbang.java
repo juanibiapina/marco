@@ -17,7 +17,7 @@ public class setbang extends MarcoNativeBlock {
 
         Binding binding = dynamic.get(name.getValue());
         if (binding.isEmpty()) {
-            throw new LookUpError(closure.getRuntime(), -1, name.getValue());
+            throw new LookUpError(closure.getRuntime(), null, -1, name.getValue());
         }
         binding.mutate(value);
 
