@@ -6,12 +6,8 @@ import marco.lang.error.LookUpError;
 
 public class MarcoName extends MarcoObject {
     private String value;
-    private String fileName;
-    private int line;
 
-    public MarcoName(String fileName, int line, String text) {
-        this.fileName = fileName;
-        this.line = line;
+    public MarcoName(String text) {
         this.value = text;
     }
 
@@ -19,7 +15,7 @@ public class MarcoName extends MarcoObject {
     public MarcoObject eval(Environment dynamic) {
         Binding binding = dynamic.get(value);
         if (binding.isEmpty()) {
-            throw new LookUpError(dynamic.getRuntime(), fileName, line, value);
+            throw new LookUpError(dynamic.getRuntime(), fileName, startLine, value);
         }
         return binding.getValue();
     }

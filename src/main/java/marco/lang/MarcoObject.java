@@ -3,7 +3,8 @@ package marco.lang;
 import marco.internal.Environment;
 
 public abstract class MarcoObject {
-    private Integer startLine;
+    protected String fileName;
+    protected Integer startLine;
 
     public abstract MarcoObject eval(Environment dynamic);
 
@@ -18,11 +19,11 @@ public abstract class MarcoObject {
 
     public abstract String asString();
 
-    public Integer getStartLine() {
-        return startLine;
-    }
-
     public void setStartLine(Integer startLine) {
         this.startLine = startLine;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }
