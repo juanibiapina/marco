@@ -6,21 +6,10 @@ import marco.lang.error.LookUpError
 import marco.runner.Runner
 
 class StackTraceTest extends MarcoSpecification {
-    def "saves line number for the error"() {
+    def "build the stack trace messages"() {
         given:
         def runner = new Runner()
-
-        when:
-        runner.run("fixtures/stack-trace.mrc")
-
-        then:
-        LookUpError e = thrown()
-        e.line == 1
-    }
-
-    def "saves line numbers for each frame"() {
-        given:
-        def runner = new Runner()
+        runner.setDebugMode(true)
 
         when:
         runner.run("fixtures/stack-trace.mrc")
@@ -28,6 +17,9 @@ class StackTraceTest extends MarcoSpecification {
         then:
         LookUpError e = thrown()
         StackTrace stackTrace = e.marcoStackTrace
-        stackTrace.collect() { it.line } == [3, 5, 7]
+        stackTrace.buildMessage() == """|    from fixtures/stack-trace.mrc:3
+        |    from fixtures/stack-trace.mrc:5
+        |    from fixtures/stack-trace.mrc:7
+        |""".stripMargin()
     }
 }

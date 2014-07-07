@@ -36,13 +36,14 @@ public class TopLevelEnvironment extends Environment {
     }
 
     public static MarcoObject load(String name) {
-        InputStream in = Environment.class.getClassLoader().getResourceAsStream("marco/" + name + ".mrc");
+        String fileName = "marco/" + name + ".mrc";
+        InputStream in = Environment.class.getClassLoader().getResourceAsStream(fileName);
 
         if (in == null) {
             throw new MarcoException("could not find " + name);
         }
 
-        return Parser.instance().parse(in);
+        return Parser.instance().parse(fileName, in);
     }
 
     private void loadStandardLibrary() {

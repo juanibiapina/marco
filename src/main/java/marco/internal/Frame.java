@@ -10,8 +10,10 @@ public class Frame {
     private MarcoRunnable runnable;
     private List<MarcoObject> arguments;
     private Environment dynamic;
+    private String fileName;
 
-    public Frame(Integer line, MarcoRunnable runnable, List<MarcoObject> arguments, Environment dynamic) {
+    public Frame(String fileName, Integer line, MarcoRunnable runnable, List<MarcoObject> arguments, Environment dynamic) {
+        this.fileName = fileName;
         this.line = line;
         this.runnable = runnable;
         this.arguments = arguments;
@@ -24,5 +26,9 @@ public class Frame {
 
     public Integer getLine() {
         return line;
+    }
+
+    public String getFileName() {
+        return fileName;
     }
 }

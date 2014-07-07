@@ -13,6 +13,11 @@ import java.util.List;
 
 public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
     private MarcoModule result;
+    private String fileName;
+
+    public ParseTreeVisitor(String fileName) {
+        this.fileName = fileName;
+    }
 
     @Override
     public MarcoModule visitProgram(@NotNull MarcoParser.ProgramContext ctx) {
@@ -31,6 +36,7 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
         }
         MarcoApplication marcoApplication = new MarcoApplication(ListHelper.fromJavaList(rawList));
         marcoApplication.setStartLine(ctx.getStart().getLine());
+        marcoApplication.setFileName(fileName);
         return marcoApplication;
     }
 

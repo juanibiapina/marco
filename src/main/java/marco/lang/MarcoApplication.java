@@ -9,6 +9,7 @@ import java.util.List;
 
 public class MarcoApplication extends MarcoObject {
     private MarcoList list;
+    private String fileName;
 
     public MarcoApplication(MarcoList list) {
         this.list = list;
@@ -24,7 +25,7 @@ public class MarcoApplication extends MarcoObject {
         for (int i = 0; i < tail.length(); i++) {
             arguments.add(tail.get(i).eval(dynamic));
         }
-        return dynamic.stack(new Frame(getStartLine(), Cast.toRunnable(operator), arguments, dynamic));
+        return dynamic.stack(new Frame(fileName, getStartLine(), Cast.toRunnable(operator), arguments, dynamic));
     }
 
     @Override
@@ -50,5 +51,9 @@ public class MarcoApplication extends MarcoObject {
         } else {
             return false;
         }
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
     }
 }

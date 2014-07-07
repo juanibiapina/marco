@@ -13,13 +13,14 @@ public class include extends MarcoNativeBlock {
     public MarcoObject invoke(Environment closure, Environment dynamic) {
         MarcoString moduleName = Cast.toString(closure.lookUp("module-name"));
 
-        InputStream input = this.getClass().getClassLoader().getResourceAsStream(moduleName.getValue() + ".mrc");
+        String fileName = moduleName.getValue() + ".mrc";
+        InputStream input = this.getClass().getClassLoader().getResourceAsStream(fileName);
 
         if (input == null) {
             throw new MarcoException("Module not found in classpath:" + moduleName.getValue());
         }
 
-        MarcoModule module = Parser.instance().parse(input);
+        MarcoModule module = Parser.instance().parse(fileName, input);
         module.eval(dynamic);
 
         return MarcoNil.NIL;

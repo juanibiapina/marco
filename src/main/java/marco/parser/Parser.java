@@ -19,10 +19,10 @@ public class Parser {
     public MarcoModule parse(String code) {
         ANTLRInputStream antlrInputStream = new ANTLRInputStream(code);
 
-        return parseANTLRInputStream(antlrInputStream);
+        return parseANTLRInputStream(null, antlrInputStream);
     }
 
-    public MarcoModule parse(InputStream in) {
+    public MarcoModule parse(String fileName, InputStream in) {
         ANTLRInputStream antlrInputStream;
         try {
             antlrInputStream = new ANTLRInputStream(in);
@@ -30,10 +30,10 @@ public class Parser {
             throw new MarcoException("inputstream error");
         }
 
-        return parseANTLRInputStream(antlrInputStream);
+        return parseANTLRInputStream(fileName, antlrInputStream);
     }
 
-    private MarcoModule parseANTLRInputStream(ANTLRInputStream antlrInputStream) {
+    private MarcoModule parseANTLRInputStream(String fileName, ANTLRInputStream antlrInputStream) {
         Lexer lexer = new Lexer(antlrInputStream);
 
         lexer.removeErrorListeners();
@@ -47,7 +47,7 @@ public class Parser {
 
         ParseTree tree = parser.program();
 
-        ParseTreeVisitor visitor = new ParseTreeVisitor();
+        ParseTreeVisitor visitor = new ParseTreeVisitor(fileName);
         visitor.visit(tree);
 
         return visitor.getResult();

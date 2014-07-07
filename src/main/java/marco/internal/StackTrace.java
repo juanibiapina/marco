@@ -18,4 +18,16 @@ public class StackTrace implements Iterable<marco.internal.StackTraceElement> {
     public Iterator<StackTraceElement> iterator() {
         return trace.iterator();
     }
+
+    public void print() {
+        System.out.println(buildMessage());
+    }
+
+    public String buildMessage() {
+        StringBuilder builder = new StringBuilder();
+        for (StackTraceElement element : trace) {
+            builder.append(element.buildMessage());
+        }
+        return builder.toString();
+    }
 }

@@ -9,7 +9,7 @@ public class LookUpError extends Error {
     private String binding;
 
     public LookUpError(MarcoRuntime runtime, int line, String binding) {
-        super("Undefined binding '" + binding + "'");
+        super(runtime, "Undefined binding '" + binding + "'");
         this.runtime = runtime;
         this.line = line;
         this.binding = binding;

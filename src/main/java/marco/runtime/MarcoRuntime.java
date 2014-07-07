@@ -18,8 +18,8 @@ public class MarcoRuntime {
         environment = new TopLevelEnvironment(this);
     }
 
-    public MarcoObject run(InputStream inputStream) {
-        MarcoModule program = parser.parse(inputStream);
+    public MarcoObject run(String fileName, InputStream inputStream) {
+        MarcoModule program = parser.parse(fileName, inputStream);
         MarcoObject result = null;
         for (MarcoObject form : program.getForms()) {
             environment = environment.spawn();

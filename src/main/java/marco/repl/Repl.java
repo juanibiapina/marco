@@ -1,7 +1,6 @@
 package marco.repl;
 
 import marco.lang.MarcoObject;
-import marco.lang.exceptions.MarcoException;
 import marco.runtime.MarcoRuntime;
 
 import java.io.BufferedReader;
@@ -22,8 +21,8 @@ public class Repl {
             try {
                 MarcoObject result = runtime.run(line);
                 printResult(result);
-            } catch (MarcoException e) {
-                System.out.println(e.getMessage());
+            } catch (marco.lang.error.Error e) {
+                e.printMarcoStackTrace();
             }
         }
     }
