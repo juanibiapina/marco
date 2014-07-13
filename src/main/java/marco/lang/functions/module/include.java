@@ -1,4 +1,4 @@
-package marco.lang.functions.modules;
+package marco.lang.functions.module;
 
 import marco.internal.Cast;
 import marco.internal.Environment;
