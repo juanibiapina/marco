@@ -20,7 +20,7 @@ public class require extends MarcoNativeBlock {
             throw new MarcoException("Module not found in classpath:" + moduleName.getValue());
         }
 
-        MarcoProgram module = Parser.instance().parse(fileName, input);
-        return module.eval(dynamic);
+        MarcoProgram program = Parser.instance().parse(fileName, input);
+        return program.asBlock().module(closure.getRuntime());
     }
 }

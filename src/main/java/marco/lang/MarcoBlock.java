@@ -1,6 +1,7 @@
 package marco.lang;
 
 import marco.internal.Environment;
+import marco.runtime.MarcoRuntime;
 
 import java.util.List;
 
@@ -32,5 +33,13 @@ public class MarcoBlock extends MarcoValue {
             result = form.eval(closure);
         }
         return result;
+    }
+
+    public MarcoModule module(MarcoRuntime runtime) {
+        Environment moduleEnvironment = runtime.createModuleEnvironment();
+        for (MarcoObject form : forms) {
+            form.eval(moduleEnvironment);
+        }
+        return moduleEnvironment.getModule();
     }
 }

@@ -60,4 +60,8 @@ public class MarcoProgram extends MarcoObject {
     public List<MarcoObject> getForms() {
         return forms;
     }
+
+    public MarcoBlock asBlock() {
+        return new MarcoBlock(forms);
+    }
 }

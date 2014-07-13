@@ -6,13 +6,15 @@ import marco.lang.MarcoNil;
 import marco.lang.MarcoObject;
 import marco.lang.exceptions.MarcoException;
 import marco.lang.functions.*;
+import marco.lang.functions.block.invoke;
+import marco.lang.functions.block.module;
 import marco.lang.functions.booleans._if;
 import marco.lang.functions.booleans._not;
-import marco.lang.functions.data.data;
 import marco.lang.functions.function.function;
 import marco.lang.functions.function.function_question;
 import marco.lang.functions.io.print;
 import marco.lang.functions.list.*;
+import marco.lang.functions.module.export;
 import marco.lang.functions.module.require;
 import marco.lang.functions.modules.include;
 import marco.lang.functions.nil.nil_question;
@@ -83,8 +85,6 @@ public class TopLevelEnvironment extends Environment {
         def("/", new BinaryOperator(this, new division()));
         def("%", new BinaryOperator(this, new remainder()));
 
-        def("data", new MarcoFunction(this, Arrays.asList("fields"), new data()));
-
         def("equal?", new MarcoFunction(this, Arrays.asList("e1", "e2"), new equal_question()));
 
         def("include", new MarcoFunction(this, Arrays.asList("module-name"), new include()));
@@ -95,5 +95,9 @@ public class TopLevelEnvironment extends Environment {
         def("print", new MarcoFunction(this, Arrays.asList("e"), new print()));
 
         def("string-concat", new MarcoFunction(this, Arrays.asList("values"), new string_concat()));
+
+        def("invoke", new MarcoFunction(this, Arrays.asList("block"), new invoke()));
+        def("module", new MarcoFunction(this, Arrays.asList("block"), new module()));
+        def("export", new MarcoFunction(this, Arrays.asList("symbol"), new export()));
     }
 }

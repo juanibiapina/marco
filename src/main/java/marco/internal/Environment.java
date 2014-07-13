@@ -1,9 +1,10 @@
 package marco.internal;
 
 import marco.internal.bindings.*;
+import marco.lang.MarcoModule;
 import marco.lang.MarcoObject;
-import marco.lang.exceptions.BindingError;
 import marco.lang.error.LookUpError;
+import marco.lang.exceptions.BindingError;
 import marco.runtime.MarcoRuntime;
 
 import java.util.HashMap;
@@ -13,6 +14,7 @@ public class Environment {
     private Map<String, Binding> bindings = new HashMap<>();
     private final Environment parent;
     private MarcoRuntime runtime;
+    private MarcoModule module;
 
     public Environment(MarcoRuntime runtime) {
         this.runtime = runtime;
@@ -104,5 +106,13 @@ public class Environment {
 
     public MarcoRuntime getRuntime() {
         return runtime;
+    }
+
+    public void setModule(MarcoModule module) {
+        this.module = module;
+    }
+
+    public MarcoModule getModule() {
+        return module;
     }
 }

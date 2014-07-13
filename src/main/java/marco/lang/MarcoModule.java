@@ -1,19 +1,12 @@
 package marco.lang;
 
-import marco.internal.Cast;
-
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class MarcoModule extends MarcoValue {
-    private Map<String, MarcoObject> values = new HashMap<>();
+    private Map<String, MarcoObject> exports = new HashMap<>();
 
-    public MarcoModule(MarcoData data, List<MarcoObject> values) {
-        MarcoList fields = data.getFields();
-        for (int i = 0; i < fields.length(); i++) {
-            this.values.put(Cast.toSymbol(fields.get(i)).getValue(), values.get(i));
-        }
+    public MarcoModule() {
     }
 
     @Override
@@ -31,7 +24,15 @@ public class MarcoModule extends MarcoValue {
         return toString();
     }
 
-    public MarcoObject getField(MarcoName field) {
-        return values.get(field.getValue());
+    public void export(MarcoSymbol symbol, MarcoObject value) {
+        exports.put(symbol.getValue(), value);
+    }
+
+    public MarcoObject getMember(MarcoName name) {
+        return exports.get(name.getValue());
+    }
+
+    public boolean hasExport(MarcoName name) {
+        return exports.containsKey(name.getValue());
     }
 }
