@@ -14,7 +14,7 @@ public class string_concat extends MarcoNativeBlock {
 
         StringBuilder builder = new StringBuilder();
         for (int i = 0; i < values.length(); i++) {
-            String value = values.get(i).asString();
+            String value = values.get(i).convertToString();
             builder.append(value);
         }
 

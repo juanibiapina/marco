@@ -35,7 +35,7 @@ public class MarcoFunction extends MarcoRunnable {
     }
 
     @Override
-    public String asString() {
+    public String convertToString() {
         return toString();
     }
 }

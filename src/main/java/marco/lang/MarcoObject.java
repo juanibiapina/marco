@@ -17,7 +17,7 @@ public abstract class MarcoObject {
 
     public abstract boolean isList();
 
-    public abstract String asString();
+    public abstract String convertToString();
 
     public void setStartLine(Integer startLine) {
         this.startLine = startLine;

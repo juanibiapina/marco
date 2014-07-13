@@ -87,7 +87,7 @@ public class MarcoCons extends MarcoList {
     }
 
     @Override
-    public String asString() {
+    public String convertToString() {
         return toString();
     }
 }

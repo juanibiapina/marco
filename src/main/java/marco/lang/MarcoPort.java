@@ -23,7 +23,7 @@ public class MarcoPort extends MarcoValue {
     }
 
     @Override
-    public String asString() {
+    public String convertToString() {
         return null;
     }
 

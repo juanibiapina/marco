@@ -53,7 +53,7 @@ public class MarcoProgram extends MarcoObject {
     }
 
     @Override
-    public String asString() {
+    public String convertToString() {
         return toString();
     }
 

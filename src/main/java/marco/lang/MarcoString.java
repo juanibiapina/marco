@@ -33,7 +33,7 @@ public class MarcoString extends MarcoValue {
     }
 
     @Override
-    public String asString() {
+    public String convertToString() {
         return value;
     }
 

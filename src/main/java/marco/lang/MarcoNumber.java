@@ -39,7 +39,7 @@ public class MarcoNumber extends MarcoValue {
     }
 
     @Override
-    public String asString() {
+    public String convertToString() {
         return toString();
     }
 

@@ -47,7 +47,7 @@ public class MarcoMemberAccess extends MarcoObject {
     }
 
     @Override
-    public String asString() {
+    public String convertToString() {
         return toString();
     }
 }

@@ -23,7 +23,7 @@ public class MarcoBlock extends MarcoValue {
     }
 
     @Override
-    public String asString() {
+    public String convertToString() {
         return toString();
     }
 

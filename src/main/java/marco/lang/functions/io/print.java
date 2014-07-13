@@ -10,7 +10,7 @@ public class print extends MarcoNativeBlock {
     public MarcoObject invoke(Environment closure, Environment dynamic) {
         MarcoObject v = closure.lookUp("e");
 
-        System.out.println(v);
+        System.out.println(v.convertToString());
 
         return MarcoNil.NIL;
     }
