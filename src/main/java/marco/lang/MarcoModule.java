@@ -1,28 +1,24 @@
 package marco.lang;
 
-import marco.internal.Environment;
+import marco.internal.Cast;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class MarcoModule extends MarcoObject {
-    private List<MarcoObject> forms = new ArrayList<>();
+public class MarcoModule extends MarcoValue {
+    private Map<String, MarcoObject> values = new HashMap<>();
 
-    public void add(MarcoObject form) {
-        forms.add(form);
-    }
-
-    public MarcoObject eval(Environment dynamic) {
-        MarcoObject result = null;
-        for (MarcoObject form : forms) {
-            result = form.eval(dynamic);
+    public MarcoModule(MarcoData data, List<MarcoObject> values) {
+        MarcoList fields = data.getFields();
+        for (int i = 0; i < fields.length(); i++) {
+            this.values.put(Cast.toSymbol(fields.get(i)).getValue(), values.get(i));
         }
-        return result;
     }
 
     @Override
     public String typeName() {
-        return "Program";
+        return "Module";
     }
 
     @Override
@@ -31,33 +27,11 @@ public class MarcoModule extends MarcoObject {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof MarcoModule) {
-            MarcoModule other = (MarcoModule) obj;
-            int size = forms.size();
-
-            if (size != other.forms.size()) {
-                return false;
-            }
-
-            for (int i = 0; i < size; i++) {
-                if (!forms.get(i).equals(other.forms.get(i))) {
-                    return false;
-                }
-            }
-
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    @Override
     public String asString() {
         return toString();
     }
 
-    public List<MarcoObject> getForms() {
-        return forms;
+    public MarcoObject getField(MarcoName field) {
+        return values.get(field.getValue());
     }
 }

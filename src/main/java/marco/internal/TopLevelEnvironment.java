@@ -12,14 +12,11 @@ import marco.lang.functions.data.data;
 import marco.lang.functions.function.function;
 import marco.lang.functions.function.function_question;
 import marco.lang.functions.io.print;
-import marco.lang.functions.list.length;
-import marco.lang.functions.list.list_question;
+import marco.lang.functions.list.*;
+import marco.lang.functions.module.require;
 import marco.lang.functions.modules.include;
 import marco.lang.functions.nil.nil_question;
 import marco.lang.functions.number.*;
-import marco.lang.functions.list.cons;
-import marco.lang.functions.list.head;
-import marco.lang.functions.list.tail;
 import marco.lang.functions.string.string_concat;
 import marco.lang.functions.system.exit;
 import marco.parser.Parser;
@@ -91,6 +88,7 @@ public class TopLevelEnvironment extends Environment {
         def("equal?", new MarcoFunction(this, Arrays.asList("e1", "e2"), new equal_question()));
 
         def("include", new MarcoFunction(this, Arrays.asList("module-name"), new include()));
+        def("require", new MarcoFunction(this, Arrays.asList("module-name"), new require()));
 
         def("exit", new MarcoFunction(this, Arrays.asList("code"), new exit()));
 

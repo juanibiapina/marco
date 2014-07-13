@@ -5,27 +5,27 @@ import marco.internal.Environment;
 
 import java.util.List;
 
-public class MarcoNestedAccess extends MarcoObject {
+public class MarcoMemberAccess extends MarcoObject {
     private List<MarcoName> symbols;
 
-    public MarcoNestedAccess(List<MarcoName> symbols) {
+    public MarcoMemberAccess(List<MarcoName> symbols) {
         this.symbols = symbols;
     }
 
     @Override
     public MarcoObject eval(Environment dynamic) {
-        MarcoDataInstance data = Cast.toDataInstance(symbols.get(0).eval(dynamic));
+        MarcoModule data = Cast.toModule(symbols.get(0).eval(dynamic));
 
         MarcoObject result = data.getField(symbols.get(1));
         for (int i = 2; i < symbols.size(); i++) {
-            result = Cast.toDataInstance(result).getField(symbols.get(i));
+            result = Cast.toModule(result).getField(symbols.get(i));
         }
         return result;
     }
 
     @Override
     public String typeName() {
-        return "NestedAccess";
+        return "MemberAccess";
     }
 
     @Override

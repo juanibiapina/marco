@@ -1,4 +1,4 @@
-package marco.lang.functions.modules;
+package marco.lang.functions.module;
 
 import marco.internal.Cast;
 import marco.internal.Environment;
@@ -8,7 +8,7 @@ import marco.parser.Parser;
 
 import java.io.InputStream;
 
-public class include extends MarcoNativeBlock {
+public class require extends MarcoNativeBlock {
     @Override
     public MarcoObject invoke(Environment closure, Environment dynamic) {
         MarcoString moduleName = Cast.toString(closure.lookUp("module-name"));
@@ -21,8 +21,6 @@ public class include extends MarcoNativeBlock {
         }
 
         MarcoProgram module = Parser.instance().parse(fileName, input);
-        module.eval(dynamic);
-
-        return MarcoNil.NIL;
+        return module.eval(dynamic);
     }
 }

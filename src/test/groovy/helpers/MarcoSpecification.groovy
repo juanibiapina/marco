@@ -22,4 +22,14 @@ abstract class MarcoSpecification extends Specification {
 
         file.name
     }
+
+    def classpathModule(content) {
+        def file = File.createTempFile("temp-module", ".mrc")
+        file.write(content)
+
+        def loader = this.class.classLoader
+        loader.addURL(file.parentFile.toURI().toURL())
+
+        file.name.replaceFirst(~/\.[^\.]+$/, '')
+    }
 }

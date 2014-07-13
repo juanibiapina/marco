@@ -1,7 +1,7 @@
 package marco.runtime;
 
 import marco.internal.*;
-import marco.lang.MarcoModule;
+import marco.lang.MarcoProgram;
 import marco.lang.MarcoObject;
 import marco.parser.Parser;
 
@@ -19,7 +19,7 @@ public class MarcoRuntime {
     }
 
     public MarcoObject run(String fileName, InputStream inputStream) {
-        MarcoModule program = parser.parse(fileName, inputStream);
+        MarcoProgram program = parser.parse(fileName, inputStream);
         MarcoObject result = null;
         for (MarcoObject form : program.getForms()) {
             environment = environment.spawn();
@@ -29,7 +29,7 @@ public class MarcoRuntime {
     }
 
     public MarcoObject run(String line) {
-        MarcoModule program = parser.parse(line);
+        MarcoProgram program = parser.parse(line);
         MarcoObject result = null;
         for (MarcoObject form : program.getForms()) {
             environment = environment.spawn();

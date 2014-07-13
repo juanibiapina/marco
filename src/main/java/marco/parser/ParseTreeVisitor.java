@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
-    private MarcoModule result;
+    private MarcoProgram result;
     private String fileName;
 
     public ParseTreeVisitor(String fileName) {
@@ -20,8 +20,8 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
     }
 
     @Override
-    public MarcoModule visitProgram(@NotNull MarcoParser.ProgramContext ctx) {
-        result = new MarcoModule();
+    public MarcoProgram visitProgram(@NotNull MarcoParser.ProgramContext ctx) {
+        result = new MarcoProgram();
         for (MarcoParser.FormContext formContext : ctx.form()) {
             result.add(visit(formContext));
         }
@@ -60,8 +60,8 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
     }
 
     @Override
-    public MarcoObject visitFormNestedAccess(@NotNull MarcoParser.FormNestedAccessContext ctx) {
-        return visit(ctx.nested_access());
+    public MarcoObject visitFormMemberAccess(@NotNull MarcoParser.FormMemberAccessContext ctx) {
+        return visit(ctx.member_access());
     }
 
     @Override
@@ -75,7 +75,7 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
     }
 
     @Override
-    public MarcoNestedAccess visitNestedAccess(@NotNull MarcoParser.NestedAccessContext ctx) {
+    public MarcoMemberAccess visitMemberAccess(@NotNull MarcoParser.MemberAccessContext ctx) {
         List<MarcoName> names = new ArrayList<>();
         for (TerminalNode node : ctx.NAME()) {
             MarcoName name = new MarcoName(node.getText());
@@ -83,7 +83,7 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
             name.setStartLine(node.getSymbol().getLine());
             names.add(name);
         }
-        return new MarcoNestedAccess(names);
+        return new MarcoMemberAccess(names);
     }
 
     @Override
@@ -118,7 +118,7 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
         return new MarcoNumber(new BigInteger(ctx.getText()));
     }
 
-    public MarcoModule getResult() {
+    public MarcoProgram getResult() {
         return result;
     }
 }

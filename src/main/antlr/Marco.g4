@@ -7,7 +7,7 @@ form
     | application   # FormApplication
     | block         # FormBlock
     | literal       # FormLiteral
-    | nested_access # FormNestedAccess
+    | member_access # FormMemberAccess
     ;
 
 list: '[' form* ']' ;
@@ -23,8 +23,8 @@ literal
     | NUMBER     # Number
     ;
 
-nested_access
-    : NAME ('.' NAME)+    # NestedAccess
+member_access
+    : NAME ('.' NAME)+    # MemberAccess
     ;
 
 STRING : '"' ( ~'"' | '\\' '"' )* '"' ;

@@ -44,11 +44,11 @@ public class Cast {
         }
     }
 
-    public static MarcoDataInstance toDataInstance(MarcoObject value) {
-        if (value instanceof MarcoDataInstance) {
-            return (MarcoDataInstance) value;
+    public static MarcoModule toModule(MarcoObject value) {
+        if (value instanceof MarcoModule) {
+            return (MarcoModule) value;
         } else {
-            throw new TypeError(MarcoDataInstance.class, value);
+            throw new TypeError(MarcoModule.class, value);
         }
     }
 
