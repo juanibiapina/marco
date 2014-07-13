@@ -5,9 +5,9 @@ import helpers.MarcoSpecification
 class invoke extends MarcoSpecification {
     def "returns the last value of the block"() {
         given:
-        eval(/ (def :program { (def :b 1) b } ) /)
+        eval(/ (def :block { (def :a 1) (def :b a) b } ) /)
 
         expect:
-        eval(/ (invoke program) /) == eval(/ 1 /)
+        eval(/ (invoke block) /) == eval(/ 1 /)
     }
 }
