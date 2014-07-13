@@ -24,8 +24,8 @@ public class MarcoModule extends MarcoValue {
         return toString();
     }
 
-    public void export(MarcoSymbol symbol, MarcoObject value) {
-        exports.put(symbol.getValue(), value);
+    public void export(String name, MarcoObject value) {
+        exports.put(name, value);
     }
 
     public MarcoObject getMember(MarcoName name) {

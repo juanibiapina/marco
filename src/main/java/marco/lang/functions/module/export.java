@@ -12,7 +12,7 @@ public class export extends MarcoNativeBlock {
     public MarcoObject invoke(Environment closure, Environment dynamic) {
         MarcoSymbol symbol = Cast.toSymbol(closure.lookUp("symbol"));
 
-        dynamic.getModule().export(symbol, dynamic.lookUp(symbol.getValue()));
+        dynamic.getModule().export(symbol.getValue(), dynamic.lookUp(symbol.getValue()));
 
         return MarcoNil.NIL;
     }

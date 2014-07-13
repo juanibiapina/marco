@@ -67,4 +67,12 @@ public class Cast {
             throw new TypeError(MarcoBlock.class, value);
         }
     }
+
+    public static MarcoPort toPort(MarcoObject value) {
+        if (value instanceof MarcoPort) {
+            return (MarcoPort) value;
+        } else {
+            throw new TypeError(MarcoPort.class, value);
+        }
+    }
 }

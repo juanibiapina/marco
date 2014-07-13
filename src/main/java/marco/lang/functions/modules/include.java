@@ -17,7 +17,7 @@ public class include extends MarcoNativeBlock {
         InputStream input = this.getClass().getClassLoader().getResourceAsStream(fileName);
 
         if (input == null) {
-            throw new MarcoException("Module not found in classpath:" + moduleName.getValue());
+            throw new MarcoException("Module not found in classpath: " + moduleName.getValue());
         }
 
         MarcoProgram module = Parser.instance().parse(fileName, input);
