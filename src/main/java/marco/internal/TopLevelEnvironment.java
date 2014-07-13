@@ -98,6 +98,6 @@ public class TopLevelEnvironment extends Environment {
 
         def("invoke", new MarcoFunction(this, Arrays.asList("block"), new invoke()));
         def("module", new MarcoFunction(this, Arrays.asList("block"), new module()));
-        def("export", new MarcoFunction(this, Arrays.asList("symbol"), new export()));
+        def("export", new MarcoFunction(this, Arrays.asList("symbols"), new export()));
     }
 }

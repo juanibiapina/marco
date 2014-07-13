@@ -3,5 +3,4 @@
 (def :stdin native.stdin)
 (def :read-line native.read-line)
 
-(export :stdin)
-(export :read-line)
+(export [:stdin :read-line])

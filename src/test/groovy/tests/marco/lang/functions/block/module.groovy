@@ -5,7 +5,7 @@ import marco.lang.error.ExportError
 class module extends MarcoSpecification {
     def "creates a module from a block"() {
         given:
-        eval(/ (def :program { (def :b 2) (export :b) }) /)
+        eval(/ (def :program { (def :b 2) (export [:b]) }) /)
 
         when:
         eval(/ (def :m (module program)) /)
@@ -16,7 +16,7 @@ class module extends MarcoSpecification {
 
     def "hidden members are available to other members"() {
         given:
-        eval(/ (def :program { (def :hidden 1) (def :b hidden) (export :b) }) /)
+        eval(/ (def :program { (def :hidden 1) (def :b hidden) (export [:b]) }) /)
 
         when:
         eval(/ (def :m (module program)) /)
@@ -27,7 +27,7 @@ class module extends MarcoSpecification {
 
     def "does not export hidden members"() {
         given:
-        eval(/ (def :program { (def :hidden 1) (def :b hidden) (export :b) }) /)
+        eval(/ (def :program { (def :hidden 1) (def :b hidden) (export [:b]) }) /)
 
         when:
         eval(/ (def :m (module program)) /)

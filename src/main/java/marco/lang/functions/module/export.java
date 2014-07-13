@@ -2,17 +2,17 @@ package marco.lang.functions.module;
 
 import marco.internal.Cast;
 import marco.internal.Environment;
-import marco.lang.MarcoNativeBlock;
-import marco.lang.MarcoNil;
-import marco.lang.MarcoObject;
-import marco.lang.MarcoSymbol;
+import marco.lang.*;
 
 public class export extends MarcoNativeBlock {
     @Override
     public MarcoObject invoke(Environment closure, Environment dynamic) {
-        MarcoSymbol symbol = Cast.toSymbol(closure.lookUp("symbol"));
+        MarcoList symbols = Cast.toList(closure.lookUp("symbols"));
 
-        dynamic.getModule().export(symbol.getValue(), dynamic.lookUp(symbol.getValue()));
+        for (int i = 0; i < symbols.length(); i++) {
+            MarcoSymbol symbol = Cast.toSymbol(symbols.get(i));
+            dynamic.getModule().export(symbol.getValue(), dynamic.lookUp(symbol.getValue()));
+        }
 
         return MarcoNil.NIL;
     }
