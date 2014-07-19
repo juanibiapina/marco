@@ -24,3 +24,8 @@
              (if (= v1 v2)
                  { nil }
                  { (cons v1 (recurse (+ v1 1) v2)) }) }))
+
+(def :for-each (function [:list :f] {
+  (if (nil? list) { nil }
+    { (f (head list)) (recurse (tail list) f) } )
+}))
