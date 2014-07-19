@@ -24,6 +24,7 @@ public class MarcoRuntime {
         stack = new Stack();
         topLevelEnvironment = new TopLevelEnvironment(this);
         environment = topLevelEnvironment;
+
         Environment nativeModuleEnvironment = topLevelEnvironment.spawn();
         NativeModule nativeModule = new NativeModule(nativeModuleEnvironment);
         nativeModuleEnvironment.setModule(nativeModule);
