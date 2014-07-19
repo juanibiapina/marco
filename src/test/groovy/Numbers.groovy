@@ -59,11 +59,4 @@ class Numbers extends MarcoSpecification {
         eval(/ (< 3 1) /) == eval(/ false /)
         eval(/ (< -1 0) /) == eval(/ true /)
     }
-
-    def "max"() {
-        expect:
-        eval(/ (max 1 2) /) == eval(/ 2 /)
-        eval(/ (max 3 2) /) == eval(/ 3 /)
-        eval(/ (max 3 3) /) == eval(/ 3 /)
-    }
 }

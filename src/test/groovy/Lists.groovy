@@ -40,16 +40,4 @@ class Lists extends MarcoSpecification {
         eval(/ (length [1 2 3]) /) == eval(/ 3 /)
         eval(/ (length [1 2 3 "house"]) /) == eval(/ 4 /)
     }
-
-    def "list-max"() {
-        expect:
-        eval(/ (list-max [5 4 3 2 1]) /) == eval(/ 5 /)
-        eval(/ (list-max [1 2 3 4]) /) == eval(/ 4 /)
-        eval(/ (list-max [2 4 1 3]) /) == eval(/ 4 /)
-    }
-
-    def "range"() {
-        expect:
-        eval(/ (range 1 10) /) == eval(/ [1 2 3 4 5 6 7 8 9] /)
-    }
 }
