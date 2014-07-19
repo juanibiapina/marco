@@ -1,3 +1,12 @@
+(def :for-each (function [:list :f] {
+  (if (nil? list) { nil }
+    { (f (head list)) (recurse (tail list) f) } )
+}))
+
+(def :even? (function [:v] { (= (% v 2) 0) }))
+
+
+
 (def :max (function [:v1 :v2] { (if (> v1 v2) {v1} {v2}) }))
 
 (def :map (function [:f :l] {
@@ -5,8 +14,6 @@
              { nil }
              { (cons (f (head l)) (recurse f (tail l))) }) }))
 
-
-(def :even? (function [:v] { (= (% v 2) 0) }))
 
 (def :filter (function [:predicate :list] {
               (if (nil? list)
@@ -24,8 +31,3 @@
              (if (= v1 v2)
                  { nil }
                  { (cons v1 (recurse (+ v1 1) v2)) }) }))
-
-(def :for-each (function [:list :f] {
-  (if (nil? list) { nil }
-    { (f (head list)) (recurse (tail list) f) } )
-}))

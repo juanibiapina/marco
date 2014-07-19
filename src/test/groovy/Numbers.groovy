@@ -60,13 +60,6 @@ class Numbers extends MarcoSpecification {
         eval(/ (< -1 0) /) == eval(/ true /)
     }
 
-    def "even?"() {
-        expect:
-        eval(/ (even? 0) /) == eval(/ true /)
-        eval(/ (even? 1) /) == eval(/ false /)
-        eval(/ (even? 2) /) == eval(/ true /)
-    }
-
     def "max"() {
         expect:
         eval(/ (max 1 2) /) == eval(/ 2 /)

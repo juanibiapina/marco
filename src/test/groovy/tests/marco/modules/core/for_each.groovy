@@ -1,4 +1,4 @@
-package tests.marco.lang.functions.list
+package tests.marco.modules.core
 
 import helpers.MarcoSpecification
 
