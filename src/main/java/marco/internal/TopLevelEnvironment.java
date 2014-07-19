@@ -17,6 +17,7 @@ import marco.lang.functions.list.*;
 import marco.lang.functions.module.export;
 import marco.lang.functions.module.require;
 import marco.lang.functions.module.include;
+import marco.lang.functions.module.require_native;
 import marco.lang.functions.nil.nil_question;
 import marco.lang.functions.number.*;
 import marco.lang.functions.string.string_concat;
@@ -89,6 +90,7 @@ public class TopLevelEnvironment extends Environment {
 
         def("include", new MarcoFunction(this, Arrays.asList("module-name"), new include()));
         def("require", new MarcoFunction(this, Arrays.asList("module-name"), new require()));
+        def("require-native", new MarcoFunction(this, Arrays.asList("module-name"), new require_native()));
 
         def("exit", new MarcoFunction(this, Arrays.asList("code"), new exit()));
 

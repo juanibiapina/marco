@@ -8,8 +8,8 @@ import marco.lang.functions.io.read_line;
 
 import java.util.Arrays;
 
-public class NativeModule extends MarcoModule {
-    public NativeModule(Environment environment) {
+public class NativeIOModule extends MarcoModule {
+    public NativeIOModule(Environment environment) {
         export("stdin", new MarcoPort(System.in));
         export("read-line", new MarcoFunction(environment, Arrays.asList("in"), new read_line()));
     }

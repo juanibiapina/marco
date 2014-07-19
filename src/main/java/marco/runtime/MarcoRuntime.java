@@ -6,7 +6,7 @@ import marco.lang.MarcoObject;
 import marco.lang.MarcoProgram;
 import marco.lang.exceptions.MarcoException;
 import marco.parser.Parser;
-import marco.runtime.modules.NativeModule;
+import marco.runtime.modules.NativeIOModule;
 
 import java.io.InputStream;
 import java.util.HashMap;
@@ -26,9 +26,9 @@ public class MarcoRuntime {
         environment = topLevelEnvironment;
 
         Environment nativeModuleEnvironment = topLevelEnvironment.spawn();
-        NativeModule nativeModule = new NativeModule(nativeModuleEnvironment);
-        nativeModuleEnvironment.setModule(nativeModule);
-        nativeModules.put("native", nativeModule);
+        NativeIOModule nativeIOModule = new NativeIOModule(nativeModuleEnvironment);
+        nativeModuleEnvironment.setModule(nativeIOModule);
+        nativeModules.put("io", nativeIOModule);
     }
 
     public MarcoObject run(String fileName, InputStream inputStream) {
@@ -66,10 +66,6 @@ public class MarcoRuntime {
     }
 
     public MarcoModule requireModule(String name) {
-        if (isNativeModule(name)) {
-            return nativeModule(name);
-        }
-
         String fileName = name + ".mrc";
         InputStream input = this.getClass().getClassLoader().getResourceAsStream(fileName);
 
@@ -81,11 +77,8 @@ public class MarcoRuntime {
         return program.asBlock().module(this);
     }
 
-    private MarcoModule nativeModule(String name) {
+    public MarcoModule requireNativeModule(String name) {
         return nativeModules.get(name);
     }
 
-    private boolean isNativeModule(String name) {
-        return nativeModules.containsKey(name);
-    }
 }

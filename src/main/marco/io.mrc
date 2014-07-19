@@ -1,6 +1,6 @@
-(def :native (require "native"))
+(def :native-io (require-native "io"))
 
-(def :stdin native.stdin)
-(def :read-line native.read-line)
+(def :stdin native-io.stdin)
+(def :read-line native-io.read-line)
 
 (export [:stdin :read-line])
