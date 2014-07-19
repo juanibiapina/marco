@@ -7,6 +7,7 @@ import marco.lang.MarcoProgram;
 import marco.lang.exceptions.MarcoException;
 import marco.parser.Parser;
 import marco.runtime.modules.NativeIOModule;
+import marco.runtime.modules.NativeIntegerModule;
 
 import java.io.InputStream;
 import java.util.HashMap;
@@ -29,6 +30,11 @@ public class MarcoRuntime {
         NativeIOModule nativeIOModule = new NativeIOModule(nativeModuleEnvironment);
         nativeModuleEnvironment.setModule(nativeIOModule);
         nativeModules.put("io", nativeIOModule);
+
+        Environment nativeModuleEnvironment2 = topLevelEnvironment.spawn();
+        MarcoModule nativeIntegerModule = new NativeIntegerModule(nativeModuleEnvironment2);
+        nativeModuleEnvironment.setModule(nativeIntegerModule);
+        nativeModules.put("integer", nativeIntegerModule);
     }
 
     public MarcoObject run(String fileName, InputStream inputStream) {
@@ -78,7 +84,11 @@ public class MarcoRuntime {
     }
 
     public MarcoModule requireNativeModule(String name) {
-        return nativeModules.get(name);
+        if (nativeModules.containsKey(name)) {
+            return nativeModules.get(name);
+        } else {
+            throw new MarcoException("Native module not found in classpath: " + name);
+        }
     }
 
 }
