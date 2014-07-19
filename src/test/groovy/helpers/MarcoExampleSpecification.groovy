@@ -24,6 +24,6 @@ abstract class MarcoExampleSpecification extends Specification {
 
         restoreChannels()
 
-        buf.toString()
+        buf.toString().trim()
     }
 }
