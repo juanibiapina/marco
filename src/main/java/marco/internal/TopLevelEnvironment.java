@@ -3,8 +3,6 @@ package marco.internal;
 import marco.lang.MarcoBoolean;
 import marco.lang.MarcoFunction;
 import marco.lang.MarcoNil;
-import marco.lang.MarcoObject;
-import marco.lang.exceptions.MarcoException;
 import marco.lang.functions.*;
 import marco.lang.functions.block.invoke;
 import marco.lang.functions.block.module;
@@ -15,40 +13,21 @@ import marco.lang.functions.function.function_question;
 import marco.lang.functions.io.print;
 import marco.lang.functions.list.*;
 import marco.lang.functions.module.export;
-import marco.lang.functions.module.require;
 import marco.lang.functions.module.include;
+import marco.lang.functions.module.require;
 import marco.lang.functions.module.require_native;
 import marco.lang.functions.nil.nil_question;
 import marco.lang.functions.number.*;
 import marco.lang.functions.string.string_concat;
 import marco.lang.functions.system.exit;
-import marco.parser.Parser;
 import marco.runtime.MarcoRuntime;
 
-import java.io.InputStream;
 import java.util.Arrays;
 
 public class TopLevelEnvironment extends Environment {
     public TopLevelEnvironment(MarcoRuntime runtime) {
         super(runtime);
         loadNativeBindings();
-        loadStandardLibrary();
-    }
-
-    public static MarcoObject load(String name) {
-        String fileName = "marco/" + name + ".mrc";
-        InputStream in = Environment.class.getClassLoader().getResourceAsStream(fileName);
-
-        if (in == null) {
-            throw new MarcoException("could not find " + name);
-        }
-
-        return Parser.instance().parse(fileName, in);
-    }
-
-    private void loadStandardLibrary() {
-        MarcoObject program = load("core");
-        program.eval(this);
     }
 
     private void loadNativeBindings() {

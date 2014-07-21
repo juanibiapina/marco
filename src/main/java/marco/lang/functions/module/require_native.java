@@ -11,6 +11,6 @@ public class require_native extends MarcoNativeBlock {
     public MarcoObject invoke(Environment closure, Environment dynamic) {
         MarcoString moduleName = Cast.toString(closure.lookUp("module-name"));
 
-        return closure.getRuntime().requireNativeModule(moduleName.getValue());
+        return closure.getRuntime().loadNativeModule(moduleName.getValue());
     }
 }

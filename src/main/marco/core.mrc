@@ -6,3 +6,5 @@
 (def :even? (function [:v] { (= (% v 2) 0) }))
 
 (def :max (function [:v1 :v2] { (if (> v1 v2) {v1} {v2}) }))
+
+(export [:for-each :even? :max])

@@ -1,5 +1,7 @@
 package marco.lang;
 
+import marco.internal.Environment;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,5 +36,11 @@ public class MarcoModule extends MarcoValue {
 
     public boolean hasExport(MarcoName name) {
         return exports.containsKey(name.getValue());
+    }
+
+    public void include(Environment environment) {
+        for (String name : exports.keySet()) {
+            environment.def(name, exports.get(name));
+        }
     }
 }

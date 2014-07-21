@@ -20,10 +20,17 @@ public class MarcoRuntime {
     private Stack stack;
     private Map<String, MarcoModule> nativeModules = new HashMap<>();
 
+    private void includeModule(Environment environment, String moduleName) {
+        MarcoModule module = loadModule(moduleName);
+        module.include(environment);
+    }
+
     public MarcoRuntime() {
         parser = Parser.instance();
         stack = new Stack();
         topLevelEnvironment = new TopLevelEnvironment(this);
+        includeModule(topLevelEnvironment, "core");
+
         environment = topLevelEnvironment;
 
         Environment nativeModuleEnvironment = topLevelEnvironment.spawn();
@@ -71,7 +78,7 @@ public class MarcoRuntime {
         return moduleEnvironment;
     }
 
-    public MarcoModule requireModule(String name) {
+    public MarcoModule loadModule(String name) {
         String fileName = name + ".mrc";
         InputStream input = this.getClass().getClassLoader().getResourceAsStream(fileName);
 
@@ -83,7 +90,7 @@ public class MarcoRuntime {
         return program.asBlock().module(this);
     }
 
-    public MarcoModule requireNativeModule(String name) {
+    public MarcoModule loadNativeModule(String name) {
         if (nativeModules.containsKey(name)) {
             return nativeModules.get(name);
         } else {
