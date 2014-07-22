@@ -7,9 +7,16 @@ import java.util.List;
 
 public class MarcoBlock extends MarcoValue {
     private List<MarcoObject> forms;
+    private Environment blockClosure;
 
     public MarcoBlock(List<MarcoObject> forms) {
         this.forms = forms;
+    }
+
+    @Override
+    public MarcoObject eval(Environment dynamic) {
+        this.blockClosure = dynamic;
+        return this;
     }
 
     @Override
@@ -31,6 +38,14 @@ public class MarcoBlock extends MarcoValue {
         MarcoObject result = null;
         for (MarcoObject form : forms) {
             result = form.eval(closure);
+        }
+        return result;
+    }
+
+    public MarcoObject invokeLexically() {
+        MarcoObject result = null;
+        for (MarcoObject form : forms) {
+            result = form.eval(blockClosure);
         }
         return result;
     }

@@ -10,4 +10,12 @@ class invoke extends MarcoSpecification {
         expect:
         eval(/ (invoke block) /) == eval(/ 1 /)
     }
+
+    def "access to lexical scope"() {
+        given:
+        eval(/ (def :b 1) /)
+
+        expect:
+        eval(/ (invoke { b }) /) == eval(/ 1 /)
+    }
 }

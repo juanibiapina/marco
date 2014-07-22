@@ -11,6 +11,6 @@ public class invoke extends MarcoNativeBlock {
     public MarcoObject invoke(Environment closure, Environment dynamic) {
         MarcoBlock block = Cast.toBlock(closure.lookUp("block"));
 
-        return block.invoke(closure, dynamic);
+        return block.invokeLexically();
     }
 }
