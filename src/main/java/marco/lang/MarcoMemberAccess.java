@@ -7,26 +7,26 @@ import marco.lang.error.ExportError;
 import java.util.List;
 
 public class MarcoMemberAccess extends MarcoObject {
-    private List<MarcoName> symbols;
+    private List<MarcoName> names;
 
-    public MarcoMemberAccess(List<MarcoName> symbols) {
-        this.symbols = symbols;
+    public MarcoMemberAccess(List<MarcoName> names) {
+        this.names = names;
     }
 
     @Override
     public MarcoObject eval(Environment dynamic) {
-        MarcoModule module = Cast.toModule(symbols.get(0).eval(dynamic));
+        MarcoModule module = Cast.toModule(names.get(0).eval(dynamic));
 
         MarcoObject result;
-        MarcoName firstName = symbols.get(1);
+        MarcoName firstName = names.get(1);
         if (module.hasExport(firstName)) {
             result = module.getMember(firstName);
         } else {
             throw new ExportError(dynamic.getRuntime(), firstName.fileName, firstName.startLine, firstName);
         }
-        for (int i = 2; i < symbols.size(); i++) {
+        for (int i = 2; i < names.size(); i++) {
             MarcoModule next = Cast.toModule(result);
-            MarcoName name = symbols.get(i);
+            MarcoName name = names.get(i);
             if (next.hasExport(name)) {
                 result = next.getMember(name);
             } else {

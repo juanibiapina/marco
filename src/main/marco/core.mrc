@@ -13,4 +13,16 @@
   })
 }))
 
-(export [:for-each :even? :max :or])
+(def :filter (function [:list :predicate] {
+  (if (nil? list) { nil }
+    { (if (predicate (head list))
+        { (cons (head list) (filter (tail list) predicate)) }
+        { (filter (tail list) predicate) }) })
+}))
+
+(def :map (function [:list :predicate] {
+  (if (nil? list) { nil }
+    { (cons (predicate (head list)) (map (tail list) predicate)) })
+}))
+
+(export [:for-each :even? :max :or :filter :map])

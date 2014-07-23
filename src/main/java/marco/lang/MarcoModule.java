@@ -8,9 +8,6 @@ import java.util.Map;
 public class MarcoModule extends MarcoValue {
     private Map<String, MarcoObject> exports = new HashMap<>();
 
-    public MarcoModule() {
-    }
-
     @Override
     public String typeName() {
         return "Module";

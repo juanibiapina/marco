@@ -77,9 +77,8 @@ jar {
 task testMarco(dependsOn: jar, type: JavaExec) {
   description = "Runs marco tests."
   classpath += files(jar.archivePath)
-  classpath += files("src/test/marco")
   main = 'marco.main'
-  args = ['src/test/marco/marco/core-test.mrc']
+  args = ['src/test/marco/core/even.mrc']
 }
 
 build.dependsOn 'testMarco'
