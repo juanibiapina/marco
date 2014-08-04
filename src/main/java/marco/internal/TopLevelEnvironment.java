@@ -58,7 +58,9 @@ public class TopLevelEnvironment extends Environment {
 
         def("=", new BinaryOperator(this, new equal()));
         def("<", new BinaryOperator(this, new lessthan()));
+        def("<=", new BinaryOperator(this, new lessthanorequal()));
         def(">", new BinaryOperator(this, new greaterthan()));
+        def(">=", new BinaryOperator(this, new greaterthanorequal()));
         def("+", new BinaryOperator(this, new plus()));
         def("-", new BinaryOperator(this, new minus()));
         def("*", new BinaryOperator(this, new multiplication()));

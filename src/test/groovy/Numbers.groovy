@@ -45,18 +45,4 @@ class Numbers extends MarcoSpecification {
         eval(/ (% 4 2) /) == eval(/ 0 /)
         eval(/ (% 4 3) /) == eval(/ 1 /)
     }
-
-    def "="() {
-        expect:
-        eval(/ (= 1 1) /) == eval(/ true /)
-        eval(/ (= 0 1) /) == eval(/ false /)
-    }
-
-    def "<"() {
-        expect:
-        eval(/ (< 1 3) /) == eval(/ true /)
-        eval(/ (< 3 3) /) == eval(/ false /)
-        eval(/ (< 3 1) /) == eval(/ false /)
-        eval(/ (< -1 0) /) == eval(/ true /)
-    }
 }
