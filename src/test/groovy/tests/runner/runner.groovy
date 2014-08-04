@@ -2,7 +2,7 @@ package marco.runner
 
 import helpers.MarcoSpecification
 
-class RunnerTest extends MarcoSpecification {
+class runner extends MarcoSpecification {
     def "runs a file"() {
         given:
         def runner = new Runner()
