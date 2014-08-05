@@ -1,9 +1,9 @@
 package marco.runtime;
 
 import marco.internal.*;
+import marco.lang.MarcoBlock;
 import marco.lang.MarcoModule;
 import marco.lang.MarcoObject;
-import marco.lang.MarcoProgram;
 import marco.lang.exceptions.MarcoException;
 import marco.parser.Parser;
 import marco.runtime.modules.NativeIOModule;
@@ -45,23 +45,20 @@ public class MarcoRuntime {
     }
 
     public MarcoObject run(String fileName, InputStream inputStream) {
-        MarcoProgram program = parser.parse(fileName, inputStream);
-        MarcoObject result = null;
-        for (MarcoObject form : program.getForms()) {
-            environment = environment.spawn();
-            result = form.eval(environment);
-        }
-        return result;
+        environment = environment.spawn();
+
+        MarcoBlock block = parser.parse(fileName, inputStream);
+        block.eval(environment);
+        return block.invokeLexically();
     }
 
     public MarcoObject run(String line) {
-        MarcoProgram program = parser.parse(line);
-        MarcoObject result = null;
-        for (MarcoObject form : program.getForms()) {
-            environment = environment.spawn();
-            result = form.eval(environment);
-        }
-        return result;
+        environment = environment.spawn();
+
+        MarcoBlock block = parser.parse(line);
+        block.eval(environment);
+
+        return block.invokeLexically();
     }
 
     public MarcoObject stack(Frame frame) {
@@ -86,8 +83,8 @@ public class MarcoRuntime {
             throw new MarcoException("Module not found in classpath: " + name);
         }
 
-        MarcoProgram program = parser.parse(fileName, input);
-        return program.asBlock().module(this);
+        MarcoBlock block = parser.parse(fileName, input);
+        return block.module(this);
     }
 
     public MarcoModule loadNativeModule(String name) {

@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
-    private MarcoProgram result;
+    private MarcoBlock result;
     private String fileName;
 
     public ParseTreeVisitor(String fileName) {
@@ -20,11 +20,12 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
     }
 
     @Override
-    public MarcoProgram visitFile(@NotNull MarcoParser.FileContext ctx) {
-        result = new MarcoProgram();
+    public MarcoBlock visitFile(@NotNull MarcoParser.FileContext ctx) {
+        List<MarcoObject> forms = new ArrayList<>();
         for (MarcoParser.FormContext formContext : ctx.form()) {
-            result.add(visit(formContext));
+            forms.add(visit(formContext));
         }
+        result = new MarcoBlock(forms);
         return result;
     }
 
@@ -118,7 +119,7 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
         return new MarcoNumber(new BigInteger(ctx.getText()));
     }
 
-    public MarcoProgram getResult() {
+    public MarcoBlock getResult() {
         return result;
     }
 }
