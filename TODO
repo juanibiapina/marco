@@ -4,8 +4,8 @@
 - Blocks
   - Defining in inner scope
   - Invocation
-    - Lexically
     - With a blank environment
+    - With custom environments
 
 - Environments
   - Get current
@@ -19,7 +19,8 @@
 
 - Type Checking
 
-- Pattern Matching
+- Algebraic data types
+  - Pattern Matching
 
 - Error messages
   - Line number information
@@ -33,6 +34,7 @@
   - Use a stack
 
 - Maps
+  - Guava hash (check clojure)
 
 - Refactor
   - String representations
