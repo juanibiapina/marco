@@ -9,8 +9,12 @@
 }))
 
 (def :range (function [:start :end] {
-  (if (>= start end) { nil }
-    { (cons start (range (+ start 1) end)) })
+  (def :helper (function [:start :end :acc] {
+    (if (< end start) { acc }
+      { (recurse start (- end 1) (cons end acc)) })
+  }))
+
+  (helper start (- end 1) [])
 }))
 
 (def :include? (function [:n] {
