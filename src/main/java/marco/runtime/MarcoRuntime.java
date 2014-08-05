@@ -62,7 +62,13 @@ public class MarcoRuntime {
     }
 
     public MarcoObject stack(Frame frame) {
-        return stack.push(frame);
+        try {
+            return stack.push(frame);
+        } catch (StackOverflowError error) {
+            buildStackTrace().print();
+            System.exit(1);
+            return null;
+        }
     }
 
     public StackTrace buildStackTrace() {
