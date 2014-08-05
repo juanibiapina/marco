@@ -45,7 +45,7 @@ public class Parser {
         parser.removeErrorListeners();
         parser.addErrorListener(new ExceptionErrorListener());
 
-        ParseTree tree = parser.program();
+        ParseTree tree = parser.file();
 
         ParseTreeVisitor visitor = new ParseTreeVisitor(fileName);
         visitor.visit(tree);
