@@ -1,6 +1,6 @@
 package marco.lang;
 
-import marco.internal.Environment;
+import marco.runtime.Environment;
 
 import java.util.List;
 

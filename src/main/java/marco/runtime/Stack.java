@@ -1,4 +1,4 @@
-package marco.internal;
+package marco.runtime;
 
 import marco.lang.MarcoObject;
 

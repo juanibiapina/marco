@@ -1,7 +1,7 @@
 package marco.lang.functions.function;
 
-import marco.internal.Cast;
-import marco.internal.Environment;
+import marco.runtime.Cast;
+import marco.runtime.Environment;
 import marco.lang.*;
 
 public class function extends MarcoNativeBlock {

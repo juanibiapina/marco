@@ -1,8 +1,8 @@
 package marco.lang.functions;
 
-import marco.internal.Cast;
-import marco.internal.Environment;
-import marco.internal.bindings.Binding;
+import marco.runtime.Cast;
+import marco.runtime.Environment;
+import marco.runtime.bindings.Binding;
 import marco.lang.MarcoNativeBlock;
 import marco.lang.MarcoNil;
 import marco.lang.MarcoObject;

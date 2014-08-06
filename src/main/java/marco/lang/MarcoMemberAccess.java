@@ -1,7 +1,7 @@
 package marco.lang;
 
-import marco.internal.Cast;
-import marco.internal.Environment;
+import marco.runtime.Cast;
+import marco.runtime.Environment;
 import marco.lang.error.ExportError;
 
 import java.util.List;

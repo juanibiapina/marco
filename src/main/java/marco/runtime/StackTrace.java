@@ -1,10 +1,10 @@
-package marco.internal;
+package marco.runtime;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class StackTrace implements Iterable<marco.internal.StackTraceElement> {
+public class StackTrace implements Iterable<StackTraceElement> {
     private List<StackTraceElement> trace;
 
     public StackTrace(Stack stack) {

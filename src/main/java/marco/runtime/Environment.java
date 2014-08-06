@@ -1,11 +1,10 @@
-package marco.internal;
+package marco.runtime;
 
-import marco.internal.bindings.*;
+import marco.runtime.bindings.*;
 import marco.lang.MarcoModule;
 import marco.lang.MarcoObject;
 import marco.lang.error.LookUpError;
 import marco.lang.exceptions.BindingError;
-import marco.runtime.MarcoRuntime;
 
 import java.util.HashMap;
 import java.util.Map;

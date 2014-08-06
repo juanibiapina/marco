@@ -1,8 +1,8 @@
 package marco.lang;
 
-import marco.internal.Cast;
-import marco.internal.Environment;
-import marco.internal.Frame;
+import marco.runtime.Cast;
+import marco.runtime.Environment;
+import marco.runtime.Frame;
 
 import java.util.ArrayList;
 import java.util.List;

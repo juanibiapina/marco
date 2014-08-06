@@ -1,6 +1,6 @@
 package marco.lang;
 
-import marco.internal.Environment;
+import marco.runtime.Environment;
 
 public abstract class MarcoObject {
     protected String fileName;

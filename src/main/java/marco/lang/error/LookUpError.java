@@ -1,6 +1,6 @@
 package marco.lang.error;
 
-import marco.internal.StackTrace;
+import marco.runtime.StackTrace;
 import marco.runtime.MarcoRuntime;
 
 public class LookUpError extends Error {

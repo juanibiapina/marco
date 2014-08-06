@@ -1,7 +1,7 @@
 package marco.lang;
 
-import marco.internal.Environment;
-import marco.internal.bindings.Binding;
+import marco.runtime.Environment;
+import marco.runtime.bindings.Binding;
 import marco.lang.error.LookUpError;
 
 public class MarcoName extends MarcoObject {

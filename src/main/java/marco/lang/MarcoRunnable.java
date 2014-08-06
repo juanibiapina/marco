@@ -1,6 +1,6 @@
 package marco.lang;
 
-import marco.internal.Environment;
+import marco.runtime.Environment;
 import marco.lang.exceptions.ContractViolation;
 
 import java.util.List;

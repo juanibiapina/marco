@@ -1,6 +1,5 @@
 package marco.runtime;
 
-import marco.internal.*;
 import marco.lang.MarcoBlock;
 import marco.lang.MarcoModule;
 import marco.lang.MarcoObject;

@@ -1,6 +1,6 @@
 package marco.lang.functions.number;
 
-import marco.internal.Environment;
+import marco.runtime.Environment;
 import marco.lang.MarcoFunction;
 
 import java.util.Arrays;

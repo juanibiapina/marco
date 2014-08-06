@@ -1,7 +1,7 @@
 package marco.lang.functions.string;
 
-import marco.internal.Cast;
-import marco.internal.Environment;
+import marco.runtime.Cast;
+import marco.runtime.Environment;
 import marco.lang.MarcoList;
 import marco.lang.MarcoNativeBlock;
 import marco.lang.MarcoObject;

@@ -1,4 +1,4 @@
-package marco.internal;
+package marco.runtime;
 
 import marco.lang.MarcoBoolean;
 import marco.lang.MarcoFunction;
@@ -20,7 +20,6 @@ import marco.lang.functions.nil.nil_question;
 import marco.lang.functions.number.*;
 import marco.lang.functions.string.string_concat;
 import marco.lang.functions.system.exit;
-import marco.runtime.MarcoRuntime;
 
 import java.util.Arrays;
 

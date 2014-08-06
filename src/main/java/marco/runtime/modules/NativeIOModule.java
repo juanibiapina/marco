@@ -1,6 +1,6 @@
 package marco.runtime.modules;
 
-import marco.internal.Environment;
+import marco.runtime.Environment;
 import marco.lang.MarcoFunction;
 import marco.lang.MarcoModule;
 import marco.lang.MarcoPort;

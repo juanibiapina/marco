@@ -1,6 +1,6 @@
 package marco.parser;
 
-import marco.internal.ListHelper;
+import marco.runtime.ListHelper;
 import marco.lang.*;
 import marco.parser.antlr.MarcoBaseVisitor;
 import marco.parser.antlr.MarcoParser;

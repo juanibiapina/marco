@@ -1,7 +1,7 @@
 package marco
 
 import helpers.MarcoSpecification
-import marco.internal.StackTrace
+import marco.runtime.StackTrace
 import marco.lang.error.LookUpError
 import marco.runner.Runner
 

@@ -1,6 +1,6 @@
 package marco.lang.functions;
 
-import marco.internal.Environment;
+import marco.runtime.Environment;
 import marco.lang.MarcoBoolean;
 import marco.lang.MarcoNativeBlock;
 import marco.lang.MarcoObject;

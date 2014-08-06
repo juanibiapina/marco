@@ -1,4 +1,4 @@
-package marco.internal;
+package marco.runtime;
 
 public class StackTraceElement {
     private final Integer line;
