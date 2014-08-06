@@ -47,17 +47,32 @@ public class MarcoRuntime {
         environment = environment.spawn();
 
         MarcoBlock block = parser.parse(fileName, inputStream);
-        block.eval(environment);
-        return block.invokeLexically();
+
+        return invoke(block);
     }
 
     public MarcoObject run(String line) {
         environment = environment.spawn();
 
         MarcoBlock block = parser.parse(line);
-        block.eval(environment);
+        return invoke(block);
+    }
 
-        return block.invokeLexically();
+    public MarcoObject invoke(MarcoBlock block) {
+        block.__eval(environment);
+        MarcoObject result = block.invokeLexically();
+        while (result.isContinuation()) {
+            result = result.resolve();
+        }
+        return result;
+    }
+
+    public MarcoObject invoke(MarcoBlock block, Environment closure, Environment dynamic) {
+        MarcoObject result = block.invoke(closure, dynamic);
+        while (result.isContinuation()) {
+            result = result.resolve();
+        }
+        return result;
     }
 
     public MarcoObject stack(Frame frame) {
@@ -89,7 +104,7 @@ public class MarcoRuntime {
         }
 
         MarcoBlock block = parser.parse(fileName, input);
-        return block.module(this);
+        return module(block);
     }
 
     public MarcoModule loadNativeModule(String name) {
@@ -100,4 +115,22 @@ public class MarcoRuntime {
         }
     }
 
+    public MarcoObject eval(MarcoObject value, Environment dynamic) {
+        MarcoObject result = value.__eval(dynamic);
+        while (result.isContinuation()) {
+            result = result.resolve();
+        }
+        return result;
+    }
+
+    public MarcoModule module(MarcoBlock block) {
+        Environment moduleEnvironment = createModuleEnvironment();
+
+        MarcoObject result = block.invokeWithEnvironment(moduleEnvironment);
+        while (result.isContinuation()) {
+            result = result.resolve();
+        }
+
+        return moduleEnvironment.getModule();
+    }
 }

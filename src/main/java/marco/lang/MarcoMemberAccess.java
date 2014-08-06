@@ -14,8 +14,8 @@ public class MarcoMemberAccess extends MarcoObject {
     }
 
     @Override
-    public MarcoObject eval(Environment dynamic) {
-        MarcoModule module = Cast.toModule(names.get(0).eval(dynamic));
+    public MarcoObject __eval(Environment dynamic) {
+        MarcoModule module = Cast.toModule(dynamic.getRuntime().eval(names.get(0), dynamic));
 
         MarcoObject result;
         MarcoName firstName = names.get(1);

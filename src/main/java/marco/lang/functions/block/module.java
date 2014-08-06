@@ -11,6 +11,6 @@ public class module extends MarcoNativeBlock {
     public MarcoObject invoke(Environment closure, Environment dynamic) {
         MarcoBlock block = Cast.toBlock(closure.lookUp("block"));
 
-        return block.module(closure.getRuntime());
+        return dynamic.getRuntime().module(block);
     }
 }

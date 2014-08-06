@@ -6,7 +6,7 @@ public abstract class MarcoObject {
     protected String fileName;
     protected Integer startLine;
 
-    public abstract MarcoObject eval(Environment dynamic);
+    public abstract MarcoObject __eval(Environment dynamic);
 
     @Override
     public String toString() {
@@ -25,5 +25,13 @@ public abstract class MarcoObject {
 
     public void setFileName(String fileName) {
         this.fileName = fileName;
+    }
+
+    public boolean isContinuation() {
+        return false;
+    }
+
+    public MarcoObject resolve() {
+        return this;
     }
 }

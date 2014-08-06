@@ -1,7 +1,7 @@
 package marco.lang;
 
+import marco.lang.continuation.EvalContinuation;
 import marco.runtime.Environment;
-import marco.runtime.MarcoRuntime;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public class MarcoBlock extends MarcoValue {
     }
 
     @Override
-    public MarcoObject eval(Environment dynamic) {
+    public MarcoObject __eval(Environment dynamic) {
         this.blockClosure = dynamic;
         return this;
     }
@@ -35,26 +35,17 @@ public class MarcoBlock extends MarcoValue {
     }
 
     public MarcoObject invoke(Environment closure, Environment dynamic) {
-        MarcoObject result = null;
-        for (MarcoObject form : forms) {
-            result = form.eval(closure);
-        }
-        return result;
+        return invokeWithEnvironment(closure);
     }
 
     public MarcoObject invokeLexically() {
-        MarcoObject result = null;
-        for (MarcoObject form : forms) {
-            result = form.eval(blockClosure);
-        }
-        return result;
+        return invokeWithEnvironment(blockClosure);
     }
 
-    public MarcoModule module(MarcoRuntime runtime) {
-        Environment moduleEnvironment = runtime.createModuleEnvironment();
-        for (MarcoObject form : forms) {
-            form.eval(moduleEnvironment);
+    public MarcoObject invokeWithEnvironment(Environment closure) {
+        for (int i = 0; i < forms.size() - 1; i++) {
+            closure.getRuntime().eval(forms.get(i), closure);
         }
-        return moduleEnvironment.getModule();
+        return new EvalContinuation(forms.get(forms.size() - 1), closure);
     }
 }

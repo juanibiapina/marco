@@ -4,8 +4,10 @@ import helpers.MarcoSpecification
 import marco.runtime.StackTrace
 import marco.lang.error.LookUpError
 import marco.runner.Runner
+import spock.lang.Ignore
 
 class StackTraceTest extends MarcoSpecification {
+    @Ignore
     def "build the stack trace messages"() {
         given:
         def runner = new Runner()

@@ -1,6 +1,5 @@
 package examples.projecteuler
 import helpers.MarcoExampleSpecification
-import spock.lang.Ignore
 
 class problem_1 extends MarcoExampleSpecification {
     def "example case"() {
@@ -8,9 +7,8 @@ class problem_1 extends MarcoExampleSpecification {
         example("projecteuler/problem-1", "10") == "23"
     }
 
-    @Ignore
     def "solution"() {
         expect:
-        example("projecteuler/problem-1", "1000") == "?"
+        example("projecteuler/problem-1", "1000") == "233168"
     }
 }

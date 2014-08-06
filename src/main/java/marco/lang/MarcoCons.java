@@ -39,11 +39,11 @@ public class MarcoCons extends MarcoList {
     }
 
     @Override
-    public MarcoObject eval(Environment dynamic) {
+    public MarcoObject __eval(Environment dynamic) {
         List<MarcoObject> evaluatedElements = new ArrayList<>();
 
         for (int i = 0; i < length(); i++) {
-            evaluatedElements.add(get(i).eval(dynamic));
+            evaluatedElements.add(dynamic.getRuntime().eval(get(i), dynamic));
         }
 
         return ListHelper.fromJavaList(evaluatedElements);

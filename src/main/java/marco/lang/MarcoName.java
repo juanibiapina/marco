@@ -12,7 +12,7 @@ public class MarcoName extends MarcoObject {
     }
 
     @Override
-    public MarcoObject eval(Environment dynamic) {
+    public MarcoObject __eval(Environment dynamic) {
         Binding binding = dynamic.get(value);
         if (binding.isEmpty()) {
             throw new LookUpError(dynamic.getRuntime(), fileName, startLine, value);

@@ -10,8 +10,8 @@ public class _while extends MarcoNativeBlock {
         MarcoBlock cond = Cast.toBlock(closure.lookUp("cond"));
         MarcoBlock body = Cast.toBlock(closure.lookUp("body"));
 
-        while (Cast.toBoolean(cond.invoke(dynamic, dynamic)) == MarcoBoolean.TRUE) {
-            body.invoke(dynamic, dynamic);
+        while (Cast.toBoolean(dynamic.getRuntime().invoke(cond, dynamic, dynamic)) == MarcoBoolean.TRUE) {
+            dynamic.getRuntime().invoke(body, dynamic, dynamic);
         }
 
         return MarcoNil.NIL;

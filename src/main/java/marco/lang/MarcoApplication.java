@@ -2,7 +2,6 @@ package marco.lang;
 
 import marco.runtime.Cast;
 import marco.runtime.Environment;
-import marco.runtime.Frame;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,16 +14,16 @@ public class MarcoApplication extends MarcoObject {
     }
 
     @Override
-    public MarcoObject eval(Environment dynamic) {
+    public MarcoObject __eval(Environment dynamic) {
         MarcoObject head = list.getHead();
         MarcoList tail = list.getTail();
 
-        MarcoObject operator = head.eval(dynamic);
+        MarcoObject operator = dynamic.getRuntime().eval(head, dynamic);
         List<MarcoObject> arguments = new ArrayList<>();
         for (int i = 0; i < tail.length(); i++) {
-            arguments.add(tail.get(i).eval(dynamic));
+            arguments.add(dynamic.getRuntime().eval(tail.get(i), dynamic));
         }
-        return dynamic.stack(new Frame(fileName, startLine, Cast.toRunnable(operator), arguments, dynamic));
+        return Cast.toRunnable(operator).invoke(dynamic, arguments);
     }
 
     @Override

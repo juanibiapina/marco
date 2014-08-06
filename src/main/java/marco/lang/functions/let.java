@@ -1,5 +1,6 @@
 package marco.lang.functions;
 
+import marco.lang.continuation.InvokeContinuation;
 import marco.runtime.Cast;
 import marco.runtime.Environment;
 import marco.lang.*;
@@ -13,12 +14,12 @@ public class let extends MarcoNativeBlock {
         Environment extended = dynamic.spawn();
 
         String name = Cast.toSymbol(binding.get(0)).getValue();
-        MarcoBlock block = Cast.toBlock(binding.get(1).eval(extended));
+        MarcoBlock block = Cast.toBlock(dynamic.getRuntime().eval(binding.get(1), extended));
 
-        MarcoObject value = block.invoke(extended, dynamic);
+        MarcoObject value = dynamic.getRuntime().invoke(block, extended, dynamic);
 
         extended.let(name, value);
 
-        return body.invoke(extended, dynamic);
+        return new InvokeContinuation(body, extended, dynamic);
     }
 }
