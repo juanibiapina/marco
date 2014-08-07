@@ -8,19 +8,10 @@
     { (+ (head list) (sum (tail list))) })
 }))
 
-(def :range (function [:start :end] {
-  (def :helper (function [:start :end :acc] {
-    (if (< end start) { acc }
-      { (recurse start (- end 1) (cons end acc)) })
-  }))
-
-  (helper start (- end 1) [])
-}))
-
 (def :include? (function [:n] {
   (or { (= (% n 3) 0) } { (= (% n 5) 0) })
 }))
 
-(def :result (sum (filter (range 1 n) include?)))
+(def :result (sum (filter (integer.range 1 n) include?)))
 
 (print result)
