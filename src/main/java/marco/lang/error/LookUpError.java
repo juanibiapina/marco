@@ -1,23 +1,14 @@
 package marco.lang.error;
 
-import marco.runtime.StackTrace;
-import marco.runtime.MarcoRuntime;
-
 public class LookUpError extends Error {
-    private MarcoRuntime runtime;
     private String binding;
 
-    public LookUpError(MarcoRuntime runtime, String fileName, int line, String binding) {
-        super(runtime, fileName, line, "Undefined binding '" + binding + "'");
-        this.runtime = runtime;
+    public LookUpError(String fileName, int line, String binding) {
+        super(fileName, line, "Undefined binding '" + binding + "'");
         this.binding = binding;
     }
 
     public String getBinding() {
         return binding;
-    }
-
-    public StackTrace getMarcoStackTrace() {
-        return runtime.buildStackTrace();
     }
 }

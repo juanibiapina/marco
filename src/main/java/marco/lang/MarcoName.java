@@ -15,7 +15,7 @@ public class MarcoName extends MarcoObject {
     public MarcoObject __eval(Environment dynamic) {
         Binding binding = dynamic.get(value);
         if (binding.isEmpty()) {
-            throw new LookUpError(dynamic.getRuntime(), fileName, startLine, value);
+            throw new LookUpError(fileName, startLine, value);
         }
         return binding.getValue();
     }

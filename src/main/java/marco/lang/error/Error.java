@@ -1,15 +1,11 @@
 package marco.lang.error;
 
-import marco.runtime.MarcoRuntime;
-
 public class Error extends RuntimeException {
-    private MarcoRuntime runtime;
     private String fileName;
     private int line;
 
-    public Error(MarcoRuntime runtime, String fileName, int line, String message) {
+    public Error(String fileName, int line, String message) {
         super(message);
-        this.runtime = runtime;
         this.fileName = fileName;
         this.line = line;
     }
@@ -17,7 +13,10 @@ public class Error extends RuntimeException {
     public void printMarcoStackTrace() {
         printMessage();
         printLocation();
-        runtime.buildStackTrace().print();
+    }
+
+    public String getFileName() {
+        return fileName;
     }
 
     private void printMessage() {

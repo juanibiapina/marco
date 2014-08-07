@@ -8,7 +8,7 @@ import java.io.FileNotFoundException;
 
 public class Runner {
     private MarcoRuntime runtime = new MarcoRuntime();
-    private boolean debugMode = false;
+    private boolean throwExceptions = false;
 
     public void run(String fileName) {
         try {
@@ -16,7 +16,7 @@ public class Runner {
         } catch (FileNotFoundException e) {
             throw new MarcoException("File not found: " + fileName);
         } catch (marco.lang.error.Error e) {
-            if (debugMode) {
+            if (throwExceptions) {
                 throw e;
             } else {
                 e.printMarcoStackTrace();
@@ -24,7 +24,7 @@ public class Runner {
         }
     }
 
-    public void setDebugMode(boolean debugMode) {
-        this.debugMode = debugMode;
+    public void setThrowExceptions(boolean throwExceptions) {
+        this.throwExceptions = throwExceptions;
     }
 }

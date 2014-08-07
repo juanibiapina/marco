@@ -16,7 +16,6 @@ public class MarcoRuntime {
     private final TopLevelEnvironment topLevelEnvironment;
     private Environment environment;
     private Parser parser;
-    private Stack stack;
     private Map<String, MarcoModule> nativeModules = new HashMap<>();
 
     private void includeModule(Environment environment, String moduleName) {
@@ -26,7 +25,6 @@ public class MarcoRuntime {
 
     public MarcoRuntime() {
         parser = Parser.instance();
-        stack = new Stack();
         topLevelEnvironment = new TopLevelEnvironment(this);
         includeModule(topLevelEnvironment, "core");
 
@@ -73,20 +71,6 @@ public class MarcoRuntime {
             result = result.resolve();
         }
         return result;
-    }
-
-    public MarcoObject stack(Frame frame) {
-        try {
-            return stack.push(frame);
-        } catch (StackOverflowError error) {
-            buildStackTrace().print();
-            System.exit(1);
-            return null;
-        }
-    }
-
-    public StackTrace buildStackTrace() {
-        return new StackTrace(stack);
     }
 
     public Environment createModuleEnvironment() {
