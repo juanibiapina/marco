@@ -1,14 +1,15 @@
 package marco.runtime;
 
-import marco.lang.exceptions.TypeError;
+import marco.lang.error.TypeError;
+import marco.lang.exceptions.TypeException;
 import marco.lang.*;
 
 public class Cast {
-    public static MarcoRunnable toRunnable(MarcoObject value) {
+    public static MarcoRunnable toRunnable(MarcoObject value, String fileName, int line) {
         if (value instanceof MarcoRunnable) {
             return (MarcoRunnable) value;
         } else {
-            throw new TypeError(MarcoRunnable.class, value);
+            throw new TypeError(MarcoRunnable.class, value, fileName, line);
         }
     }
 
@@ -16,7 +17,7 @@ public class Cast {
         if (value instanceof MarcoList) {
             return (MarcoList) value;
         } else {
-            throw new TypeError(MarcoList.class, value);
+            throw new TypeException(MarcoList.class, value);
         }
     }
 
@@ -24,7 +25,7 @@ public class Cast {
         if (value instanceof MarcoNumber) {
             return (MarcoNumber) value;
         } else {
-            throw new TypeError(MarcoNumber.class, value);
+            throw new TypeException(MarcoNumber.class, value);
         }
     }
 
@@ -40,7 +41,7 @@ public class Cast {
         if (value instanceof MarcoString) {
             return (MarcoString) value;
         } else {
-            throw new TypeError(MarcoString.class, value);
+            throw new TypeException(MarcoString.class, value);
         }
     }
 
@@ -48,7 +49,7 @@ public class Cast {
         if (value instanceof MarcoModule) {
             return (MarcoModule) value;
         } else {
-            throw new TypeError(MarcoModule.class, value);
+            throw new TypeException(MarcoModule.class, value);
         }
     }
 
@@ -56,7 +57,7 @@ public class Cast {
         if (value instanceof MarcoSymbol) {
             return (MarcoSymbol) value;
         } else {
-            throw new TypeError(MarcoSymbol.class, value);
+            throw new TypeException(MarcoSymbol.class, value);
         }
     }
 
@@ -64,7 +65,7 @@ public class Cast {
         if (value instanceof MarcoBlock) {
             return (MarcoBlock) value;
         } else {
-            throw new TypeError(MarcoBlock.class, value);
+            throw new TypeException(MarcoBlock.class, value);
         }
     }
 
@@ -72,7 +73,7 @@ public class Cast {
         if (value instanceof MarcoPort) {
             return (MarcoPort) value;
         } else {
-            throw new TypeError(MarcoPort.class, value);
+            throw new TypeException(MarcoPort.class, value);
         }
     }
 }

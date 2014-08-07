@@ -23,7 +23,7 @@ public class MarcoApplication extends MarcoObject {
         for (int i = 0; i < tail.length(); i++) {
             arguments.add(dynamic.getRuntime().eval(tail.get(i), dynamic));
         }
-        return Cast.toRunnable(operator).invoke(dynamic, arguments);
+        return Cast.toRunnable(operator, fileName, startLine).invoke(dynamic, arguments);
     }
 
     @Override

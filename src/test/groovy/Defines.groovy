@@ -2,7 +2,7 @@ import helpers.MarcoSpecification
 import marco.lang.MarcoSymbol
 import marco.lang.exceptions.BindingError
 import marco.lang.exceptions.ContractViolation
-import marco.lang.exceptions.TypeError
+import marco.lang.exceptions.TypeException
 
 class Defines extends MarcoSpecification {
     def "defining numbers"() {
@@ -60,7 +60,7 @@ class Defines extends MarcoSpecification {
         eval(/ (def 2 1) /)
 
         then:
-        TypeError e = thrown()
+        TypeException e = thrown()
         e.expected == MarcoSymbol
         e.actual == eval(/ 2 /)
     }

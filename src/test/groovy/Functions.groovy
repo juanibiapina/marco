@@ -3,7 +3,7 @@ import marco.lang.MarcoList
 import marco.lang.MarcoSymbol
 import marco.lang.exceptions.ContractViolation
 import marco.lang.error.LookUpError
-import marco.lang.exceptions.TypeError
+import marco.lang.exceptions.TypeException
 
 class Functions extends MarcoSpecification {
     def "type"() {
@@ -85,7 +85,7 @@ class Functions extends MarcoSpecification {
         eval(/ (def :f (function 1 { x })) /)
 
         then:
-        TypeError e = thrown()
+        TypeException e = thrown()
         e.expected == MarcoList
         e.actual == eval(/ 1 /)
     }
@@ -95,7 +95,7 @@ class Functions extends MarcoSpecification {
         eval(/ (def :f (function [:x :y 1] { x })) /)
 
         then:
-        TypeError e = thrown()
+        TypeException e = thrown()
         e.expected == MarcoSymbol
         e.actual == eval(/ 1 /)
     }
