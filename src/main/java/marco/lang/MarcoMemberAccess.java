@@ -22,7 +22,7 @@ public class MarcoMemberAccess extends MarcoObject {
         if (module.hasExport(firstName)) {
             result = module.getMember(firstName);
         } else {
-            throw new ExportError(dynamic.getRuntime(), firstName.fileName, firstName.startLine, firstName);
+            throw new ExportError(firstName.fileName, firstName.startLine, firstName);
         }
         for (int i = 2; i < names.size(); i++) {
             MarcoModule next = Cast.toModule(result);
@@ -30,7 +30,7 @@ public class MarcoMemberAccess extends MarcoObject {
             if (next.hasExport(name)) {
                 result = next.getMember(name);
             } else {
-                throw new ExportError(dynamic.getRuntime(), name.fileName, name.startLine, name);
+                throw new ExportError(name.fileName, name.startLine, name);
             }
         }
         return result;

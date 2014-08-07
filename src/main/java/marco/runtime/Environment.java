@@ -20,7 +20,7 @@ public class Environment {
         parent = null;
     }
 
-    public Environment(Environment parent) {
+    private Environment(Environment parent) {
         this.parent = parent;
         this.runtime = parent.runtime;
     }

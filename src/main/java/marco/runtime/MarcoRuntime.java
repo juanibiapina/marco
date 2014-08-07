@@ -41,12 +41,12 @@ public class MarcoRuntime {
         nativeModules.put("integer", nativeIntegerModule);
     }
 
-    public MarcoObject run(String fileName, InputStream inputStream) {
+    public void run(String fileName, InputStream inputStream) {
         environment = environment.spawn();
 
         MarcoBlock block = parser.parse(fileName, inputStream);
 
-        return invoke(block);
+        invoke(block);
     }
 
     public MarcoObject run(String line) {
