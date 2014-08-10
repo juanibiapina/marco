@@ -25,4 +25,12 @@
     { (cons (predicate (head list)) (map (tail list) predicate)) })
 }))
 
-(export [:for-each :even? :max :or :filter :map])
+(def :any (function [:list :f] {
+  (if (nil? list) { false } {
+    (if (f (head list)) { true } {
+      (recurse (tail list) f)
+    })
+  })
+}))
+
+(export [:for-each :even? :max :or :filter :map :any])

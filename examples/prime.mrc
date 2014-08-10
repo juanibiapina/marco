@@ -3,14 +3,6 @@
 
 (def :n (integer.parse (io.read-line io.stdin)))
 
-(def :any (function [:list :f] {
-  (if (nil? list) { false } {
-    (if (f (head list)) { true } {
-      (recurse (tail list) f)
-    })
-  })
-}))
-
 (def :divisible (function [:n :d] {
   (= (% n d) 0)
 }))
