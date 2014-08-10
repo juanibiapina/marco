@@ -76,4 +76,12 @@ public class Cast {
             throw new TypeException(MarcoPort.class, value);
         }
     }
+
+    public static MarcoPair toPair(MarcoObject value) {
+        if (value instanceof MarcoPair) {
+            return (MarcoPair) value;
+        } else {
+            throw new TypeException(MarcoPair.class, value);
+        }
+    }
 }

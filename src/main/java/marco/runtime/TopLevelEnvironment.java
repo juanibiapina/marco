@@ -18,6 +18,9 @@ import marco.lang.functions.module.require;
 import marco.lang.functions.module.require_native;
 import marco.lang.functions.nil.nil_question;
 import marco.lang.functions.number.*;
+import marco.lang.functions.pair.first;
+import marco.lang.functions.pair.pair;
+import marco.lang.functions.pair.second;
 import marco.lang.functions.string.string_concat;
 import marco.lang.functions.system.exit;
 
@@ -81,5 +84,9 @@ public class TopLevelEnvironment extends Environment {
         def("invoke", new MarcoFunction(this, Arrays.asList("block"), new invoke()));
         def("module", new MarcoFunction(this, Arrays.asList("block"), new module()));
         def("export", new MarcoFunction(this, Arrays.asList("symbols"), new export()));
+
+        def("pair", new MarcoFunction(this, Arrays.asList("e1", "e2"), new pair()));
+        def("first", new MarcoFunction(this, Arrays.asList("pair"), new first()));
+        def("second", new MarcoFunction(this, Arrays.asList("pair"), new second()));
     }
 }
