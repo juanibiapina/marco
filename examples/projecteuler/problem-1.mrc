@@ -5,7 +5,7 @@
 
 (def :sum (function [:list] {
   (if (nil? list) { 0 }
-    { (+ (head list) (sum (tail list))) })
+    { (+ (head list) (recurse (tail list))) })
 }))
 
 (def :include? (function [:n] {
