@@ -3,18 +3,18 @@
 
 (def :make-fib (function [] {
   (def :helper (function [:a :b] {
-    [a (function [] { (helper b (+ a b)) })]
+    (pair a  (function [] { (helper b (+ a b)) }))
   }))
 
   (helper 1 1)
 }))
 
 (def :stream-head (function [:stream] {
-  (head stream)
+  (first stream)
 }))
 
 (def :stream-tail (function [:stream] {
-  ((head (tail stream)))
+  ((second stream))
 }))
 
 (def :stream-filter (function [:stream :predicate] {
@@ -24,7 +24,7 @@
   (def :this recurse)
 
   (if (predicate x)
-    { [x (function [] { (this t predicate) })] }
+    { (pair x (function [] { (this t predicate) })) }
     { (recurse t predicate) })
 }))
 

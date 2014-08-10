@@ -19,18 +19,18 @@
 
 (def :stream-integers (function [] {
   (def :helper (function [:n] {
-    [n (function [] { (helper (+ n 1)) })]
+    (pair n (function [] { (helper (+ n 1)) }))
   }))
 
   (helper 1)
 }))
 
 (def :stream-head (function [:stream] {
-  (head stream)
+  (first stream)
 }))
 
 (def :stream-tail (function [:stream] {
-  ((head (tail stream)))
+  ((second stream))
 }))
 
 (def :stream-filter (function [:stream :predicate] {
@@ -40,7 +40,7 @@
   (def :this recurse)
 
   (if (predicate x)
-    { [x (function [] { (this t predicate) })] }
+    { (pair x (function [] { (this t predicate) })) }
     { (recurse t predicate) })
 }))
 
