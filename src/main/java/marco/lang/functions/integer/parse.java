@@ -7,11 +7,13 @@ import marco.lang.MarcoNumber;
 import marco.lang.MarcoObject;
 import marco.lang.MarcoString;
 
+import java.math.BigInteger;
+
 public class parse extends MarcoNativeBlock {
     @Override
     public MarcoObject invoke(Environment closure, Environment dynamic) {
         MarcoString value = Cast.toString(closure.lookUp("value"));
 
-        return new MarcoNumber(Integer.parseInt(value.getValue()));
+        return new MarcoNumber(new BigInteger(value.getValue()));
     }
 }

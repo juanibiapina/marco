@@ -1,9 +1,9 @@
-package tests.marco.modules
+package tests.marco.modules.integer
 
 import helpers.MarcoSpecification
 
-class integer extends MarcoSpecification {
-    def "parse"() {
+class parse extends MarcoSpecification {
+    def "zero"() {
         given:
         eval(/ (def :integer (require "integer")) /)
 
@@ -11,11 +11,11 @@ class integer extends MarcoSpecification {
         eval(/ (integer.parse "0") /) == eval(/ 0 /)
     }
 
-    def "range"() {
+    def "big number"() {
         given:
         eval(/ (def :integer (require "integer")) /)
 
         expect:
-        eval(/ (integer.range 2 7) /) == eval(/ [2 3 4 5 6] /)
+        eval(/ (integer.parse "600851475143") /) == eval(/ 600851475143 /)
     }
 }
