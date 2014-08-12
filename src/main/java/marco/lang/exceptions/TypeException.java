@@ -3,20 +3,20 @@ package marco.lang.exceptions;
 import marco.lang.MarcoObject;
 
 public class TypeException extends MarcoException {
-    private final Class expected;
-    private final MarcoObject actualValue;
+    private final String expected;
+    private final MarcoObject actual;
 
-    public TypeException(Class expected, MarcoObject value) {
-        super("Expected " + expected.getName() + " but got a " + value.getClass().getName());
+    public TypeException(String expected, MarcoObject value) {
+        super("Expected " + expected + " but got a " + value.getClass().getName());
         this.expected = expected;
-        this.actualValue = value;
+        this.actual = value;
     }
 
-    public Class getExpected() {
+    public String getExpected() {
         return expected;
     }
 
     public MarcoObject getActual() {
-        return actualValue;
+        return actual;
     }
 }

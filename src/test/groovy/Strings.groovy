@@ -9,7 +9,7 @@ class Strings extends MarcoSpecification {
 
     def "string representation"() {
         expect:
-        new MarcoString("value").toString() == /"value"/
+        new MarcoString("value").toString() == "value"
     }
 
     def "concat: strings"() {

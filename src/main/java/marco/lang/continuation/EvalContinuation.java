@@ -14,11 +14,6 @@ public class EvalContinuation extends MarcoValue {
     }
 
     @Override
-    public String typeName() {
-        return "Continuation";
-    }
-
-    @Override
     public boolean isList() {
         return false;
     }

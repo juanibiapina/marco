@@ -1,5 +1,4 @@
 import helpers.MarcoSpecification
-import marco.lang.MarcoSymbol
 import marco.lang.exceptions.BindingError
 import marco.lang.exceptions.ContractViolation
 import marco.lang.exceptions.TypeException
@@ -61,7 +60,7 @@ class Defines extends MarcoSpecification {
 
         then:
         TypeException e = thrown()
-        e.expected == MarcoSymbol
+        e.expected == "Symbol"
         e.actual == eval(/ 2 /)
     }
 

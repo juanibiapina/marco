@@ -17,18 +17,13 @@ public class InvokeContinuation extends MarcoValue {
     }
 
     @Override
-    public String typeName() {
-        return "Continuation";
-    }
-
-    @Override
     public boolean isList() {
         return false;
     }
 
     @Override
     public String convertToString() {
-        return null;
+        return "Continuation";
     }
 
     @Override

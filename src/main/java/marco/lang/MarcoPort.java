@@ -13,18 +13,13 @@ public class MarcoPort extends MarcoValue {
     }
 
     @Override
-    public String typeName() {
-        return "Port";
-    }
-
-    @Override
     public boolean isList() {
         return false;
     }
 
     @Override
     public String convertToString() {
-        return null;
+        return "Port";
     }
 
     public String readLine() {

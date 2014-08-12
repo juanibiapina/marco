@@ -3,21 +3,19 @@ package marco.lang;
 import marco.runtime.Environment;
 
 public abstract class MarcoObject {
-    protected String fileName;
-    protected Integer startLine;
+    private String fileName;
+    private Integer startLine;
 
     public abstract MarcoObject __eval(Environment dynamic);
-
-    @Override
-    public String toString() {
-        return typeName();
-    }
-
-    public abstract String typeName();
 
     public abstract boolean isList();
 
     public abstract String convertToString();
+
+    @Override
+    public String toString() {
+        return convertToString();
+    }
 
     public void setStartLine(Integer startLine) {
         this.startLine = startLine;
@@ -33,5 +31,21 @@ public abstract class MarcoObject {
 
     public MarcoObject resolve() {
         return this;
+    }
+
+    public boolean isNil() {
+        return false;
+    }
+
+    public boolean isPair() {
+        return false;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public Integer getStartLine() {
+        return startLine;
     }
 }

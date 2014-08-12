@@ -1,8 +1,6 @@
 import helpers.MarcoSpecification
-import marco.lang.MarcoList
-import marco.lang.MarcoSymbol
-import marco.lang.exceptions.ContractViolation
 import marco.lang.error.LookUpError
+import marco.lang.exceptions.ContractViolation
 import marco.lang.exceptions.TypeException
 
 class Functions extends MarcoSpecification {
@@ -86,7 +84,7 @@ class Functions extends MarcoSpecification {
 
         then:
         TypeException e = thrown()
-        e.expected == MarcoList
+        e.expected == "List"
         e.actual == eval(/ 1 /)
     }
 
@@ -96,7 +94,7 @@ class Functions extends MarcoSpecification {
 
         then:
         TypeException e = thrown()
-        e.expected == MarcoSymbol
+        e.expected == "Symbol"
         e.actual == eval(/ 1 /)
     }
 

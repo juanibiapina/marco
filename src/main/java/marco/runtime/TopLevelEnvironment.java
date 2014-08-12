@@ -10,8 +10,8 @@ import marco.lang.functions.booleans._if;
 import marco.lang.functions.booleans._not;
 import marco.lang.functions.function.function;
 import marco.lang.functions.function.function_question;
+import marco.lang.functions.hash_map.hash_map;
 import marco.lang.functions.io.print;
-import marco.lang.functions.list.*;
 import marco.lang.functions.module.export;
 import marco.lang.functions.module.include;
 import marco.lang.functions.module.require;
@@ -20,6 +20,7 @@ import marco.lang.functions.nil.nil_question;
 import marco.lang.functions.number.*;
 import marco.lang.functions.pair.first;
 import marco.lang.functions.pair.pair;
+import marco.lang.functions.pair.pair_question;
 import marco.lang.functions.pair.second;
 import marco.lang.functions.string.string_concat;
 import marco.lang.functions.system.exit;
@@ -47,13 +48,6 @@ public class TopLevelEnvironment extends Environment {
         def("let", new MarcoFunction(this, Arrays.asList("binding", "body"), new let()));
 
         def("while", new MarcoFunction(this, Arrays.asList("cond", "body"), new _while()));
-
-        def("cons", new MarcoFunction(this, Arrays.asList("head", "tail"), new cons()));
-        def("head", new MarcoFunction(this, Arrays.asList("list"), new head()));
-        def("tail", new MarcoFunction(this, Arrays.asList("list"), new tail()));
-
-        def("list?", new MarcoFunction(this, Arrays.asList("value"), new list_question()));
-        def("length", new MarcoFunction(this, Arrays.asList("l"), new length()));
 
         def("nil?", new MarcoFunction(this, Arrays.asList("arg"), new nil_question()));
         def("nil", MarcoNil.NIL);
@@ -88,5 +82,8 @@ public class TopLevelEnvironment extends Environment {
         def("pair", new MarcoFunction(this, Arrays.asList("e1", "e2"), new pair()));
         def("first", new MarcoFunction(this, Arrays.asList("pair"), new first()));
         def("second", new MarcoFunction(this, Arrays.asList("pair"), new second()));
+        def("pair?", new MarcoFunction(this, Arrays.asList("value"), new pair_question()));
+
+        def("hash-map", new MarcoFunction(this, Arrays.asList("mappings"), new hash_map()));
     }
 }

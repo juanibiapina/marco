@@ -23,19 +23,13 @@ public class MarcoFunction extends MarcoRunnable {
         closure.let("recurse", this);
 
         for (int i = 0; i < arguments.size(); i++) {
-            String parameterName = parameters.get(i);
-            closure.parameter(parameterName, arguments.get(i));
+            closure.parameter(parameters.get(i), arguments.get(i));
         }
         return body.invoke(closure, dynamic);
     }
 
     @Override
-    public String typeName() {
-        return "Function";
-    }
-
-    @Override
     public String convertToString() {
-        return toString();
+        return "Function";
     }
 }

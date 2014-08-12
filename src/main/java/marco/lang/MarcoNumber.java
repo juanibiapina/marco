@@ -24,23 +24,13 @@ public class MarcoNumber extends MarcoValue {
     }
 
     @Override
-    public String toString() {
-        return value.toString();
-    }
-
-    @Override
-    public String typeName() {
-        return "Number";
-    }
-
-    @Override
     public boolean isList() {
         return false;
     }
 
     @Override
     public String convertToString() {
-        return toString();
+        return value.toString();
     }
 
     public BigInteger getValue() {

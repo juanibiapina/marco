@@ -1,15 +1,20 @@
 package marco.parser;
 
-import marco.runtime.ListHelper;
 import marco.lang.*;
 import marco.parser.antlr.MarcoBaseVisitor;
 import marco.parser.antlr.MarcoParser;
+import marco.lang.MarcoApplication;
+import marco.lang.MarcoLiteralHashMap;
+import marco.lang.MarcoLiteralList;
+import marco.lang.MarcoMemberAccess;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
     private MarcoBlock result;
@@ -35,10 +40,19 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
         for (MarcoParser.FormContext formContext : ctx.form()) {
             rawList.add(visit(formContext));
         }
-        MarcoApplication marcoApplication = new MarcoApplication(ListHelper.fromJavaList(rawList));
+        MarcoApplication marcoApplication = new MarcoApplication(rawList);
         marcoApplication.setStartLine(ctx.getStart().getLine());
         marcoApplication.setFileName(fileName);
         return marcoApplication;
+    }
+
+    @Override
+    public MarcoLiteralHashMap visitHash_map(@NotNull MarcoParser.Hash_mapContext ctx) {
+        Map<MarcoSymbol, MarcoObject> map = new HashMap<>();
+        for (int i = 0; i < ctx.form().size(); i++) {
+            map.put(new MarcoSymbol(ctx.SYMBOL(i).getText().substring(1)), visit(ctx.form(i)));
+        }
+        return new MarcoLiteralHashMap(map);
     }
 
     @Override
@@ -47,12 +61,17 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
         for (MarcoParser.FormContext formContext : ctx.form()) {
             rawList.add(visit(formContext));
         }
-        return ListHelper.fromJavaList(rawList);
+        return new MarcoLiteralList(rawList);
     }
 
     @Override
     public MarcoObject visitFormApplication(@NotNull MarcoParser.FormApplicationContext ctx) {
         return visit(ctx.application());
+    }
+
+    @Override
+    public MarcoObject visitFormHashMap(@NotNull MarcoParser.FormHashMapContext ctx) {
+        return visit(ctx.hash_map());
     }
 
     @Override

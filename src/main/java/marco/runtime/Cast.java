@@ -13,19 +13,11 @@ public class Cast {
         }
     }
 
-    public static MarcoList toList(MarcoObject value) {
-        if (value instanceof MarcoList) {
-            return (MarcoList) value;
-        } else {
-            throw new TypeException(MarcoList.class, value);
-        }
-    }
-
     public static MarcoNumber toNumber(MarcoObject value) {
         if (value instanceof MarcoNumber) {
             return (MarcoNumber) value;
         } else {
-            throw new TypeException(MarcoNumber.class, value);
+            throw new TypeException("Number", value);
         }
     }
 
@@ -41,7 +33,7 @@ public class Cast {
         if (value instanceof MarcoString) {
             return (MarcoString) value;
         } else {
-            throw new TypeException(MarcoString.class, value);
+            throw new TypeException("String", value);
         }
     }
 
@@ -49,7 +41,7 @@ public class Cast {
         if (value instanceof MarcoModule) {
             return (MarcoModule) value;
         } else {
-            throw new TypeException(MarcoModule.class, value);
+            throw new TypeException("Module", value);
         }
     }
 
@@ -57,7 +49,7 @@ public class Cast {
         if (value instanceof MarcoSymbol) {
             return (MarcoSymbol) value;
         } else {
-            throw new TypeException(MarcoSymbol.class, value);
+            throw new TypeException("Symbol", value);
         }
     }
 
@@ -65,7 +57,7 @@ public class Cast {
         if (value instanceof MarcoBlock) {
             return (MarcoBlock) value;
         } else {
-            throw new TypeException(MarcoBlock.class, value);
+            throw new TypeException("Block", value);
         }
     }
 
@@ -73,15 +65,15 @@ public class Cast {
         if (value instanceof MarcoPort) {
             return (MarcoPort) value;
         } else {
-            throw new TypeException(MarcoPort.class, value);
+            throw new TypeException("Port", value);
         }
     }
 
-    public static MarcoPair toPair(MarcoObject value) {
+    public static MarcoPair toPair(String expected, MarcoObject value) {
         if (value instanceof MarcoPair) {
             return (MarcoPair) value;
         } else {
-            throw new TypeException(MarcoPair.class, value);
+            throw new TypeException(expected, value);
         }
     }
 }

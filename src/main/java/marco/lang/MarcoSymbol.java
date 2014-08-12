@@ -8,18 +8,13 @@ public class MarcoSymbol extends MarcoValue {
     }
 
     @Override
-    public String typeName() {
-        return "Symbol";
-    }
-
-    @Override
     public boolean isList() {
         return false;
     }
 
     @Override
     public String convertToString() {
-        return toString();
+        return ":" + value;
     }
 
     @Override
@@ -32,7 +27,17 @@ public class MarcoSymbol extends MarcoValue {
         }
     }
 
+    @Override
+    public int hashCode() {
+        return value.hashCode();
+    }
+
     public String getValue() {
         return value;
+    }
+
+    @Override
+    public String toString() {
+        return convertToString();
     }
 }

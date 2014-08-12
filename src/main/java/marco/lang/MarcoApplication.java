@@ -7,28 +7,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MarcoApplication extends MarcoObject {
-    private MarcoList list;
+    private List<MarcoObject> list;
 
-    public MarcoApplication(MarcoList list) {
+    public MarcoApplication(List<MarcoObject> list) {
         this.list = list;
     }
 
     @Override
     public MarcoObject __eval(Environment dynamic) {
-        MarcoObject head = list.getHead();
-        MarcoList tail = list.getTail();
 
-        MarcoObject operator = dynamic.getRuntime().eval(head, dynamic);
+        MarcoObject operator = dynamic.getRuntime().eval(list.get(0), dynamic);
         List<MarcoObject> arguments = new ArrayList<>();
-        for (int i = 0; i < tail.length(); i++) {
-            arguments.add(dynamic.getRuntime().eval(tail.get(i), dynamic));
+        for (int i = 1; i < list.size(); i++) {
+            arguments.add(dynamic.getRuntime().eval(list.get(i), dynamic));
         }
-        return Cast.toRunnable(operator, fileName, startLine).invoke(dynamic, arguments);
-    }
-
-    @Override
-    public String typeName() {
-        return "Application";
+        return Cast.toRunnable(operator, getFileName(), getStartLine()).invoke(dynamic, arguments);
     }
 
     @Override
@@ -38,7 +31,7 @@ public class MarcoApplication extends MarcoObject {
 
     @Override
     public String convertToString() {
-        return toString();
+        return "Application";
     }
 
     @Override

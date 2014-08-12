@@ -27,6 +27,7 @@ public class MarcoRuntime {
         parser = Parser.instance();
         topLevelEnvironment = new TopLevelEnvironment(this);
         includeModule(topLevelEnvironment, "core");
+        includeModule(topLevelEnvironment, "list");
 
         environment = topLevelEnvironment;
 

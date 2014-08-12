@@ -1,14 +1,19 @@
 package marco.lang.functions;
 
+import marco.lang.MarcoBlock;
+import marco.lang.MarcoNativeBlock;
+import marco.lang.MarcoObject;
 import marco.lang.continuation.InvokeContinuation;
 import marco.runtime.Cast;
 import marco.runtime.Environment;
-import marco.lang.*;
+import marco.runtime.ListHelper;
+
+import java.util.List;
 
 public class let extends MarcoNativeBlock {
     @Override
     public MarcoObject invoke(Environment closure, Environment dynamic) {
-        MarcoList binding = Cast.toList(closure.lookUp("binding"));
+        List<MarcoObject> binding = ListHelper.toJavaList(closure.lookUp("binding"));
         MarcoBlock body = Cast.toBlock(closure.lookUp("body"));
 
         Environment extended = dynamic.spawn();

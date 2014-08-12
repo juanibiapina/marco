@@ -9,18 +9,13 @@ public class MarcoModule extends MarcoValue {
     private Map<String, MarcoObject> exports = new HashMap<>();
 
     @Override
-    public String typeName() {
-        return "Module";
-    }
-
-    @Override
     public boolean isList() {
         return false;
     }
 
     @Override
     public String convertToString() {
-        return toString();
+        return "Module";
     }
 
     public void export(String name, MarcoObject value) {

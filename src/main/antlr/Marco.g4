@@ -4,6 +4,7 @@ file: form* ;
 
 form
     : list          # FormList
+    | hash_map      # FormHashMap
     | application   # FormApplication
     | block         # FormBlock
     | literal       # FormLiteral
@@ -11,6 +12,8 @@ form
     ;
 
 list: '[' form* ']' ;
+
+hash_map: '#{' (SYMBOL form)* '}' ;
 
 application: '(' form* ')' ;
 

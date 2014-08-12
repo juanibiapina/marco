@@ -15,7 +15,7 @@ public class MarcoName extends MarcoObject {
     public MarcoObject __eval(Environment dynamic) {
         Binding binding = dynamic.get(value);
         if (binding.isEmpty()) {
-            throw new LookUpError(fileName, startLine, value);
+            throw new LookUpError(getFileName(), getStartLine(), value);
         }
         return binding.getValue();
     }
@@ -35,22 +35,12 @@ public class MarcoName extends MarcoObject {
     }
 
     @Override
-    public String typeName() {
-        return "Name";
-    }
-
-    @Override
     public boolean isList() {
         return false;
     }
 
     @Override
-    public String toString() {
-        return "'" + value;
-    }
-
-    @Override
     public String convertToString() {
-        return toString();
+        return value;
     }
 }

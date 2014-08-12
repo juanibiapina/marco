@@ -18,16 +18,6 @@ public class MarcoString extends MarcoValue {
     }
 
     @Override
-    public String toString() {
-        return "\"" + value + "\"";
-    }
-
-    @Override
-    public String typeName() {
-        return "String";
-    }
-
-    @Override
     public boolean isList() {
         return false;
     }

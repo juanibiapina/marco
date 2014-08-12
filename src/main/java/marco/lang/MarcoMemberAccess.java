@@ -1,5 +1,8 @@
 package marco.lang;
 
+import marco.lang.MarcoModule;
+import marco.lang.MarcoName;
+import marco.lang.MarcoObject;
 import marco.runtime.Cast;
 import marco.runtime.Environment;
 import marco.lang.error.ExportError;
@@ -22,7 +25,7 @@ public class MarcoMemberAccess extends MarcoObject {
         if (module.hasExport(firstName)) {
             result = module.getMember(firstName);
         } else {
-            throw new ExportError(firstName.fileName, firstName.startLine, firstName);
+            throw new ExportError(firstName.getFileName(), firstName.getStartLine(), firstName);
         }
         for (int i = 2; i < names.size(); i++) {
             MarcoModule next = Cast.toModule(result);
@@ -30,15 +33,10 @@ public class MarcoMemberAccess extends MarcoObject {
             if (next.hasExport(name)) {
                 result = next.getMember(name);
             } else {
-                throw new ExportError(name.fileName, name.startLine, name);
+                throw new ExportError(name.getFileName(), name.getStartLine(), name);
             }
         }
         return result;
-    }
-
-    @Override
-    public String typeName() {
-        return "MemberAccess";
     }
 
     @Override
@@ -48,6 +46,6 @@ public class MarcoMemberAccess extends MarcoObject {
 
     @Override
     public String convertToString() {
-        return toString();
+        return null;
     }
 }

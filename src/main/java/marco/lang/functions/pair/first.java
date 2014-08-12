@@ -9,7 +9,7 @@ import marco.runtime.Environment;
 public class first extends MarcoNativeBlock {
     @Override
     public MarcoObject invoke(Environment closure, Environment dynamic) {
-        MarcoPair pair = Cast.toPair(closure.lookUp("pair"));
+        MarcoPair pair = Cast.toPair("Pair", closure.lookUp("pair"));
 
         return pair.getFirst();
     }

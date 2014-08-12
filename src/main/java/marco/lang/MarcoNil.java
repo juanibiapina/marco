@@ -1,11 +1,6 @@
 package marco.lang;
 
-import marco.lang.exceptions.MarcoException;
-
-import java.util.Arrays;
-import java.util.List;
-
-public class MarcoNil extends MarcoList {
+public class MarcoNil extends MarcoValue {
     public static final MarcoNil NIL = new MarcoNil();
 
     private MarcoNil() {
@@ -21,47 +16,17 @@ public class MarcoNil extends MarcoList {
     }
 
     @Override
-    public String toString() {
-        return "nil";
-    }
-
-    @Override
-    public String typeName() {
-        return "Nil";
-    }
-
-    @Override
-    public List<String> asArgumentList() {
-        return Arrays.asList();
-    }
-
-    @Override
-    public int length() {
-        return 0;
-    }
-
-    @Override
-    public MarcoObject get(int i) {
-        throw new MarcoException("get in nil");
-    }
-
-    @Override
-    public MarcoObject getHead() {
-        throw new MarcoException("head called on nil");
-    }
-
-    @Override
-    public MarcoList getTail() {
-        throw new MarcoException("tail called on nil");
-    }
-
-    @Override
     public boolean isList() {
         return true;
     }
 
     @Override
+    public boolean isNil() {
+        return true;
+    }
+
+    @Override
     public String convertToString() {
-        return toString();
+        return "nil";
     }
 }

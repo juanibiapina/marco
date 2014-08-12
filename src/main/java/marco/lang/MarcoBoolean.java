@@ -11,23 +11,13 @@ public class MarcoBoolean extends MarcoValue {
     }
 
     @Override
-    public String toString() {
-        return Boolean.toString(value);
-    }
-
-    @Override
-    public String typeName() {
-        return "Boolean";
-    }
-
-    @Override
     public boolean isList() {
         return false;
     }
 
     @Override
     public String convertToString() {
-        return toString();
+        return Boolean.toString(value);
     }
 
     public static MarcoBoolean from(boolean value) {

@@ -1,6 +1,3 @@
-- Modules
-  - load
-
 - Blocks
   - Defining in inner scope
   - Invocation
@@ -25,16 +22,18 @@
 - Error messages
   - Line number information
   - Error context information (actual code?)
-  - Stack trace
+  - Save call trace for debugging
 
 - Contracts
   - Can be used to generate proper error messages
 
-- Evaluation
-  - Use a stack
-
 - Maps
-  - Guava hash (check clojure)
+
+- Metadata
+
+- Bindings
+  - def with recursion
+  - declare
 
 - Refactor
   - String representations

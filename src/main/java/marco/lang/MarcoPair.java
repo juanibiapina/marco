@@ -10,8 +10,13 @@ public class MarcoPair extends MarcoValue {
     }
 
     @Override
-    public String typeName() {
-        return "Pair";
+    public boolean equals(Object obj) {
+        if (obj instanceof MarcoPair) {
+            MarcoPair other = (MarcoPair) obj;
+            return first.equals(other.first) && second.equals(other.second);
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -21,7 +26,12 @@ public class MarcoPair extends MarcoValue {
 
     @Override
     public String convertToString() {
-        return "<" + first.convertToString() + " " + second.convertToString() + ">";
+        return "(" + first.toString() + ", " + second.toString() + ")";
+    }
+
+    @Override
+    public boolean isPair() {
+        return true;
     }
 
     public MarcoObject getFirst() {

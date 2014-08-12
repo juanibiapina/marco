@@ -8,11 +8,6 @@ public abstract class MarcoNativeBlock extends MarcoBlock {
     }
 
     @Override
-    public String typeName() {
-        return "NativeBlock";
-    }
-
-    @Override
     public abstract MarcoObject invoke(Environment closure, Environment dynamic);
 
     @Override

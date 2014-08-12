@@ -20,18 +20,13 @@ public class MarcoBlock extends MarcoValue {
     }
 
     @Override
-    public String typeName() {
-        return "Block";
-    }
-
-    @Override
     public boolean isList() {
         return false;
     }
 
     @Override
     public String convertToString() {
-        return toString();
+        return "Block";
     }
 
     public MarcoObject invoke(Environment closure, Environment dynamic) {

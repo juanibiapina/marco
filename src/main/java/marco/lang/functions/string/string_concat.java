@@ -1,21 +1,21 @@
 package marco.lang.functions.string;
 
-import marco.runtime.Cast;
-import marco.runtime.Environment;
-import marco.lang.MarcoList;
 import marco.lang.MarcoNativeBlock;
 import marco.lang.MarcoObject;
 import marco.lang.MarcoString;
+import marco.runtime.Environment;
+import marco.runtime.ListHelper;
+
+import java.util.List;
 
 public class string_concat extends MarcoNativeBlock {
     @Override
     public MarcoObject invoke(Environment closure, Environment dynamic) {
-        MarcoList values = Cast.toList(closure.lookUp("values"));
+        List<MarcoObject> values = ListHelper.toJavaList(closure.lookUp("values"));
 
         StringBuilder builder = new StringBuilder();
-        for (int i = 0; i < values.length(); i++) {
-            String value = values.get(i).convertToString();
-            builder.append(value);
+        for (MarcoObject value : values) {
+            builder.append(value.convertToString());
         }
 
         return new MarcoString(builder.toString());
