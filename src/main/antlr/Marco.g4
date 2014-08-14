@@ -1,6 +1,10 @@
 grammar Marco;
 
-file: form* ;
+file: tagged_form* ;
+
+tagged_form: metadata? form;
+
+metadata: '^' hash_map ;
 
 form
     : list          # FormList
@@ -11,13 +15,13 @@ form
     | member_access # FormMemberAccess
     ;
 
-list: '[' form* ']' ;
+list: '[' tagged_form* ']' ;
 
-hash_map: '#{' (SYMBOL form)* '}' ;
+hash_map: '#{' (SYMBOL tagged_form)* '}' ;
 
-application: '(' form* ')' ;
+application: '(' tagged_form* ')' ;
 
-block: '{' form* '}' ;
+block: '{' tagged_form* '}' ;
 
 literal
     : NAME       # Name

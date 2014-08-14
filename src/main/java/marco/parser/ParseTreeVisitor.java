@@ -27,7 +27,7 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
     @Override
     public MarcoBlock visitFile(@NotNull MarcoParser.FileContext ctx) {
         List<MarcoObject> forms = new ArrayList<>();
-        for (MarcoParser.FormContext formContext : ctx.form()) {
+        for (MarcoParser.Tagged_formContext formContext : ctx.tagged_form()) {
             forms.add(visit(formContext));
         }
         result = new MarcoBlock(forms);
@@ -37,7 +37,7 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
     @Override
     public MarcoApplication visitApplication(@NotNull MarcoParser.ApplicationContext ctx) {
         List<MarcoObject> rawList = new ArrayList<>();
-        for (MarcoParser.FormContext formContext : ctx.form()) {
+        for (MarcoParser.Tagged_formContext formContext : ctx.tagged_form()) {
             rawList.add(visit(formContext));
         }
         MarcoApplication marcoApplication = new MarcoApplication(rawList);
@@ -46,11 +46,25 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
         return marcoApplication;
     }
 
+    public MarcoObject visitTagged_form(@NotNull MarcoParser.Tagged_formContext ctx) {
+        MarcoObject form = visit(ctx.form());
+        if (ctx.metadata() != null) {
+            MarcoLiteralHashMap metadata = (MarcoLiteralHashMap) visit(ctx.metadata());
+            form.setMetadata(metadata);
+        }
+        return form;
+    }
+
+    @Override
+    public MarcoObject visitMetadata(@NotNull MarcoParser.MetadataContext ctx) {
+        return visit(ctx.hash_map());
+    }
+
     @Override
     public MarcoLiteralHashMap visitHash_map(@NotNull MarcoParser.Hash_mapContext ctx) {
         Map<MarcoSymbol, MarcoObject> map = new HashMap<>();
-        for (int i = 0; i < ctx.form().size(); i++) {
-            map.put(new MarcoSymbol(ctx.SYMBOL(i).getText().substring(1)), visit(ctx.form(i)));
+        for (int i = 0; i < ctx.tagged_form().size(); i++) {
+            map.put(new MarcoSymbol(ctx.SYMBOL(i).getText().substring(1)), visit(ctx.tagged_form(i)));
         }
         return new MarcoLiteralHashMap(map);
     }
@@ -58,7 +72,7 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
     @Override
     public MarcoObject visitList(@NotNull MarcoParser.ListContext ctx) {
         List<MarcoObject> rawList = new ArrayList<>();
-        for (MarcoParser.FormContext formContext : ctx.form()) {
+        for (MarcoParser.Tagged_formContext formContext : ctx.tagged_form()) {
             rawList.add(visit(formContext));
         }
         return new MarcoLiteralList(rawList);
@@ -109,7 +123,7 @@ public class ParseTreeVisitor extends MarcoBaseVisitor<MarcoObject> {
     @Override
     public MarcoBlock visitBlock(@NotNull MarcoParser.BlockContext ctx) {
         List<MarcoObject> rawList = new ArrayList<>();
-        for (MarcoParser.FormContext formContext : ctx.form()) {
+        for (MarcoParser.Tagged_formContext formContext : ctx.tagged_form()) {
             rawList.add(visit(formContext));
         }
         return new MarcoBlock(rawList);

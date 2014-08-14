@@ -12,6 +12,7 @@ import marco.lang.functions.function.function;
 import marco.lang.functions.function.function_question;
 import marco.lang.functions.hash_map.hash_map;
 import marco.lang.functions.io.print;
+import marco.lang.functions.metadata.meta;
 import marco.lang.functions.module.export;
 import marco.lang.functions.module.include;
 import marco.lang.functions.module.require;
@@ -85,5 +86,7 @@ public class TopLevelEnvironment extends Environment {
         def("pair?", new MarcoFunction(this, Arrays.asList("value"), new pair_question()));
 
         def("hash-map", new MarcoFunction(this, Arrays.asList("mappings"), new hash_map()));
+
+        def("meta", new MarcoFunction(this, Arrays.asList("value"), new meta()));
     }
 }
