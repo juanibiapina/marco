@@ -71,7 +71,7 @@
           {
             (def :r (/ n c))
             (if (= r 1) { c }
-              { (recurse r t) })
+              { (recurse r primes) })
           }
           {
             (recurse n t)
