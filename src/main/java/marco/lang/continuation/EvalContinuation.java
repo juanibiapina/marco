@@ -32,4 +32,9 @@ public class EvalContinuation extends MarcoValue {
     public MarcoObject resolve() {
         return value.__eval(environment);
     }
+
+    @Override
+    protected MarcoObject _clone() {
+        return new EvalContinuation(value, environment);
+    }
 }

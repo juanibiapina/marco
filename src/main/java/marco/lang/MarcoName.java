@@ -43,4 +43,9 @@ public class MarcoName extends MarcoObject {
     public String convertToString() {
         return value;
     }
+
+    @Override
+    protected MarcoObject _clone() {
+        return new MarcoName(value);
+    }
 }

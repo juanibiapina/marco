@@ -1,8 +1,5 @@
 package marco.lang;
 
-import marco.lang.MarcoHashMap;
-import marco.lang.MarcoObject;
-import marco.lang.MarcoSymbol;
 import marco.runtime.Environment;
 
 import java.util.HashMap;
@@ -32,5 +29,10 @@ public class MarcoLiteralHashMap extends MarcoObject {
     @Override
     public String convertToString() {
         return null;
+    }
+
+    @Override
+    protected MarcoObject _clone() {
+        return new MarcoLiteralHashMap(values);
     }
 }

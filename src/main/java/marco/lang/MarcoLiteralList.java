@@ -1,6 +1,5 @@
 package marco.lang;
 
-import marco.lang.MarcoObject;
 import marco.runtime.Environment;
 import marco.runtime.ListHelper;
 
@@ -33,5 +32,10 @@ public class MarcoLiteralList extends MarcoObject {
     @Override
     public String convertToString() {
         return null;
+    }
+
+    @Override
+    protected MarcoObject _clone() {
+        return new MarcoLiteralList(values);
     }
 }

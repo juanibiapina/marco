@@ -34,6 +34,11 @@ public class MarcoPair extends MarcoValue {
         return true;
     }
 
+    @Override
+    protected MarcoObject _clone() {
+        return new MarcoPair(first, second);
+    }
+
     public MarcoObject getFirst() {
         return first;
     }

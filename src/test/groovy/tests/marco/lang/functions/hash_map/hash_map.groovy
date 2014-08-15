@@ -14,7 +14,6 @@ class hash_map extends MarcoSpecification {
     def "several elements"() {
         given:
         eval(/ (def :h (hash-map [:a 1 :b 2 :c 3])) /)
-        eval(/ (print h) /)
 
         expect:
         eval(/ (h :a) /) == eval(/ 1 /)

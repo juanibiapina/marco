@@ -7,8 +7,10 @@ import java.io.InputStreamReader;
 
 public class MarcoPort extends MarcoValue {
     private final BufferedReader reader;
+    private InputStream in;
 
     public MarcoPort(InputStream in) {
+        this.in = in;
         reader = new BufferedReader(new InputStreamReader(in));
     }
 
@@ -20,6 +22,11 @@ public class MarcoPort extends MarcoValue {
     @Override
     public String convertToString() {
         return "Port";
+    }
+
+    @Override
+    protected MarcoObject _clone() {
+        return new MarcoPort(in);
     }
 
     public String readLine() {

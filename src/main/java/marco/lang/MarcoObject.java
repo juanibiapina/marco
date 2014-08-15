@@ -5,6 +5,7 @@ import marco.runtime.Environment;
 public abstract class MarcoObject {
     private String fileName;
     private Integer startLine;
+    private MarcoHashMap metadata;
 
     public abstract MarcoObject __eval(Environment dynamic);
 
@@ -48,4 +49,30 @@ public abstract class MarcoObject {
     public Integer getStartLine() {
         return startLine;
     }
+
+    public MarcoObject withMeta(MarcoHashMap data) {
+        MarcoObject result = marcoClone();
+        if (metadata != null) {
+            result.metadata = metadata.merge(data);
+        } else {
+            result.metadata = data;
+        }
+        return result;
+    }
+
+    private MarcoObject marcoClone() {
+        MarcoObject clone = _clone();
+        clone.metadata = metadata;
+        return clone;
+    }
+
+    public MarcoObject getMetadata() {
+        if (metadata == null) {
+            return new MarcoHashMap();
+        } else {
+            return metadata;
+        }
+    }
+
+    protected abstract MarcoObject _clone();
 }

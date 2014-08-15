@@ -40,4 +40,9 @@ public class MarcoSymbol extends MarcoValue {
     public String toString() {
         return convertToString();
     }
+
+    @Override
+    protected MarcoObject _clone() {
+        return new MarcoSymbol(value);
+    }
 }

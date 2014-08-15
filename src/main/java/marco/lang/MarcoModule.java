@@ -6,7 +6,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MarcoModule extends MarcoValue {
-    private Map<String, MarcoObject> exports = new HashMap<>();
+    private Map<String, MarcoObject> exports;
+
+    public MarcoModule(Map<String, MarcoObject> exports) {
+        this.exports = exports;
+    }
+
+    public MarcoModule() {
+        this.exports = new HashMap<>();
+    }
 
     @Override
     public boolean isList() {
@@ -16,6 +24,11 @@ public class MarcoModule extends MarcoValue {
     @Override
     public String convertToString() {
         return "Module";
+    }
+
+    @Override
+    protected MarcoObject _clone() {
+        return new MarcoModule(exports);
     }
 
     public void export(String name, MarcoObject value) {

@@ -32,4 +32,9 @@ public class MarcoFunction extends MarcoRunnable {
     public String convertToString() {
         return "Function";
     }
+
+    @Override
+    protected MarcoObject _clone() {
+        return new MarcoFunction(lexical, parameters, body);
+    }
 }

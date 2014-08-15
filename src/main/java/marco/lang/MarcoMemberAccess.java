@@ -1,11 +1,8 @@
 package marco.lang;
 
-import marco.lang.MarcoModule;
-import marco.lang.MarcoName;
-import marco.lang.MarcoObject;
+import marco.lang.error.ExportError;
 import marco.runtime.Cast;
 import marco.runtime.Environment;
-import marco.lang.error.ExportError;
 
 import java.util.List;
 
@@ -47,5 +44,10 @@ public class MarcoMemberAccess extends MarcoObject {
     @Override
     public String convertToString() {
         return null;
+    }
+
+    @Override
+    protected MarcoObject _clone() {
+        return new MarcoMemberAccess(names);
     }
 }

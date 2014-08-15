@@ -22,7 +22,12 @@ public class MarcoHashMap extends MarcoRunnable {
     @Override
     protected MarcoObject performInvoke(Environment environment, List<MarcoObject> arguments) {
         MarcoSymbol key = Cast.toSymbol(arguments.get(0));
-        return values.get(key);
+        MarcoObject value = values.get(key);
+        if (value == null) {
+            return MarcoNil.NIL;
+        } else {
+            return value;
+        }
     }
 
     @Override
@@ -43,5 +48,17 @@ public class MarcoHashMap extends MarcoRunnable {
     @Override
     public String toString() {
         return values.toString();
+    }
+
+    @Override
+    protected MarcoObject _clone() {
+        return new MarcoHashMap(values);
+    }
+
+    public MarcoHashMap merge(MarcoHashMap data) {
+        Map<MarcoSymbol, MarcoObject> values = new HashMap<>();
+        values.putAll(this.values);
+        values.putAll(data.values);
+        return new MarcoHashMap(values);
     }
 }

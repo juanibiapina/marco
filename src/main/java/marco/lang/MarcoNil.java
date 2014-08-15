@@ -26,6 +26,11 @@ public class MarcoNil extends MarcoValue {
     }
 
     @Override
+    protected MarcoObject _clone() {
+        return new MarcoNil();
+    }
+
+    @Override
     public String convertToString() {
         return "nil";
     }

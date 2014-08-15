@@ -35,4 +35,9 @@ public class InvokeContinuation extends MarcoValue {
     public MarcoObject resolve() {
         return block.invoke(closure, dynamic);
     }
+
+    @Override
+    protected MarcoObject _clone() {
+        return new InvokeContinuation(block, closure, dynamic);
+    }
 }

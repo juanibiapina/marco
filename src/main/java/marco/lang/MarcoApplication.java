@@ -35,6 +35,11 @@ public class MarcoApplication extends MarcoObject {
     }
 
     @Override
+    protected MarcoObject _clone() {
+        return new MarcoApplication(list);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         if (obj instanceof MarcoApplication) {
             MarcoApplication other = (MarcoApplication) obj;

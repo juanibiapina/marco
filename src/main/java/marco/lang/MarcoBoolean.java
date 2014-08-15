@@ -20,6 +20,11 @@ public class MarcoBoolean extends MarcoValue {
         return Boolean.toString(value);
     }
 
+    @Override
+    protected MarcoObject _clone() {
+        return new MarcoBoolean(value);
+    }
+
     public static MarcoBoolean from(boolean value) {
         if (value) {
             return TRUE;

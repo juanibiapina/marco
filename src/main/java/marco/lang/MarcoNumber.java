@@ -33,6 +33,11 @@ public class MarcoNumber extends MarcoValue {
         return value.toString();
     }
 
+    @Override
+    protected MarcoObject _clone() {
+        return new MarcoNumber(value);
+    }
+
     public BigInteger getValue() {
         return value;
     }

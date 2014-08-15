@@ -1,13 +1,10 @@
 package tests.marco.syntax
-
 import helpers.MarcoSpecification
-import spock.lang.Ignore
 
-@Ignore
 class Metadata extends MarcoSpecification {
-    def "adding meta data field"() {
+    def "adding meta data to a number"() {
         given:
-        eval(/ (def :x ^#{:color "blue" :size :small :i 3} 1) /)
+        eval(/ (def :x (with-meta 1 #{:color "blue" :size :small :i 3})) /)
 
         expect:
         eval(/ ((meta x) :color) /) == eval(/ "blue" /)

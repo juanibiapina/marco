@@ -27,6 +27,11 @@ public class MarcoString extends MarcoValue {
         return value;
     }
 
+    @Override
+    protected MarcoObject _clone() {
+        return new MarcoString(value);
+    }
+
     public String getValue() {
         return value;
     }

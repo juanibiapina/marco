@@ -3,10 +3,6 @@ package marco.parser;
 import marco.lang.*;
 import marco.parser.antlr.MarcoBaseVisitor;
 import marco.parser.antlr.MarcoParser;
-import marco.lang.MarcoApplication;
-import marco.lang.MarcoLiteralHashMap;
-import marco.lang.MarcoLiteralList;
-import marco.lang.MarcoMemberAccess;
 import org.antlr.v4.runtime.misc.NotNull;
 import org.antlr.v4.runtime.tree.TerminalNode;
 

@@ -29,6 +29,11 @@ public class MarcoBlock extends MarcoValue {
         return "Block";
     }
 
+    @Override
+    protected MarcoObject _clone() {
+        return new MarcoBlock(forms);
+    }
+
     public MarcoObject invoke(Environment closure, Environment dynamic) {
         return invokeWithEnvironment(closure);
     }

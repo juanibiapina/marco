@@ -76,4 +76,12 @@ public class Cast {
             throw new TypeException(expected, value);
         }
     }
+
+    public static MarcoHashMap toHashMap(MarcoObject value) {
+        if (value instanceof MarcoHashMap) {
+            return (MarcoHashMap) value;
+        } else {
+            throw new TypeException("HashMap", value);
+        }
+    }
 }
