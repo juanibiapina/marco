@@ -8,6 +8,7 @@ import marco.lang.functions.block.invoke;
 import marco.lang.functions.block.module;
 import marco.lang.functions.booleans._if;
 import marco.lang.functions.booleans._not;
+import marco.lang.functions.doc.doc;
 import marco.lang.functions.function.function;
 import marco.lang.functions.function.function_question;
 import marco.lang.functions.hash_map.hash_map;
@@ -90,5 +91,7 @@ public class TopLevelEnvironment extends Environment {
 
         def("with-meta", new MarcoFunction(this, Arrays.asList("object", "data"), new with_meta()));
         def("meta", new MarcoFunction(this, Arrays.asList("object"), new meta()));
+
+        def("doc", new MarcoFunction(this, Arrays.asList("object"), new doc()));
     }
 }

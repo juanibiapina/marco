@@ -1,6 +1,8 @@
 grammar Marco;
 
-file: form* ;
+file: form_with_doc* ;
+
+form_with_doc: ('@' STRING)? form ;
 
 form
     : list          # FormList
@@ -11,13 +13,13 @@ form
     | member_access # FormMemberAccess
     ;
 
-list: '[' form* ']' ;
+list: '[' form_with_doc* ']' ;
 
-hash_map: '#{' (SYMBOL form)* '}' ;
+hash_map: '#{' (SYMBOL form_with_doc)* '}' ;
 
-application: '(' form* ')' ;
+application: '(' form_with_doc* ')' ;
 
-block: '{' form* '}' ;
+block: '{' form_with_doc* '}' ;
 
 literal
     : NAME       # Name

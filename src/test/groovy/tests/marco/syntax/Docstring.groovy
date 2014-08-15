@@ -1,9 +1,6 @@
 package tests.marco.syntax
-
 import helpers.MarcoSpecification
-import spock.lang.Ignore
 
-@Ignore
 class Docstring extends MarcoSpecification {
     def "for a number"() {
         given:

@@ -6,6 +6,7 @@ public abstract class MarcoObject {
     private String fileName;
     private Integer startLine;
     private MarcoHashMap metadata;
+    protected String docstring;
 
     public abstract MarcoObject __eval(Environment dynamic);
 
@@ -82,4 +83,16 @@ public abstract class MarcoObject {
     }
 
     protected abstract MarcoObject _clone();
+
+    public MarcoObject getDocstring() {
+        if (docstring != null) {
+            return new MarcoString(docstring);
+        } else {
+            return MarcoNil.NIL;
+        }
+    }
+
+    public void setDocstring(String docstring) {
+        this.docstring = docstring;
+    }
 }

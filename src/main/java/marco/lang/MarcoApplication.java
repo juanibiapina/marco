@@ -21,7 +21,9 @@ public class MarcoApplication extends MarcoObject {
         for (int i = 1; i < list.size(); i++) {
             arguments.add(dynamic.getRuntime().eval(list.get(i), dynamic));
         }
-        return Cast.toRunnable(operator, getFileName(), getStartLine()).invoke(dynamic, arguments);
+        MarcoObject result = Cast.toRunnable(operator, getFileName(), getStartLine()).invoke(dynamic, arguments);
+        result.setDocstring(docstring);
+        return result;
     }
 
     @Override

@@ -2,13 +2,17 @@
   (with-meta (pair head tail) #{:length (+ 1 ((meta tail) :length))})
 }))
 
-(def :head (function [:list] {
-  (first list)
-}))
+(def :head @"Returns the head of a list"
+  (function [:list] {
+    (first list)
+  })
+)
 
-(def :tail (function [:list] {
-  (second list)
-}))
+(def :tail @"Returns the tail of a list"
+  (function [:list] {
+    (second list)
+  })
+)
 
 (def :length (function [:list] {
   ((meta list) :length)
