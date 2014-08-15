@@ -50,6 +50,13 @@ public abstract class MarcoObject {
         return startLine;
     }
 
+    public void addMetadata(String key, MarcoObject value) {
+        if (metadata == null) {
+            metadata = new MarcoHashMap();
+        }
+        metadata.add(key, value);
+    }
+
     public MarcoObject withMeta(MarcoHashMap data) {
         MarcoObject result = marcoClone();
         if (metadata != null) {

@@ -4,6 +4,7 @@ public class MarcoNil extends MarcoValue {
     public static final MarcoNil NIL = new MarcoNil();
 
     private MarcoNil() {
+        addMetadata("length", new MarcoNumber(0));
     }
 
     @Override

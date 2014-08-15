@@ -18,6 +18,7 @@ class list extends MarcoSpecification {
         eval(/ (length nil) /) == eval(/ 0 /)
         eval(/ (length []) /) == eval(/ 0 /)
         eval(/ (length ["lol"]) /) == eval(/ 1 /)
+        eval(/ (length ["lol" 1]) /) == eval(/ 2 /)
         eval(/ (length [1 2 3]) /) == eval(/ 3 /)
         eval(/ (length [1 2 3 "house"]) /) == eval(/ 4 /)
     }

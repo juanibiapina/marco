@@ -1,5 +1,5 @@
 (def :cons (function [:head :tail] {
-  (pair head tail)
+  (with-meta (pair head tail) #{:length (+ 1 ((meta tail) :length))})
 }))
 
 (def :head (function [:list] {
@@ -11,12 +11,7 @@
 }))
 
 (def :length (function [:list] {
-  (def :helper (function [:list :size] {
-    (if (nil? list) { size }
-      { (recurse (tail list) (+ size 1)) })
-  }))
-
-  (helper list 0)
+  ((meta list) :length)
 }))
 
 (def :list? (function [:list] {

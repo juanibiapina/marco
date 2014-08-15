@@ -61,4 +61,8 @@ public class MarcoHashMap extends MarcoRunnable {
         values.putAll(data.values);
         return new MarcoHashMap(values);
     }
+
+    public void add(String key, MarcoObject value) {
+        values.put(new MarcoSymbol(key), value);
+    }
 }

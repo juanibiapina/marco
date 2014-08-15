@@ -1,6 +1,7 @@
 package marco.runtime;
 
 import marco.lang.MarcoNil;
+import marco.lang.MarcoNumber;
 import marco.lang.MarcoObject;
 import marco.lang.MarcoPair;
 
@@ -13,9 +14,14 @@ public class ListHelper {
             return MarcoNil.NIL;
         }
 
+        int size = 1;
         MarcoPair result = new MarcoPair(rawList.get(rawList.size() - 1), MarcoNil.NIL);
+        result.addMetadata("length", new MarcoNumber(size));
+        size++;
         for (int i = rawList.size() - 2; i >= 0; i--) {
             result = new MarcoPair(rawList.get(i), result);
+            result.addMetadata("length", new MarcoNumber(size));
+            size++;
         }
         return result;
     }
