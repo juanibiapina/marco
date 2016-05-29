@@ -17,6 +17,7 @@ configurations {
 idea {
   module {
     sourceDirs += file('src/generated/java')
+    sourceDirs += file('src/main/marco')
   }
 }
 
