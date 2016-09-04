@@ -1,6 +1,8 @@
-(def :cons (function [:head :tail] {
-  (with-meta (pair head tail) #{:length (+ 1 ((meta tail) :length))})
-}))
+(def :cons @"Creates a list"
+  (function [:head :tail] {
+    (with-meta (pair head tail) #{:length (+ 1 ((meta tail) :length))})
+  })
+)
 
 (def :head @"Returns the head of a list"
   (function [:list] {
@@ -14,18 +16,22 @@
   })
 )
 
-(def :length (function [:list] {
-  ((meta list) :length)
-}))
+(def :length @"Determines the length of a list"
+  (function [:list] {
+    ((meta list) :length)
+  })
+)
 
-(def :list? (function [:list] {
-  (if (nil? list) { true } {
-    (if (pair? list) {
-      (recurse (tail list))
-    } {
-      false
+(def :list? @"Checks whether something is a list"
+  (function [:list] {
+    (if (nil? list) { true } {
+      (if (pair? list) {
+        (recurse (tail list))
+      } {
+        false
+      })
     })
   })
-}))
+)
 
 (export [:cons :length :list? :head :tail])
