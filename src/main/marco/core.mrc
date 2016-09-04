@@ -33,4 +33,12 @@
   })
 }))
 
-(export [:for-each :even? :max :or :filter :map :any])
+(def :flip @"Returns a new function with flipped argument positions"
+  (function [:f] {
+    (function [:v1 :v2] {
+      (f v2 v1)
+    })
+  })
+)
+
+(export [:for-each :even? :max :or :filter :map :any :flip])

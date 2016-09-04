@@ -45,9 +45,7 @@
 
 (def :reverse @"Reverses a list"
   (function [:list] {
-    (foldl (function [:acc :new-head] {
-      (cons new-head acc)
-    }) [] list)
+    (foldl (flip cons) [] list)
   })
 )
 
