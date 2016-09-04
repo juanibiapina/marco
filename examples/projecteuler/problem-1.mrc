@@ -11,6 +11,6 @@
   (or { (= (% n 3) 0) } { (= (% n 5) 0) })
 }))
 
-(def :result (sum (filter (integer.range 1 n) include?)))
+(def :result (sum (filter include? (integer.range 1 n))))
 
 (print result)

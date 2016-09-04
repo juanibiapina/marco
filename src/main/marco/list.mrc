@@ -63,4 +63,15 @@
   })
 )
 
-(export [:cons :length :list? :head :tail :foldl :reverse :foldr :map])
+(def :filter @"Filter function"
+  (function [:f :list] {
+    (foldr (function [:x :acc] {
+      (if (f x)
+        { (cons x acc) }
+        { acc }
+      )
+    }) [] list)
+  })
+)
+
+(export [:cons :length :list? :head :tail :foldl :reverse :foldr :map :filter])
