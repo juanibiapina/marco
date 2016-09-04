@@ -49,4 +49,10 @@
   })
 )
 
-(export [:cons :length :list? :head :tail :foldl :reverse])
+(def :foldr @"Right fold"
+  (function [:pred :initial-value :list] {
+    (foldl (flip pred) initial-value (reverse list))
+  })
+)
+
+(export [:cons :length :list? :head :tail :foldl :reverse :foldr])
