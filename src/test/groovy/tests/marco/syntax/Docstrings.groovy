@@ -17,4 +17,15 @@ class Docstrings extends MarcoSpecification {
         expect:
         eval(/ (doc f) /) == eval(/ "a function" /)
     }
+
+    def "copying a docstring when binding"() {
+        given:
+        eval(/ (def :f @"a function" (function [] {})) /)
+
+        when:
+        eval(/ (def :g f) /)
+
+        then:
+        eval(/ (doc g) /) == eval(/ "a function" /)
+    }
 }
