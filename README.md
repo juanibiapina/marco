@@ -8,5 +8,5 @@
 (def :answer 42) // immutable binding
 
 (var :done false) // mutable binding
-(set! :done true) // mutation or assignment
+(set! :done true) // mutation
 ```
