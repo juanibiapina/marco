@@ -41,4 +41,10 @@
   })
 )
 
-(export [:for-each :even? :max :or :filter :map :any :flip])
+(def :identity @"Returns the argument itself"
+  (function [:e] {
+    e
+  })
+)
+
+(export [:for-each :even? :max :or :filter :map :any :flip :identity])
