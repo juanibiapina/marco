@@ -7,6 +7,7 @@ import marco.lang.exceptions.MarcoException;
 import marco.parser.Parser;
 import marco.runtime.modules.NativeIOModule;
 import marco.runtime.modules.NativeIntegerModule;
+import marco.runtime.modules.NativeStringModule;
 
 import java.io.InputStream;
 import java.util.HashMap;
@@ -40,6 +41,11 @@ public class MarcoRuntime {
         MarcoModule nativeIntegerModule = new NativeIntegerModule(nativeModuleEnvironment2);
         nativeModuleEnvironment.setModule(nativeIntegerModule);
         nativeModules.put("integer", nativeIntegerModule);
+
+        Environment nativeModuleEnvironment3 = topLevelEnvironment.spawn();
+        MarcoModule nativeStringModule = new NativeStringModule(nativeModuleEnvironment3);
+        nativeModuleEnvironment.setModule(nativeStringModule);
+        nativeModules.put("string", nativeStringModule);
     }
 
     public void run(String fileName, InputStream inputStream) {

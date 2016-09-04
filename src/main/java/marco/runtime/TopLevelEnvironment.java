@@ -25,7 +25,7 @@ import marco.lang.functions.pair.first;
 import marco.lang.functions.pair.pair;
 import marco.lang.functions.pair.pair_question;
 import marco.lang.functions.pair.second;
-import marco.lang.functions.string.string_concat;
+import marco.lang.functions.string.concat;
 import marco.lang.functions.system.exit;
 
 import java.util.Arrays;
@@ -75,8 +75,6 @@ public class TopLevelEnvironment extends Environment {
         def("exit", new MarcoFunction(this, Arrays.asList("code"), new exit()));
 
         def("print", new MarcoFunction(this, Arrays.asList("e"), new print()));
-
-        def("string-concat", new MarcoFunction(this, Arrays.asList("values"), new string_concat()));
 
         def("invoke", new MarcoFunction(this, Arrays.asList("block"), new invoke()));
         def("module", new MarcoFunction(this, Arrays.asList("block"), new module()));

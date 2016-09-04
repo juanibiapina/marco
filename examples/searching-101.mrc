@@ -1,5 +1,6 @@
 (def :io (require "io"))
 (def :integer (require "integer"))
+(def :string (require "string"))
 
 (def :read-number (function [] {
   (integer.parse (io.read-line io.stdin))
@@ -20,5 +21,5 @@
 (def :query (read-number))
 
 (if (contains numbers query)
-  { (print (string-concat ["The number " query " appears in the first 5 numbers."])) }
-  { (print (string-concat ["The number " query " doesn't appear in the first 5 numbers."])) })
+  { (print (string.concat ["The number " query " appears in the first 5 numbers."])) }
+  { (print (string.concat ["The number " query " doesn't appear in the first 5 numbers."])) })

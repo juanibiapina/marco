@@ -8,7 +8,7 @@ import marco.runtime.ListHelper;
 
 import java.util.List;
 
-public class string_concat extends MarcoNativeBlock {
+public class concat extends MarcoNativeBlock {
     @Override
     public MarcoObject invoke(Environment closure, Environment dynamic) {
         List<MarcoObject> values = ListHelper.toJavaList(closure.lookUp("values"));
