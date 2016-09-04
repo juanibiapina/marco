@@ -27,6 +27,7 @@ public class MarcoRuntime {
     public MarcoRuntime() {
         parser = Parser.instance();
         topLevelEnvironment = new TopLevelEnvironment(this);
+
         includeModule(topLevelEnvironment, "core");
         includeModule(topLevelEnvironment, "list");
 
@@ -39,12 +40,12 @@ public class MarcoRuntime {
 
         Environment nativeModuleEnvironment2 = topLevelEnvironment.spawn();
         MarcoModule nativeIntegerModule = new NativeIntegerModule(nativeModuleEnvironment2);
-        nativeModuleEnvironment.setModule(nativeIntegerModule);
+        nativeModuleEnvironment2.setModule(nativeIntegerModule);
         nativeModules.put("integer", nativeIntegerModule);
 
         Environment nativeModuleEnvironment3 = topLevelEnvironment.spawn();
         MarcoModule nativeStringModule = new NativeStringModule(nativeModuleEnvironment3);
-        nativeModuleEnvironment.setModule(nativeStringModule);
+        nativeModuleEnvironment3.setModule(nativeStringModule);
         nativeModules.put("string", nativeStringModule);
     }
 
