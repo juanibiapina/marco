@@ -3,7 +3,7 @@ package marco.runtime.modules;
 import marco.runtime.Environment;
 import marco.lang.MarcoFunction;
 import marco.lang.MarcoModule;
-import marco.lang.functions.integer.parse;
+import marco.lang.functions.integers.parse;
 
 import java.util.Arrays;
 

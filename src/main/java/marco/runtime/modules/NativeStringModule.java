@@ -2,7 +2,7 @@ package marco.runtime.modules;
 
 import marco.lang.MarcoFunction;
 import marco.lang.MarcoModule;
-import marco.lang.functions.string.concat;
+import marco.lang.functions.strings.concat;
 import marco.runtime.Environment;
 
 import java.util.Arrays;
