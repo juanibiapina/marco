@@ -34,4 +34,13 @@
   })
 )
 
-(export [:cons :length :list? :head :tail])
+(def :foldl @"Left fold"
+  (function [:pred :initial-value :list] {
+    (if (nil? list)
+      { initial-value }
+      { (recurse pred (pred initial-value (head list)) (tail list)) }
+    )
+  })
+)
+
+(export [:cons :length :list? :head :tail :foldl])

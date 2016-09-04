@@ -4,8 +4,7 @@
 (def :n (integer.parse (io.read-line io.stdin)))
 
 (def :sum (function [:list] {
-  (if (nil? list) { 0 }
-    { (+ (head list) (recurse (tail list))) })
+    (foldl + 0 list)
 }))
 
 (def :include? (function [:n] {
