@@ -1,8 +1,16 @@
 package tests.marco.modules.list
 
 import helpers.MarcoSpecification
+import marco.lang.MarcoNil
+import marco.lang.MarcoNumber
+import marco.lang.MarcoPair
 
 class list extends MarcoSpecification {
+    def "cons"() {
+        expect:
+        eval(/ (cons 1 nil) /) == new MarcoPair(new MarcoNumber(1), MarcoNil.NIL)
+    }
+
     def "head"() {
         expect:
         eval(/ (head [1 2]) /) == eval(/ 1 /)
