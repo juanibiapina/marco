@@ -43,4 +43,12 @@
   })
 )
 
-(export [:cons :length :list? :head :tail :foldl])
+(def :reverse @"Reverses a list"
+  (function [:list] {
+    (foldl (function [:acc :new-head] {
+      (cons new-head acc)
+    }) [] list)
+  })
+)
+
+(export [:cons :length :list? :head :tail :foldl :reverse])
