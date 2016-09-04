@@ -55,4 +55,12 @@
   })
 )
 
-(export [:cons :length :list? :head :tail :foldl :reverse :foldr])
+(def :map @"Map function"
+  (function [:f :list] {
+    (foldr (function [:x :z] {
+      (cons (f x) z)
+    }) [] list)
+  })
+)
+
+(export [:cons :length :list? :head :tail :foldl :reverse :foldr :map])

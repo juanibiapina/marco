@@ -1,14 +1,11 @@
-package tests.marco.modules.core
+package tests.marco.modules.list
 
 import helpers.MarcoSpecification
 
 class map extends MarcoSpecification {
     def "empty list"() {
-        given:
-        eval(/ (def :f (function [:e] { (+ e 1) })) /)
-
         expect:
-        eval(/ (map [] f) /) == eval(/ [] /)
+        eval(/ (map identity []) /) == eval(/ [] /)
     }
 
     def "one element"() {
@@ -16,7 +13,7 @@ class map extends MarcoSpecification {
         eval(/ (def :f (function [:e] { (+ e 1) })) /)
 
         expect:
-        eval(/ (map [1] f) /) == eval(/ [2] /)
+        eval(/ (map f [1]) /) == eval(/ [2] /)
     }
 
     def "several elements"() {
@@ -24,6 +21,6 @@ class map extends MarcoSpecification {
         eval(/ (def :f (function [:e] { (+ e 1) })) /)
 
         expect:
-        eval(/ (map [1 2 3 4 5] f) /) == eval(/ [2 3 4 5 6] /)
+        eval(/ (map f [1 2 3 4 5]) /) == eval(/ [2 3 4 5 6] /)
     }
 }

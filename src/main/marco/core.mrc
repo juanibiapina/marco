@@ -20,11 +20,6 @@
         { (filter (tail list) predicate) }) })
 }))
 
-(def :map (function [:list :predicate] {
-  (if (nil? list) { nil }
-    { (cons (predicate (head list)) (map (tail list) predicate)) })
-}))
-
 (def :any (function [:list :f] {
   (if (nil? list) { false } {
     (if (f (head list)) { true } {
@@ -47,4 +42,4 @@
   })
 )
 
-(export [:for-each :even? :max :or :filter :map :any :flip :identity])
+(export [:for-each :even? :max :or :filter :any :flip :identity])
