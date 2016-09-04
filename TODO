@@ -24,13 +24,6 @@
   - Error context information (actual code?)
   - Save call trace for debugging
 
-- Contracts
-  - Can be used to generate proper error messages
-
-- Maps
-
-- Metadata
-
 - Bindings
   - def with recursion
   - declare
