@@ -15,13 +15,13 @@
 }))
 
 (def :run-tests (function [:test-list] {
-  (let [:failed-results { (filter (map test-list run-test-case)
-                                  (function [:test-case-result] {
+  (let [:failed-results { (filter (function [:test-case-result] {
                                     (not (head (tail test-case-result)))
-                                  }))
+                                  })
+                                  (map run-test-case test-list))
                         }]
     {
-      (map failed-results print-results)
+      (map print-results failed-results)
       (if (> (length failed-results) 0)
           { (exit 1) }
           { nil })
