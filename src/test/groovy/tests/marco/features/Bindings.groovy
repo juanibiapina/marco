@@ -1,7 +1,7 @@
 package tests.marco.features
 
 import helpers.MarcoSpecification
-import marco.lang.exceptions.BindingError
+
 import marco.lang.exceptions.ContractViolation
 import marco.lang.exceptions.TypeException
 
@@ -40,15 +40,13 @@ class Bindings extends MarcoSpecification {
         eval(/ y /) == eval(/ 1 /)
     }
 
-    def "trying to bind to an already bound variable"() {
+    def "shadowing a previous binding"() {
         when:
         eval(/ (def :x 1) /)
         eval(/ (def :x 2) /)
 
         then:
-        BindingError e = thrown()
-        e.binding == "x"
-        e.oldValue == eval(/ 1 /)
+        eval(/ x /) == eval(/ 2 /)
     }
 
     def "returns nil"() {

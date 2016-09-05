@@ -4,7 +4,6 @@ import marco.runtime.bindings.*;
 import marco.lang.MarcoModule;
 import marco.lang.MarcoObject;
 import marco.lang.error.LookUpError;
-import marco.lang.exceptions.BindingError;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -76,23 +75,7 @@ public class Environment {
     private void addBinding(Binding binding) {
         String name = binding.getSymbol();
 
-        if (hasBinding(name)) {
-            throw new BindingError(name, lookUp(name));
-        }
-
         bindings.put(name, binding);
-    }
-
-    private boolean hasBinding(String name) {
-        if (bindings.containsKey(name)) {
-            return true;
-        } else {
-            if (hasParent()) {
-                return parent.hasBinding(name);
-            } else {
-                return false;
-            }
-        }
     }
 
     private boolean hasParent() {
