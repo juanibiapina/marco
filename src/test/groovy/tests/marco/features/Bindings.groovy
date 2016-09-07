@@ -40,15 +40,6 @@ class Bindings extends MarcoSpecification {
         eval(/ y /) == eval(/ 1 /)
     }
 
-    def "shadowing a previous binding"() {
-        when:
-        eval(/ (def :x 1) /)
-        eval(/ (def :x 2) /)
-
-        then:
-        eval(/ x /) == eval(/ 2 /)
-    }
-
     def "returns nil"() {
         expect:
         eval(/ (def :xx 11) /) == eval(/ nil /)

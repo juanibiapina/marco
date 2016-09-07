@@ -37,25 +37,6 @@ class Functions extends MarcoSpecification {
         eval(/ (f 3 4) /) == eval(/ 4 /)
     }
 
-    def "parameters shadow previous bindings"() {
-        when:
-        eval(/ (def :x 1) /)
-        eval(/ (def :f (function [:x] {x})) /)
-
-        then:
-        eval(/ (f 2) /) == eval(/ 2 /)
-    }
-
-    def "has access to value at the time of definition (ignores later shadowing)"() {
-        when:
-        eval(/ (def :x 1) /)
-        eval(/ (def :f (function [] {x})) /)
-        eval(/ (def :x 2) /)
-
-        then:
-        eval(/ (f) /) == eval(/ 1 /)
-    }
-
     def "previous environment is available to function body"() {
         when:
         eval(/ (def :p 5) /)
