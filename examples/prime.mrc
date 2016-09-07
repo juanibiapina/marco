@@ -12,9 +12,9 @@
     (if (= n 2) { true } {
       (def :numbers-to-test (integer.range 2 (+ (/ n 2) 1)))
 
-      (not (any numbers-to-test (function [:e] {
+      (not (any (function [:e] {
         (divisible n e)
-      })))
+      }) numbers-to-test))
     })
   })
 }))

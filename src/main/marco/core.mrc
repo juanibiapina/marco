@@ -13,14 +13,6 @@
   })
 }))
 
-(def :any (function [:list :f] {
-  (if (nil? list) { false } {
-    (if (f (head list)) { true } {
-      (recurse (tail list) f)
-    })
-  })
-}))
-
 (def :flip @"Returns a new function with flipped argument positions"
   (function [:f] {
     (function [:v1 :v2] {
@@ -35,4 +27,4 @@
   })
 )
 
-(export [:for-each :even? :max :or :any :flip :identity])
+(export [:for-each :even? :max :or :flip :identity])

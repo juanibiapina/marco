@@ -74,4 +74,14 @@
   })
 )
 
-(export [:cons :length :list? :head :tail :foldl :reverse :foldr :map :filter])
+(def :any @"Checks whether a predicate is true for any element of a list"
+  (function [:f :list] {
+    (if (nil? list) { false } {
+      (if (f (head list)) { true } {
+        (recurse f (tail list))
+      })
+    })
+  })
+)
+
+(export [:cons :length :list? :head :tail :foldl :reverse :foldr :map :filter :any])
