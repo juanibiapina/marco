@@ -17,6 +17,7 @@ import marco.lang.functions.docstrings.doc;
 import marco.lang.functions.functions.apply;
 import marco.lang.functions.functions.function;
 import marco.lang.functions.functions.function_question;
+import marco.lang.functions.functions.partial;
 import marco.lang.functions.hash_maps.hash_map;
 import marco.lang.functions.io.print;
 import marco.lang.functions.metadata.meta;
@@ -33,6 +34,7 @@ import marco.lang.functions.pairs.pair_question;
 import marco.lang.functions.pairs.second;
 import marco.lang.functions.control_flow.exit;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class TopLevelEnvironment extends Environment {
@@ -45,6 +47,7 @@ public class TopLevelEnvironment extends Environment {
         def("function", new MarcoFunction(this, Arrays.asList("formal", "body"), new function()));
         def("function?", new MarcoFunction(this, Arrays.asList("v"), new function_question()));
         def("apply", new MarcoFunction(this, Arrays.asList("runnable", "args"), new apply()));
+        def("partial", new MarcoFunction(this, Arrays.asList("n", "args"), new partial()));
 
         def("true", MarcoBoolean.TRUE);
         def("false", MarcoBoolean.FALSE);

@@ -3,9 +3,7 @@
 
 (def :n (integer.parse (io.read-line io.stdin)))
 
-(def :sum (function [:list] {
-    (foldl + 0 list)
-}))
+(def :sum (partial 1 [foldl + 0]))
 
 (def :include? (function [:n] {
   (or { (= (% n 3) 0) } { (= (% n 5) 0) })

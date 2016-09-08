@@ -10,16 +10,12 @@
   (helper 1 1)
 }))
 
-(def :sum (function [:list] {
-  (foldl + 0 list)
-}))
+(def :sum (partial 1 [foldl + 0]))
 
 (def :n (integer.parse (io.read-line io.stdin)))
 
 (def :fib (make-fib))
 
-(def :include? (function [:n] {
-  (even? n)
-}))
+(def :include? even?)
 
 (print (sum (stream.take-while (function [:e] { (< e n) }) (stream.filter include? fib))))
