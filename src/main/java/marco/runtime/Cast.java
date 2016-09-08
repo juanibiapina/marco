@@ -5,7 +5,7 @@ import marco.lang.exceptions.TypeException;
 import marco.lang.*;
 
 public class Cast {
-    public static MarcoRunnable toRunnable(MarcoObject value, String fileName, int line) {
+    public static MarcoRunnable toRunnable(MarcoObject value, String fileName, Integer line) {
         if (value instanceof MarcoRunnable) {
             return (MarcoRunnable) value;
         } else {

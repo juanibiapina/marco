@@ -14,6 +14,7 @@ import marco.lang.functions.control_flow._if;
 import marco.lang.functions.booleans._not;
 import marco.lang.functions.control_flow._while;
 import marco.lang.functions.docstrings.doc;
+import marco.lang.functions.functions.apply;
 import marco.lang.functions.functions.function;
 import marco.lang.functions.functions.function_question;
 import marco.lang.functions.hash_maps.hash_map;
@@ -43,6 +44,7 @@ public class TopLevelEnvironment extends Environment {
     private void loadNativeBindings() {
         def("function", new MarcoFunction(this, Arrays.asList("formal", "body"), new function()));
         def("function?", new MarcoFunction(this, Arrays.asList("v"), new function_question()));
+        def("apply", new MarcoFunction(this, Arrays.asList("runnable", "args"), new apply()));
 
         def("true", MarcoBoolean.TRUE);
         def("false", MarcoBoolean.FALSE);
