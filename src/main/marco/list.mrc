@@ -55,6 +55,12 @@
   })
 )
 
+(def :append @"Appends two lists"
+  (function [:l1 :l2] {
+    (foldr cons l2 l1)
+  })
+)
+
 (def :map @"Map function"
   (function [:f :list] {
     (foldr (function [:x :z] {
@@ -84,4 +90,4 @@
   })
 )
 
-(export [:cons :length :list? :head :tail :foldl :reverse :foldr :map :filter :any])
+(export [:cons :length :list? :head :tail :foldl :reverse :foldr :append :map :filter :any])
