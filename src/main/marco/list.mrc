@@ -84,4 +84,23 @@
   })
 )
 
-(export [:cons :length :list? :head :tail :foldl :reverse :foldr :append :map :filter :any])
+(def :flatten @"Flattens a list"
+  (function [:l] {
+    (def :helper (function [:l :acc] {
+        (if (nil? l)
+          { acc }
+          {
+            (def :x (head l))
+            (def :xs (tail l))
+
+            (if (list? x)
+              { (recurse (append x xs) acc) }
+              { (recurse xs (cons x acc)) })
+          })
+    }))
+
+    (reverse (helper l []))
+  })
+)
+
+(export [:cons :length :list? :head :tail :foldl :reverse :foldr :append :map :filter :any :flatten])
