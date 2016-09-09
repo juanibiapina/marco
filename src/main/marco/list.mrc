@@ -5,15 +5,11 @@
 )
 
 (def :head @"Returns the head of a list"
-  (function [:list] {
-    (first list)
-  })
+  first
 )
 
 (def :tail @"Returns the tail of a list"
-  (function [:list] {
-    (second list)
-  })
+  second
 )
 
 (def :length @"Determines the length of a list"
@@ -44,9 +40,7 @@
 )
 
 (def :reverse @"Reverses a list"
-  (function [:list] {
-    (foldl (flip cons) [] list)
-  })
+    (partial 1 [foldl (flip cons) []])
 )
 
 (def :foldr @"Right fold"
