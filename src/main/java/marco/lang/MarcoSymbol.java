@@ -8,11 +8,6 @@ public class MarcoSymbol extends MarcoValue {
     }
 
     @Override
-    public boolean isList() {
-        return false;
-    }
-
-    @Override
     public String convertToString() {
         return ":" + value;
     }

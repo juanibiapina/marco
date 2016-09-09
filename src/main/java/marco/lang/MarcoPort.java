@@ -15,11 +15,6 @@ public class MarcoPort extends MarcoValue {
     }
 
     @Override
-    public boolean isList() {
-        return false;
-    }
-
-    @Override
     public String convertToString() {
         return "Port";
     }

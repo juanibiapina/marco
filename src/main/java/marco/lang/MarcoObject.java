@@ -10,8 +10,6 @@ public abstract class MarcoObject {
 
     public abstract MarcoObject __eval(Environment dynamic);
 
-    public abstract boolean isList();
-
     public abstract String convertToString();
 
     @Override

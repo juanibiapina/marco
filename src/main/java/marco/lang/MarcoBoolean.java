@@ -11,11 +11,6 @@ public class MarcoBoolean extends MarcoValue {
     }
 
     @Override
-    public boolean isList() {
-        return false;
-    }
-
-    @Override
     public String convertToString() {
         return Boolean.toString(value);
     }

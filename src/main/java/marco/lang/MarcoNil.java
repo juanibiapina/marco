@@ -17,11 +17,6 @@ public class MarcoNil extends MarcoValue {
     }
 
     @Override
-    public boolean isList() {
-        return true;
-    }
-
-    @Override
     public boolean isNil() {
         return true;
     }

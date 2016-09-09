@@ -27,11 +27,6 @@ public class MarcoApplication extends MarcoObject {
     }
 
     @Override
-    public boolean isList() {
-        return false;
-    }
-
-    @Override
     public String convertToString() {
         return "Application";
     }

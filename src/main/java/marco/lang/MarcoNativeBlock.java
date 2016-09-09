@@ -10,9 +10,4 @@ public abstract class MarcoNativeBlock extends MarcoBlock {
     @Override
     public abstract MarcoObject invoke(Environment closure, Environment dynamic);
 
-    @Override
-    public boolean isList() {
-        return false;
-    }
-
 }

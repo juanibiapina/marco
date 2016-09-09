@@ -17,11 +17,6 @@ public class MarcoModule extends MarcoValue {
     }
 
     @Override
-    public boolean isList() {
-        return false;
-    }
-
-    @Override
     public String convertToString() {
         return "Module";
     }

@@ -20,11 +20,6 @@ public class MarcoPair extends MarcoValue {
     }
 
     @Override
-    public boolean isList() {
-        return false;
-    }
-
-    @Override
     public String convertToString() {
         return "(" + first.toString() + ", " + second.toString() + ")";
     }
