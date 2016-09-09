@@ -31,4 +31,11 @@
 - Refactor
   - String representations
     - specially lists
+
+- Error handling
+  - Throw and catch errors
   - Drop the generic exception
+
+- Possible rewrites
+  - def in terms of environments
+  - function in terms of environments and block invocation
