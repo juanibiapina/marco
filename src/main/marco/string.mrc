@@ -2,5 +2,6 @@
 
 (def :concat native-string.concat)
 (def :from native-string.from)
+(def :reverse native-string.reverse)
 
-(export [:concat :from])
+(export [:concat :from :reverse])
