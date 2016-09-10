@@ -36,10 +36,21 @@
 
 (def :tail @"Returns the tail of a stream"
   (function [:s] {
-    (def :t (second s))
-
-    (if (empty? t) { t } { (t) })
+    ((second s))
   })
+)
+
+(def :foldl @"Foldl for streams"
+  (function [:pred :initial-value :s] {
+    (if (empty? s)
+      { initial-value }
+      { (recurse pred (pred initial-value (head s)) (tail s)) }
+    )
+  })
+)
+
+(def :length @"Returns the length of a stream"
+  (partial 1 [foldl (function [:z :x] { (+ 1 z) }) 0])
 )
 
 (def :filter @"Filter elements of a stream"
@@ -86,4 +97,17 @@
   })
 )
 
-(export [:empty :empty? :stream? :cons :head :tail :filter :take :take-while :integers])
+(def :range @"Generates a range of integers"
+  (function [:start :end] {
+    (if (>= start end)
+      { empty }
+      {
+        (cons start (function [] {
+          (range (+ start 1) end)
+        }))
+      }
+    )
+  })
+)
+
+(export [:empty :empty? :stream? :cons :head :tail :foldl :length :filter :take :take-while :integers :range])
