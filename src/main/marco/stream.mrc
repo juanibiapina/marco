@@ -8,6 +8,20 @@
   })
 )
 
+(def :stream? @"Checks whether an object is a stream"
+  (function [:s] {
+    (or
+      { (empty? s) }
+      {
+        (and
+          { (pair? s) }
+          { (function? (second s)) }
+        )
+      }
+    )
+  })
+)
+
 (def :cons @"Builds a stream"
   (function [:e :s] {
     (pair e s)
@@ -72,4 +86,4 @@
   })
 )
 
-(export [:empty :empty? :cons :head :tail :filter :take :take-while :integers])
+(export [:empty :empty? :stream? :cons :head :tail :filter :take :take-while :integers])
