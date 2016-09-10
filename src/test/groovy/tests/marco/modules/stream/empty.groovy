@@ -1,9 +1,5 @@
 package tests.marco.modules.stream
-
 import helpers.MarcoSpecification
-import marco.lang.MarcoNil
-import marco.lang.MarcoNumber
-import marco.lang.MarcoPair
 
 class empty extends MarcoSpecification {
     def "setup"() {
@@ -17,6 +13,6 @@ class empty extends MarcoSpecification {
 
     def "function is not an empty stream"() {
         expect:
-        eval(/ (stream.empty? stream.empty) /) == eval(/ true /)
+        eval(/ (stream.empty? +) /) == eval(/ false /)
     }
 }
