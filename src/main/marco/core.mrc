@@ -13,6 +13,12 @@
   })
 }))
 
+(def :and (function [:b1 :b2] {
+  (let [:v1 { (invoke b1) }] {
+    (if v1 { (invoke b2) } { false })
+  })
+}))
+
 (def :flip @"Returns a new function with flipped argument positions"
   (function [:f] {
     (function [:v1 :v2] {
@@ -27,4 +33,4 @@
   })
 )
 
-(export [:for-each :even? :max :or :flip :identity])
+(export [:for-each :even? :max :or :and :flip :identity])
