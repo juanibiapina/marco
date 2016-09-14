@@ -1,42 +1,18 @@
-(def :list (require "list"))
-
 (def :empty nil)
 
 (def :empty? @"Checks whether a stream is empty"
-  (function [:s] {
-    (nil? s)
-  })
-)
-
-(def :stream? @"Checks whether an object is a stream"
-  (function [:s] {
-    (or
-      { (empty? s) }
-      {
-        (and
-          { (pair? s) }
-          { (function? (second s)) }
-        )
-      }
-    )
-  })
-)
-
-(def :cons @"Builds a stream"
-  (function [:e :s] {
-    (pair e s)
-  })
+  nil?
 )
 
 (def :head @"Returns the head of a stream"
   (function [:s] {
-    (first s)
+    (first (s))
   })
 )
 
 (def :tail @"Returns the tail of a stream"
   (function [:s] {
-    ((second s))
+    (second (s))
   })
 )
 
@@ -53,6 +29,15 @@
   (partial 1 [foldl (function [:z :x] { (+ 1 z) }) 0])
 )
 
+(def :map @"Map a predicate to each element of a stream"
+  (function [:f :s] {
+    (if (empty? s)
+      { empty }
+      { (function [] { (pair (f (head s)) (map f (tail s))) }) }
+    )
+  })
+)
+
 (def :filter @"Filter elements of a stream"
   (function [:f :s] {
     (def :x (head s))
@@ -61,7 +46,7 @@
     (def :this recurse)
 
     (if (f x)
-      { (cons x (function [] { (this f t) })) }
+      { (function [] { (pair x (this f t)) }) }
       { (this f t) }
     )
   })
@@ -71,7 +56,7 @@
   (function [:n :s] {
     (if (<= n 0)
       { nil }
-      { (list.cons (head s) (recurse (- n 1) (tail s))) }
+      { (pair (head s) (recurse (- n 1) (tail s))) }
     )
   })
 )
@@ -81,7 +66,7 @@
     (def :take? (f (head s)))
 
     (if take?
-      { (list.cons (head s) (recurse f (tail s))) }
+      { (pair (head s) (recurse f (tail s))) }
       { nil }
     )
   })
@@ -90,7 +75,9 @@
 (def :integers @"Generates an infinite stream of integers"
   (function [] {
     (def :helper (function [:n] {
-      (cons n (function [] { (helper (+ n 1)) }))
+      (function [] {
+        (pair n (helper (+ n 1)))
+      })
     }))
 
     (helper 1)
@@ -101,13 +88,11 @@
   (function [:start :end] {
     (if (>= start end)
       { empty }
-      {
-        (cons start (function [] {
-          (range (+ start 1) end)
-        }))
-      }
+      {(function [] {
+        (pair start (range (+ start 1) end))
+      })}
     )
   })
 )
 
-(export [:empty :empty? :stream? :cons :head :tail :foldl :length :filter :take :take-while :integers :range])
+(export [:empty :empty? :head :tail :foldl :length :map :filter :take :take-while :integers :range])

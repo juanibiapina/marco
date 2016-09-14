@@ -9,7 +9,7 @@ class range extends MarcoSpecification {
 
     def "returns a stream"() {
         expect:
-        eval(/ (stream.stream? (stream.range 3 6)) /) == eval(/ true /)
+        eval(/ (function? (stream.range 3 6)) /) == eval(/ true /)
     }
 
     def "has bounds"() {

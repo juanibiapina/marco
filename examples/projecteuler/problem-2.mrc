@@ -4,7 +4,7 @@
 
 (def :make-fib (function [] {
   (def :helper (function [:a :b] {
-    (stream.cons a (function [] { (helper b (+ a b)) }))
+    (function [] { (pair a (helper b (+ a b))) })
   }))
 
   (helper 1 1)

@@ -8,10 +8,7 @@ class tail extends MarcoSpecification {
     }
 
     def "tail of a stream"() {
-        given:
-        eval(/ (def :s (stream.cons 1 (function [] { stream.empty }))) /)
-
         expect:
-        eval(/ (stream.tail s) /) == eval(/ stream.empty /)
+        eval(/ (stream.head (stream.tail (stream.integers))) /) == eval(/ 2 /)
     }
 }
